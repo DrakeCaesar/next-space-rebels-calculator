@@ -9,13 +9,18 @@ type ComboCategory =
   | "WEIRD"
   | "WILD"
   | "COOL"
-  | "ASPIRING";
+  | "ASPIRING"
+  | "FUNNY"
+  | "GROSS"
+  | "NAUGHTY"
+  | "CREEPY";
 
 interface Tag {
   name: string;
   description: string;
   rarity: TagRarity;
   combos: ComboCategory[];
+  blocked?: boolean;
 }
 
 // Initial set of tags
@@ -177,6 +182,13 @@ const tags: Tag[] = [
     combos: ["CUTE", "???"],
   },
   {
+    name: "Censored",
+    description: "unknown",
+    rarity: "Epic",
+    combos: ["???"],
+    blocked: true,
+  },
+  {
     name: "Oops",
     description: "For hitting a building",
     rarity: "Uncommon",
@@ -229,6 +241,231 @@ const tags: Tag[] = [
     description: "For beating a challenge from BangCo",
     rarity: "Uncommon",
     combos: ["ASPIRING"],
+  },
+  {
+    name: "Timed",
+    description: "For triggering a time sensor",
+    rarity: "Common",
+    combos: [],
+  },
+  {
+    name: "Tiny House",
+    description: "For building a house with a toy block cube and roof",
+    rarity: "Rare",
+    combos: ["CUTE"],
+  },
+  {
+    name: "Skeleton",
+    description:
+      "For having a rocket with only 10% of its mass consisting of structure parts",
+    rarity: "Epic",
+    combos: [],
+  },
+  {
+    name: "Minimal",
+    description: "For using only 1 structure part",
+    rarity: "Uncommon",
+    combos: [],
+  },
+  {
+    name: "Furlong",
+    description: "For reaching an altitude of 201 meters",
+    rarity: "Common",
+    combos: ["NOOB", "???"],
+  },
+  {
+    name: "Shark",
+    description: "For using 2 side fins",
+    rarity: "Uncommon",
+    combos: ["WILD"],
+  },
+  {
+    name: "Funnel",
+    description: "For using a funnel",
+    rarity: "Common",
+    combos: [],
+  },
+  {
+    name: "Rocket Kit XL",
+    description: "For using a rocket kit XL part",
+    rarity: "Common",
+    combos: [],
+  },
+  {
+    name: "Tube",
+    description: "For using a tube part",
+    rarity: "Common",
+    combos: ["SMART", "???"],
+  },
+  {
+    name: "PVC",
+    description: "For using the PVC set",
+    rarity: "Common",
+    combos: ["SMART"],
+  },
+  {
+    name: "DIY",
+    description: "For using only the PVC structure set",
+    rarity: "Rare",
+    combos: ["SMART"],
+  },
+  {
+    name: "Looping",
+    description: "For making a looping",
+    rarity: "Uncommon",
+    combos: ["AWESOME"],
+  },
+  {
+    name: "Stunt",
+    description: "For beating 'Stunt Rocket'",
+    rarity: "Epic",
+    combos: ["AWESOME"],
+  },
+  {
+    name: "Mozambique",
+    description: "For beating 'The Perfect Pump'",
+    rarity: "Epic",
+    combos: [],
+  },
+  {
+    name: "Engine",
+    description: "For using an engine",
+    rarity: "Common",
+    combos: [],
+  },
+  {
+    name: "Fuel",
+    description: "For using a fuel tank",
+    rarity: "Common",
+    combos: ["SMART"],
+  },
+  {
+    name: "Bottle",
+    description: "For using a fuel bottle",
+    rarity: "Common",
+    combos: [],
+  },
+  {
+    name: "RaySon",
+    description: "For beating a challenge from RaySon",
+    rarity: "Uncommon",
+    combos: ["SMART"],
+  },
+  {
+    name: "Football",
+    description: "For using a football",
+    rarity: "Uncommon",
+    combos: [],
+  },
+  {
+    name: "Trash Crafter",
+    description: "For using 3 different trash parts",
+    rarity: "Uncommon",
+    combos: [],
+  },
+  {
+    name: "Pandemic",
+    description: "For using 5 toilet rolls",
+    rarity: "Epic",
+    combos: ["FUNNY", "GROSS"],
+  },
+  {
+    name: "Top",
+    description: "For using a spinning top",
+    rarity: "Uncommon",
+    combos: ["CUTE"],
+  },
+  {
+    name: "Rings",
+    description: "For using a ring pyramid",
+    rarity: "Common",
+    combos: ["CUTE"],
+  },
+  {
+    name: "Playtime",
+    description: "For using only the toy structure set",
+    rarity: "Rare",
+    combos: ["CUTE"],
+  },
+  {
+    name: "I like to connect",
+    description: "For having at least 10 pipes in your rocket",
+    rarity: "Epic",
+    combos: [],
+  },
+  {
+    name: "Falcon",
+    description: "For reaching a speed of 390 km/h",
+    rarity: "Uncommon",
+    combos: ["WILD"],
+  },
+  {
+    name: "Horny",
+    description: "unknown",
+    rarity: "Rare",
+    combos: ["???"],
+    blocked: true,
+  },
+  {
+    name: "Firecracker",
+    description: "For using a firecracker",
+    rarity: "Common",
+    combos: [],
+  },
+  {
+    name: "Bad Luck",
+    description: "For having a top altitude of 13 meters",
+    rarity: "Rare",
+    combos: [],
+  },
+  {
+    name: "Alive",
+    description: "For combining a limb and a swivel",
+    rarity: "Rare",
+    combos: [],
+  },
+  {
+    name: "Train",
+    description: "For using a wooden train",
+    rarity: "Uncommon",
+    combos: [],
+  },
+  {
+    name: "Toy Blocks",
+    description: "For using 4 different toy block parts",
+    rarity: "Rare",
+    combos: ["CUTE"],
+  },
+  {
+    name: "Custom",
+    description: "For using a rocket kit part and a PVC part",
+    rarity: "Uncommon",
+    combos: [],
+  },
+  {
+    name: "Boost",
+    description: "For using a booster",
+    rarity: "Common",
+    combos: [],
+  },
+  {
+    name: "Extremely Unsymmetric",
+    description: "For having a completely unsymmetric rocket",
+    rarity: "Rare",
+    combos: [],
+  },
+  {
+    name: "Circus",
+    description: "For combining a stuffed elephant and a ball part",
+    rarity: "Rare",
+    combos: ["FUNNY", "AWESOME"],
+  },
+  {
+    name: "Baby Satay",
+    description: "unknown",
+    rarity: "Rare",
+    combos: ["???"],
+    blocked: true,
   },
   {
     name: "Architect",
@@ -284,6 +521,133 @@ const tags: Tag[] = [
     description: "For reaching an altitude of 1 kilometer",
     rarity: "Common",
     combos: [],
+  },
+  {
+    name: "Ridiculous",
+    description: "For beating 'Ridiculous Rocket Challenge'",
+    rarity: "Viral",
+    combos: ["AWESOME", "???"],
+  },
+  {
+    name: "Cocks",
+    description: "unknown",
+    rarity: "Epic",
+    combos: ["???"],
+    blocked: true,
+  },
+  {
+    name: "One-legged",
+    description: "For using only 1 leg part",
+    rarity: "Uncommon",
+    combos: [],
+  },
+  {
+    name: "Race",
+    description: "For beating 'Wait, that's illegal'",
+    rarity: "Epic",
+    combos: ["NAUGHTY"],
+  },
+  {
+    name: "Double Barrel",
+    description: "For using 2 upward straight parts at the same height",
+    rarity: "Uncommon",
+    combos: ["SMART"],
+  },
+  {
+    name: "Illegal",
+    description: "For using an illegal firework",
+    rarity: "Uncommon",
+    combos: ["NAUGHTY"],
+  },
+  {
+    name: "Twin Tail",
+    description: "For using 2 tail parts",
+    rarity: "Uncommon",
+    combos: [],
+  },
+  {
+    name: "Rollercoaster",
+    description: "For making 3 loopings",
+    rarity: "Rare",
+    combos: ["AWESOME"],
+  },
+  {
+    name: "Monster",
+    description: "For beating 'Looping Monster'",
+    rarity: "Viral",
+    combos: ["CREEPY", "AWESOME"],
+  },
+  {
+    name: "Connection",
+    description: "For using a connection part",
+    rarity: "Common",
+    combos: [],
+  },
+  {
+    name: "Saddle",
+    description: "For using a bike saddle",
+    rarity: "Uncommon",
+    combos: [],
+  },
+  {
+    name: "Frame",
+    description: "For using a bike frame",
+    rarity: "Common",
+    combos: ["WEIRD"],
+  },
+  {
+    name: "Vehicle",
+    description: "For using a wheel at the bottom of the rocket",
+    rarity: "Rare",
+    combos: [],
+  },
+  {
+    name: "Bike",
+    description: "For using a bike set",
+    rarity: "Common",
+    combos: ["WEIRD"],
+  },
+  {
+    name: "Bicycle",
+    description: "For using only the bike structure set",
+    rarity: "Rare",
+    combos: ["WEIRD", "???"],
+  },
+  {
+    name: "Angel",
+    description: "For using a halo shaped part on the top of the rocket",
+    rarity: "Rare",
+    combos: [],
+  },
+  {
+    name: "Wheel",
+    description: "For using a wheel part",
+    rarity: "Common",
+    combos: [],
+  },
+  {
+    name: "Three-Leaf Clover",
+    description: "For using 3 round parts in a three-leaf clover shape",
+    rarity: "Rare",
+    combos: [],
+  },
+  {
+    name: "Cyclist",
+    description: "For using 4 different bike parts",
+    rarity: "Uncommon",
+    combos: ["WEIRD"],
+  },
+  {
+    name: "Penis",
+    description: "unknown",
+    rarity: "Viral",
+    combos: [],
+  },
+  {
+    name: "Full Bike",
+    description: "For making a complete bike",
+    rarity: "Rare",
+    combos: ["WEIRD"],
   },
 ];
 
