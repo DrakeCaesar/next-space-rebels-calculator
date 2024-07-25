@@ -890,4 +890,41 @@ export const tags: Tag[] = [
     rarity: "Uncommon",
     combos: ["???"],
   },
+  {
+    name: "Progress",
+    description: "For beating a challenge from RoseWood",
+    rarity: "Rare",
+    combos: ["???"],
+  },
+  {
+    name: "Planking",
+    description: "For beating 'Planking'",
+    rarity: "Rare",
+    combos: ["???"],
+  },
+  {
+    name: "T-Bone",
+    description: "For combining 2 rectangle shaped part to create a T shape",
+    rarity: "Rare",
+    combos: ["???"],
+  },
+  {
+    name: "Plank",
+    description: "For using a plank",
+    rarity: "Common",
+    combos: ["???"],
+  },
+  {
+    name: "Wood",
+    description: "For using the wood set",
+    rarity: "Common",
+    combos: ["???"],
+  },
+  {
+    name: "Flat",
+    description:
+      "For having a rocket width at least 5 times bigger than its height",
+    rarity: "Rare",
+    combos: ["???"],
+  },
 ];
