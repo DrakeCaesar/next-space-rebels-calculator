@@ -28,7 +28,7 @@ export const tags: Tag[] = [
     name: "Rocket Kit",
     description: "For using the rocket kit set",
     rarity: "Common",
-    combos: ["???"],
+    combos: ["NOOB"],
   },
   {
     name: "Challenge",
@@ -221,7 +221,7 @@ export const tags: Tag[] = [
     name: "Cherry",
     description: "For using a cherry bomb",
     rarity: "Common",
-    combos: ["???"],
+    combos: ["NOOB", "???"],
   },
   {
     name: "Explosion",
@@ -288,7 +288,7 @@ export const tags: Tag[] = [
     name: "Rocket Kit XL",
     description: "For using a rocket kit XL part",
     rarity: "Common",
-    combos: ["???"],
+    combos: ["NOOB", "???"],
   },
   {
     name: "Tube",
@@ -330,7 +330,7 @@ export const tags: Tag[] = [
     name: "Engine",
     description: "For using an engine",
     rarity: "Common",
-    combos: ["???"],
+    combos: ["SMART"],
   },
   {
     name: "Fuel",
@@ -562,7 +562,7 @@ export const tags: Tag[] = [
     name: "Twin Tail",
     description: "For using 2 tail parts",
     rarity: "Uncommon",
-    combos: ["???"],
+    combos: ["WILD"],
   },
   {
     name: "Rollercoaster",
@@ -580,7 +580,7 @@ export const tags: Tag[] = [
     name: "Connection",
     description: "For using a connection part",
     rarity: "Common",
-    combos: ["???"],
+    combos: ["SMART"],
   },
   {
     name: "Saddle",
@@ -628,7 +628,7 @@ export const tags: Tag[] = [
     name: "Three-Leaf Clover",
     description: "For using 3 round parts in a three-leaf clover shape",
     rarity: "Rare",
-    combos: ["???"],
+    combos: ["WILD", "???"],
   },
   {
     name: "Cyclist",
@@ -755,7 +755,7 @@ export const tags: Tag[] = [
     name: "Tail Diversity",
     description: "For using 2 different tail parts",
     rarity: "Uncommon",
-    combos: ["???"],
+    combos: ["WILD", "AWESOME"],
   },
   {
     name: "Nose Job",
@@ -785,7 +785,7 @@ export const tags: Tag[] = [
     name: "Right on Time",
     description: "For triggering 3 different time sensors",
     rarity: "Rare",
-    combos: ["???"],
+    combos: ["SMART"],
   },
   {
     name: "Flower Power",
@@ -852,6 +852,42 @@ export const tags: Tag[] = [
     name: "Birds",
     description: "For using a flamingo and a weathercock",
     rarity: "Rare",
+    combos: ["???"],
+  },
+  {
+    name: "Diverse",
+    description: "For using a nose, body and tai, all from different sets",
+    rarity: "Rare",
+    combos: ["AWESOME", "???"],
+  },
+  {
+    name: "Pie",
+    description: "For having a top altitude of 314 meters",
+    rarity: "Viral",
+    combos: ["???"],
+  },
+  {
+    name: "Family",
+    description: "For beating a challenge from ScrapDad",
+    rarity: "Rare",
+    combos: ["???"],
+  },
+  {
+    name: "Winged",
+    description: "For using 2 wing shaped parts",
+    rarity: "Uncommon",
+    combos: ["WILD"],
+  },
+  {
+    name: "Double Kit",
+    description: "For using a complete rocket kit set twice",
+    rarity: "Rare",
+    combos: ["???"],
+  },
+  {
+    name: "Noodle",
+    description: "For having a pipe of at least 2 meter long",
+    rarity: "Uncommon",
     combos: ["???"],
   },
 ];
