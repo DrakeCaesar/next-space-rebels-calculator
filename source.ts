@@ -1,6 +1,13 @@
 // Define the types for the tags and combos
-type TagRarity = "Epic" | "Uncommon" | "Rare" | "Common";
-type ComboCategory = "CUTE" | "???" | "AWESOME" | "NOOB" | "SMART";
+type TagRarity = "Common" | "Uncommon" | "Rare" | "Epic" | "Viral";
+type ComboCategory =
+  | "CUTE"
+  | "???"
+  | "AWESOME"
+  | "NOOB"
+  | "SMART"
+  | "WEIRD"
+  | "WILD";
 
 interface Tag {
   name: string;
@@ -58,6 +65,54 @@ const tags: Tag[] = [
     description: "For beating a challenge from SidPhillips",
     rarity: "Common",
     combos: ["CUTE"],
+  },
+  {
+    name: "Lightweight",
+    description: "For having a rocket weighing less than 1 kilogram",
+    rarity: "Uncommon",
+    combos: ["CUTE"],
+  },
+  {
+    name: "Power Boost",
+    description: "For using 3 boosters",
+    rarity: "Uncommon",
+    combos: [],
+  },
+  {
+    name: "Tail",
+    description: "For using a tail part",
+    rarity: "Common",
+    combos: ["WILD"],
+  },
+  {
+    name: "Teddy Bear",
+    description: "For using a teddy bear",
+    rarity: "Common",
+    combos: [],
+  },
+  {
+    name: "Teddy Nose",
+    description: "For using a teddy bear at the top of the rocket",
+    rarity: "Uncommon",
+    combos: ["CUTE", "???"],
+  },
+  {
+    name: "Improviser",
+    description: "For using the rocket kit set and a toilet roll",
+    rarity: "Uncommon",
+    combos: ["NOOB", "WEIRD"],
+  },
+  {
+    name: "Nose",
+    description: "For using a nose part",
+    rarity: "Common",
+    combos: [],
+  },
+  {
+    name: "Old Fashioned",
+    description: "For using a nose, body, tail and nothing else",
+    rarity: "Uncommon",
+    combos: ["SMART"],
   },
   {
     name: "Architect",
