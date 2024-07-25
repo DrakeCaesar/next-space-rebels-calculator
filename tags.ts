@@ -737,7 +737,7 @@ export const tags: Tag[] = [
     name: "Dandy Deer",
     description: "For using a deer part",
     rarity: "Common",
-    combos: ["WEIRD", "???"],
+    combos: ["WEIRD", "WILD"],
   },
   {
     name: "Body",
@@ -906,7 +906,7 @@ export const tags: Tag[] = [
     name: "T-Bone",
     description: "For combining 2 rectangle shaped part to create a T shape",
     rarity: "Rare",
-    combos: ["???"],
+    combos: ["SMART"],
   },
   {
     name: "Plank",
@@ -925,6 +925,141 @@ export const tags: Tag[] = [
     description:
       "For having a rocket width at least 5 times bigger than its height",
     rarity: "Rare",
+    combos: ["???"],
+  },
+  {
+    name: "Cross",
+    description:
+      "For combining 2 rectangle shaped part to create a cross shape",
+    rarity: "Rare",
+    combos: ["SMART"],
+  },
+  {
+    name: "Tree",
+    description: "For using only the wood structure set",
+    rarity: "Rare",
+    combos: ["???"],
+  },
+  {
+    name: "Minotaur",
+    description:
+      "For using a mannequin torso, arms and legs and a Dandy Deer head",
+    rarity: "Rare",
+    combos: ["???"],
+  },
+  {
+    name: "Timber",
+    description: "For using a wood part and a mannequin part",
+    rarity: "Uncommon",
+    combos: ["???"],
+  },
+  {
+    name: "Techno",
+    description: "For using a techno jet",
+    rarity: "Rare",
+    combos: ["???"],
+  },
+  {
+    name: "Pallet",
+    description: "For using a pallet",
+    rarity: "Uncommon",
+    combos: ["???"],
+  },
+  {
+    name: "Spaghetti",
+    description:
+      "For having at least 3 pipes with a length of at least 2 meters",
+    rarity: "Rare",
+    combos: ["???"],
+  },
+  {
+    name: "Toy Magic",
+    description: "For beating 'Toy Block Tower'",
+    rarity: "Epic",
+    combos: ["CUTE", "???"],
+  },
+  {
+    name: "Mile",
+    description: "For reaching an altitude of 1609 meters",
+    rarity: "Uncommon",
+    combos: [],
+  },
+  {
+    name: "Horse",
+    description: "For using a rocking horse",
+    rarity: "Rare",
+    combos: ["WILD", "CUTE"],
+  },
+  {
+    name: "Gnome",
+    description: "For combining a cone shaped part with a figure part",
+    rarity: "Rare",
+    combos: ["CUTE", "???"],
+  },
+  {
+    name: "Chopsticks",
+    description: "For using 2 toy sticks",
+    rarity: "Uncommon",
+    combos: [],
+  },
+  {
+    name: "Cool",
+    description: "For beating 'Too Cool For Pool'",
+    rarity: "Epic",
+    combos: [],
+  },
+  {
+    name: "Zoo",
+    description: "For using 3 different animal parts",
+    rarity: "Rare",
+    combos: ["WILD"],
+  },
+  {
+    name: "Toy Magic",
+    description: "For beating 'Toy Block Tower'",
+    rarity: "Epic",
+    combos: ["CUTE", "???"],
+  },
+  {
+    name: "Mile",
+    description: "For reaching an altitude of 1609 meters",
+    rarity: "Uncommon",
+    combos: [],
+  },
+  {
+    name: "Horse",
+    description: "For using a rocking horse",
+    rarity: "Rare",
+    combos: ["WILD", "CUTE"],
+  },
+  {
+    name: "Gnome",
+    description: "For combining a cone shaped part with a figure part",
+    rarity: "Rare",
+    combos: ["CUTE", "???"],
+  },
+  {
+    name: "Zoo",
+    description: "For using 3 different animal parts",
+    rarity: "Rare",
+    combos: ["WILD"],
+  },
+  {
+    name: "Chopsticks",
+    description: "For using 2 toy sticks",
+    rarity: "Uncommon",
+    combos: ["???"],
+  },
+  {
+    name: "Cool",
+    description: "For beating 'Too Cool For Pool'",
+    rarity: "Epic",
+    combos: ["???"],
+  },
+  {
+    name: "Travel",
+    description: "For reaching a distance of 10 kilometer",
+    rarity: "Epic",
     combos: ["???"],
   },
 ];
