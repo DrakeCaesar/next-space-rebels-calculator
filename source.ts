@@ -1,13 +1,15 @@
 // Define the types for the tags and combos
 type TagRarity = "Common" | "Uncommon" | "Rare" | "Epic" | "Viral";
 type ComboCategory =
-  | "CUTE"
   | "???"
+  | "CUTE"
   | "AWESOME"
   | "NOOB"
   | "SMART"
   | "WEIRD"
-  | "WILD";
+  | "WILD"
+  | "COOL"
+  | "ASPIRING";
 
 interface Tag {
   name: string;
@@ -113,6 +115,120 @@ const tags: Tag[] = [
     description: "For using a nose, body, tail and nothing else",
     rarity: "Uncommon",
     combos: ["SMART"],
+  },
+  {
+    name: "Trash",
+    description: "For using the trash set",
+    rarity: "Common",
+    combos: [],
+  },
+  {
+    name: "Hotdog",
+    description: "For sandwiching a booster between 2 other parts",
+    rarity: "Uncommon",
+    combos: [],
+  },
+  {
+    name: "Fanboy",
+    description: "For beating a challenge from ChannelTips",
+    rarity: "Uncommon",
+    combos: ["COOL", "???"],
+  },
+  {
+    name: "Toilet Roll",
+    description: "For using a toilet roll",
+    rarity: "Common",
+    combos: [],
+  },
+  {
+    name: "Orange",
+    description: "For using 2 orange parts",
+    rarity: "Uncommon",
+    combos: [],
+  },
+  {
+    name: "Cheetah",
+    description: "For reaching a speed of 120 km/h",
+    rarity: "Common",
+    combos: ["WILD"],
+  },
+  {
+    name: "Perfectly Symmetric",
+    description: "For having a perfectly symmetric rocket",
+    rarity: "Uncommon",
+    combos: ["COOL"],
+  },
+  {
+    name: "Purist",
+    description: "For using only one structure set",
+    rarity: "Uncommon",
+    combos: [],
+  },
+  {
+    name: "Mega Boost",
+    description: "For using 4 boosters",
+    rarity: "Uncommon",
+    combos: [],
+  },
+  {
+    name: "Baby",
+    description: "For using a baby",
+    rarity: "Common",
+    combos: ["CUTE", "???"],
+  },
+  {
+    name: "Oops",
+    description: "For hitting a building",
+    rarity: "Uncommon",
+    combos: ["NOOB", "???"],
+  },
+  {
+    name: "Unsymmetric",
+    description: "For having an unsymmetric rocket",
+    rarity: "Uncommon",
+    combos: ["WEIRD"],
+  },
+  {
+    name: "Stroll",
+    description: "For reaching a distance of 10 meters",
+    rarity: "Common",
+    combos: ["NOOB"],
+  },
+  {
+    name: "RocketGirl",
+    description: "For beating a challenge from RocketGirl",
+    rarity: "Uncommon",
+    combos: ["AWESOME", "???"],
+  },
+  {
+    name: "Tin Can",
+    description: "For using a tin can",
+    rarity: "Common",
+    combos: [],
+  },
+  {
+    name: "Cherry",
+    description: "For using a cherry bomb",
+    rarity: "Common",
+    combos: [],
+  },
+  {
+    name: "Explosion",
+    description: "For triggering an explosion",
+    rarity: "Uncommon",
+    combos: ["AWESOME"],
+  },
+  {
+    name: "Fireworks",
+    description: "For using the fireworks set",
+    rarity: "Common",
+    combos: [],
+  },
+  {
+    name: "BangCo",
+    description: "For beating a challenge from BangCo",
+    rarity: "Uncommon",
+    combos: ["ASPIRING"],
   },
   {
     name: "Architect",
