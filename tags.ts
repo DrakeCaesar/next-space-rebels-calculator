@@ -58,7 +58,7 @@ export const tags: Tag[] = [
     name: "Symmetric",
     description: "For having a symmetric rocket",
     rarity: "Common",
-    combos: ["???"],
+    combos: ["COOL"],
   },
   {
     name: "Toys",
@@ -233,7 +233,7 @@ export const tags: Tag[] = [
     name: "Fireworks",
     description: "For using the fireworks set",
     rarity: "Common",
-    combos: ["???"],
+    combos: ["AWESOME"],
   },
   {
     name: "BangCo",
@@ -342,7 +342,7 @@ export const tags: Tag[] = [
     name: "Bottle",
     description: "For using a fuel bottle",
     rarity: "Common",
-    combos: ["???"],
+    combos: ["COOL"],
   },
   {
     name: "RaySon",
@@ -409,7 +409,7 @@ export const tags: Tag[] = [
     name: "Firecracker",
     description: "For using a firecracker",
     rarity: "Common",
-    combos: ["???"],
+    combos: ["AWESOME"],
   },
   {
     name: "Bad Luck",
@@ -957,7 +957,7 @@ export const tags: Tag[] = [
     name: "Techno",
     description: "For using a techno jet",
     rarity: "Rare",
-    combos: ["???"],
+    combos: ["COOL", "???"],
   },
   {
     name: "Pallet",
@@ -1054,12 +1054,36 @@ export const tags: Tag[] = [
     name: "Cool",
     description: "For beating 'Too Cool For Pool'",
     rarity: "Epic",
-    combos: ["???"],
+    combos: [],
   },
   {
     name: "Travel",
     description: "For reaching a distance of 10 kilometer",
     rarity: "Epic",
     combos: ["???"],
+  },
+  {
+    name: "Connector",
+    description: "For beating 'Do a Split'",
+    rarity: "Rare",
+    combos: ["???"],
+  },
+  {
+    name: "Graffiti",
+    description: "For using a graffiti can",
+    rarity: "Uncommon",
+    combos: ["???"],
+  },
+  {
+    name: "Astronaut",
+    description: "For using a space shuttle",
+    rarity: "Epic",
+    combos: ["???"],
+  },
+  {
+    name: "BOOOM",
+    description: "For beating 'Next Level'",
+    rarity: "Epic",
+    combos: ["AWESOME"],
   },
 ];
