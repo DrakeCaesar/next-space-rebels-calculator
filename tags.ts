@@ -1,6 +1,6 @@
 export type TagRarity = "Common" | "Uncommon" | "Rare" | "Epic" | "Viral";
 export type ComboCategory =
-  | "???"
+  | "UNKNOWN"
   | "CUTE"
   | "AWESOME"
   | "NOOB"
@@ -8,7 +8,6 @@ export type ComboCategory =
   | "WEIRD"
   | "WILD"
   | "COOL"
-  | "ASPIRING"
   | "FUNNY"
   | "GROSS"
   | "NAUGHTY"
@@ -41,7 +40,7 @@ export const tags: Tag[] = [
     name: "Beginner",
     description: "For using only the rocket kit structure set",
     rarity: "Common",
-    combos: ["CUTE", "???"],
+    combos: ["CUTE", "UNKNOWN"],
   },
   {
     name: "Extra Boost",
@@ -101,7 +100,7 @@ export const tags: Tag[] = [
     name: "Teddy Nose",
     description: "For using a teddy bear at the top of the rocket",
     rarity: "Uncommon",
-    combos: ["CUTE", "???"],
+    combos: ["CUTE", "UNKNOWN"],
   },
   {
     name: "Improviser",
@@ -137,7 +136,7 @@ export const tags: Tag[] = [
     name: "Fanboy",
     description: "For beating a challenge from ChannelTips",
     rarity: "Uncommon",
-    combos: ["COOL", "???"],
+    combos: ["COOL", "UNKNOWN"],
   },
   {
     name: "Toilet Roll",
@@ -179,7 +178,7 @@ export const tags: Tag[] = [
     name: "Baby",
     description: "For using a baby",
     rarity: "Common",
-    combos: ["CUTE", "???"],
+    combos: ["CUTE", "UNKNOWN"],
   },
   {
     name: "Censored",
@@ -192,7 +191,7 @@ export const tags: Tag[] = [
     name: "Oops",
     description: "For hitting a building",
     rarity: "Uncommon",
-    combos: ["NOOB", "???"],
+    combos: ["NOOB", "UNKNOWN"],
   },
   {
     name: "Unsymmetric",
@@ -210,7 +209,7 @@ export const tags: Tag[] = [
     name: "RocketGirl",
     description: "For beating a challenge from RocketGirl",
     rarity: "Uncommon",
-    combos: ["AWESOME", "???"],
+    combos: ["AWESOME", "UNKNOWN"],
   },
   {
     name: "Tin Can",
@@ -222,7 +221,7 @@ export const tags: Tag[] = [
     name: "Cherry",
     description: "For using a cherry bomb",
     rarity: "Common",
-    combos: ["NOOB", "???"],
+    combos: ["NOOB", "UNKNOWN"],
   },
   {
     name: "Explosion",
@@ -271,7 +270,7 @@ export const tags: Tag[] = [
     name: "Furlong",
     description: "For reaching an altitude of 201 meters",
     rarity: "Common",
-    combos: ["NOOB", "???"],
+    combos: ["NOOB", "UNKNOWN"],
   },
   {
     name: "Shark",
@@ -289,13 +288,13 @@ export const tags: Tag[] = [
     name: "Rocket Kit XL",
     description: "For using a rocket kit XL part",
     rarity: "Common",
-    combos: ["NOOB", "???"],
+    combos: ["NOOB", "UNKNOWN"],
   },
   {
     name: "Tube",
     description: "For using a tube part",
     rarity: "Common",
-    combos: ["SMART", "???"],
+    combos: ["SMART", "UNKNOWN"],
   },
   {
     name: "PVC",
@@ -471,7 +470,7 @@ export const tags: Tag[] = [
     name: "Architect",
     description: "For using every toy block",
     rarity: "Epic",
-    combos: ["CUTE", "???"],
+    combos: ["CUTE", "UNKNOWN"],
   },
   {
     name: "Girly",
@@ -526,7 +525,7 @@ export const tags: Tag[] = [
     name: "Ridiculous",
     description: "For beating 'Ridiculous Rocket Challenge'",
     rarity: "Viral",
-    combos: ["AWESOME", "???"],
+    combos: ["AWESOME", "UNKNOWN"],
   },
   {
     name: "Cocks",
@@ -611,7 +610,7 @@ export const tags: Tag[] = [
     name: "Bicycle",
     description: "For using only the bike structure set",
     rarity: "Rare",
-    combos: ["WEIRD", "???"],
+    combos: ["WEIRD", "UNKNOWN"],
   },
   {
     name: "Angel",
@@ -629,7 +628,7 @@ export const tags: Tag[] = [
     name: "Three-Leaf Clover",
     description: "For using 3 round parts in a three-leaf clover shape",
     rarity: "Rare",
-    combos: ["WILD", "???"],
+    combos: ["WILD", "UNKNOWN"],
   },
   {
     name: "Cyclist",
@@ -659,7 +658,7 @@ export const tags: Tag[] = [
     name: "Thunder Bird",
     description: "For using only the retro structure set",
     rarity: "Rare",
-    combos: ["WILD", "???"],
+    combos: ["WILD", "UNKNOWN"],
   },
   {
     name: "Retro",
@@ -701,7 +700,7 @@ export const tags: Tag[] = [
     name: "Display",
     description: "For using 7 different mannequin parts",
     rarity: "Rare",
-    combos: ["WEIRD", "???"],
+    combos: ["WEIRD", "UNKNOWN"],
   },
   {
     name: "Modular Body",
@@ -744,7 +743,7 @@ export const tags: Tag[] = [
     name: "Body",
     description: "For using a mannequin part and a Dandy Deer part",
     rarity: "Uncommon",
-    combos: ["WEIRD", "???"],
+    combos: ["WEIRD", "UNKNOWN"],
   },
   {
     name: "Leg",
@@ -792,7 +791,7 @@ export const tags: Tag[] = [
     name: "Flower Power",
     description: "For using 3 different firework parts",
     rarity: "Rare",
-    combos: ["AWESOME", "???"],
+    combos: ["AWESOME", "UNKNOWN"],
   },
   {
     name: "Pyromaniac",
@@ -835,7 +834,7 @@ export const tags: Tag[] = [
     name: "Powerhouse",
     description: "For using 4 engines",
     rarity: "Epic",
-    combos: ["SMART", "???"],
+    combos: ["SMART", "UNKNOWN"],
   },
   {
     name: "Sewer System",
@@ -859,7 +858,7 @@ export const tags: Tag[] = [
     name: "Diverse",
     description: "For using a nose, body and tai, all from different sets",
     rarity: "Rare",
-    combos: ["AWESOME", "???"],
+    combos: ["AWESOME", "UNKNOWN"],
   },
   {
     name: "Pie",
@@ -958,7 +957,7 @@ export const tags: Tag[] = [
     name: "Techno",
     description: "For using a techno jet",
     rarity: "Rare",
-    combos: ["COOL", "???"],
+    combos: ["COOL", "UNKNOWN"],
   },
   {
     name: "Pallet",
@@ -977,7 +976,7 @@ export const tags: Tag[] = [
     name: "Toy Magic",
     description: "For beating 'Toy Block Tower'",
     rarity: "Epic",
-    combos: ["CUTE", "???"],
+    combos: ["CUTE", "UNKNOWN"],
   },
   {
     name: "Mile",
@@ -995,7 +994,7 @@ export const tags: Tag[] = [
     name: "Gnome",
     description: "For combining a cone shaped part with a figure part",
     rarity: "Rare",
-    combos: ["CUTE", "???"],
+    combos: ["CUTE", "UNKNOWN"],
   },
   {
     name: "Chopsticks",
@@ -1019,7 +1018,7 @@ export const tags: Tag[] = [
     name: "Toy Magic",
     description: "For beating 'Toy Block Tower'",
     rarity: "Epic",
-    combos: ["CUTE", "???"],
+    combos: ["CUTE", "UNKNOWN"],
   },
   {
     name: "Mile",
@@ -1037,7 +1036,7 @@ export const tags: Tag[] = [
     name: "Gnome",
     description: "For combining a cone shaped part with a figure part",
     rarity: "Rare",
-    combos: ["CUTE", "???"],
+    combos: ["CUTE", "UNKNOWN"],
   },
   {
     name: "Zoo",
@@ -1182,7 +1181,7 @@ export const tags: Tag[] = [
     name: "Space Program",
     description: "For using a space shuttle and a moon rocket",
     rarity: "Epic",
-    combos: ["GEEKY", "???"],
+    combos: ["GEEKY", "UNKNOWN"],
   },
   {
     name: "Moon",

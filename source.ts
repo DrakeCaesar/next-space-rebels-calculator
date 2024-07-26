@@ -1,13 +1,13 @@
 import { ComboCategory, Tag, tags } from "./tags";
 
-// Function to count combo frequencies, excluding "???"
+// Function to count combo frequencies, excluding "UNKNOWN"
 function countComboFrequencies(tags: Tag[]): Map<ComboCategory, number> {
   const comboFrequency = new Map<ComboCategory, number>();
 
   tags.forEach((tag) => {
     tag.combos.forEach((combo) => {
-      if (combo !== "???") {
-        // Exclude "???" combo
+      if (combo !== "UNKNOWN") {
+        // Exclude "UNKNOWN" combo
         comboFrequency.set(combo, (comboFrequency.get(combo) || 0) + 1);
       }
     });
@@ -31,7 +31,7 @@ function findBestTagSet(tags: Tag[], setSize: number): Tag[] {
     if (selectedTags.length >= setSize) break;
 
     const tagsWithCombo = tags.filter(
-      (tag) => tag.combos.includes(combo) && combo !== "???",
+      (tag) => tag.combos.includes(combo) && combo !== "UNKNOWN",
     );
     for (const tag of tagsWithCombo) {
       if (selectedTags.length < setSize) {
@@ -44,7 +44,7 @@ function findBestTagSet(tags: Tag[], setSize: number): Tag[] {
   // If the selected tags are less than the set size, fill with the most frequent remaining tags
   if (selectedTags.length < setSize) {
     const remainingTags = tags.filter(
-      (tag) => !selectedTags.includes(tag) && !tag.combos.includes("???"),
+      (tag) => !selectedTags.includes(tag) && !tag.combos.includes("UNKNOWN"),
     );
     for (const tag of remainingTags) {
       if (selectedTags.length < setSize) {

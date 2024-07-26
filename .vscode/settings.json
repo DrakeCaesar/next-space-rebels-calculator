@@ -1,3 +1,157 @@
 {
-  "cSpell.words": ["BOOOM", "loopings", "Unsymmetric"]
+  "cSpell.words": ["BOOOM", "loopings", "Unsymmetric"],
+  "highlight.regexes": {
+    "(\\bCommon\\b)": {
+      "filterFileRegex": ".*\\.ts",
+      "decorations": [
+        {
+          "color": "#5F5F5F"
+        }
+      ]
+    },
+    "(\\bUncommon\\b)": {
+      "filterFileRegex": ".*\\.ts",
+      "decorations": [
+        {
+          "color": "#2E93F8"
+        }
+      ]
+    },
+    "(\\bRare\\b)": {
+      "filterFileRegex": ".*\\.ts",
+      "decorations": [
+        {
+          "color": "#CC00FF"
+        }
+      ]
+    },
+    "(\\bEpic\\b)": {
+      "filterFileRegex": ".*\\.ts",
+      "decorations": [
+        {
+          "color": "#FF7F00"
+        }
+      ]
+    },
+    "(\\bViral\\b)": {
+      "filterFileRegex": ".*\\.ts",
+      "decorations": [
+        {
+          "color": "#FF0000"
+        }
+      ]
+    },
+    "(\\bUNKNOWN\\b)": {
+      "filterFileRegex": ".*\\.ts",
+      "decorations": [
+        {
+          "color": "#FFFFFF"
+        }
+      ]
+    },
+    "(\\bCUTE\\b)": {
+      "filterFileRegex": ".*\\.ts",
+      "decorations": [
+        {
+          "color": "#FF83E0"
+        }
+      ]
+    },
+    "(\\bAWESOME\\b)": {
+      "filterFileRegex": ".*\\.ts",
+      "decorations": [
+        {
+          "color": "#FF0000"
+        }
+      ]
+    },
+    "(\\bNOOB\\b)": {
+      "filterFileRegex": ".*\\.ts",
+      "decorations": [
+        {
+          "color": "#22E200"
+        }
+      ]
+    },
+    "(\\bSMART\\b)": {
+      "filterFileRegex": ".*\\.ts",
+      "decorations": [
+        {
+          "color": "#22CFCB"
+        }
+      ]
+    },
+    "(\\bWEIRD\\b)": {
+      "filterFileRegex": ".*\\.ts",
+      "decorations": [
+        {
+          "color": "#FF5800"
+        }
+      ]
+    },
+    "(\\bWILD\\b)": {
+      "filterFileRegex": ".*\\.ts",
+      "decorations": [
+        {
+          "color": "#0D8900"
+        }
+      ]
+    },
+    "(\\bCOOL\\b)": {
+      "filterFileRegex": ".*\\.ts",
+      "decorations": [
+        {
+          "color": "#5AABFF"
+        }
+      ]
+    },
+    "(\\bASPIRING\\b)": {
+      "filterFileRegex": ".*\\.ts",
+      "decorations": [
+        {
+          "color": "#00D485"
+        }
+      ]
+    },
+    "(\\bFUNNY\\b)": {
+      "filterFileRegex": ".*\\.ts",
+      "decorations": [
+        {
+          "color": "#FF9A00"
+        }
+      ]
+    },
+    "(\\bGROSS\\b)": {
+      "filterFileRegex": ".*\\.ts",
+      "decorations": [
+        {
+          "color": "#B09E38"
+        }
+      ]
+    },
+    "(\\bNAUGHTY\\b)": {
+      "filterFileRegex": ".*\\.ts",
+      "decorations": [
+        {
+          "color": "#FF16A8"
+        }
+      ]
+    },
+    "(\\bCREEPY\\b)": {
+      "filterFileRegex": ".*\\.ts",
+      "decorations": [
+        {
+          "color": "#8E3500"
+        }
+      ]
+    },
+    "(\\bGEEKY\\b)": {
+      "filterFileRegex": ".*\\.ts",
+      "decorations": [
+        {
+          "color": "#0016FF"
+        }
+      ]
+    }
+  }
 }
