@@ -62,12 +62,18 @@ vector<Tag> findBestCombination(const vector<Tag> &tags) {
       auto now = chrono::steady_clock::now();
       auto elapsed =
           chrono::duration_cast<chrono::seconds>(now - start).count();
+
       double percentage = (double)currentCombination / totalCombinations * 100;
-      int estimatedTotal = elapsed / currentCombination * totalCombinations;
-      int estimatedRemaining = estimatedTotal - elapsed;
-      cout << "Progress: " << percentage << "%, Estimated time remaining: ";
-      formatTime(estimatedRemaining);
-      cout << endl;
+      double estimatedTotal =
+          (double)elapsed / currentCombination * totalCombinations;
+      double estimatedRemaining = estimatedTotal - elapsed;
+
+      // Only print if there's progress and avoid printing negative times
+      if (currentCombination > 0 && estimatedRemaining > 0) {
+        cout << "Progress: " << percentage << "%, Estimated time remaining: ";
+        formatTime(static_cast<int>(estimatedRemaining));
+        cout << endl;
+      }
 
       for (size_t k = j + 1; k < n - 2; k++) {
         for (size_t l = k + 1; l < n - 1; l++) {
