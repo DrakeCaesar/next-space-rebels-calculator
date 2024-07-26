@@ -13,7 +13,8 @@ export type ComboCategory =
   | "GROSS"
   | "NAUGHTY"
   | "CREEPY"
-  | "ASPIRING";
+  | "ASPIRING"
+  | "GEEKY";
 
 export interface Tag {
   name: string;
@@ -1085,5 +1086,138 @@ export const tags: Tag[] = [
     description: "For beating 'Next Level'",
     rarity: "Epic",
     combos: ["AWESOME"],
+  },
+  {
+    name: "Fire",
+    description: "For exploding a Molotov cocktail",
+    rarity: "Rare",
+    combos: ["???"],
+  },
+  {
+    name: "Snail",
+    description: "For not reaching a speed higher than 10 km/h",
+    rarity: "Rare",
+    combos: [],
+  },
+  {
+    name: "Search",
+    description: "unknown",
+    rarity: "Rare",
+    combos: ["???"],
+    blocked: true,
+  },
+  {
+    name: "Crowd Control",
+    description: "For having 5 different figure parts in the rocket",
+    rarity: "Epic",
+    combos: [],
+  },
+  {
+    name: "Lit",
+    description: "For using an industrial light",
+    rarity: "Uncommon",
+    combos: [],
+  },
+  {
+    name: "Bot",
+    description: "For using a robot",
+    rarity: "Uncommon",
+    combos: [],
+  },
+  {
+    name: "Collage",
+    description: "For using 5 different structure sets",
+    rarity: "Rare",
+    combos: [],
+  },
+  {
+    name: "Christmas",
+    description: "For using Dandy Deer and 10 different toy parts",
+    rarity: "Epic",
+    combos: [],
+  },
+  {
+    name: "Sit",
+    description: "For using a stool",
+    rarity: "Common",
+    combos: [],
+  },
+  {
+    name: "Diversity",
+    description: "For using 10 different other parts",
+    rarity: "Epic",
+    combos: [],
+  },
+  {
+    name: "Insect",
+    description: "For using 6 limbs",
+    rarity: "Rare",
+    combos: [],
+  },
+  {
+    name: "Wiper",
+    description: "For using a windshield wiper",
+    rarity: "Common",
+    combos: [],
+  },
+  {
+    name: "Juggler",
+    description: "For using 3 balls",
+    rarity: "Rare",
+    combos: ["???"],
+  },
+  {
+    name: "Trash King",
+    description: "For using 8 different trash parts",
+    rarity: "Epic",
+    combos: ["???"],
+  },
+  {
+    name: "Vintage",
+    description: "For using a toy part and a retro part",
+    rarity: "Uncommon",
+    combos: ["???"],
+  },
+  {
+    name: "Space Program",
+    description: "For using a space shuttle and a moon rocket",
+    rarity: "Epic",
+    combos: ["GEEKY", "???"],
+  },
+  {
+    name: "Moon",
+    description: "For using a moon rocket",
+    rarity: "Epic",
+    combos: ["GEEKY"],
+  },
+  {
+    name: "Clean",
+    description: "For using a vacuum",
+    rarity: "Common",
+    combos: ["???"],
+  },
+  {
+    name: "Lightning",
+    description: "For using an industrial light and a weathercock",
+    rarity: "Rare",
+    combos: ["???"],
+  },
+  {
+    name: "Woodpecker",
+    description: "For using a bird and a wood part",
+    rarity: "Uncommon",
+    combos: ["???"],
+  },
+  {
+    name: "Internet",
+    description: "For using a router",
+    rarity: "Rare",
+    combos: ["???"],
+  },
+  {
+    name: "Complicated",
+    description: "For using at least 25 structure parts",
+    rarity: "Rare",
+    combos: ["???"],
   },
 ];
