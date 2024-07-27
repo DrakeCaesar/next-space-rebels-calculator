@@ -107,41 +107,67 @@ function updateSelectedTagsDisplay() {
 
   const breakdown = document.createElement("div");
   breakdown.className = "combo-breakdown";
-
-  const comboEntries = Object.entries(comboCount)
-    .map(([combo, count]) => {
-      const comboClass = count === 1 ? "grey-text" : combo;
-      return `<p class="${comboClass}">${combo}: ${count}</p>`;
-    })
-    .join("");
+  const INDENT = "&nbsp;&nbsp;&nbsp;&nbsp;";
+  const MULTIPLIER_INDENT = INDENT + INDENT;
 
   const specialCombos = Object.entries(comboCount)
     .map(([combo, count]) => {
-      if (count === 2) {
-        return `<p class="${combo}">COOL COMBO <span class="green-text">${combo}</span>, Combo multiplier => <span class="pink-text">x2</span></p>`;
-      } else if (count === 3) {
-        return `<p class="${combo}">SUPER <span class="green-text">${combo}</span> COMBO, Combo multiplier => <span class="pink-text">x5</span></p>`;
-      } else if (count === 4) {
-        return `<p class="${combo}">MEGA <span class="green-text">${combo}</span> COMBO, Combo multiplier => <span class="pink-text">x15</span></p>`;
+      if (combo === "UNKNOWN") {
+        return "";
       }
-      return "";
+
+      let comboLabel = "";
+      let multiplier = 1;
+
+      if (count === 2) {
+        comboLabel = `${combo} COMBO`;
+        multiplier = 2;
+      } else if (count === 3) {
+        comboLabel = `SUPER ${combo} COMBO`;
+        multiplier = 5;
+      } else if (count === 4) {
+        comboLabel = `MEGA ${combo} COMBO`;
+        multiplier = 15;
+      } else {
+        return ""; // Skip if count is not 2, 3, or 4
+      }
+
+      return `
+        ${INDENT}<span class="${combo}">${comboLabel}</span><br>
+        ${MULTIPLIER_INDENT}Combo multiplier => <span class="pink-text">x${multiplier}</span><br>
+      `;
     })
     .join("");
 
-  const totalMultiplier = Object.values(comboCount).reduce((a, b) => a * b, 1);
+  const multipliers = Object.values(comboCount).filter((count) => count > 1);
+  const totalMultiplier = multipliers.reduce((a, b) => a * b, 1);
 
   breakdown.innerHTML = `
     <div class="console-output">
-      <p class="yellow-text">Combos:</p>
-      ${specialCombos}
-      <p class="yellow-text">Total combo multiplier:</p>
-      <p class="green-text">${Object.values(comboCount).join(
-        " * ",
-      )} = <span class="pink-text">x${totalMultiplier}</span></p>
+      <p class="yellow-text">Combos:</p><span class="combo-output">
+        ${specialCombos}
+        <span class="yellow-text">Total combo multiplier:</span><br>
+        ${INDENT}${multipliers.join(
+    " * ",
+  )} = <span class="pink-text">x${totalMultiplier}</span>
+      </span>
     </div>
   `;
 
   selectedTagsContainer!.appendChild(breakdown);
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const tagsToSelect = ["RaySon", "Powerhouse", "Motor", "Trident", "Juice"];
+
+    tagsToSelect.forEach((tagText) => {
+      const tagElement = Array.from(document.querySelectorAll(".tag")).find(
+        (tag) => tag.innerText === tagText,
+      );
+      if (tagElement) {
+        tagElement.click();
+      }
+    });
+  });
 }
 
 document.addEventListener("DOMContentLoaded", () => {

@@ -203,7 +203,7 @@ body {
 #left-pane {
   display: flex;
   flex-direction: column;
-  width: 67%;
+  width: 50%;
   flex-shrink: 0;
 }
 
@@ -223,7 +223,7 @@ body {
 }
 
 #selected-tags-container {
-  width: 33%;
+  width: 50%;
   background-color: #1e1f24;
   border: 1px solid #ccc;
   padding: 10px;
@@ -260,9 +260,13 @@ body {
 }
 
 .pink-text {
-  color: pink;
+  color: magenta;
 }
 
 .grey-text {
   color: grey;
+}
+
+.combo-entry {
+  margin-left: 20px;
 }
