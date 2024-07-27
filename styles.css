@@ -156,3 +156,18 @@ body {
 .GEEKY {
   color: var(--geeky-color);
 }
+
+.combo-button {
+  margin: 5px;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.combo-button.active {
+  background-color: gray;
+  color: white;
+}
+
+.tag.hidden {
+  display: none;
+}
