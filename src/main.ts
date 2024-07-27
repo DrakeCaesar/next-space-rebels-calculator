@@ -16,8 +16,9 @@ tags.forEach((tag) => {
 // Create buttons for each unique combo
 uniqueCombos.forEach((combo) => {
   const button = document.createElement("button");
-  button.className = "combo-button";
   button.textContent = combo.replace("UNKNOWN", "???");
+  button.classList.add("combo-button");
+  button.classList.add(combo);
   button.dataset.combo = combo;
   comboButtonsContainer?.appendChild(button);
 });
@@ -106,15 +107,55 @@ function updateSelectedTagsDisplay() {
 
   const breakdown = document.createElement("div");
   breakdown.className = "combo-breakdown";
+
+  const comboEntries = Object.entries(comboCount)
+    .map(([combo, count]) => {
+      const comboClass = count === 1 ? "grey-text" : combo;
+      return `<p class="${comboClass}">${combo}: ${count}</p>`;
+    })
+    .join("");
+
+  const specialCombos = Object.entries(comboCount)
+    .map(([combo, count]) => {
+      if (count === 2) {
+        return `<p class="${combo}">COOL COMBO <span class="green-text">${combo}</span>, Combo multiplier => <span class="pink-text">x2</span></p>`;
+      } else if (count === 3) {
+        return `<p class="${combo}">SUPER <span class="green-text">${combo}</span> COMBO, Combo multiplier => <span class="pink-text">x5</span></p>`;
+      } else if (count === 4) {
+        return `<p class="${combo}">MEGA <span class="green-text">${combo}</span> COMBO, Combo multiplier => <span class="pink-text">x15</span></p>`;
+      }
+      return "";
+    })
+    .join("");
+
+  const totalMultiplier = Object.values(comboCount).reduce((a, b) => a * b, 1);
+
   breakdown.innerHTML = `
-  <h3>Combo Breakdown</h3>
-  ${Object.entries(comboCount)
-    .map(([combo, count]) => `<p>${combo}: ${count}</p>`)
-    .join("")}
-  <p>Total: ${Object.values(comboCount).reduce((a, b) => a + b, 0)}</p>
-`;
+    <div class="console-output">
+      <p class="yellow-text">Combos:</p>
+      ${specialCombos}
+      <p class="yellow-text">Total combo multiplier:</p>
+      <p class="green-text">${Object.values(comboCount).join(
+        " * ",
+      )} = <span class="pink-text">x${totalMultiplier}</span></p>
+    </div>
+  `;
+
   selectedTagsContainer!.appendChild(breakdown);
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+  const tagsToSelect = ["RaySon", "Powerhouse", "Motor", "Trident", "Juice"];
+
+  tagsToSelect.forEach((tagText) => {
+    const tagElement = Array.from(document.querySelectorAll(".tag")).find(
+      (tag) => tag.innerText === tagText,
+    );
+    if (tagElement) {
+      tagElement.click();
+    }
+  });
+});
 
 tags.forEach((tag) => {
   const tagElement = document.createElement("div");
