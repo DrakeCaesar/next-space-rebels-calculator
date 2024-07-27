@@ -28,7 +28,7 @@ const selectedTags = new Set<string>();
 
 // Add event listener to combo buttons
 document.querySelectorAll(".combo-button").forEach((button) => {
-  button.addEventListener("click", function () {
+  button.addEventListener("click", function (this: HTMLElement) {
     const combo = this.dataset.combo;
     this.classList.toggle("active");
 
@@ -39,11 +39,12 @@ document.querySelectorAll(".combo-button").forEach((button) => {
     }
 
     filterTags();
+    updateSelectedTagsDisplay();
   });
 });
 
 function filterTags() {
-  document.querySelectorAll(".tag").forEach((tag) => {
+  document.querySelectorAll("#left-pane .tag").forEach((tag) => {
     const tagCombos = Array.from(tag.querySelectorAll(".tag-tooltip span")).map(
       (span) => span.className,
     );
@@ -154,7 +155,7 @@ function updateSelectedTagsDisplay() {
       return 1; // Default to 1 if no match
     });
 
-  const totalMultiplier = multipliers.reduce((a, b) => a * b, 1);
+  const totalMultiplier = multipliers.reduce((a: number, b) => a * b, 1);
 
   if (multipliers.length === 0) {
     breakdown.innerHTML = `
@@ -179,19 +180,6 @@ function updateSelectedTagsDisplay() {
   `;
 
   selectedTagsContainer!.appendChild(breakdown);
-
-  document.addEventListener("DOMContentLoaded", () => {
-    const tagsToSelect = ["RaySon", "Powerhouse", "Motor", "Trident", "Juice"];
-
-    tagsToSelect.forEach((tagText) => {
-      const tagElement = Array.from(document.querySelectorAll(".tag")).find(
-        (tag: HTMLElement) => tag.innerText === tagText,
-      ) as HTMLElement;
-      if (tagElement) {
-        tagElement.click();
-      }
-    });
-  });
 }
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -199,14 +187,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
   tagsToSelect.forEach((tagText) => {
     const tagElement = Array.from(document.querySelectorAll(".tag")).find(
-      (tag: HTMLElement) => tag.innerText === tagText,
+      (tag) => (tag as HTMLElement).innerText === tagText,
     ) as HTMLElement;
     if (tagElement) {
       tagElement.click();
     }
   });
 });
-
 tags.forEach((tag) => {
   const tagElement = document.createElement("div");
   tagElement.className = `tag ${tag.rarity.toLowerCase()}`;
@@ -241,8 +228,8 @@ tags.forEach((tag) => {
 
 // Add event listener to position the tooltip
 document.querySelectorAll(".tag").forEach((tag) => {
-  tag.addEventListener("mousemove", function (e: MouseEvent) {
-    const tooltip = this.querySelector(".tag-tooltip") as HTMLElement;
+  (tag as HTMLElement).addEventListener("mousemove", function (e: MouseEvent) {
+    const tooltip = document.querySelector(".tag-tooltip") as HTMLElement;
     const tooltipWidth = tooltip.offsetWidth;
     const windowWidth = window.innerWidth;
     const scrollbarWidth = 20; // Adjust this value based on the scrollbar width
@@ -260,7 +247,7 @@ document.querySelectorAll(".tag").forEach((tag) => {
   });
 
   tag.addEventListener("mouseleave", function () {
-    const tooltip = this.querySelector(".tag-tooltip") as HTMLElement;
+    const tooltip = document.querySelector(".tag-tooltip") as HTMLElement;
     tooltip.style.visibility = "hidden";
     tooltip.style.opacity = "0";
   });

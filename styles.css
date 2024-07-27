@@ -33,6 +33,7 @@ body {
   background-color: #332b2b;
   font-family: "Roboto", sans-serif;
   color: white;
+  box-sizing: border-box;
 }
 
 .tag {
@@ -165,6 +166,8 @@ body {
   padding: 10px;
   cursor: pointer;
   border-radius: 100px;
+  background-color: #000000;
+  font-weight: 600;
 }
 
 .combo-button.active {
@@ -172,12 +175,16 @@ body {
   color: white;
 }
 
-.tag.hidden {
+#tags-container .tag.hidden {
   display: none;
 }
 
+#selected-tags-container .tag.hidden {
+  display: inline-block;
+}
+
 .tag.selected {
-  border: 2px solid magenta;
+  border: 2px solid rgb(143, 94, 143);
   animation: border-pulse 1s infinite;
   margin: 3px;
 }
@@ -204,11 +211,11 @@ body {
   display: flex;
   flex-direction: column;
   width: 50%;
-  flex-shrink: 0;
+  flex-shrink: 1;
 }
 
 #combo-buttons-container {
-  height: 100px;
+  height: fit-content;
   background-color: #1e1f24;
   border-bottom: 1px solid #ccc;
   padding: 10px;
@@ -228,7 +235,7 @@ body {
   border: 1px solid #ccc;
   padding: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  flex-shrink: 0;
+  flex-shrink: 1;
   overflow-y: auto;
 }
 
@@ -249,6 +256,7 @@ body {
   color: white;
   padding: 10px;
   border-radius: 5px;
+  margin-top: 100px;
 }
 
 .yellow-text {
@@ -269,4 +277,19 @@ body {
 
 .combo-entry {
   margin-left: 20px;
+}
+
+*::-webkit-scrollbar-track {
+  box-shadow: none;
+  border-radius: 5px;
+  background-color: transparent;
+}
+*::-webkit-scrollbar {
+  width: 12px;
+  background-color: transparent;
+}
+*::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  box-shadow: none;
+  background-color: #aaa;
 }
