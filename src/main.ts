@@ -107,6 +107,7 @@ function updateSelectedTagsDisplay() {
 
   const breakdown = document.createElement("div");
   breakdown.className = "combo-breakdown";
+
   const INDENT = "&nbsp;&nbsp;&nbsp;&nbsp;";
   const MULTIPLIER_INDENT = INDENT + INDENT;
 
@@ -128,8 +129,11 @@ function updateSelectedTagsDisplay() {
       } else if (count === 4) {
         comboLabel = `MEGA ${combo} COMBO`;
         multiplier = 15;
+      } else if (count === 5) {
+        comboLabel = `ULTRA ${combo} COMBO`; // Placeholder for future use
+        multiplier = 5;
       } else {
-        return ""; // Skip if count is not 2, 3, or 4
+        return ""; // Skip if count does not match predefined conditions
       }
 
       return `
@@ -139,18 +143,26 @@ function updateSelectedTagsDisplay() {
     })
     .join("");
 
-  const multipliers = Object.values(comboCount).filter((count) => count > 1);
+  // Filter out "UNKNOWN" combos and map the actual multipliers
+  const multipliers = Object.entries(comboCount)
+    .filter(([combo, count]) => combo !== "UNKNOWN" && count > 1)
+    .map(([_, count]) => {
+      if (count === 2) return 2;
+      if (count === 3) return 5;
+      if (count === 4) return 15;
+      if (count === 5) return 5; // Placeholder multiplier for count of 5
+      return 1; // Default to 1 if no match
+    });
+
   const totalMultiplier = multipliers.reduce((a, b) => a * b, 1);
 
   breakdown.innerHTML = `
     <div class="console-output">
-      <p class="yellow-text">Combos:</p><span class="combo-output">
-        ${specialCombos}
-        <span class="yellow-text">Total combo multiplier:</span><br>
-        ${INDENT}${multipliers.join(
-    " * ",
-  )} = <span class="pink-text">x${totalMultiplier}</span>
-      </span>
+      <span class="yellow-text">Combos:</span><br>
+      <span class="combo-output">${specialCombos}
+      <span class="yellow-text">Total combo multiplier:</span><br>
+      <span>${INDENT}${multipliers.join(" * ")} = </span>
+      <span class="pink-text">x${totalMultiplier}</span>
     </div>
   `;
 
