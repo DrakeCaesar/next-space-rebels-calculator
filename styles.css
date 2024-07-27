@@ -27,8 +27,9 @@
 
 body {
   display: flex;
-  flex-wrap: wrap;
-  font-family: Arial, sans-serif;
+  flex-direction: row;
+  height: 100vh;
+  margin: 0;
 }
 
 .tag {
@@ -173,33 +174,68 @@ body {
 }
 
 .tag.selected {
-  border: 2px solid blue;
+  border: 2px solid magenta;
   animation: border-pulse 1s infinite;
+  margin: 3px;
 }
 
 @keyframes border-pulse {
   0% {
-    border-color: blue;
+    border-color: magenta;
   }
   50% {
-    border-color: lightblue;
+    border-color: cyan;
   }
   100% {
-    border-color: blue;
+    border-color: magenta;
   }
 }
 
+#content-container {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+#left-pane {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  flex-shrink: 0;
+}
+
+#combo-buttons-container {
+  height: 100px;
+  background-color: #f8f8f8;
+  border-bottom: 1px solid #ccc;
+  padding: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+#tags-container {
+  flex: 1;
+  padding: 10px;
+  background-color: #f9f9f9;
+  overflow-y: auto;
+}
+
 #selected-tags-container {
-  position: fixed;
-  top: 10px;
-  right: 10px;
-  width: 200px;
+  width: 20%;
   background-color: white;
   border: 1px solid #ccc;
   padding: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  flex-shrink: 0;
+  overflow-y: auto;
 }
 
 .combo-breakdown {
   margin-top: 10px;
+}
+
+.combo-breakdown {
+  margin-top: 10px;
+}
+.selected-clone {
+  cursor: pointer;
 }

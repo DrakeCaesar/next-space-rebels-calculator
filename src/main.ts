@@ -68,6 +68,7 @@ function updateSelectedTagsDisplay() {
     const tagElement = document.getElementById(tagId);
     const clone = tagElement!.cloneNode(true) as HTMLElement;
     clone.classList.remove("selected");
+    clone.classList.add("selected-clone");
     selectedTagsContainer!.appendChild(clone);
 
     const tagCombos = Array.from(
@@ -77,17 +78,41 @@ function updateSelectedTagsDisplay() {
     tagCombos.forEach((combo) => {
       comboCount[combo] = (comboCount[combo] || 0) + 1;
     });
+
+    clone.addEventListener("click", function () {
+      selectedTags.delete(tagId);
+      tagElement!.classList.remove("selected");
+      updateSelectedTagsDisplay();
+    });
+
+    // Hide the tooltip initially
+    const tooltip = clone.querySelector(".tag-tooltip") as HTMLElement;
+    tooltip.style.visibility = "hidden";
+    tooltip.style.opacity = "0";
+
+    // Add event listeners for tooltip display on cloned tags
+    clone.addEventListener("mousemove", function (e: MouseEvent) {
+      tooltip.style.left = `${e.clientX + 10}px`;
+      tooltip.style.top = `${e.clientY + 10}px`;
+      tooltip.style.visibility = "visible";
+      tooltip.style.opacity = "1";
+    });
+
+    clone.addEventListener("mouseleave", function () {
+      tooltip.style.visibility = "hidden";
+      tooltip.style.opacity = "0";
+    });
   });
 
   const breakdown = document.createElement("div");
   breakdown.className = "combo-breakdown";
   breakdown.innerHTML = `
-    <h3>Combo Breakdown</h3>
-    ${Object.entries(comboCount)
-      .map(([combo, count]) => `<p>${combo}: ${count}</p>`)
-      .join("")}
-    <p>Total: ${Object.values(comboCount).reduce((a, b) => a + b, 0)}</p>
-  `;
+  <h3>Combo Breakdown</h3>
+  ${Object.entries(comboCount)
+    .map(([combo, count]) => `<p>${combo}: ${count}</p>`)
+    .join("")}
+  <p>Total: ${Object.values(comboCount).reduce((a, b) => a + b, 0)}</p>
+`;
   selectedTagsContainer!.appendChild(breakdown);
 }
 
@@ -126,15 +151,25 @@ tags.forEach((tag) => {
 // Add event listener to position the tooltip
 document.querySelectorAll(".tag").forEach((tag) => {
   tag.addEventListener("mousemove", function (e: MouseEvent) {
-    const tooltip = this.querySelector(".tag-tooltip");
-    tooltip.style.left = `${e.clientX + 10}px`;
+    const tooltip = this.querySelector(".tag-tooltip") as HTMLElement;
+    const tooltipWidth = tooltip.offsetWidth;
+    const windowWidth = window.innerWidth;
+    const scrollbarWidth = 20; // Adjust this value based on the scrollbar width
+    let leftPosition = e.clientX + 10;
+
+    // Check if the tooltip exceeds the right border of the window
+    if (leftPosition + tooltipWidth > windowWidth - scrollbarWidth) {
+      leftPosition = e.clientX - tooltipWidth - 10;
+    }
+
+    tooltip.style.left = `${leftPosition}px`;
     tooltip.style.top = `${e.clientY + 10}px`;
     tooltip.style.visibility = "visible";
     tooltip.style.opacity = "1";
   });
 
   tag.addEventListener("mouseleave", function () {
-    const tooltip = this.querySelector(".tag-tooltip");
+    const tooltip = this.querySelector(".tag-tooltip") as HTMLElement;
     tooltip.style.visibility = "hidden";
     tooltip.style.opacity = "0";
   });
