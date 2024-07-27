@@ -156,6 +156,18 @@ function updateSelectedTagsDisplay() {
 
   const totalMultiplier = multipliers.reduce((a, b) => a * b, 1);
 
+  if (multipliers.length === 0) {
+    breakdown.innerHTML = `
+      <div class="console-output">
+        <span class="yellow-text">Combos:</span><br>
+        <span class="pink-text">No special combos found!</span>
+      </div>
+    `;
+
+    selectedTagsContainer!.appendChild(breakdown);
+    return;
+  }
+
   breakdown.innerHTML = `
     <div class="console-output">
       <span class="yellow-text">Combos:</span><br>
@@ -173,8 +185,8 @@ function updateSelectedTagsDisplay() {
 
     tagsToSelect.forEach((tagText) => {
       const tagElement = Array.from(document.querySelectorAll(".tag")).find(
-        (tag) => tag.innerText === tagText,
-      );
+        (tag: HTMLElement) => tag.innerText === tagText,
+      ) as HTMLElement;
       if (tagElement) {
         tagElement.click();
       }
@@ -187,8 +199,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
   tagsToSelect.forEach((tagText) => {
     const tagElement = Array.from(document.querySelectorAll(".tag")).find(
-      (tag) => tag.innerText === tagText,
-    );
+      (tag: HTMLElement) => tag.innerText === tagText,
+    ) as HTMLElement;
     if (tagElement) {
       tagElement.click();
     }
