@@ -4,6 +4,9 @@ const tagsContainer = document.getElementById("tags-container");
 const comboButtonsContainer = document.getElementById(
   "combo-buttons-container",
 );
+const selectedTagsContainer = document.getElementById(
+  "selected-tags-container",
+);
 
 const uniqueCombos = new Set<string>();
 tags.forEach((tag) => {
@@ -20,6 +23,7 @@ uniqueCombos.forEach((combo) => {
 });
 
 const activeCombos = new Set<string>();
+const selectedTags = new Set<string>();
 
 // Add event listener to combo buttons
 document.querySelectorAll(".combo-button").forEach((button) => {
@@ -55,9 +59,42 @@ function filterTags() {
   });
 }
 
+function updateSelectedTagsDisplay() {
+  selectedTagsContainer!.innerHTML = "";
+
+  const comboCount: { [key: string]: number } = {};
+
+  selectedTags.forEach((tagId) => {
+    const tagElement = document.getElementById(tagId);
+    const clone = tagElement!.cloneNode(true) as HTMLElement;
+    clone.classList.remove("selected");
+    selectedTagsContainer!.appendChild(clone);
+
+    const tagCombos = Array.from(
+      tagElement!.querySelectorAll(".tag-tooltip span:not(:first-of-type)"),
+    ).map((span) => span.className);
+
+    tagCombos.forEach((combo) => {
+      comboCount[combo] = (comboCount[combo] || 0) + 1;
+    });
+  });
+
+  const breakdown = document.createElement("div");
+  breakdown.className = "combo-breakdown";
+  breakdown.innerHTML = `
+    <h3>Combo Breakdown</h3>
+    ${Object.entries(comboCount)
+      .map(([combo, count]) => `<p>${combo}: ${count}</p>`)
+      .join("")}
+    <p>Total: ${Object.values(comboCount).reduce((a, b) => a + b, 0)}</p>
+  `;
+  selectedTagsContainer!.appendChild(breakdown);
+}
+
 tags.forEach((tag) => {
   const tagElement = document.createElement("div");
   tagElement.className = `tag ${tag.rarity.toLowerCase()}`;
+  tagElement.id = tag.name;
   tagElement.innerHTML = `
     ${tag.name}
     <div class="tag-tooltip">
@@ -73,6 +110,17 @@ tags.forEach((tag) => {
     </div>
   `;
   tagsContainer?.appendChild(tagElement);
+
+  tagElement.addEventListener("click", function () {
+    if (selectedTags.has(tag.name)) {
+      selectedTags.delete(tag.name);
+      tagElement.classList.remove("selected");
+    } else if (selectedTags.size < 5) {
+      selectedTags.add(tag.name);
+      tagElement.classList.add("selected");
+    }
+    updateSelectedTagsDisplay();
+  });
 });
 
 // Add event listener to position the tooltip
