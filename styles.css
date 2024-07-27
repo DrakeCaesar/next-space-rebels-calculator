@@ -22,7 +22,6 @@
   --creepy-color: #8e3500;
   --geeky-color: #0016ff;
 
-  --common-color-transparent: #5f5f5fee;
   --unknown-color-tooltip: #ffffff;
 }
 
@@ -55,20 +54,19 @@ body {
 .tag-tooltip {
   font-weight: 200;
   visibility: hidden;
-  background-color: var(--common-color-transparent);
+  background-color: #2e2e2eef;
   color: white;
   text-align: left;
   border-radius: 5px;
   padding: 10px;
   position: absolute;
   z-index: 1;
-  bottom: 100%;
-  left: 50%;
-  margin-left: -60px;
   width: max-content;
   opacity: 0;
-  transition: opacity 0.3s;
+  transition: opacity 0.1s;
   line-height: 1.5;
+  pointer-events: none; /* Prevents the tooltip from interfering with mouse events */
+  position: fixed;
 }
 
 .tag:hover .tag-tooltip {
