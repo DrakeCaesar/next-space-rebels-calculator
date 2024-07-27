@@ -2,6 +2,7 @@
 #include <fstream>
 #include <iostream>
 #include <nlohmann/json.hpp>
+#include <omp.h> // OpenMP for parallel processing
 #include <string>
 #include <unordered_map>
 #include <vector>
@@ -48,6 +49,7 @@ void formatTime(int totalSeconds) {
 }
 
 vector<Tag> findBestCombination(const vector<Tag> &tags) {
+  omp_set_num_threads(16);
   vector<Tag> bestCombination;
   int bestScore = 0;
   size_t n = tags.size();
@@ -55,32 +57,16 @@ vector<Tag> findBestCombination(const vector<Tag> &tags) {
   size_t currentCombination = 0;
 
   auto start = chrono::steady_clock::now();
-
+#pragma omp parallel for schedule(dynamic) collapse(5)                         \
+    shared(bestScore, bestCombination) // Parallelize outer loops
   for (size_t i = 0; i < n - 4; i++) {
     for (size_t j = i + 1; j < n - 3; j++) {
-      currentCombination += (n - j - 1) * (n - j - 2) * (n - j - 3) / 6;
-      auto now = chrono::steady_clock::now();
-      auto elapsed =
-          chrono::duration_cast<chrono::seconds>(now - start).count();
-
-      double percentage = (double)currentCombination / totalCombinations * 100;
-      double estimatedTotal =
-          (double)elapsed / currentCombination * totalCombinations;
-      double estimatedRemaining = estimatedTotal - elapsed;
-
-      // Only print if there's progress and avoid printing negative times
-      if (currentCombination > 0 && estimatedRemaining > 0) {
-        cout << "Progress: " << percentage << "%, Estimated time remaining: ";
-        formatTime(static_cast<int>(estimatedRemaining));
-        cout << endl;
-      }
-
       for (size_t k = j + 1; k < n - 2; k++) {
         for (size_t l = k + 1; l < n - 1; l++) {
           for (size_t m = l + 1; m < n; m++) {
+            unordered_map<string, int> comboCounts;
             vector<Tag> combination = {tags[i], tags[j], tags[k], tags[l],
                                        tags[m]};
-            unordered_map<string, int> comboCounts;
 
             for (const auto &tag : combination) {
               for (const auto &combo : tag.combos) {
@@ -91,9 +77,34 @@ vector<Tag> findBestCombination(const vector<Tag> &tags) {
             }
 
             int score = calculateScore(comboCounts);
+
+#pragma omp                                                                    \
+    critical // Ensure that updates to shared variables are done atomically
             if (score > bestScore) {
               bestScore = score;
               bestCombination = combination;
+            }
+
+#pragma omp atomic // Atomic increment of progress counter
+            currentCombination++;
+
+            if (currentCombination % 100000 ==
+                0) { // Reduce frequency of updates
+              auto now = chrono::steady_clock::now();
+              auto elapsed =
+                  chrono::duration_cast<chrono::seconds>(now - start).count();
+              double percentage =
+                  (double)currentCombination / totalCombinations * 100;
+              double estimatedTotal =
+                  (double)elapsed / currentCombination * totalCombinations;
+              double estimatedRemaining = estimatedTotal - elapsed;
+
+              if (currentCombination > 0 && estimatedRemaining > 0) {
+                cout << "Progress: " << percentage
+                     << "%, Estimated time remaining: ";
+                formatTime(static_cast<int>(estimatedRemaining));
+                cout << endl;
+              }
             }
           }
         }
