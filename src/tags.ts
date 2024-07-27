@@ -40,7 +40,7 @@ export const tags: Tag[] = [
     name: "Beginner",
     description: "For using only the rocket kit structure set",
     rarity: "Common",
-    combos: ["CUTE", "UNKNOWN"],
+    combos: ["CUTE", "NOOB"],
   },
   {
     name: "Extra Boost",
@@ -100,7 +100,7 @@ export const tags: Tag[] = [
     name: "Teddy Nose",
     description: "For using a teddy bear at the top of the rocket",
     rarity: "Uncommon",
-    combos: ["CUTE", "UNKNOWN"],
+    combos: ["CUTE", "FUNNY"],
   },
   {
     name: "Improviser",
@@ -345,10 +345,52 @@ export const tags: Tag[] = [
     combos: ["COOL"],
   },
   {
+    name: "Pipe",
+    description: "For having a pipe in your rocket",
+    rarity: "Common",
+    combos: ["SMART"],
+  },
+  {
     name: "RaySon",
     description: "For beating a challenge from RaySon",
     rarity: "Uncommon",
     combos: ["SMART"],
+  },
+  {
+    name: "Junk",
+    description: "For using a junk engine",
+    rarity: "Common",
+    combos: ["UNKNOWN"],
+  },
+  {
+    name: "Pipe Bomb",
+    description: "For using PVC and an explosive",
+    rarity: "Uncommon",
+    combos: ["AWESOME"],
+  },
+  {
+    name: "Toilet",
+    description: "For beating 'Toilet Toppler'",
+    rarity: "Rare",
+    combos: ["FUNNY", "UNKNOWN"],
+  },
+  {
+    name: "Recycler",
+    description: "For using only the trash structure set",
+    rarity: "Rare",
+    combos: ["GROSS", "UNKNOWN"],
+  },
+  {
+    name: "Topple",
+    description: "For knocking something over with your rocket",
+    rarity: "Rare",
+    combos: ["GROSS", "UNKNOWN"],
+  },
+  {
+    name: "BBQ",
+    description: "For using tongs",
+    rarity: "Common",
+    combos: ["UNKNOWN"],
   },
   {
     name: "Football",
@@ -500,7 +542,7 @@ export const tags: Tag[] = [
     name: "In Control",
     description: "For spending 5 seconds pressing buttons to control a swivel",
     rarity: "Rare",
-    combos: ["UNKNOWN"],
+    combos: ["SMART"],
   },
   {
     name: "Sprint",
@@ -616,7 +658,7 @@ export const tags: Tag[] = [
     name: "Angel",
     description: "For using a halo shaped part on the top of the rocket",
     rarity: "Rare",
-    combos: ["UNKNOWN"],
+    combos: ["CUTE"],
   },
   {
     name: "Wheel",
@@ -670,7 +712,7 @@ export const tags: Tag[] = [
     name: "Walk",
     description: "For reaching a distance of 1 kilometer",
     rarity: "Rare",
-    combos: ["UNKNOWN"],
+    combos: ["ASPIRING"],
   },
   {
     name: "Steer",
@@ -982,7 +1024,7 @@ export const tags: Tag[] = [
     name: "Mile",
     description: "For reaching an altitude of 1609 meters",
     rarity: "Uncommon",
-    combos: ["UNKNOWN"],
+    combos: ["ASPIRING"],
   },
   {
     name: "Horse",
@@ -1169,7 +1211,7 @@ export const tags: Tag[] = [
     name: "Trash King",
     description: "For using 8 different trash parts",
     rarity: "Epic",
-    combos: ["UNKNOWN"],
+    combos: ["GROSS", "UNKNOWN"],
   },
   {
     name: "Vintage",
@@ -1272,7 +1314,7 @@ export const tags: Tag[] = [
     name: "Science",
     description: "For beating a challenge from dot_science",
     rarity: "Uncommon",
-    combos: ["UNKNOWN"],
+    combos: ["SMART"],
   },
   {
     name: "Breakfast",
@@ -1362,7 +1404,7 @@ export const tags: Tag[] = [
     name: "Jolly",
     description: "For using a toy part and a Dandy Deer part",
     rarity: "Uncommon",
-    combos: ["UNKNOWN"],
+    combos: ["CUTE"],
   },
   {
     name: "Loud",
@@ -1427,9 +1469,9 @@ export const tags: Tag[] = [
   },
   {
     name: "Angel",
-    description: "For beating ‘Bike Angel’",
+    description: "For beating 'Bike Angel'",
     rarity: "Rare",
-    combos: ["FUNNY"],
+    combos: ["FUNNY", "UNKNOWN"],
   },
   {
     name: "Fashionable",
@@ -1443,5 +1485,23 @@ export const tags: Tag[] = [
       "For reaching a distance of 5 meters without propulsion or explosives",
     rarity: "Epic",
     combos: ["SMART"],
+  },
+  {
+    name: "High Level",
+    description: "For using a ladder",
+    rarity: "Uncommon",
+    combos: ["UNKNOWN"],
+  },
+  {
+    name: "Dumpster Dive",
+    description: "For beating 'Ultimate Dumpster Dive'",
+    rarity: "Epic",
+    combos: ["UNKNOWN"],
+  },
+  {
+    name: "Dumpster",
+    description: "For hitting a dumpster",
+    rarity: "Rare",
+    combos: ["GROSS"],
   },
 ];
