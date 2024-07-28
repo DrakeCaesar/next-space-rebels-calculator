@@ -328,3 +328,9 @@ button {
   box-shadow: none;
   background-color: #aaa;
 }
+
+#search-bar {
+  margin-left: 10px;
+  padding: 5px;
+  font-size: 14px;
+}
