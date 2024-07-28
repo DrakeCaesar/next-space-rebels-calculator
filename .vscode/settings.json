@@ -1,5 +1,12 @@
 {
-  "cSpell.words": ["BOOOM", "loopings", "Toppler", "Tupolev", "Unsymmetric"],
+  "cSpell.words": [
+    "BOOOM",
+    "loopings",
+    "Toppler",
+    "Tripover",
+    "Tupolev",
+    "Unsymmetric"
+  ],
   "highlight.regexes": {
     "(\\bCommon\\b)": {
       "filterFileRegex": ".*\\.ts",

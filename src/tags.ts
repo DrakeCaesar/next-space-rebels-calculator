@@ -47,6 +47,7 @@ export interface Tag {
   description: string;
   rarity: TagRarity;
   combos: ComboCategory[];
+  ruledOut?: ComboCategory[];
   blocked?: boolean;
 }
 
@@ -667,7 +668,7 @@ export const tags: Tag[] = [
     name: "Vehicle",
     description: "For using a wheel at the bottom of the rocket",
     rarity: Rare,
-    combos: [UNKNOWN],
+    combos: [SMART],
   },
   {
     name: "Bike",
@@ -691,7 +692,7 @@ export const tags: Tag[] = [
     name: "Wheel",
     description: "For using a wheel part",
     rarity: Common,
-    combos: [UNKNOWN],
+    combos: [WEIRD],
   },
   {
     name: "Three-Leaf Clover",
@@ -1761,7 +1762,8 @@ export const tags: Tag[] = [
     name: "Four-Leaf Clover",
     description: "For using 4 round parts in a three-leaf clover shape",
     rarity: Epic,
-    combos: [UNKNOWN],
+    combos: [SMART, UNKNOWN],
+    ruledOut: [WEIRD],
   },
   {
     name: "Wheelbarrow",
@@ -1798,6 +1800,24 @@ export const tags: Tag[] = [
     description:
       "For using a mannequin and combining it with 10 other parts from other sets",
     rarity: Viral,
+    combos: [UNKNOWN],
+  },
+  {
+    name: "Jerrycan",
+    description: "For using a jerrycan part",
+    rarity: Common,
+    combos: [UNKNOWN],
+  },
+  {
+    name: "Junkyard",
+    description: "For using 25 different scrap parts",
+    rarity: Epic,
+    combos: [UNKNOWN],
+  },
+  {
+    name: "Algae",
+    description: "For an algae part",
+    rarity: Common,
     combos: [UNKNOWN],
   },
 ];
