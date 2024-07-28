@@ -71,6 +71,7 @@ function updateSelectedTagsDisplay() {
   selectedTagsContainer!.innerHTML = "";
 
   const comboCount: { [key: string]: number } = {};
+  const comboTags: { [key: string]: string[] } = {};
 
   selectedTags.forEach((tagId) => {
     const tagElement = document.getElementById(tagId);
@@ -91,6 +92,10 @@ function updateSelectedTagsDisplay() {
 
     tagCombos.forEach((combo) => {
       comboCount[combo] = (comboCount[combo] || 0) + 1;
+      if (!comboTags[combo]) {
+        comboTags[combo] = [];
+      }
+      comboTags[combo].push(tagElement!.innerText.trim());
     });
 
     clone.addEventListener("click", function () {
@@ -152,9 +157,11 @@ function updateSelectedTagsDisplay() {
         return ""; // Skip if count does not match predefined conditions
       }
 
+      const contributingTags = comboTags[combo].join(", ") + ",";
+
       return `
-        ${INDENT}<span class="${combo}">${comboLabel}</span><br>
-        ${MULTIPLIER_INDENT}Combo multiplier => <span class="pink-text">x${multiplier}</span><br>
+        ${INDENT}<span class="${combo} bold-text">${comboLabel}</span><span class="green-text"> ${contributingTags}</span><br>
+        ${MULTIPLIER_INDENT}<span class=white-text>Combo multiplier =>  </span><span class="pink-text">x${multiplier}</span><br>
       `;
     })
     .join("");
@@ -189,7 +196,7 @@ function updateSelectedTagsDisplay() {
       <span class="yellow-text">Combos:</span><br>
       <span class="combo-output">${specialCombos}
       <span class="yellow-text">Total combo multiplier:</span><br>
-      <span>${INDENT}${multipliers.join(" * ")} = </span>
+      <span>${MULTIPLIER_INDENT}${multipliers.join(" * ")} = </span>
       <span class="pink-text">x${totalMultiplier}</span>
     </div>
   `;
