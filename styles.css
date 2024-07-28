@@ -184,6 +184,11 @@ button {
   display: inline-block;
 }
 
+#selected-tags {
+  height: 150px;
+  display: flex;
+}
+
 .tag.selected {
   border: 2px solid rgb(143, 94, 143);
   animation: border-pulse 1s infinite;

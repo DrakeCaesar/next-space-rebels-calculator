@@ -4,9 +4,8 @@ const tagsContainer = document.getElementById("tags-container");
 const comboButtonsContainer = document.getElementById(
   "combo-buttons-container",
 );
-const selectedTagsContainer = document.getElementById(
-  "selected-tags-container",
-);
+const selectedTagsElement = document.getElementById("selected-tags");
+const consoleElement = document.getElementById("console") as HTMLDivElement;
 
 const uniqueCombos = new Set<string>();
 
@@ -68,7 +67,7 @@ function filterTags() {
 }
 
 function updateSelectedTagsDisplay() {
-  selectedTagsContainer!.innerHTML = "";
+  selectedTagsElement!.innerHTML = "";
 
   const comboCount: { [key: string]: number } = {};
   const comboTags: { [key: string]: string[] } = {};
@@ -84,7 +83,7 @@ function updateSelectedTagsDisplay() {
       clone.classList.add("blocked");
     }
 
-    selectedTagsContainer!.appendChild(clone);
+    selectedTagsElement!.appendChild(clone);
 
     const tagCombos = Array.from(
       tagElement!.querySelectorAll(".tag-tooltip span:not(:first-of-type)"),
@@ -180,18 +179,18 @@ function updateSelectedTagsDisplay() {
   const totalMultiplier = multipliers.reduce((a: number, b) => a * b, 1);
 
   if (multipliers.length === 0) {
-    breakdown.innerHTML = `
+    consoleElement.innerHTML = `
       <div class="console-output">
         <span class="yellow-text">Combos:</span><br>
         <span class="pink-text">No special combos found!</span>
       </div>
     `;
 
-    selectedTagsContainer!.appendChild(breakdown);
+    selectedTagsElement!.appendChild(breakdown);
     return;
   }
 
-  breakdown.innerHTML = `
+  consoleElement.innerHTML = `
     <div class="console-output">
       <span class="yellow-text">Combos:</span><br>
       <span class="combo-output">${specialCombos}
@@ -201,7 +200,7 @@ function updateSelectedTagsDisplay() {
     </div>
   `;
 
-  selectedTagsContainer!.appendChild(breakdown);
+  selectedTagsElement!.appendChild(breakdown);
 }
 
 document.addEventListener("DOMContentLoaded", () => {
