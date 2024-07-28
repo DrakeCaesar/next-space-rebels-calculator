@@ -1165,7 +1165,7 @@ export const tags: Tag[] = [
     name: "Bot",
     description: "For using a robot",
     rarity: "Uncommon",
-    combos: ["UNKNOWN"],
+    combos: ["CUTE", "COOL"],
   },
   {
     name: "Collage",
