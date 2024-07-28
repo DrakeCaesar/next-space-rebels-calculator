@@ -34,6 +34,22 @@ export function filterTags(activeCombos: Set<string>) {
   filterTagsByText(activeCombos);
 }
 
+export function positionTooltip(e: MouseEvent, tag: HTMLElement) {
+  const tooltip = tag.querySelector(".tag-tooltip") as HTMLElement;
+
+  const tooltipWidth = tooltip.offsetWidth;
+  const windowWidth = window.innerWidth;
+  let leftPosition = e.clientX + 10;
+
+  // Check if the tooltip exceeds the right border of the window
+  if (leftPosition + tooltipWidth > windowWidth) {
+    leftPosition = e.clientX - tooltipWidth - 10;
+  }
+
+  tooltip.style.left = `${leftPosition}px`;
+  tooltip.style.top = `${e.clientY + 10}px`;
+}
+
 export function updateSelectedTagsDisplay(selectedTags: Set<string>) {
   selectedTagsElement!.innerHTML = "";
 
@@ -74,20 +90,8 @@ export function updateSelectedTagsDisplay(selectedTags: Set<string>) {
         updateSelectedTagsDisplay(selectedTags);
       });
 
-      const tooltip = clone.querySelector(".tag-tooltip") as HTMLElement;
-      tooltip.style.visibility = "hidden";
-      tooltip.style.opacity = "0";
-
       clone.addEventListener("mousemove", function (e: MouseEvent) {
-        tooltip.style.left = `${e.clientX + 10}px`;
-        tooltip.style.top = `${e.clientY + 10}px`;
-        tooltip.style.visibility = "visible";
-        tooltip.style.opacity = "1";
-      });
-
-      clone.addEventListener("mouseleave", function () {
-        tooltip.style.visibility = "hidden";
-        tooltip.style.opacity = "0";
+        positionTooltip(e, clone);
       });
     }
   });

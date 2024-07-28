@@ -3,6 +3,7 @@ import {
   comboButtonsContainer,
   filterTags,
   filterTagsByText,
+  positionTooltip,
   searchBar,
   sortTagsBy,
   tagsContainer,
@@ -79,29 +80,13 @@ document.getElementById("sort-by-rarity")?.addEventListener("click", () => {
 });
 
 searchBar.addEventListener("input", function () {
-  const searchTerm = (this as HTMLInputElement).value.toLowerCase();
   filterTagsByText(activeCombos);
 });
 
 // Add event listener to position the tooltip
 document.querySelectorAll(".tag").forEach((tag) => {
   (tag as HTMLElement).addEventListener("mousemove", function (e: MouseEvent) {
-    const tooltip = tag.querySelector(".tag-tooltip") as HTMLElement;
-    const tooltipWidth = tooltip.offsetWidth;
-    const windowWidth = window.innerWidth;
-    let leftPosition = e.clientX + 10;
-
-    // Check if the tooltip exceeds the right border of the window
-    if (leftPosition + tooltipWidth > windowWidth) {
-      leftPosition = e.clientX - tooltipWidth - 10;
-    }
-
-    tooltip.style.left = `${leftPosition}px`;
-    tooltip.style.top = `${e.clientY + 10}px`;
-  });
-
-  tag.addEventListener("mouseleave", function () {
-    const tooltip = tag.querySelector(".tag-tooltip") as HTMLElement;
+    positionTooltip(e, tag as HTMLElement);
   });
 });
 

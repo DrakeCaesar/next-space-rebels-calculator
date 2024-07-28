@@ -74,8 +74,8 @@ body {
 }
 
 .tag:hover .tag-tooltip {
-  visibility: visible;
-  opacity: 1;
+  visibility: visible !important;
+  opacity: 1 !important;
 }
 
 /* Rarity colors */
