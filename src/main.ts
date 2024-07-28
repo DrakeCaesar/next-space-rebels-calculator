@@ -1,7 +1,14 @@
 import { TagRarity, tags } from "./tags";
-import { filterTags, updateSelectedTagsDisplay } from "./utils";
+import {
+  filterTags,
+  filterTagsByText,
+  sortTagsBy,
+  updateSelectedTagsDisplay,
+} from "./utils";
 
-const tagsContainer = document.getElementById("tags-container");
+const tagsContainer = document.getElementById(
+  "tags-container",
+) as HTMLDivElement;
 const comboButtonsContainer = document.getElementById(
   "combo-buttons-container",
 );
@@ -114,60 +121,20 @@ tags.forEach((tag, index) => {
 });
 
 // Sorting functionality
-function sortTagsBy(criteria: string) {
-  const tagsArray = tagsContainer ? Array.from(tagsContainer.children) : [];
-  if (criteria === "order") {
-    tagsArray.sort((a: Element, b: Element) => {
-      const orderA = parseInt((a as HTMLElement).dataset.order || "0");
-      const orderB = parseInt((b as HTMLElement).dataset.order || "0");
-      return orderA - orderB;
-    });
-  } else if (criteria === "rarity") {
-    const rarityOrder = ["viral", "epic", "rare", "uncommon", "common"];
-    tagsArray.sort(
-      (a, b) =>
-        rarityOrder.indexOf(a.classList[1]) -
-        rarityOrder.indexOf(b.classList[1]),
-    );
-  }
-  if (tagsContainer) {
-    tagsArray.forEach((tag) => tagsContainer.appendChild(tag)); // Re-append in sorted order
-  }
-}
 
 // Event listeners for sorting and search
 document.getElementById("sort-by-order")?.addEventListener("click", () => {
-  sortTagsBy("order");
+  sortTagsBy("order", tagsContainer);
 });
 
 document.getElementById("sort-by-rarity")?.addEventListener("click", () => {
-  sortTagsBy("rarity");
+  sortTagsBy("rarity", tagsContainer);
 });
 
 document.getElementById("search-bar")?.addEventListener("input", function () {
   const searchTerm = (this as HTMLInputElement).value.toLowerCase();
-  filterTagsByText(searchTerm);
+  filterTagsByText(searchTerm, activeCombos);
 });
-
-function filterTagsByText(searchTerm = "") {
-  document.querySelectorAll("#tags-container .tag").forEach((tag) => {
-    const tagCombos = Array.from(tag.querySelectorAll(".tag-tooltip span")).map(
-      (span) => span.className,
-    );
-
-    const matchesCombo = Array.from(activeCombos).some((combo) =>
-      tagCombos.includes(combo),
-    );
-
-    const matchesSearch = tag.textContent!.toLowerCase().includes(searchTerm);
-
-    if ((activeCombos.size === 0 || matchesCombo) && matchesSearch) {
-      tag.classList.remove("hidden");
-    } else {
-      tag.classList.add("hidden");
-    }
-  });
-}
 
 // Add event listener to position the tooltip
 document.querySelectorAll(".tag").forEach((tag) => {
