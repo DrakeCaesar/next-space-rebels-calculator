@@ -8,19 +8,23 @@
       href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
       rel="stylesheet"
     />
-
     <title>Tag Display</title>
   </head>
   <body>
     <div id="content-container">
       <div id="left-pane">
         <div id="combo-buttons-container">
-          <!-- Buttons go here -->
+          <!-- Combo buttons will be dynamically added here -->
         </div>
 
-        <div id="sort-buttons-container"></div>
+        <div id="sort-buttons-container">
+          <button id="sort-by-order">Sort by Original Order</button>
+          <button id="sort-by-rarity">Sort by Rarity</button>
+          <input type="text" id="search-bar" placeholder="Search tags..." />
+        </div>
+
         <div id="tags-container">
-          <!-- Tags content goes here -->
+          <!-- Tags content will be dynamically added here -->
         </div>
       </div>
       <div id="selected-tags-container">
