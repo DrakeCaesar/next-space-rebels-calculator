@@ -1857,4 +1857,40 @@ export const tags: Tag[] = [
     combos: [UNKNOWN],
     blocked: true,
   },
+  {
+    name: "Motorcycle",
+    description: "For using a motorcycle tank",
+    rarity: Uncommon,
+    combos: [UNKNOWN],
+  },
+  {
+    "name": "Furry",
+    "description": "For using 7 different Dandy Deer parts",
+    "rarity": Rare,
+    "combos": [UNKNOWN]
+  },
+  {
+    "name": "Danger",
+    "description": "For using a toy part and a scrap part",
+    "rarity": Uncommon,
+    "combos": [UNKNOWN]
+  },
+  {
+    "name": "Spin",
+    "description": "For using a fidget spinner and a spinning top",
+    "rarity": Rare,
+    "combos": [UNKNOWN]
+  }
+  {
+    name: "Baby Centipede",
+    description: "For using 3 babies that are all attached to each other",
+    rarity: Epic,
+    combos: [UNKNOWN],
+  },
+  {
+    name: "Protest",
+    description: "For using a megaphone and a Molotov cocktail",
+    rarity: Rare,
+    combos: [UNKNOWN],
+  },
 ];
