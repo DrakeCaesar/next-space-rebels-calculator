@@ -161,13 +161,14 @@ body {
   color: var(--geeky-color);
 }
 
-.combo-button {
+button {
   margin: 5px;
   padding: 10px;
   cursor: pointer;
   border-radius: 100px;
   background-color: #000000;
   font-weight: 600;
+  color: white;
 }
 
 .combo-button.active {
@@ -215,6 +216,14 @@ body {
 }
 
 #combo-buttons-container {
+  height: fit-content;
+  background-color: #1e1f24;
+  border-bottom: 1px solid #ccc;
+  padding: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+#sort-buttons-container {
   height: fit-content;
   background-color: #1e1f24;
   border-bottom: 1px solid #ccc;

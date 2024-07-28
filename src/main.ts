@@ -209,18 +209,12 @@ const rarityOrder: TagRarity[] = [
   "Common",
 ];
 
-tags.sort(
-  (a, b) => rarityOrder.indexOf(a.rarity) - rarityOrder.indexOf(b.rarity),
-);
-
-let order = 0;
-
-tags.forEach((tag) => {
+// Assuming 'tags' is an array of tag objects
+tags.forEach((tag, index) => {
   const tagElement = document.createElement("div");
   tagElement.className = `tag ${tag.rarity.toLowerCase()}`;
   tagElement.id = tag.name;
-  tagElement.dataset.order = order.toString();
-  order;
+  tagElement.dataset.order = index.toFixed().toString(); // Store the original order
   tagElement.innerHTML = `
     ${tag.name}
     <div class="tag-tooltip">
@@ -248,6 +242,47 @@ tags.forEach((tag) => {
     updateSelectedTagsDisplay();
   });
 });
+
+// Create sort buttons
+const buttonElement = document.querySelector(
+  "#sort-buttons-container",
+) as HTMLElement;
+
+const sortByOrderButton = document.createElement("button");
+sortByOrderButton.textContent = "Sort by Original Order";
+sortByOrderButton.addEventListener("click", () => {
+  sortTagsBy("order");
+});
+buttonElement.appendChild(sortByOrderButton);
+
+const sortByRarityButton = document.createElement("button");
+sortByRarityButton.textContent = "Sort by Rarity";
+sortByRarityButton.addEventListener("click", () => {
+  sortTagsBy("rarity");
+});
+buttonElement.appendChild(sortByRarityButton);
+
+// Sorting function
+function sortTagsBy(criteria: string) {
+  const tagsArray = tagsContainer ? Array.from(tagsContainer.children) : [];
+  if (criteria === "order") {
+    tagsArray.sort((a: Element, b: Element) => {
+      const orderA = parseInt((a as HTMLElement).dataset.order || "0");
+      const orderB = parseInt((b as HTMLElement).dataset.order || "0");
+      return orderA - orderB;
+    });
+  } else if (criteria === "rarity") {
+    const rarityOrder = ["common", "uncommon", "rare", "epic", "legendary"];
+    tagsArray.sort(
+      (a, b) =>
+        rarityOrder.indexOf(a.classList[1]) -
+        rarityOrder.indexOf(b.classList[1]),
+    );
+  }
+  if (tagsContainer) {
+    tagsArray.forEach((tag) => tagsContainer.appendChild(tag)); // Re-append in sorted order
+  }
+}
 
 // Add event listener to position the tooltip
 document.querySelectorAll(".tag").forEach((tag) => {
