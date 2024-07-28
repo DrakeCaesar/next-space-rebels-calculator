@@ -1130,7 +1130,7 @@ export const tags: Tag[] = [
     name: "Travel",
     description: "For reaching a distance of 10 kilometer",
     rarity: Epic,
-    combos: [UNKNOWN],
+    combos: [ASPIRING],
   },
   {
     name: "Connector",
@@ -1573,7 +1573,7 @@ export const tags: Tag[] = [
     name: "League",
     description: "For reaching an altitude of 4828 meters",
     rarity: Uncommon,
-    combos: [UNKNOWN],
+    combos: [ASPIRING],
   },
   {
     name: "Hover Cat",
@@ -1713,6 +1713,30 @@ export const tags: Tag[] = [
     name: "Tripover",
     description: "For using 3 triangles stack in a pyramid",
     rarity: Epic,
+    combos: [UNKNOWN],
+  },
+  {
+    name: "Jumbo",
+    description: "For using 2 stuffed elephants",
+    rarity: Rare,
+    combos: [UNKNOWN],
+  },
+  {
+    name: "Tupolev",
+    description: "For reaching a speed of 870 km/h",
+    rarity: Uncommon,
+    combos: [ASPIRING],
+  },
+  {
+    name: "Pump",
+    description: "For using a pump",
+    rarity: Common,
+    combos: [UNKNOWN],
+  },
+  {
+    name: "Addicted",
+    description: "For using 10 smokers",
+    rarity: Rare,
     combos: [UNKNOWN],
   },
 ];
