@@ -280,6 +280,36 @@ sortByRarityButton.addEventListener("click", () => {
 });
 buttonElement.appendChild(sortByRarityButton);
 
+const searchBar = document.createElement("input");
+searchBar.id = "search-bar";
+searchBar.type = "text";
+searchBar.placeholder = "Search tags...";
+searchBar.addEventListener("input", function () {
+  const searchTerm = (this as HTMLInputElement).value.toLowerCase();
+  filterTagsByText(searchTerm);
+});
+
+function filterTagsByText(searchTerm = "") {
+  document.querySelectorAll("#left-pane .tag").forEach((tag) => {
+    const tagCombos = Array.from(tag.querySelectorAll(".tag-tooltip span")).map(
+      (span) => span.className,
+    );
+
+    const matchesCombo = Array.from(activeCombos).some((combo) =>
+      tagCombos.includes(combo),
+    );
+
+    const matchesSearch = tag.textContent!.toLowerCase().includes(searchTerm);
+
+    if ((activeCombos.size === 0 || matchesCombo) && matchesSearch) {
+      tag.classList.remove("hidden");
+    } else {
+      tag.classList.add("hidden");
+    }
+  });
+}
+buttonElement.appendChild(searchBar);
+
 // Sorting function
 function sortTagsBy(criteria: string) {
   const tagsArray = tagsContainer ? Array.from(tagsContainer.children) : [];
