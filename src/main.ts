@@ -23,6 +23,9 @@ function initializePage() {
     createComboButton(combo);
   });
 
+  const counter = document.getElementById("tag-count") as HTMLSpanElement;
+  counter.textContent = `(${tags.length})`;
+
   tags.forEach((tag, index) => {
     createTagElement(tag, index);
   });
@@ -40,7 +43,14 @@ function initializePage() {
   });
 
   document.addEventListener("DOMContentLoaded", () => {
-    const tagsToSelect = ["RaySon", "Powerhouse", "Motor", "Trident", "Juice"];
+    // const tagsToSelect = ["RaySon", "Powerhouse", "Motor", "Trident", "Juice"];
+    const tagsToSelect = [
+      "Sizzle",
+      "Dynamite",
+      "Looping",
+      "Pyromaniac",
+      "Flash Mob",
+    ];
 
     tagsToSelect.forEach((tagText) => {
       const tagElement = Array.from(document.querySelectorAll(".tag")).find(

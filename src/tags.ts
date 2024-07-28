@@ -841,7 +841,7 @@ export const tags: Tag[] = [
     name: "Pyromaniac",
     description: "For using 3 different firework parts",
     rarity: "Uncommon",
-    combos: ["UNKNOWN"],
+    combos: ["AWESOME", "UNKNOWN"],
   },
   {
     name: "Flash Mob",
@@ -938,7 +938,7 @@ export const tags: Tag[] = [
     name: "Progress",
     description: "For beating a challenge from RoseWood",
     rarity: "Rare",
-    combos: ["UNKNOWN"],
+    combos: ["WILD", "UNKNOWN"],
   },
   {
     name: "Planking",
@@ -962,7 +962,7 @@ export const tags: Tag[] = [
     name: "Wood",
     description: "For using the wood set",
     rarity: "Common",
-    combos: ["UNKNOWN"],
+    combos: ["WILD"],
   },
   {
     name: "Flat",
@@ -1542,5 +1542,35 @@ export const tags: Tag[] = [
     description: "For beating 'Robotical'",
     rarity: "Epic",
     combos: ["COOL", "UNKNOWN"],
+  },
+  {
+    name: "League",
+    description: "For reaching an altitude of 4828 meters",
+    rarity: "Uncommon",
+    combos: ["UNKNOWN"],
+  },
+  {
+    name: "Hover Cat",
+    description: "For beating 'Hover Cat'",
+    rarity: "Epic",
+    combos: ["UNKNOWN"],
+  },
+  {
+    name: "Sizzle",
+    description: "For beating 'Dynamite Launch'",
+    rarity: "Viral",
+    combos: ["AWESOME"],
+  },
+  {
+    name: "Dynamite",
+    description: "For using a dynamite",
+    rarity: "Uncommon",
+    combos: ["AWESOME", "UNKNOWN"],
+  },
+  {
+    name: "Hip",
+    description: "For using a fidget spinner and a StarTube cap",
+    rarity: "Rare",
+    combos: ["UNKNOWN"],
   },
 ];

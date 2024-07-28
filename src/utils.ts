@@ -145,7 +145,7 @@ export function updateSelectedTagsDisplay(selectedTags: Set<string>) {
       if (count === 2) return 2;
       if (count === 3) return 5;
       if (count === 4) return 15;
-      if (count === 5) return 5; // Placeholder multiplier for count of 5
+      if (count === 5) return 30; // Placeholder multiplier for count of 5
       return 1; // Default to 1 if no match
     });
 
@@ -162,13 +162,19 @@ export function updateSelectedTagsDisplay(selectedTags: Set<string>) {
     return;
   }
 
+  const totalComboMultiplierText =
+    multipliers.length === 1
+      ? ""
+      : `
+    <span class="yellow-text">Total combo multiplier:</span><br>
+    <span>${indent8}${multipliers.join(" * ")} = </span>
+    <span class="pink-text">x${totalMultiplier}</span>`;
+
   consoleElement.innerHTML = `
     <div class="console-output">
       <span class="yellow-text">Combos:</span><br>
       <span class="combo-output">${specialCombos}
-      <span class="yellow-text">Total combo multiplier:</span><br>
-      <span>${indent8}${multipliers.join(" * ")} = </span>
-      <span class="pink-text">x${totalMultiplier}</span>
+      ${totalComboMultiplierText}
     </div>
   `;
 }
