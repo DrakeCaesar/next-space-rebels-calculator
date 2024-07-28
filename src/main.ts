@@ -1,10 +1,9 @@
-import { tags } from "./tags";
+import { tags, UNKNOWN } from "./tags";
 import {
   activeCombos,
   createComboButton,
   createTagElement,
   filterTagsByText,
-  searchBar,
   sortTagsBy,
   tagsContainer,
   uniqueCombos,
@@ -15,16 +14,16 @@ tags.forEach((tag) => {
 });
 
 const sortedCombos = Array.from(uniqueCombos).sort();
-sortedCombos.splice(sortedCombos.indexOf("UNKNOWN"), 1);
-sortedCombos.push("UNKNOWN");
+sortedCombos.splice(sortedCombos.indexOf(UNKNOWN), 1);
+sortedCombos.push(UNKNOWN);
 
 function initializePage() {
   sortedCombos.forEach((combo) => {
     createComboButton(combo);
   });
 
-  const counter = document.getElementById("tag-count") as HTMLSpanElement;
-  counter.textContent = `(${tags.length})`;
+  const searchBar = document.getElementById("search-bar") as HTMLInputElement;
+  searchBar.placeholder = `Search ${tags.length} tags...`;
 
   tags.forEach((tag, index) => {
     createTagElement(tag, index);
@@ -43,14 +42,14 @@ function initializePage() {
   });
 
   document.addEventListener("DOMContentLoaded", () => {
-    // const tagsToSelect = ["RaySon", "Powerhouse", "Motor", "Trident", "Juice"];
-    const tagsToSelect = [
-      "Sizzle",
-      "Dynamite",
-      "Looping",
-      "Pyromaniac",
-      "Flash Mob",
-    ];
+    const tagsToSelect = ["RaySon", "Powerhouse", "Motor", "Trident", "Juice"];
+    // const tagsToSelect = [
+    //   "Sizzle",
+    //   "Dynamite",
+    //   "Looping",
+    //   "Pyromaniac",
+    //   "Flash Mob",
+    // ];
 
     tagsToSelect.forEach((tagText) => {
       const tagElement = Array.from(document.querySelectorAll(".tag")).find(

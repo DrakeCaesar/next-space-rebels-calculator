@@ -1,3 +1,5 @@
+import { UNKNOWN } from "./tags";
+
 export const tagsContainer = document.getElementById(
   "tags-container",
 ) as HTMLDivElement;
@@ -106,7 +108,7 @@ export function updateSelectedTagsDisplay(selectedTags: Set<string>) {
 
   const specialCombos = Object.entries(comboCount)
     .map(([combo, count]) => {
-      if (combo === "UNKNOWN") {
+      if (combo === UNKNOWN) {
         return "";
       }
 
@@ -140,7 +142,7 @@ export function updateSelectedTagsDisplay(selectedTags: Set<string>) {
 
   // Filter out "UNKNOWN" combos and map the actual multipliers
   const multipliers = Object.entries(comboCount)
-    .filter(([combo, count]) => combo !== "UNKNOWN" && count > 1)
+    .filter(([combo, count]) => combo !== UNKNOWN && count > 1)
     .map(([_, count]) => {
       if (count === 2) return 2;
       if (count === 3) return 5;
@@ -226,6 +228,7 @@ export function filterTagsByText(activeCombos: Set<string>) {
 
 export function createComboButton(combo: string) {
   const button = document.createElement("button");
+  button.textContent = combo;
   button.classList.add("combo-button", combo);
   button.dataset.combo = combo;
   comboButtonsContainer?.appendChild(button);

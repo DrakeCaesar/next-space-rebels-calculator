@@ -1,11 +1,11 @@
-import { Tag, tags } from "./tags";
+import { Tag, tags, UNKNOWN } from "./tags";
 
 import fs from "fs";
 
 function calculateScore(comboCounts: { [key: string]: number }): number {
   let score = 0;
   for (const combo in comboCounts) {
-    if (combo === "UNKNOWN") continue;
+    if (combo === UNKNOWN) continue;
     const count = comboCounts[combo];
     if (count === 2) score += 1;
     if (count === 3) score += 3;
@@ -57,7 +57,7 @@ function findBestCombination(tags: Tag[]): Tag[] {
 
             combination.forEach((tag) => {
               tag.combos.forEach((combo) => {
-                if (combo !== "UNKNOWN") {
+                if (combo !== UNKNOWN) {
                   comboCounts[combo] = (comboCounts[combo] || 0) + 1;
                 }
               });
