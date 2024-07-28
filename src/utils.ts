@@ -101,8 +101,8 @@ export function updateSelectedTagsDisplay(selectedTags: Set<string>) {
     }
   });
 
-  const INDENT = "&nbsp;&nbsp;&nbsp;&nbsp;";
-  const MULTIPLIER_INDENT = INDENT + INDENT;
+  const indent4 = "&nbsp;&nbsp;&nbsp;&nbsp;";
+  const indent8 = indent4 + indent4;
 
   const specialCombos = Object.entries(comboCount)
     .map(([combo, count]) => {
@@ -132,8 +132,8 @@ export function updateSelectedTagsDisplay(selectedTags: Set<string>) {
       const contributingTags = comboTags[combo].join(", ") + ",";
 
       return `
-        ${INDENT}<span class="${combo} bold-text">${comboLabel}</span><span class="green-text"> ${contributingTags}</span><br>
-        ${MULTIPLIER_INDENT}<span class=white-text>Combo multiplier =>  </span><span class="pink-text">x${multiplier}</span><br>
+        ${indent4}<span class="${combo} bold-text">${comboLabel}</span><span class="green-text"> ${contributingTags}</span><br>
+        ${indent8}<span class=white-text>Combo multiplier =>  </span><span class="pink-text">x${multiplier}</span><br>
       `;
     })
     .join("");
@@ -167,7 +167,7 @@ export function updateSelectedTagsDisplay(selectedTags: Set<string>) {
       <span class="yellow-text">Combos:</span><br>
       <span class="combo-output">${specialCombos}
       <span class="yellow-text">Total combo multiplier:</span><br>
-      <span>${MULTIPLIER_INDENT}${multipliers.join(" * ")} = </span>
+      <span>${indent8}${multipliers.join(" * ")} = </span>
       <span class="pink-text">x${totalMultiplier}</span>
     </div>
   `;
@@ -197,7 +197,9 @@ export function sortTagsBy(criteria: string, tagsContainer: HTMLElement) {
 export function filterTagsByText(activeCombos: Set<string>) {
   const searchTerm = searchBar.value.toLowerCase();
 
-  document.querySelectorAll("#tags-container .tag").forEach((tag) => {
+  (
+    document.querySelectorAll("#tags-container .tag") as NodeListOf<HTMLElement>
+  ).forEach((tag) => {
     const tagCombos = Array.from(tag.querySelectorAll(".tag-tooltip span")).map(
       (span) => span.className,
     );
@@ -206,7 +208,7 @@ export function filterTagsByText(activeCombos: Set<string>) {
       tagCombos.includes(combo),
     );
 
-    const matchesSearch = tag.id.toLowerCase().includes(searchTerm);
+    const matchesSearch = tag.dataset.name?.toLowerCase().includes(searchTerm);
 
     if ((activeCombos.size === 0 || matchesCombo) && matchesSearch) {
       tag.classList.remove("hidden");
@@ -239,15 +241,18 @@ export function createComboButton(combo: string) {
 }
 
 export function createTagElement(tag: any, index: number) {
+  const name = tag.name.split("#")[0];
+
   const tagElement = document.createElement("div");
   tagElement.className = `tag ${tag.rarity.toLowerCase()}`;
   tagElement.id = tag.name;
+  tagElement.dataset.name = name;
   tagElement.dataset.order = index.toFixed().toString();
   tagElement.classList.add(tag.blocked ? "blocked" : "unblocked");
   tagElement.innerHTML = `
-    ${tag.name}
+    ${name}
     <div class="tag-tooltip">
-      <strong>${tag.name}</strong><br>
+      <strong>${name}</strong><br>
       ${tag.description}<br>
       <span class="${tag.rarity.toLowerCase()}">${tag.rarity}</span><br>
       ${tag.combos

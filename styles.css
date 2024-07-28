@@ -181,6 +181,7 @@ button {
 }
 
 #selected-tags-container .tag.hidden {
+  display: none;
 }
 
 #selected-tags {
