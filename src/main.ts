@@ -1,4 +1,4 @@
-import { tags } from "./tags";
+import { TagRarity, tags } from "./tags";
 
 const tagsContainer = document.getElementById("tags-container");
 const comboButtonsContainer = document.getElementById(
@@ -200,10 +200,27 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 });
+
+const rarityOrder: TagRarity[] = [
+  "Viral",
+  "Epic",
+  "Rare",
+  "Uncommon",
+  "Common",
+];
+
+tags.sort(
+  (a, b) => rarityOrder.indexOf(a.rarity) - rarityOrder.indexOf(b.rarity),
+);
+
+let order = 0;
+
 tags.forEach((tag) => {
   const tagElement = document.createElement("div");
   tagElement.className = `tag ${tag.rarity.toLowerCase()}`;
   tagElement.id = tag.name;
+  tagElement.dataset.order = order.toString();
+  order;
   tagElement.innerHTML = `
     ${tag.name}
     <div class="tag-tooltip">
@@ -235,7 +252,7 @@ tags.forEach((tag) => {
 // Add event listener to position the tooltip
 document.querySelectorAll(".tag").forEach((tag) => {
   (tag as HTMLElement).addEventListener("mousemove", function (e: MouseEvent) {
-    const tooltip = document.querySelector(".tag-tooltip") as HTMLElement;
+    const tooltip = tag.querySelector(".tag-tooltip") as HTMLElement;
     const tooltipWidth = tooltip.offsetWidth;
     const windowWidth = window.innerWidth;
     const scrollbarWidth = 20; // Adjust this value based on the scrollbar width
@@ -253,7 +270,7 @@ document.querySelectorAll(".tag").forEach((tag) => {
   });
 
   tag.addEventListener("mouseleave", function () {
-    const tooltip = document.querySelector(".tag-tooltip") as HTMLElement;
+    const tooltip = tag.querySelector(".tag-tooltip") as HTMLElement;
     tooltip.style.visibility = "hidden";
     tooltip.style.opacity = "0";
   });
