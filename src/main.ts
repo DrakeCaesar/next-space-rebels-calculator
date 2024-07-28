@@ -23,6 +23,21 @@ function initializePage() {
   });
 
   const searchBar = document.getElementById("search-bar") as HTMLInputElement;
+
+  searchBar.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") {
+      const selectedTags = document.querySelectorAll(
+        "#selected-tags > .tag",
+      ) as NodeListOf<HTMLElement>;
+      if (selectedTags.length < 5) {
+        const tagSelector = document.querySelector(
+          "#tags-container > .tag:not(.hidden)",
+        ) as HTMLElement;
+        tagSelector.click();
+        searchBar.value = "";
+      }
+    }
+  });
   searchBar.placeholder = `Search ${tags.length} tags...`;
 
   tags.forEach((tag, index) => {
