@@ -964,7 +964,7 @@ export const tags: Tag[] = [
     name: "Progress",
     description: "For beating a challenge from RoseWood",
     rarity: Rare,
-    combos: [WILD, UNKNOWN],
+    combos: [WILD, WEIRD],
   },
   {
     name: "Planking",
@@ -1609,7 +1609,7 @@ export const tags: Tag[] = [
     name: "Sound Barrier",
     description: "For reaching a speed of 1235 km/h",
     rarity: Rare,
-    combos: [UNKNOWN],
+    combos: [SMART, ASPIRING],
   },
   {
     name: "Frankenstein",
@@ -1683,7 +1683,7 @@ export const tags: Tag[] = [
     name: "Scrap",
     description: "For using a scrap part",
     rarity: Common,
-    combos: [UNKNOWN],
+    combos: [WEIRD],
   },
   {
     name: "Hate",
@@ -1737,6 +1737,67 @@ export const tags: Tag[] = [
     name: "Addicted",
     description: "For using 10 smokers",
     rarity: Rare,
+    combos: [UNKNOWN],
+  },
+  {
+    name: "Oxidizer",
+    description: "For beating 'Optimizing'",
+    rarity: Rare,
+    combos: [UNKNOWN],
+  },
+  {
+    name: "Weather Balloon",
+    description: "For reaching an altitude of 40 kilometers",
+    rarity: Rare,
+    combos: [SMART, ASPIRING],
+  },
+  {
+    name: "Panic",
+    description: "For having a top altitude of 911 meters",
+    rarity: Viral,
+    combos: [UNKNOWN],
+  },
+  {
+    name: "Four-Leaf Clover",
+    description: "For using 4 round parts in a three-leaf clover shape",
+    rarity: Epic,
+    combos: [UNKNOWN],
+  },
+  {
+    name: "Wheelbarrow",
+    description: "For using a wheelbarrow part",
+    rarity: Common,
+    combos: [WEIRD],
+  },
+  {
+    name: "Cerberus",
+    description: "For using 3 head parts",
+    rarity: Rare,
+    combos: [UNKNOWN],
+  },
+  {
+    name: "Marathon",
+    description: "For reaching a distance of 42.2 kilometers",
+    rarity: Epic,
+    combos: [ASPIRING],
+  },
+  {
+    name: "Blackbird",
+    description: "For reaching a speed of 3530 km/h",
+    rarity: Epic,
+    combos: [ASPIRING, WILD],
+  },
+  {
+    name: "Truck",
+    description: "For using a truck fuel tank",
+    rarity: Rare,
+    combos: [WEIRD],
+  },
+  {
+    name: "Dress-up",
+    description:
+      "For using a mannequin and combining it with 10 other parts from other sets",
+    rarity: Viral,
     combos: [UNKNOWN],
   },
 ];
