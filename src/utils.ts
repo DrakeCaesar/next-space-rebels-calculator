@@ -226,7 +226,6 @@ export function filterTagsByText(activeCombos: Set<string>) {
 
 export function createComboButton(combo: string) {
   const button = document.createElement("button");
-  button.textContent = combo.replace("UNKNOWN", "???");
   button.classList.add("combo-button", combo);
   button.dataset.combo = combo;
   comboButtonsContainer?.appendChild(button);
