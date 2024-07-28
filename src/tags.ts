@@ -1,5 +1,6 @@
 export type TagRarity = "Common" | "Uncommon" | "Rare" | "Epic" | "Viral";
 export type ComboCategory =
+  | "???"
   | "UNKNOWN"
   | "CUTE"
   | "AWESOME"
@@ -258,7 +259,7 @@ export const tags: Tag[] = [
     description:
       "For having a rocket with only 10% of its mass consisting of structure parts",
     rarity: "Epic",
-    combos: ["UNKNOWN"],
+    combos: ["CREEPY"],
   },
   {
     name: "Minimal",
@@ -1503,5 +1504,42 @@ export const tags: Tag[] = [
     description: "For hitting a dumpster",
     rarity: "Rare",
     combos: ["GROSS"],
+  },
+  {
+    name: "Pro Juggler",
+    description: "For using 5 balls",
+    rarity: "Epic",
+    combos: ["UNKNOWN"],
+  },
+  {
+    name: "Clown",
+    description: "For beating 'Finger Counting For Kids'",
+    rarity: "Epic",
+    combos: ["CUTE", "UNKNOWN"],
+  },
+  {
+    name: "Rain",
+    description: "For using an umbrella and a windshield wiper",
+    rarity: "Rare",
+    combos: ["UNKNOWN"],
+  },
+  {
+    name: "Adult",
+    description: "unknown",
+    rarity: "Rare",
+    combos: ["UNKNOWN"],
+    blocked: true,
+  },
+  {
+    name: "Giga Boost",
+    description: "For using 5 boosters",
+    rarity: "Rare",
+    combos: ["UNKNOWN"],
+  },
+  {
+    name: "Robotical",
+    description: "For beating 'Robotical'",
+    rarity: "Epic",
+    combos: ["COOL", "UNKNOWN"],
   },
 ];

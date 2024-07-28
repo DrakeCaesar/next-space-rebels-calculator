@@ -9,12 +9,18 @@ const selectedTagsContainer = document.getElementById(
 );
 
 const uniqueCombos = new Set<string>();
+
 tags.forEach((tag) => {
   tag.combos.forEach((combo) => uniqueCombos.add(combo));
 });
 
+// Sort the combos alphabetically
+const sortedCombos = Array.from(uniqueCombos).sort();
+sortedCombos.splice(sortedCombos.indexOf("UNKNOWN"), 1);
+sortedCombos.push("UNKNOWN");
+
 // Create buttons for each unique combo
-uniqueCombos.forEach((combo) => {
+sortedCombos.forEach((combo) => {
   const button = document.createElement("button");
   button.textContent = combo.replace("UNKNOWN", "???");
   button.classList.add("combo-button");
