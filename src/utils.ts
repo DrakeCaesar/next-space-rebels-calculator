@@ -82,9 +82,6 @@ export function updateSelectedTagsDisplay(
     }
   });
 
-  // Sort tags by rarity (occurrence count)
-  const sortedCombos = Object.entries(comboCount).sort((a, b) => a[1] - b[1]);
-
   const breakdown = document.createElement("div");
   breakdown.className = "combo-breakdown";
 
