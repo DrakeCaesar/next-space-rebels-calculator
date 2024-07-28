@@ -684,6 +684,7 @@ export const tags: Tag[] = [
     description: "unknown",
     rarity: "Viral",
     combos: ["UNKNOWN"],
+    blocked: true,
   },
   {
     name: "Full Bike",

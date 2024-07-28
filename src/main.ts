@@ -77,6 +77,12 @@ function updateSelectedTagsDisplay() {
     const clone = tagElement!.cloneNode(true) as HTMLElement;
     clone.classList.remove("selected");
     clone.classList.add("selected-clone");
+
+    // Check if the tag is blocked and add the blocked class
+    if (tagElement!.dataset.blocked === "true") {
+      clone.classList.add("blocked");
+    }
+
     selectedTagsContainer!.appendChild(clone);
 
     const tagCombos = Array.from(
@@ -111,6 +117,9 @@ function updateSelectedTagsDisplay() {
       tooltip.style.opacity = "0";
     });
   });
+
+  // Sort tags by rarity (occurrence count)
+  const sortedCombos = Object.entries(comboCount).sort((a, b) => a[1] - b[1]);
 
   const breakdown = document.createElement("div");
   breakdown.className = "combo-breakdown";
@@ -215,6 +224,7 @@ tags.forEach((tag, index) => {
   tagElement.className = `tag ${tag.rarity.toLowerCase()}`;
   tagElement.id = tag.name;
   tagElement.dataset.order = index.toFixed().toString(); // Store the original order
+  tagElement.classList.add(tag.blocked ? "blocked" : "unblocked");
   tagElement.innerHTML = `
     ${tag.name}
     <div class="tag-tooltip">
