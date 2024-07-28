@@ -1,3 +1,16 @@
+export const tagsContainer = document.getElementById(
+  "tags-container",
+) as HTMLDivElement;
+export const comboButtonsContainer = document.getElementById(
+  "combo-buttons-container",
+);
+export const selectedTagsElement = document.getElementById(
+  "selected-tags",
+) as HTMLDivElement;
+export const consoleElement: HTMLDivElement = document.getElementById(
+  "console",
+) as HTMLDivElement;
+
 export function filterTags(activeCombos: Set<string>) {
   document.querySelectorAll("#tags-container .tag").forEach((tag) => {
     const tagCombos = Array.from(tag.querySelectorAll(".tag-tooltip span")).map(
@@ -16,11 +29,7 @@ export function filterTags(activeCombos: Set<string>) {
   });
 }
 
-export function updateSelectedTagsDisplay(
-  selectedTagsElement: HTMLElement,
-  selectedTags: Set<string>,
-  consoleElement: HTMLElement,
-) {
+export function updateSelectedTagsDisplay(selectedTags: Set<string>) {
   selectedTagsElement!.innerHTML = "";
 
   const comboCount: { [key: string]: number } = {};
@@ -57,11 +66,7 @@ export function updateSelectedTagsDisplay(
       clone.addEventListener("click", function () {
         selectedTags.delete(tagId);
         tagElement.classList.remove("selected");
-        updateSelectedTagsDisplay(
-          selectedTagsElement,
-          selectedTags,
-          consoleElement,
-        );
+        updateSelectedTagsDisplay(selectedTags);
       });
 
       const tooltip = clone.querySelector(".tag-tooltip") as HTMLElement;
@@ -81,9 +86,6 @@ export function updateSelectedTagsDisplay(
       });
     }
   });
-
-  const breakdown = document.createElement("div");
-  breakdown.className = "combo-breakdown";
 
   const INDENT = "&nbsp;&nbsp;&nbsp;&nbsp;";
   const MULTIPLIER_INDENT = INDENT + INDENT;
@@ -143,7 +145,6 @@ export function updateSelectedTagsDisplay(
       </div>
     `;
 
-    selectedTagsElement!.appendChild(breakdown);
     return;
   }
 
@@ -156,8 +157,6 @@ export function updateSelectedTagsDisplay(
       <span class="pink-text">x${totalMultiplier}</span>
     </div>
   `;
-
-  selectedTagsElement!.appendChild(breakdown);
 }
 
 export function sortTagsBy(criteria: string, tagsContainer: HTMLElement) {
