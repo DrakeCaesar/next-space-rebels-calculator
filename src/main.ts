@@ -35,6 +35,7 @@ function initializePage() {
         ) as HTMLElement;
         tagSelector.click();
         searchBar.value = "";
+        filterTagsByText(activeCombos);
       }
     }
   });

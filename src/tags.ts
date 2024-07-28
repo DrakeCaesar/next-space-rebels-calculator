@@ -764,7 +764,7 @@ export const tags: Tag[] = [
     name: "New Years Eve",
     description: "For using 9 different firework parts",
     rarity: Epic,
-    combos: [SMART],
+    combos: [AWESOME],
   },
   {
     name: "Display",
@@ -904,7 +904,7 @@ export const tags: Tag[] = [
     name: "Powerhouse",
     description: "For using 4 engines",
     rarity: Epic,
-    combos: [SMART, UNKNOWN],
+    combos: [SMART, AWESOME],
   },
   {
     name: "Sewer System",
@@ -1622,6 +1622,97 @@ export const tags: Tag[] = [
     description:
       "For having a rocket of at least 2 meters tall while using only 1 structure part",
     rarity: Viral,
+    combos: [UNKNOWN],
+  },
+  {
+    name: "Bloated",
+    description: "For using 5 fuel tanks",
+    rarity: "Rare",
+    combos: [UNKNOWN],
+  },
+  {
+    name: "Cluster",
+    description: "For beating 'I heard you like rockets in your rocket'",
+    rarity: "Epic",
+    combos: [SMART],
+  },
+  {
+    name: "Swarm",
+    description:
+      "For having 4 independent rockets in the air at the same time, all with running engines",
+    rarity: "Epic",
+    combos: [AWESOME],
+  },
+  {
+    name: "RimJob",
+    description: "unknown",
+    rarity: Rare,
+    combos: [UNKNOWN],
+  },
+  {
+    name: "Molotov",
+    description: "For using a Molotov cocktail",
+    rarity: Uncommon,
+    combos: [UNKNOWN],
+  },
+  {
+    name: "Smoker",
+    description: "For using a smoker part",
+    rarity: Common,
+    combos: [UNKNOWN],
+  },
+  {
+    name: "Aqua",
+    description: "For using a blue smoker and a green smoker",
+    rarity: Uncommon,
+    combos: [UNKNOWN],
+  },
+  {
+    name: "Pride",
+    description: "For using all different colored smoker parts",
+    rarity: Epic,
+    combos: [AWESOME, UNKNOWN],
+  },
+  {
+    name: "Muffled",
+    description: "For using a muffler",
+    rarity: Uncommon,
+    combos: [UNKNOWN],
+  },
+  {
+    name: "Scrap",
+    description: "For using a scrap part",
+    rarity: Common,
+    combos: [UNKNOWN],
+  },
+  {
+    name: "Hate",
+    description: "For using a scrap part and a wood part",
+    rarity: Uncommon,
+    combos: [UNKNOWN],
+  },
+  {
+    name: "Car",
+    description: "For using 3 car parts",
+    rarity: Rare,
+    combos: [UNKNOWN],
+  },
+  {
+    name: "Underwater",
+    description: "For using a fin part and a blue smoker",
+    rarity: Rare,
+    combos: [UNKNOWN],
+  },
+  {
+    name: "Spring",
+    description: "For using a spring part",
+    rarity: Common,
+    combos: [UNKNOWN],
+  },
+  {
+    name: "Tripover",
+    description: "For using 3 triangles stack in a pyramid",
+    rarity: Epic,
     combos: [UNKNOWN],
   },
 ];
