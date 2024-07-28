@@ -11,34 +11,44 @@ import {
 } from "./utils";
 
 const uniqueCombos = new Set<string>();
+const activeCombos = new Set<string>();
+const selectedTags = new Set<string>();
 
 tags.forEach((tag) => {
   tag.combos.forEach((combo) => uniqueCombos.add(combo));
 });
 
-// Sort the combos alphabetically and exclude "UNKNOWN" from the main list
 const sortedCombos = Array.from(uniqueCombos).sort();
 sortedCombos.splice(sortedCombos.indexOf("UNKNOWN"), 1);
 sortedCombos.push("UNKNOWN");
 
-// Create buttons for each unique combo
-sortedCombos.forEach((combo) => {
+export function createComboButton(combo: string) {
   const button = document.createElement("button");
   button.textContent = combo.replace("UNKNOWN", "???");
   button.classList.add("combo-button", combo);
   button.dataset.combo = combo;
   comboButtonsContainer?.appendChild(button);
-});
 
-const activeCombos = new Set<string>();
-const selectedTags = new Set<string>();
+  button.addEventListener("click", function (this: HTMLElement) {
+    const combo = this.dataset.combo;
+    this.classList.toggle("active");
 
-// Assuming 'tags' is an array of tag objects
-tags.forEach((tag, index) => {
+    if (this.classList.contains("active")) {
+      activeCombos.add(combo!);
+    } else {
+      activeCombos.delete(combo!);
+    }
+
+    filterTags(activeCombos);
+    updateSelectedTagsDisplay(selectedTags);
+  });
+}
+
+export function createTagElement(tag: any, index: number) {
   const tagElement = document.createElement("div");
   tagElement.className = `tag ${tag.rarity.toLowerCase()}`;
   tagElement.id = tag.name;
-  tagElement.dataset.order = index.toFixed().toString(); // Store the original order
+  tagElement.dataset.order = index.toFixed().toString();
   tagElement.classList.add(tag.blocked ? "blocked" : "unblocked");
   tagElement.innerHTML = `
     ${tag.name}
@@ -48,7 +58,7 @@ tags.forEach((tag, index) => {
       <span class="${tag.rarity.toLowerCase()}">${tag.rarity}</span><br>
       ${tag.combos
         .map(
-          (combo) =>
+          (combo: string) =>
             `<span class="${combo}">${combo.replace("UNKNOWN", "???")}</span>`,
         )
         .join(", ")}
@@ -66,55 +76,43 @@ tags.forEach((tag, index) => {
     }
     updateSelectedTagsDisplay(selectedTags);
   });
-});
 
-// Sorting functionality
-
-// Event listeners for sorting and search
-document.getElementById("sort-by-order")?.addEventListener("click", () => {
-  sortTagsBy("order", tagsContainer);
-});
-
-document.getElementById("sort-by-rarity")?.addEventListener("click", () => {
-  sortTagsBy("rarity", tagsContainer);
-});
-
-searchBar.addEventListener("input", function () {
-  filterTagsByText(activeCombos);
-});
-
-// Add event listener to position the tooltip
-document.querySelectorAll(".tag").forEach((tag) => {
-  (tag as HTMLElement).addEventListener("mousemove", function (e: MouseEvent) {
-    positionTooltip(e, tag as HTMLElement);
+  tagElement.addEventListener("mousemove", function (e: MouseEvent) {
+    positionTooltip(e, tagElement);
   });
-});
+}
 
-document.querySelectorAll(".combo-button").forEach((button) => {
-  button.addEventListener("click", function (this: HTMLElement) {
-    const combo = this.dataset.combo;
-    this.classList.toggle("active");
+function initializePage() {
+  sortedCombos.forEach(createComboButton);
 
-    if (this.classList.contains("active")) {
-      activeCombos.add(combo!);
-    } else {
-      activeCombos.delete(combo!);
-    }
-
-    filterTags(activeCombos);
-    updateSelectedTagsDisplay(selectedTags);
+  tags.forEach((tag, index) => {
+    createTagElement(tag, index);
   });
-});
 
-document.addEventListener("DOMContentLoaded", () => {
-  const tagsToSelect = ["RaySon", "Powerhouse", "Motor", "Trident", "Juice"];
-
-  tagsToSelect.forEach((tagText) => {
-    const tagElement = Array.from(document.querySelectorAll(".tag")).find(
-      (tag) => (tag as HTMLElement).innerText === tagText,
-    ) as HTMLElement;
-    if (tagElement) {
-      tagElement.click();
-    }
+  document.getElementById("sort-by-order")?.addEventListener("click", () => {
+    sortTagsBy("order", tagsContainer);
   });
-});
+
+  document.getElementById("sort-by-rarity")?.addEventListener("click", () => {
+    sortTagsBy("rarity", tagsContainer);
+  });
+
+  searchBar.addEventListener("input", function () {
+    filterTagsByText(activeCombos);
+  });
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const tagsToSelect = ["RaySon", "Powerhouse", "Motor", "Trident", "Juice"];
+
+    tagsToSelect.forEach((tagText) => {
+      const tagElement = Array.from(document.querySelectorAll(".tag")).find(
+        (tag) => (tag as HTMLElement).innerText === tagText,
+      ) as HTMLElement;
+      if (tagElement) {
+        tagElement.click();
+      }
+    });
+  });
+}
+
+initializePage();
