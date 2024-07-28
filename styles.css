@@ -57,7 +57,6 @@ body {
 
 .tag-tooltip {
   font-weight: 200;
-  visibility: hidden;
   background-color: #2e2e2eef;
   color: white;
   text-align: left;
@@ -66,11 +65,12 @@ body {
   position: absolute;
   z-index: 2;
   width: max-content;
-  opacity: 0;
   transition: opacity 0.1s;
   line-height: 1.5;
   pointer-events: none; /* Prevents the tooltip from interfering with mouse events */
   position: fixed;
+  visibility: hidden;
+  opacity: 0;
 }
 
 .tag:hover .tag-tooltip {

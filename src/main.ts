@@ -89,24 +89,19 @@ document.querySelectorAll(".tag").forEach((tag) => {
     const tooltip = tag.querySelector(".tag-tooltip") as HTMLElement;
     const tooltipWidth = tooltip.offsetWidth;
     const windowWidth = window.innerWidth;
-    const scrollbarWidth = 20; // Adjust this value based on the scrollbar width
     let leftPosition = e.clientX + 10;
 
     // Check if the tooltip exceeds the right border of the window
-    if (leftPosition + tooltipWidth > windowWidth - scrollbarWidth) {
+    if (leftPosition + tooltipWidth > windowWidth) {
       leftPosition = e.clientX - tooltipWidth - 10;
     }
 
     tooltip.style.left = `${leftPosition}px`;
     tooltip.style.top = `${e.clientY + 10}px`;
-    tooltip.style.visibility = "visible";
-    tooltip.style.opacity = "1";
   });
 
   tag.addEventListener("mouseleave", function () {
     const tooltip = tag.querySelector(".tag-tooltip") as HTMLElement;
-    tooltip.style.visibility = "hidden";
-    tooltip.style.opacity = "0";
   });
 });
 
