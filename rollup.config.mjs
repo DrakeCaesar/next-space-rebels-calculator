@@ -4,7 +4,7 @@ export default {
   input: "src/main.ts", // Your main TypeScript file
   output: {
     file: "dist/main.js", // Output bundle file
-    format: "iife", // Immediately Invoked Function Expression
+    format: "cjs",
     sourcemap: true,
   },
   plugins: [typescript()],
