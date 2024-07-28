@@ -1015,7 +1015,7 @@ export const tags: Tag[] = [
     description:
       "For using a mannequin torso, arms and legs and a Dandy Deer head",
     rarity: Rare,
-    combos: [UNKNOWN],
+    combos: [WILD, UNKNOWN],
   },
   {
     name: "Timber",
@@ -1609,6 +1609,19 @@ export const tags: Tag[] = [
     name: "Sound Barrier",
     description: "For reaching a speed of 1235 km/h",
     rarity: Rare,
+    combos: [UNKNOWN],
+  },
+  {
+    name: "Frankenstein",
+    description: "For using several body parts from different bodies",
+    rarity: Rare,
+    combos: [CREEPY, WEIRD],
+  },
+  {
+    name: "Monolith",
+    description:
+      "For having a rocket of at least 2 meters tall while using only 1 structure part",
+    rarity: Viral,
     combos: [UNKNOWN],
   },
 ];
