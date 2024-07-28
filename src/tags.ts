@@ -1820,4 +1820,41 @@ export const tags: Tag[] = [
     rarity: Common,
     combos: [UNKNOWN],
   },
+  {
+    name: "Scary",
+    description: "For beating 'Furrankenstein'",
+    rarity: Epic,
+    combos: [UNKNOWN],
+  },
+  {
+    name: "Fidget Spinner",
+    description: "For using a fidget spinner",
+    rarity: Epic,
+    combos: [UNKNOWN],
+  },
+  {
+    name: "Barrel",
+    description: "For using a barrel part",
+    rarity: Common,
+    combos: [UNKNOWN],
+  },
+  {
+    name: "Jet Fighter",
+    description: "For reaching an altitude of 20 kilometers",
+    rarity: Rare,
+    combos: [UNKNOWN],
+  },
+  {
+    name: "Umbrella",
+    description: "For using an umbrella",
+    rarity: Rare,
+    combos: [UNKNOWN],
+  },
+  {
+    name: "Casualty",
+    description: "unknown",
+    rarity: Rare,
+    combos: [UNKNOWN],
+    blocked: true,
+  },
 ];
