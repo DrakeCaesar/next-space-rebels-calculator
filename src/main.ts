@@ -153,7 +153,7 @@ function updateSelectedTagsDisplay() {
         multiplier = 15;
       } else if (count === 5) {
         comboLabel = `ULTRA ${combo} COMBO`; // Placeholder for future use
-        multiplier = 5;
+        multiplier = 30;
       } else {
         return ""; // Skip if count does not match predefined conditions
       }
@@ -290,7 +290,7 @@ function sortTagsBy(criteria: string) {
       return orderA - orderB;
     });
   } else if (criteria === "rarity") {
-    const rarityOrder = ["common", "uncommon", "rare", "epic", "legendary"];
+    const rarityOrder = ["viral", "epic", "rare", "uncommon", "common"];
     tagsArray.sort(
       (a, b) =>
         rarityOrder.indexOf(a.classList[1]) -
