@@ -74,52 +74,54 @@ function updateSelectedTagsDisplay() {
 
   selectedTags.forEach((tagId) => {
     const tagElement = document.getElementById(tagId);
-    const clone = tagElement!.cloneNode(true) as HTMLElement;
-    clone.classList.remove("selected");
-    clone.classList.add("selected-clone");
+    if (tagElement) {
+      const clone = tagElement.cloneNode(true) as HTMLElement;
+      clone.classList.remove("selected");
+      clone.classList.add("selected-clone");
 
-    // Check if the tag is blocked and add the blocked class
-    if (tagElement!.dataset.blocked === "true") {
-      clone.classList.add("blocked");
-    }
-
-    selectedTagsElement!.appendChild(clone);
-
-    const tagCombos = Array.from(
-      tagElement!.querySelectorAll(".tag-tooltip span:not(:first-of-type)"),
-    ).map((span) => span.className);
-
-    tagCombos.forEach((combo) => {
-      comboCount[combo] = (comboCount[combo] || 0) + 1;
-      if (!comboTags[combo]) {
-        comboTags[combo] = [];
+      if (tagElement.dataset.blocked === "true") {
+        clone.classList.add("blocked");
       }
-      comboTags[combo].push(tagElement!.innerText.trim());
-    });
 
-    clone.addEventListener("click", function () {
-      selectedTags.delete(tagId);
-      tagElement!.classList.remove("selected");
-      updateSelectedTagsDisplay();
-    });
+      selectedTagsElement!.appendChild(clone);
 
-    // Hide the tooltip initially
-    const tooltip = clone.querySelector(".tag-tooltip") as HTMLElement;
-    tooltip.style.visibility = "hidden";
-    tooltip.style.opacity = "0";
+      const tagName =
+        tagElement.querySelector("strong")?.innerText.trim() ||
+        tagElement.innerText.trim();
+      const tagCombos = Array.from(
+        tagElement.querySelectorAll(".tag-tooltip span:not(:first-of-type)"),
+      ).map((span) => span.className);
 
-    // Add event listeners for tooltip display on cloned tags
-    clone.addEventListener("mousemove", function (e: MouseEvent) {
-      tooltip.style.left = `${e.clientX + 10}px`;
-      tooltip.style.top = `${e.clientY + 10}px`;
-      tooltip.style.visibility = "visible";
-      tooltip.style.opacity = "1";
-    });
+      tagCombos.forEach((combo) => {
+        comboCount[combo] = (comboCount[combo] || 0) + 1;
+        if (!comboTags[combo]) {
+          comboTags[combo] = [];
+        }
+        comboTags[combo].push(tagName);
+      });
 
-    clone.addEventListener("mouseleave", function () {
+      clone.addEventListener("click", function () {
+        selectedTags.delete(tagId);
+        tagElement.classList.remove("selected");
+        updateSelectedTagsDisplay();
+      });
+
+      const tooltip = clone.querySelector(".tag-tooltip") as HTMLElement;
       tooltip.style.visibility = "hidden";
       tooltip.style.opacity = "0";
-    });
+
+      clone.addEventListener("mousemove", function (e: MouseEvent) {
+        tooltip.style.left = `${e.clientX + 10}px`;
+        tooltip.style.top = `${e.clientY + 10}px`;
+        tooltip.style.visibility = "visible";
+        tooltip.style.opacity = "1";
+      });
+
+      clone.addEventListener("mouseleave", function () {
+        tooltip.style.visibility = "hidden";
+        tooltip.style.opacity = "0";
+      });
+    }
   });
 
   // Sort tags by rarity (occurrence count)
