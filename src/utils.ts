@@ -15,6 +15,11 @@ export const searchBar = document.getElementById(
   "search-bar",
 ) as HTMLInputElement;
 
+export const uniqueCombos = new Set<string>();
+export const activeCombos = new Set<string>();
+export const selectedTags = new Set<string>();
+export const sortedCombos = new Set<string>();
+
 export function filterTags(activeCombos: Set<string>) {
   document.querySelectorAll("#tags-container .tag").forEach((tag) => {
     const tagCombos = Array.from(tag.querySelectorAll(".tag-tooltip span")).map(
@@ -201,12 +206,72 @@ export function filterTagsByText(activeCombos: Set<string>) {
       tagCombos.includes(combo),
     );
 
-    const matchesSearch = tag.textContent!.toLowerCase().includes(searchTerm);
+    const matchesSearch = tag.id.toLowerCase().includes(searchTerm);
 
     if ((activeCombos.size === 0 || matchesCombo) && matchesSearch) {
       tag.classList.remove("hidden");
     } else {
       tag.classList.add("hidden");
     }
+  });
+}
+
+export function createComboButton(combo: string) {
+  const button = document.createElement("button");
+  button.textContent = combo.replace("UNKNOWN", "???");
+  button.classList.add("combo-button", combo);
+  button.dataset.combo = combo;
+  comboButtonsContainer?.appendChild(button);
+
+  button.addEventListener("click", function (this: HTMLElement) {
+    const combo = this.dataset.combo;
+    this.classList.toggle("active");
+
+    if (this.classList.contains("active")) {
+      activeCombos.add(combo!);
+    } else {
+      activeCombos.delete(combo!);
+    }
+
+    filterTags(activeCombos);
+    updateSelectedTagsDisplay(selectedTags);
+  });
+}
+
+export function createTagElement(tag: any, index: number) {
+  const tagElement = document.createElement("div");
+  tagElement.className = `tag ${tag.rarity.toLowerCase()}`;
+  tagElement.id = tag.name;
+  tagElement.dataset.order = index.toFixed().toString();
+  tagElement.classList.add(tag.blocked ? "blocked" : "unblocked");
+  tagElement.innerHTML = `
+    ${tag.name}
+    <div class="tag-tooltip">
+      <strong>${tag.name}</strong><br>
+      ${tag.description}<br>
+      <span class="${tag.rarity.toLowerCase()}">${tag.rarity}</span><br>
+      ${tag.combos
+        .map(
+          (combo: string) =>
+            `<span class="${combo}">${combo.replace("UNKNOWN", "???")}</span>`,
+        )
+        .join(", ")}
+    </div>
+  `;
+  tagsContainer?.appendChild(tagElement);
+
+  tagElement.addEventListener("click", function () {
+    if (selectedTags.has(tag.name)) {
+      selectedTags.delete(tag.name);
+      tagElement.classList.remove("selected");
+    } else if (selectedTags.size < 5) {
+      selectedTags.add(tag.name);
+      tagElement.classList.add("selected");
+    }
+    updateSelectedTagsDisplay(selectedTags);
+  });
+
+  tagElement.addEventListener("mousemove", function (e: MouseEvent) {
+    positionTooltip(e, tagElement);
   });
 }

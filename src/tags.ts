@@ -656,7 +656,7 @@ export const tags: Tag[] = [
     combos: ["WEIRD", "UNKNOWN"],
   },
   {
-    name: "Angel",
+    name: "Angel#1",
     description: "For using a halo shaped part on the top of the rocket",
     rarity: "Rare",
     combos: ["CUTE"],
@@ -1470,7 +1470,7 @@ export const tags: Tag[] = [
     combos: ["UNKNOWN"],
   },
   {
-    name: "Angel",
+    name: "Angel#2",
     description: "For beating 'Bike Angel'",
     rarity: "Rare",
     combos: ["FUNNY", "UNKNOWN"],

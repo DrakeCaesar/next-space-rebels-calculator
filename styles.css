@@ -181,12 +181,12 @@ button {
 }
 
 #selected-tags-container .tag.hidden {
-  display: inline-block;
 }
 
 #selected-tags {
   height: 150px;
   display: flex;
+  display: inline-block;
 }
 
 .tag.selected {
