@@ -1,8 +1,9 @@
-import { TagRarity, tags } from "./tags";
+import { tags } from "./tags";
 import {
   comboButtonsContainer,
   filterTags,
   filterTagsByText,
+  searchBar,
   sortTagsBy,
   tagsContainer,
   updateSelectedTagsDisplay,
@@ -30,14 +31,6 @@ sortedCombos.forEach((combo) => {
 
 const activeCombos = new Set<string>();
 const selectedTags = new Set<string>();
-
-const rarityOrder: TagRarity[] = [
-  "Viral",
-  "Epic",
-  "Rare",
-  "Uncommon",
-  "Common",
-];
 
 // Assuming 'tags' is an array of tag objects
 tags.forEach((tag, index) => {
@@ -85,9 +78,9 @@ document.getElementById("sort-by-rarity")?.addEventListener("click", () => {
   sortTagsBy("rarity", tagsContainer);
 });
 
-document.getElementById("search-bar")?.addEventListener("input", function () {
+searchBar.addEventListener("input", function () {
   const searchTerm = (this as HTMLInputElement).value.toLowerCase();
-  filterTagsByText(searchTerm, activeCombos);
+  filterTagsByText(activeCombos);
 });
 
 // Add event listener to position the tooltip

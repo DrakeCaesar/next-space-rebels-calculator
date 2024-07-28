@@ -11,6 +11,10 @@ export const consoleElement: HTMLDivElement = document.getElementById(
   "console",
 ) as HTMLDivElement;
 
+export const searchBar = document.getElementById(
+  "search-bar",
+) as HTMLInputElement;
+
 export function filterTags(activeCombos: Set<string>) {
   document.querySelectorAll("#tags-container .tag").forEach((tag) => {
     const tagCombos = Array.from(tag.querySelectorAll(".tag-tooltip span")).map(
@@ -27,6 +31,7 @@ export function filterTags(activeCombos: Set<string>) {
       tag.classList.add("hidden");
     }
   });
+  filterTagsByText(activeCombos);
 }
 
 export function updateSelectedTagsDisplay(selectedTags: Set<string>) {
@@ -180,7 +185,9 @@ export function sortTagsBy(criteria: string, tagsContainer: HTMLElement) {
   }
 }
 
-export function filterTagsByText(searchTerm = "", activeCombos: Set<string>) {
+export function filterTagsByText(activeCombos: Set<string>) {
+  const searchTerm = searchBar.value.toLowerCase();
+
   document.querySelectorAll("#tags-container .tag").forEach((tag) => {
     const tagCombos = Array.from(tag.querySelectorAll(".tag-tooltip span")).map(
       (span) => span.className,
