@@ -322,7 +322,7 @@ export const tags: Tag[] = [
     name: "Tube",
     description: "For using a tube part",
     rarity: Common,
-    combos: [SMART, UNKNOWN],
+    combos: [SMART, WEIRD],
   },
   {
     name: "PVC",
@@ -710,7 +710,7 @@ export const tags: Tag[] = [
     name: "Penis",
     description: "For making a long rocket with 2 round parts at the bottom",
     rarity: Viral,
-    combos: [GROSS, UNKNOWN],
+    combos: [GROSS, NAUGHTY],
     blocked: true,
   },
   {
@@ -1068,48 +1068,6 @@ export const tags: Tag[] = [
     combos: [CUTE, UNKNOWN],
   },
   {
-    name: "Chopsticks",
-    description: "For using 2 toy sticks",
-    rarity: Uncommon,
-    combos: [UNKNOWN],
-  },
-  {
-    name: "Cool",
-    description: "For beating 'Too Cool For Pool'",
-    rarity: Epic,
-    combos: [UNKNOWN],
-  },
-  {
-    name: "Zoo",
-    description: "For using 3 different animal parts",
-    rarity: Rare,
-    combos: [WILD],
-  },
-  {
-    name: "Toy Magic",
-    description: "For beating 'Toy Block Tower'",
-    rarity: Epic,
-    combos: [CUTE, UNKNOWN],
-  },
-  {
-    name: "Mile",
-    description: "For reaching an altitude of 1609 meters",
-    rarity: Uncommon,
-    combos: [UNKNOWN],
-  },
-  {
-    name: "Horse",
-    description: "For using a rocking horse",
-    rarity: Rare,
-    combos: [WILD, CUTE],
-  },
-  {
-    name: "Gnome",
-    description: "For combining a cone shaped part with a figure part",
-    rarity: Rare,
-    combos: [CUTE, UNKNOWN],
-  },
-  {
     name: "Zoo",
     description: "For using 3 different animal parts",
     rarity: Rare,
@@ -1125,7 +1083,7 @@ export const tags: Tag[] = [
     name: "Cool",
     description: "For beating 'Too Cool For Pool'",
     rarity: Epic,
-    combos: [UNKNOWN],
+    combos: [COOL],
   },
   {
     name: "Travel",
@@ -1358,66 +1316,6 @@ export const tags: Tag[] = [
     combos: [UNKNOWN],
   },
   {
-    name: "Flamingo",
-    description: "For using a flamingo",
-    rarity: Rare,
-    combos: [UNKNOWN],
-  },
-  {
-    name: "Doll",
-    description: "For using a toy part and a mannequin part",
-    rarity: Uncommon,
-    combos: [UNKNOWN],
-  },
-  {
-    name: "Mechanical",
-    description: "For using a swivel and a robot",
-    rarity: Rare,
-    combos: [UNKNOWN],
-  },
-  {
-    name: "Rot",
-    description: "For using a trash part and a wood part",
-    rarity: Uncommon,
-    combos: [UNKNOWN],
-  },
-  {
-    name: "Keyboard",
-    description: "For using a keyboard",
-    rarity: Uncommon,
-    combos: [UNKNOWN],
-  },
-  {
-    name: "Music",
-    description: "For using a guitar",
-    rarity: Rare,
-    combos: [UNKNOWN],
-  },
-  {
-    name: "Clamp",
-    description: "For using a clamp",
-    rarity: Uncommon,
-    combos: [UNKNOWN],
-  },
-  {
-    name: "Science",
-    description: "For beating a challenge from dot_science",
-    rarity: Uncommon,
-    combos: [UNKNOWN],
-  },
-  {
-    name: "Breakfast",
-    description: "For using a toaster",
-    rarity: Uncommon,
-    combos: [UNKNOWN],
-  },
-  {
-    name: "Blocky",
-    description: "For using 3 cube shaped parts",
-    rarity: Uncommon,
-    combos: [UNKNOWN],
-  },
-  {
     name: "StarTube",
     description: "For using a StarTube cap",
     rarity: Rare,
@@ -1538,6 +1436,7 @@ export const tags: Tag[] = [
     description: "For using 5 balls",
     rarity: Epic,
     combos: [UNKNOWN],
+    ruledOut: [NAUGHTY, GROSS, AWESOME],
   },
   {
     name: "Clown",
@@ -1624,6 +1523,7 @@ export const tags: Tag[] = [
       "For having a rocket of at least 2 meters tall while using only 1 structure part",
     rarity: Viral,
     combos: [UNKNOWN],
+    ruledOut: [NAUGHTY, GROSS, AWESOME],
   },
   {
     name: "Bloated",
@@ -1893,27 +1793,6 @@ export const tags: Tag[] = [
     rarity: Rare,
     combos: [UNKNOWN],
   },
-  //#region not in game
-  {
-    name: "Inflatable",
-    description: "For using a toy part and a pool part",
-    rarity: Uncommon,
-    combos: [UNKNOWN],
-  },
-  {
-    name: "Big",
-    description: "For making a big rocket",
-    rarity: Uncommon,
-    combos: [UNKNOWN],
-  },
-
-  {
-    name: "Seared Steak",
-    description: "For using a Dandy Deer limp and an explosion",
-    rarity: Rare,
-    combos: [UNKNOWN],
-  },
-  // #endregion
   {
     name: "Broken Nose",
     description: "For using a nose part that is not facing upwards",
@@ -2071,36 +1950,6 @@ export const tags: Tag[] = [
     combos: [UNKNOWN],
   },
   {
-    name: "Stable",
-    description: "For using 4 rocking horses",
-    rarity: Epic,
-    combos: [UNKNOWN],
-  },
-  {
-    name: "Pink",
-    description: "For using 2 pink parts",
-    rarity: Uncommon,
-    combos: [UNKNOWN],
-  },
-  {
-    name: "V-Shape",
-    description: "For combining 2 rectangle shaped parts to create a V shape",
-    rarity: Rare,
-    combos: [UNKNOWN],
-  },
-  {
-    name: "Poppins",
-    description: "For using an umbrella at the top rocket",
-    rarity: Epic,
-    combos: [UNKNOWN],
-  },
-  {
-    name: "Slide",
-    description: "For using a slide end",
-    rarity: Uncommon,
-    combos: [UNKNOWN],
-  },
-  {
     name: "Oxygen",
     description: "For using an oxygen tank",
     rarity: Common,
@@ -2153,7 +2002,7 @@ export const tags: Tag[] = [
     name: "Gate",
     description: "For using a gate",
     rarity: Common,
-    combos: [UNKNOWN],
+    combos: [SMART],
   },
   {
     name: "Next Space Rebel",
@@ -2189,6 +2038,115 @@ export const tags: Tag[] = [
     name: "Devil",
     description: "For having a top altitude of 666 meters",
     rarity: Viral,
+    combos: [UNKNOWN],
+  },
+  {
+    name: "Fiberglass",
+    description: "For using only the pool structure set",
+    rarity: Rare,
+    combos: [COOL],
+  },
+  {
+    name: "Tropical Paradise",
+    description: "For using 5 different pool slide parts",
+    rarity: Rare,
+    combos: [COOL],
+  },
+  {
+    name: "Pool",
+    description: "For using a pool part",
+    rarity: Common,
+    combos: [UNKNOWN],
+  },
+  {
+    name: "Droid",
+    description:
+      "For reaching a distance of 25 meters without propulsion or explosives",
+    rarity: Viral,
+    combos: [UNKNOWN],
+  },
+  {
+    name: "Mt. Everest",
+    description: "For reaching an altitude of 8848 meters",
+    rarity: Rare,
+    combos: [UNKNOWN],
+  },
+  {
+    name: "Antique",
+    description: "For using 13 different retro parts",
+    rarity: Viral,
+    combos: [UNKNOWN],
+  },
+  {
+    name: "Bloody",
+    description: "For using a red smoker and a figure part",
+    rarity: Uncommon,
+    combos: [UNKNOWN],
+  },
+  {
+    name: "Gerbal",
+    description: "For combining a baby and an NSR part",
+    rarity: Uncommon,
+    combos: [UNKNOWN],
+  },
+  {
+    name: "Flammable",
+    description: "For using a graffiti can and a Molotov cocktail",
+    rarity: Rare,
+    combos: [UNKNOWN],
+  },
+  {
+    name: "Stink Bomb",
+    description: "For using a green smoker and a trash part",
+    rarity: Epic,
+    combos: [UNKNOWN],
+  },
+  {
+    name: "Dutch",
+    description: "For using a bike part and an orange smoker",
+    rarity: Uncommon,
+    combos: [UNKNOWN],
+  },
+  {
+    name: "Inflatable",
+    description: "For using a toy part and a pool part",
+    rarity: Uncommon,
+    combos: [UNKNOWN],
+  },
+  {
+    name: "Nine Tails",
+    description: "For using 9 tail parts",
+    rarity: Epic,
+    combos: [UNKNOWN],
+  },
+  {
+    name: "Abbreviation",
+    description: "For using a PVC part and an NSR part",
+    rarity: Uncommon,
+    combos: [UNKNOWN],
+  },
+  {
+    name: "Collector",
+    description: "For using 14 different rocket kit parts",
+    rarity: Viral,
+    combos: [UNKNOWN],
+  },
+  {
+    name: "Flush",
+    description: "For using a PVC part and a pool part",
+    rarity: Uncommon,
+    combos: [UNKNOWN],
+  },
+  {
+    name: "Soccer",
+    description: "For using 2 footballs",
+    rarity: Rare,
+    combos: [UNKNOWN],
+  },
+  {
+    name: "Sheppey",
+    description: "For reaching an altitude of 1.4 kilometers",
+    rarity: Uncommon,
     combos: [UNKNOWN],
   },
 ];

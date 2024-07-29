@@ -9,9 +9,23 @@ import {
   uniqueCombos,
 } from "./utils";
 
+let hasDuplicate = false;
+const tagMap = new Map<string, any>();
 tags.forEach((tag) => {
+  if (tagMap.has(tag.name)) {
+    console.log(`Duplicate tag name found: ${tag.name}`);
+    console.log("First occurrence:", tagMap.get(tag.name));
+    console.log("Duplicate occurrence:", tag);
+    hasDuplicate = true;
+  } else {
+    tagMap.set(tag.name, tag);
+  }
   tag.combos.forEach((combo) => uniqueCombos.add(combo));
 });
+
+if (!hasDuplicate) {
+  console.log("No duplicate tag names found.");
+}
 
 const sortedCombos = Array.from(uniqueCombos).sort();
 sortedCombos.splice(sortedCombos.indexOf(UNKNOWN), 1);
