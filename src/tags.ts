@@ -1824,7 +1824,7 @@ export const tags: Tag[] = [
     name: "Scary",
     description: "For beating 'Furrankenstein'",
     rarity: Epic,
-    combos: [UNKNOWN],
+    combos: [CREEPY],
   },
   {
     name: "Fidget Spinner",
@@ -1864,33 +1864,102 @@ export const tags: Tag[] = [
     combos: [UNKNOWN],
   },
   {
-    "name": "Furry",
-    "description": "For using 7 different Dandy Deer parts",
-    "rarity": Rare,
-    "combos": [UNKNOWN]
+    name: "Furry",
+    description: "For using 7 different Dandy Deer parts",
+    rarity: Rare,
+    combos: [UNKNOWN],
   },
   {
-    "name": "Danger",
-    "description": "For using a toy part and a scrap part",
-    "rarity": Uncommon,
-    "combos": [UNKNOWN]
+    name: "Danger",
+    description: "For using a toy part and a scrap part",
+    rarity: Uncommon,
+    combos: [UNKNOWN],
   },
   {
-    "name": "Spin",
-    "description": "For using a fidget spinner and a spinning top",
-    "rarity": Rare,
-    "combos": [UNKNOWN]
-  }
+    name: "Spin",
+    description: "For using a fidget spinner and a spinning top",
+    rarity: Rare,
+    combos: [UNKNOWN],
+  },
   {
     name: "Baby Centipede",
     description: "For using 3 babies that are all attached to each other",
     rarity: Epic,
-    combos: [UNKNOWN],
+    combos: [CREEPY],
   },
   {
     name: "Protest",
     description: "For using a megaphone and a Molotov cocktail",
     rarity: Rare,
+    combos: [UNKNOWN],
+  },
+  //#region not in game
+  {
+    name: "Inflatable",
+    description: "For using a toy part and a pool part",
+    rarity: Uncommon,
+    combos: [UNKNOWN],
+  },
+  {
+    name: "Big",
+    description: "For making a big rocket",
+    rarity: Uncommon,
+    combos: [UNKNOWN],
+  },
+
+  {
+    name: "Seared Steak",
+    description: "For using a Dandy Deer limp and an explosion",
+    rarity: Rare,
+    combos: [UNKNOWN],
+  },
+  // #endregion
+  {
+    name: "Broken Nose",
+    description: "For using a nose part that is not facing upwards",
+    rarity: Uncommon,
+    combos: [UNKNOWN],
+  },
+  {
+    name: "Conjoined Twin",
+    description: "For using 2 babies that are attached to each other",
+    rarity: Rare,
+    combos: [UNKNOWN],
+  },
+  {
+    name: "Button Masher",
+    description: "For triggering 5 different button sensors",
+    rarity: Epic,
+    combos: [UNKNOWN],
+  },
+  {
+    name: "Striptease",
+    description: "For beating 'Rocket Strip Tease'",
+    rarity: Viral,
+    combos: [UNKNOWN],
+  },
+  {
+    name: "Metal",
+    description: "For using only the scrap structure",
+    rarity: Rare,
+    combos: [COOL, UNKNOWN],
+  },
+  {
+    name: "Grand",
+    description: "For beating 'Grand Scrap'",
+    rarity: Viral,
+    combos: [COOL, AWESOME],
+  },
+  {
+    name: "Corkscrew",
+    description: "For making 10 loopings",
+    rarity: Viral,
+    combos: [AWESOME],
+  },
+  {
+    name: "Alien",
+    description: "For having a top altitude of 51 meters",
+    rarity: Epic,
     combos: [UNKNOWN],
   },
 ];
