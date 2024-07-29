@@ -1362,7 +1362,7 @@ export const tags: Tag[] = [
     name: "Decoupler",
     description: "For using a decoupler",
     rarity: Common,
-    combos: [UNKNOWN],
+    combos: [SMART],
   },
   {
     name: "Split",
@@ -1798,6 +1798,7 @@ export const tags: Tag[] = [
     description: "For using a nose part that is not facing upwards",
     rarity: Uncommon,
     combos: [UNKNOWN],
+    ruledOut: [SMART, ASPIRING, COOL],
   },
   {
     name: "Conjoined Twin",
@@ -2147,6 +2148,24 @@ export const tags: Tag[] = [
     name: "Sheppey",
     description: "For reaching an altitude of 1.4 kilometers",
     rarity: Uncommon,
+    combos: [UNKNOWN],
+  },
+  {
+    name: "Purple",
+    description: "For Using 2 purple parts",
+    rarity: "Uncommon",
+    combos: [UNKNOWN],
+  },
+  {
+    name: "Kármán Line",
+    description: "For reaching an altitude of 100 kilometers",
+    rarity: Viral,
+    combos: [SMART, UNKNOWN],
+  },
+  {
+    name: "Ultimate",
+    description: "For using an ultimate engine",
+    rarity: Epic,
     combos: [UNKNOWN],
   },
 ];
