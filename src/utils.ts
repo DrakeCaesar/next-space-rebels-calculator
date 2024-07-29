@@ -22,15 +22,17 @@ export const activeCombos = new Set<string>();
 export const selectedTags = new Set<string>();
 export const sortedCombos = new Set<string>();
 
+let isRestrictiveMode = true;
+
 export function filterTags(activeCombos: Set<string>) {
   document.querySelectorAll("#tags-container .tag").forEach((tag) => {
     const tagCombos = Array.from(tag.querySelectorAll(".tag-tooltip span")).map(
       (span) => span.className,
     );
 
-    const matches = Array.from(activeCombos).some((combo) =>
-      tagCombos.includes(combo),
-    );
+    const matches = isRestrictiveMode
+      ? Array.from(activeCombos).every((combo) => tagCombos.includes(combo))
+      : Array.from(activeCombos).some((combo) => tagCombos.includes(combo));
 
     if (activeCombos.size === 0 || matches) {
       tag.classList.remove("hidden");
@@ -38,7 +40,6 @@ export function filterTags(activeCombos: Set<string>) {
       tag.classList.add("hidden");
     }
   });
-  filterTagsByText(activeCombos);
 }
 
 export function positionTooltip(e: MouseEvent, tag: HTMLElement) {
@@ -60,6 +61,21 @@ export function positionTooltip(e: MouseEvent, tag: HTMLElement) {
   tooltip.style.left = `${leftPosition}px`;
   tooltip.style.top = `${topPosition}px`;
 }
+
+export function createModeSwitchButton() {
+  const button = document.createElement("button");
+  button.textContent = "Switch Mode";
+  button.addEventListener("click", () => {
+    isRestrictiveMode = !isRestrictiveMode;
+    button.textContent = isRestrictiveMode
+      ? "Switch to Additive Mode"
+      : "Switch to Restrictive Mode";
+    filterTags(activeCombos);
+  });
+  comboButtonsContainer.appendChild(button);
+}
+
+// Call this function after initializing combo buttons
 
 export function updateSelectedTagsDisplay() {
   selectedTagsElement!.innerHTML = "";

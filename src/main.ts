@@ -3,6 +3,7 @@ import {
   activeCombos,
   checkForDuplicateTags,
   createComboButton,
+  createModeSwitchButton,
   createTagElement,
   filterTagsByText,
   loadSelectedTagsFromLocalStorage,
@@ -40,6 +41,8 @@ function initializePage() {
   sortedCombos.forEach((combo) => {
     createComboButton(combo);
   });
+
+  createModeSwitchButton();
 
   const searchBar = document.getElementById("search-bar") as HTMLInputElement;
 
