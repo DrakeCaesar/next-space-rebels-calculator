@@ -19,7 +19,9 @@ const hasDuplicate = checkForDuplicateTags(tags);
 if (hasDuplicate) {
   toastr.error("Duplicate tag names found.", "Error");
 } else {
-  toastr.success("No duplicate tag names found.", "Success");
+  toastr.success("No duplicate tag names found.", "Success", {
+    positionClass: "toast-bottom-right",
+  });
 }
 
 if (!hasDuplicate) {
