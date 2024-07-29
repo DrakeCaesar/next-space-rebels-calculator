@@ -1,0 +1,14 @@
+{
+  "TagObject": {
+    "prefix": "tag",
+    "body": [
+      "{",
+      "  \"name\": \"${1:name}\",",
+      "  \"description\": \"${2:description}\",",
+      "  \"rarity\": \"${3|Common,Uncommon,Rare,Epic,Viral|}\",",
+      "  \"combos\": [${4|UNKNOWN,CUTE,AWESOME,NOOB,SMART,WEIRD,WILD,COOL,FUNNY,GROSS,NAUGHTY,CREEPY,ASPIRING,GEEKY|}],",
+      "},"
+    ],
+    "description": "Create a Tag object with predefined rarity and combo options"
+  }
+}
