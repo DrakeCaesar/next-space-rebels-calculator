@@ -86,7 +86,7 @@ export function createModeSwitchButton() {
       : "Switch to Restrictive Mode";
     filterTags(activeCombos);
   });
-  comboButtonsContainer.appendChild(button);
+  comboButtonsContainer?.appendChild(button);
 }
 
 // Call this function after initializing combo buttons
