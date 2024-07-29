@@ -80,7 +80,7 @@ export const tags: Tag[] = [
     name: "Completed Kit",
     description: "For using a completed rocket kit set",
     rarity: Uncommon,
-    combos: [UNKNOWN],
+    combos: [NOOB],
   },
   {
     name: "Symmetric",
@@ -710,7 +710,7 @@ export const tags: Tag[] = [
     name: "Penis",
     description: "For making a long rocket with 2 round parts at the bottom",
     rarity: Viral,
-    combos: [UNKNOWN],
+    combos: [GROSS, UNKNOWN],
     blocked: true,
   },
   {
@@ -832,7 +832,7 @@ export const tags: Tag[] = [
     name: "Nose Job",
     description: "For using 2 different nose parts",
     rarity: Uncommon,
-    combos: [UNKNOWN],
+    combos: [WEIRD, UNKNOWN],
   },
   {
     name: "Blue",
@@ -1149,7 +1149,7 @@ export const tags: Tag[] = [
     name: "Astronaut",
     description: "For using a space shuttle",
     rarity: Epic,
-    combos: [UNKNOWN],
+    combos: [ASPIRING],
   },
   {
     name: "BOOOM",
@@ -1252,7 +1252,7 @@ export const tags: Tag[] = [
     name: "Space Program",
     description: "For using a space shuttle and a moon rocket",
     rarity: Epic,
-    combos: [GEEKY, UNKNOWN],
+    combos: [GEEKY, ASPIRING],
   },
   {
     name: "Moon",
@@ -1562,7 +1562,7 @@ export const tags: Tag[] = [
     name: "Giga Boost",
     description: "For using 5 boosters",
     rarity: Rare,
-    combos: [UNKNOWN],
+    combos: [AWESOME],
   },
   {
     name: "Robotical",
@@ -1800,7 +1800,7 @@ export const tags: Tag[] = [
     description:
       "For using a mannequin and combining it with 10 other parts from other sets",
     rarity: Viral,
-    combos: [UNKNOWN],
+    combos: [CUTE],
   },
   {
     name: "Jerrycan",
@@ -1989,6 +1989,54 @@ export const tags: Tag[] = [
   {
     name: "Sputnik",
     description: "For combining a ball part and 2 stick parts",
+    rarity: Rare,
+    combos: [UNKNOWN],
+  },
+  {
+    name: "Saw",
+    description: "For using a table saw",
+    rarity: Uncommon,
+    combos: [WEIRD, UNKNOWN],
+  },
+  {
+    name: "Brake",
+    description: "For using a brake disk",
+    rarity: Common,
+    combos: [UNKNOWN],
+  },
+  {
+    name: "Gardener",
+    description: "For using a wheelbarrow part and a flamingo",
+    rarity: Rare,
+    combos: [UNKNOWN],
+  },
+  {
+    name: "Precious",
+    description: "For combining a mannequin and a ring pyramid",
+    rarity: Epic,
+    combos: [UNKNOWN],
+  },
+  {
+    name: "Repurpose",
+    description: "For using a trash part and a scrap part",
+    rarity: Uncommon,
+    combos: [UNKNOWN],
+  },
+  {
+    name: "Bird Wings",
+    description: "For combining 2 wing shaped parts with a figure",
+    rarity: Epic,
+    combos: [UNKNOWN],
+  },
+  {
+    name: "Baby Boom",
+    description: "For combining a baby and an explosive",
+    rarity: Rare,
+    combos: [UNKNOWN],
+  },
+  {
+    name: "Fart",
+    description: "For using a toilet roll and a green smoker",
     rarity: Rare,
     combos: [UNKNOWN],
   },
