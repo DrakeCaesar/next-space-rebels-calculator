@@ -44,17 +44,21 @@ export function filterTags(activeCombos: Set<string>) {
 export function positionTooltip(e: MouseEvent, tag: HTMLElement) {
   const tooltip = tag.querySelector(".tag-tooltip") as HTMLElement;
 
-  const tooltipWidth = tooltip.offsetWidth;
-  const windowWidth = window.innerWidth;
   let leftPosition = e.clientX + 10;
+  let topPosition = e.clientY + 10;
+
+  // Check if the tooltip exceeds the bottom border of the window
+  if (topPosition + tooltip.offsetHeight > window.innerHeight) {
+    topPosition = window.innerHeight - tooltip.offsetHeight - 10;
+  }
 
   // Check if the tooltip exceeds the right border of the window
-  if (leftPosition + tooltipWidth > windowWidth) {
-    leftPosition = e.clientX - tooltipWidth - 10;
+  if (leftPosition + tooltip.offsetWidth > window.innerWidth) {
+    leftPosition = window.innerWidth - tooltip.offsetWidth - 10;
   }
 
   tooltip.style.left = `${leftPosition}px`;
-  tooltip.style.top = `${e.clientY + 10}px`;
+  tooltip.style.top = `${topPosition}px`;
 }
 
 export function updateSelectedTagsDisplay() {
@@ -301,4 +305,23 @@ export function createTagElement(tag: any, index: number) {
   tagElement.addEventListener("mousemove", function (e: MouseEvent) {
     positionTooltip(e, tagElement);
   });
+}
+
+export function checkForDuplicateTags(tags: any[]): boolean {
+  let hasDuplicate = false;
+  const tagMap = new Map<string, any>();
+
+  tags.forEach((tag) => {
+    if (tagMap.has(tag.name)) {
+      console.log(`Duplicate tag name found: ${tag.name}`);
+      console.log("First occurrence:", tagMap.get(tag.name));
+      console.log("Duplicate occurrence:", tag);
+      hasDuplicate = true;
+    } else {
+      tagMap.set(tag.name, tag);
+    }
+    tag.combos.forEach((combo: string) => uniqueCombos.add(combo));
+  });
+
+  return hasDuplicate;
 }

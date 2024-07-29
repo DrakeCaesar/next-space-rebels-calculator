@@ -1979,7 +1979,7 @@ export const tags: Tag[] = [
     name: "Advanced",
     description: "For using an NSR part and a kinetic part",
     rarity: Uncommon,
-    combos: [SMART, UNKNOWN],
+    combos: [SMART, ASPIRING],
   },
   {
     name: "Modern Classic",
@@ -2178,6 +2178,12 @@ export const tags: Tag[] = [
     name: "Suborbital",
     description: "For using 23 different NSR parts",
     rarity: Epic,
+    combos: [UNKNOWN],
+  },
+  {
+    name: "Eco",
+    description: "For beating 'Algae Fuel Test'",
+    rarity: Viral,
     combos: [UNKNOWN],
   },
 ];

@@ -2,7 +2,7 @@
   "name": "next-space-rebels-calculator",
   "version": "1.0.0",
   "description": "A basic TypeScript project",
-  "main": "dist/index.js",
+  "main": "dist/index",
   "scripts": {
     "build": "tsc",
     "lint": "eslint 'src/**/*.ts'",
@@ -12,7 +12,11 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "@rollup/plugin-commonjs": "^26.0.1",
+    "@rollup/plugin-node-resolve": "^15.2.3",
+    "@rollup/plugin-typescript": "^11.1.6",
     "@types/node": "^20.0.0",
+    "@types/toastr": "^2.1.43",
     "@typescript-eslint/eslint-plugin": "^5.0.0",
     "@typescript-eslint/parser": "^5.0.0",
     "eslint": "^8.0.0",
@@ -20,8 +24,8 @@
     "typescript": "^4.0.0"
   },
   "dependencies": {
-    "@rollup/plugin-typescript": "^11.1.6",
     "rollup": "^4.19.1",
+    "toastr": "^2.1.4",
     "tslib": "^2.6.3"
   }
 }

@@ -1,6 +1,7 @@
 import { tags, UNKNOWN } from "./tags";
 import {
   activeCombos,
+  checkForDuplicateTags,
   createComboButton,
   createTagElement,
   filterTagsByText,
@@ -11,23 +12,23 @@ import {
   updateSelectedTagsDisplay,
 } from "./utils";
 
-let hasDuplicate = false;
-const tagMap = new Map<string, any>();
-tags.forEach((tag) => {
-  if (tagMap.has(tag.name)) {
-    console.log(`Duplicate tag name found: ${tag.name}`);
-    console.log("First occurrence:", tagMap.get(tag.name));
-    console.log("Duplicate occurrence:", tag);
-    hasDuplicate = true;
-  } else {
-    tagMap.set(tag.name, tag);
-  }
-  tag.combos.forEach((combo) => uniqueCombos.add(combo));
-});
+import toastr from "toastr"; // Import toastr for notifications
+
+const hasDuplicate = checkForDuplicateTags(tags);
+
+if (hasDuplicate) {
+  toastr.error("Duplicate tag names found.", "Error");
+} else {
+  toastr.success("No duplicate tag names found.", "Success");
+}
 
 if (!hasDuplicate) {
   console.log("No duplicate tag names found.");
 }
+
+tags.forEach((tag) => {
+  tag.combos.forEach((combo) => uniqueCombos.add(combo));
+});
 
 const sortedCombos = Array.from(uniqueCombos).sort();
 sortedCombos.splice(sortedCombos.indexOf(UNKNOWN), 1);
