@@ -210,7 +210,7 @@ export const tags: Tag[] = [
   },
   {
     name: "Censored",
-    description: "unknown",
+    description: "For having a top altitude of 69 meters",
     rarity: Epic,
     combos: [UNKNOWN],
     blocked: true,
@@ -470,7 +470,7 @@ export const tags: Tag[] = [
   },
   {
     name: "Horny",
-    description: "unknown",
+    description: "For using a Dandy Deer head and a passion firework",
     rarity: Rare,
     combos: [UNKNOWN],
     blocked: true,
@@ -531,9 +531,9 @@ export const tags: Tag[] = [
   },
   {
     name: "Baby Satay",
-    description: "unknown",
+    description: "For combining a baby and a toy stick",
     rarity: Rare,
-    combos: [UNKNOWN],
+    combos: [FUNNY, UNKNOWN],
     blocked: true,
   },
   {
@@ -599,7 +599,7 @@ export const tags: Tag[] = [
   },
   {
     name: "Cocks",
-    description: "unknown",
+    description: "For using a weathercock and a Molotov cocktail",
     rarity: Epic,
     combos: [UNKNOWN],
     blocked: true,
@@ -708,7 +708,7 @@ export const tags: Tag[] = [
   },
   {
     name: "Penis",
-    description: "unknown",
+    description: "For making a long rocket with 2 round parts at the bottom",
     rarity: Viral,
     combos: [UNKNOWN],
     blocked: true,
@@ -799,7 +799,7 @@ export const tags: Tag[] = [
   },
   {
     name: "Perv",
-    description: "unknown",
+    description: "For having a top altitude of 34 meters",
     rarity: Epic,
     combos: [UNKNOWN],
     blocked: true,
@@ -1171,7 +1171,7 @@ export const tags: Tag[] = [
   },
   {
     name: "Search",
-    description: "unknown",
+    description: "For using a keyboard and a Dandy Deer part",
     rarity: Rare,
     combos: [UNKNOWN],
     blocked: true,
@@ -1310,7 +1310,7 @@ export const tags: Tag[] = [
   },
   {
     name: "Ass",
-    description: "unknown",
+    description: "For using a toilet roll and a windshield wiper",
     rarity: Rare,
     combos: [UNKNOWN],
     blocked: true,
@@ -1449,7 +1449,7 @@ export const tags: Tag[] = [
   },
   {
     name: "Cock",
-    description: "unknown",
+    description: "For using a weathercock",
     rarity: Epic,
     combos: [UNKNOWN],
     blocked: true,
@@ -1488,7 +1488,7 @@ export const tags: Tag[] = [
     name: "Cuddly",
     description: "For using 3 teddy bears",
     rarity: Rare,
-    combos: [UNKNOWN],
+    combos: [WEIRD, UNKNOWN],
   },
   {
     name: "Hunting Trophy",
@@ -1553,7 +1553,7 @@ export const tags: Tag[] = [
   },
   {
     name: "Adult",
-    description: "unknown",
+    description: "For having a top altitude of 18 meters",
     rarity: Rare,
     combos: [UNKNOWN],
     blocked: true,
@@ -1852,7 +1852,7 @@ export const tags: Tag[] = [
   },
   {
     name: "Casualty",
-    description: "unknown",
+    description: "For hitting a building with a rocket with an engine",
     rarity: Rare,
     combos: [UNKNOWN],
     blocked: true,
@@ -1960,6 +1960,36 @@ export const tags: Tag[] = [
     name: "Alien",
     description: "For having a top altitude of 51 meters",
     rarity: Epic,
+    combos: [UNKNOWN],
+  },
+  {
+    name: "Passion",
+    description: "For using a passion firework",
+    rarity: Rare,
+    combos: [NAUGHTY],
+  },
+  {
+    name: "Reindeer",
+    description: "For using only the Dandy Deer structure set",
+    rarity: Epic,
+    combos: [UNKNOWN],
+  },
+  {
+    name: "Seared Steak",
+    description: "For using a Dandy Deer limp and an explosion",
+    rarity: Rare,
+    combos: [WEIRD, UNKNOWN],
+  },
+  {
+    name: "Chinese Roll",
+    description: "For using 6 firecrackers",
+    rarity: Rare,
+    combos: [UNKNOWN],
+  },
+  {
+    name: "Sputnik",
+    description: "For combining a ball part and 2 stick parts",
+    rarity: Rare,
     combos: [UNKNOWN],
   },
 ];
