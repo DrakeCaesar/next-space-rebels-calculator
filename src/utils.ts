@@ -57,7 +57,7 @@ export function positionTooltip(e: MouseEvent, tag: HTMLElement) {
   tooltip.style.top = `${e.clientY + 10}px`;
 }
 
-export function updateSelectedTagsDisplay(selectedTags: Set<string>) {
+export function updateSelectedTagsDisplay() {
   selectedTagsElement!.innerHTML = "";
 
   const comboCount: { [key: string]: number } = {};
@@ -94,7 +94,7 @@ export function updateSelectedTagsDisplay(selectedTags: Set<string>) {
       clone.addEventListener("click", function () {
         selectedTags.delete(tagId);
         tagElement.classList.remove("selected");
-        updateSelectedTagsDisplay(selectedTags);
+        updateSelectedTagsDisplay();
       });
 
       clone.addEventListener("mousemove", function (e: MouseEvent) {
@@ -102,6 +102,10 @@ export function updateSelectedTagsDisplay(selectedTags: Set<string>) {
       });
     }
   });
+  localStorage.setItem(
+    "selectedTags",
+    JSON.stringify(Array.from(selectedTags)),
+  );
 
   const indent4 = "&nbsp;&nbsp;&nbsp;&nbsp;";
   const indent8 = indent4 + indent4;
@@ -181,6 +185,16 @@ export function updateSelectedTagsDisplay(selectedTags: Set<string>) {
   `;
 }
 
+export function loadSelectedTagsFromLocalStorage(): void {
+  const savedTags = localStorage.getItem("selectedTags");
+  if (savedTags) {
+    selectedTags.clear();
+    for (const tag of JSON.parse(savedTags)) {
+      selectedTags.add(tag);
+    }
+  }
+}
+
 export function sortTagsBy(criteria: string, tagsContainer: HTMLElement) {
   const tagsArray = tagsContainer ? Array.from(tagsContainer.children) : [];
   if (criteria === "order") {
@@ -244,7 +258,7 @@ export function createComboButton(combo: string) {
     }
 
     filterTags(activeCombos);
-    updateSelectedTagsDisplay(selectedTags);
+    updateSelectedTagsDisplay();
   });
 }
 
@@ -281,7 +295,7 @@ export function createTagElement(tag: any, index: number) {
       selectedTags.add(tag.name);
       tagElement.classList.add("selected");
     }
-    updateSelectedTagsDisplay(selectedTags);
+    updateSelectedTagsDisplay();
   });
 
   tagElement.addEventListener("mousemove", function (e: MouseEvent) {

@@ -4,9 +4,11 @@ import {
   createComboButton,
   createTagElement,
   filterTagsByText,
+  loadSelectedTagsFromLocalStorage,
   sortTagsBy,
   tagsContainer,
   uniqueCombos,
+  updateSelectedTagsDisplay,
 } from "./utils";
 
 let hasDuplicate = false;
@@ -72,23 +74,8 @@ function initializePage() {
   });
 
   document.addEventListener("DOMContentLoaded", () => {
-    const tagsToSelect = ["RaySon", "Powerhouse", "Motor", "Trident", "Juice"];
-    // const tagsToSelect = [
-    //   "Sizzle",
-    //   "Dynamite",
-    //   "Looping",
-    //   "Pyromaniac",
-    //   "Flash Mob",
-    // ];
-
-    tagsToSelect.forEach((tagText) => {
-      const tagElement = Array.from(document.querySelectorAll(".tag")).find(
-        (tag) => (tag as HTMLElement).innerText === tagText,
-      ) as HTMLElement;
-      if (tagElement) {
-        tagElement.click();
-      }
-    });
+    loadSelectedTagsFromLocalStorage();
+    updateSelectedTagsDisplay();
   });
 }
 
