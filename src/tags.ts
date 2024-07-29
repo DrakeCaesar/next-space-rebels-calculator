@@ -601,7 +601,7 @@ export const tags: Tag[] = [
     name: "Cocks",
     description: "For using a weathercock and a Molotov cocktail",
     rarity: Epic,
-    combos: [CREEPY, NAUGHTY],
+    combos: [WILD, NAUGHTY],
     blocked: true,
   },
   {
@@ -862,7 +862,7 @@ export const tags: Tag[] = [
     name: "Flower Power",
     description: "For using 3 different firework parts",
     rarity: Rare,
-    combos: [AWESOME, UNKNOWN],
+    combos: [AWESOME, WILD],
   },
   {
     name: "Pyromaniac",
@@ -1572,7 +1572,7 @@ export const tags: Tag[] = [
     name: "Pride",
     description: "For using all different colored smoker parts",
     rarity: Epic,
-    combos: [AWESOME, UNKNOWN],
+    combos: [AWESOME, CUTE],
   },
   {
     name: "Muffled",
@@ -2165,6 +2165,18 @@ export const tags: Tag[] = [
   {
     name: "Ultimate",
     description: "For using an ultimate engine",
+    rarity: Epic,
+    combos: [UNKNOWN],
+  },
+  {
+    name: "Riot",
+    description: "For exploding a Molotov cocktail against a building",
+    rarity: Viral,
+    combos: [UNKNOWN],
+  },
+  {
+    name: "Suborbital",
+    description: "For using 23 different NSR parts",
     rarity: Epic,
     combos: [UNKNOWN],
   },
