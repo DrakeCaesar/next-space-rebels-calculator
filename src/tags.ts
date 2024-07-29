@@ -352,7 +352,7 @@ export const tags: Tag[] = [
     name: "Mozambique",
     description: "For beating 'The Perfect Pump'",
     rarity: Epic,
-    combos: [UNKNOWN],
+    combos: [ASPIRING, SMART],
   },
   {
     name: "Engine",
@@ -1636,7 +1636,7 @@ export const tags: Tag[] = [
     name: "Pump",
     description: "For using a pump",
     rarity: Common,
-    combos: [UNKNOWN],
+    combos: [SMART],
   },
   {
     name: "Addicted",
@@ -2261,7 +2261,7 @@ export const tags: Tag[] = [
     name: "HTV-2",
     description: "For reaching a speed of 21245 km/h",
     rarity: Viral,
-    combos: [UNKNOWN],
+    combos: [ASPIRING],
   },
   {
     name: "Golem",
@@ -2273,12 +2273,36 @@ export const tags: Tag[] = [
     name: "Modern",
     description: "For using only the NSR structure set",
     rarity: Uncommon,
-    combos: [UNKNOWN],
+    combos: [ASPIRING],
   },
   {
     name: "Lifeguard",
     description: "For using 20 different pool parts",
     rarity: Epic,
+    combos: [UNKNOWN],
+  },
+  {
+    name: "Gas Station",
+    description: "For using 15 different fuel tanks",
+    rarity: Viral,
+    combos: [UNKNOWN],
+  },
+  {
+    name: "Giant",
+    description: "For making a giant rocket",
+    rarity: Rare,
+    combos: [UNKNOWN],
+  },
+  {
+    name: "Byte",
+    description: "For having a top altitude of 256 meters",
+    rarity: Epic,
+    combos: [UNKNOWN],
+  },
+  {
+    name: "Painter",
+    description: "For using a graffiti can and a pallet",
+    rarity: Rare,
     combos: [UNKNOWN],
   },
 ];

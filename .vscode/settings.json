@@ -10,7 +10,8 @@
     "Toppler",
     "Tripover",
     "Tupolev",
-    "Unsymmetric"
+    "Unsymmetric",
+    "Voxel"
   ],
   "highlight.regexes": {
     "(\\bCommon\\b)": {
