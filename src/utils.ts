@@ -30,9 +30,23 @@ export function filterTags(activeCombos: Set<string>) {
       (span) => span.className,
     );
 
-    const matches = isRestrictiveMode
-      ? Array.from(activeCombos).every((combo) => tagCombos.includes(combo))
-      : Array.from(activeCombos).some((combo) => tagCombos.includes(combo));
+    let matches;
+    if (isRestrictiveMode) {
+      if (activeCombos.size > 1) {
+        const matchCount = Array.from(activeCombos).filter((combo) =>
+          tagCombos.includes(combo),
+        ).length;
+        matches = matchCount >= 2;
+      } else {
+        matches = Array.from(activeCombos).every((combo) =>
+          tagCombos.includes(combo),
+        );
+      }
+    } else {
+      matches = Array.from(activeCombos).some((combo) =>
+        tagCombos.includes(combo),
+      );
+    }
 
     if (activeCombos.size === 0 || matches) {
       tag.classList.remove("hidden");
