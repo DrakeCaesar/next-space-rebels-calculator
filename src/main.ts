@@ -1,3 +1,4 @@
+import "./styles.scss";
 import { tags, UNKNOWN } from "./tags";
 import {
   activeCombos,
