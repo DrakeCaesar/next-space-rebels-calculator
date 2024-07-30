@@ -358,7 +358,7 @@ $tags: unknown, cute, awesome, noob, smart, weird, wild, cool, aspiring, funny,
 @each $tag1 in $tags {
   @each $tag2 in $tags {
     @if $tag1 != $tag2 {
-      .alternate-colors.tag.#{$tag1}.#{$tag2} {
+      .tag.alternate-colors.left-#{$tag1}.right-#{$tag2} {
         background: linear-gradient(
           to right,
           var(--#{$tag1}-color) 50%,
@@ -367,7 +367,7 @@ $tags: unknown, cute, awesome, noob, smart, weird, wild, cool, aspiring, funny,
         display: inline-block;
       }
     } @else {
-      .alternate-colors.tag.#{$tag1}.#{$tag2} {
+      .tag.alternate-colors.left-#{$tag1}.right-#{$tag2} {
         background-color: var(--#{$tag1}-color);
         display: inline-block;
       }

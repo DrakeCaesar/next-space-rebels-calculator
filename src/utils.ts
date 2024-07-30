@@ -320,11 +320,13 @@ export function createTagElement(tag: any, index: number) {
   tagElement.dataset.order = index.toFixed().toString();
   tagElement.classList.add(tag.blocked ? "blocked" : "unblocked");
 
-  const leftName = `${tag.combos[0].toLowerCase().replace("???", "unknown")}`;
+  const leftName = `left-${tag.combos[0]
+    .toLowerCase()
+    .replace("???", "unknown")}`;
   const rightName = `${
     tag.combos.length > 1
-      ? tag.combos[1].toLowerCase().replace("???", "unknown")
-      : tag.combos[0].toLowerCase().replace("???", "unknown")
+      ? `right-${tag.combos[1].toLowerCase().replace("???", "unknown")}`
+      : `right-${tag.combos[0].toLowerCase().replace("???", "unknown")}`
   }`;
 
   tagElement.innerHTML += `

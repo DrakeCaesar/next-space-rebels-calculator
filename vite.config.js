@@ -1,14 +1,8 @@
 // vite.config.js
 import { defineConfig } from "vite";
-import sass from "vite-plugin-sass"; // Vite-specific Sass plugin
 
 export default defineConfig({
-  plugins: [
-    sass({
-      // Optionally configure if needed
-      // e.g., includePaths: ['./src/styles']
-    }),
-  ],
+  plugins: [],
   build: {
     outDir: "dist",
     sourcemap: true,
