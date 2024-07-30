@@ -319,7 +319,34 @@ export function createTagElement(tag: any, index: number) {
   tagElement.dataset.name = name;
   tagElement.dataset.order = index.toFixed().toString();
   tagElement.classList.add(tag.blocked ? "blocked" : "unblocked");
-  tagElement.innerHTML = `
+
+  // Create left and right child elements
+  const leftElement = document.createElement("div");
+  const rightElement = document.createElement("div");
+
+  leftElement.className = `left ${tag.combos[0]
+    .toLowerCase()
+    .replace("???", "unknown")}`;
+  rightElement.className = `right ${
+    tag.combos.length > 1
+      ? tag.combos[1].toLowerCase().replace("???", "unknown")
+      : tag.combos[0].toLowerCase().replace("???", "unknown")
+  }`;
+
+  leftElement.style.width = "50%";
+  leftElement.style.height = "100%";
+  leftElement.style.position = "absolute";
+  leftElement.style.left = "0";
+
+  rightElement.style.width = "50%";
+  rightElement.style.height = "100%";
+  rightElement.style.position = "absolute";
+  rightElement.style.right = "0";
+
+  tagElement.appendChild(leftElement);
+  tagElement.appendChild(rightElement);
+
+  tagElement.innerHTML += `
     ${name}
     <div class="tag-tooltip">
       <strong>${name}</strong><br>
