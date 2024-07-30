@@ -312,10 +312,7 @@ export function createTagElement(tag: any, index: number) {
       ${tag.description}<br>
       <span class="${tag.rarity.toLowerCase()}">${tag.rarity}</span><br>
       ${tag.combos
-        .map(
-          (combo: string) =>
-            `<span class="${combo}">${combo.replace("UNKNOWN", "???")}</span>`,
-        )
+        .map((combo: string) => `<span class="${combo}">${combo}</span>`)
         .join(", ")}
     </div>
   `;
