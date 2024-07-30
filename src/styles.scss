@@ -300,10 +300,11 @@ button,
 #tags-container {
   background-image: url("./reference.png");
   background-repeat: no-repeat; /* Prevent the image from repeating */
-  background-position: -8px -30.5px; /* Align the image to the top left of the element */
+  background-position: -8px -31.2px; /* Align the image to the top left of the element */
   background-size: 800px auto; /* Scale the image to fit the width of 800px */
   background-attachment: scroll; /* Make the background image scroll with the content */
   overflow: auto; /* Ensure the container is scrollable if necessary */
+  margin-right: -5px;
 }
 
 .tag {
@@ -312,18 +313,17 @@ button,
   padding-bottom: 0px;
   padding-right: 0px;
 
-  font-size: 15.8px;
+  font-size: 15.78px;
 
-  padding-left: 8.45px;
-  padding-right: 8.45px;
+  padding-left: 8.48px;
+  padding-right: 8.48px;
 
-  margin-right: 5.35px;
-  margin-bottom: 7.4px;
+  margin-right: 5.53px;
+  margin-bottom: 7.27px;
   opacity: 0.5;
   height: 33px;
   line-height: 33px;
   font-weight: 600;
 
-  font-family: "CustomFont";
   font-kerning: none;
 }
