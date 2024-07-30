@@ -99,7 +99,6 @@ $tags: unknown, cute, awesome, noob, smart, weird, wild, cool, aspiring, funny,
     }
   }
 }
-
 body {
   display: flex;
   flex-direction: row;
@@ -111,18 +110,25 @@ body {
   box-sizing: border-box;
 }
 
-.tag {
+.tag,
+button,
+#search-bar {
   padding: 10px;
   margin: 5px;
   border-radius: 100px;
   color: white;
   cursor: pointer;
-  position: relative;
-  display: inline-block;
   font-weight: 600;
 }
 
+button,
+#search-bar {
+  background-color: #000000;
+}
+
 .tag {
+  display: inline-block;
+  position: relative;
   padding: 0 16px;
   height: 36px;
   font-size: 14px;
@@ -133,17 +139,15 @@ body {
 .tag-tooltip {
   font-weight: 200;
   background-color: #2e2e2eef;
-  color: white;
   text-align: left;
   border-radius: 5px;
   padding: 10px;
-  position: absolute;
+  position: fixed;
   z-index: 2;
   width: max-content;
   transition: opacity 0.1s;
   line-height: 1.5;
   pointer-events: none;
-  position: fixed;
   visibility: hidden;
   opacity: 0;
 }
@@ -153,32 +157,17 @@ body {
   opacity: 1 !important;
 }
 
-button {
-  margin: 5px;
-  padding: 10px;
-  cursor: pointer;
-  border-radius: 100px;
-  background-color: #000000;
-  font-weight: 600;
-  color: white;
-}
-
 .combo-button.active {
   background-color: gray;
-  color: white;
 }
 
-#tags-container .tag.hidden {
-  display: none;
-}
-
+#tags-container .tag.hidden,
 #selected-tags-container .tag.hidden {
   display: none;
 }
 
 #selected-tags {
   height: 150px;
-  display: flex;
   display: inline-block;
 }
 
@@ -194,10 +183,6 @@ button {
   margin: 3px;
 }
 
-.tag.blocked {
-  position: relative;
-}
-
 .tag.blocked::after {
   content: "✖";
   color: #ca0000;
@@ -210,15 +195,14 @@ button {
   z-index: 1;
   opacity: 0.5;
 }
+
 @keyframes border-pulse {
-  0% {
+  0%,
+  100% {
     border-color: magenta;
   }
   50% {
     border-color: cyan;
-  }
-  100% {
-    border-color: magenta;
   }
 }
 
@@ -235,54 +219,36 @@ button {
   flex-shrink: 1;
 }
 
-#combo-buttons-container {
-  height: fit-content;
+#combo-buttons-container,
+#sort-buttons-container,
+#tags-container,
+#selected-tags-container {
   background-color: #1e1f24;
-  border-bottom: 1px solid #ccc;
   padding: 10px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
+#combo-buttons-container,
 #sort-buttons-container {
   height: fit-content;
-  background-color: #1e1f24;
   border-bottom: 1px solid #ccc;
-  padding: 10px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-#tags-container {
+#tags-container,
+#selected-tags-container {
   flex: 1;
-  padding: 10px;
-  background-color: #1e1f24;
   overflow-y: auto;
 }
 
 #selected-tags-container {
   width: 30%;
-  background-color: #1e1f24;
   border: 1px solid #ccc;
-  padding: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  flex-shrink: 1;
-  overflow-y: auto;
-}
-
-.combo-breakdown {
-  margin-top: 10px;
-}
-
-.combo-breakdown {
-  margin-top: 10px;
-}
-.selected-clone {
-  cursor: pointer;
 }
 
 .console-output {
   font-family: "Fira Code", monospace;
   background-color: black;
-  color: white;
   padding: 10px;
   border-radius: 5px;
 }
@@ -298,6 +264,7 @@ button {
 .pink-text {
   color: #d69fdd;
 }
+
 .white-text {
   color: #c8c8c8;
 }
@@ -315,26 +282,16 @@ button {
 }
 
 *::-webkit-scrollbar-track {
-  box-shadow: none;
-  border-radius: 5px;
   background-color: transparent;
+  border-radius: 5px;
 }
+
 *::-webkit-scrollbar {
   width: 12px;
   background-color: transparent;
 }
+
 *::-webkit-scrollbar-thumb {
   border-radius: 10px;
-  box-shadow: none;
   background-color: #aaa;
-}
-
-#search-bar {
-  margin: 5px;
-  padding: 10px;
-  font-size: 14px;
-  border-radius: 100px;
-  background-color: #000000;
-  font-weight: 600;
-  color: white;
 }
