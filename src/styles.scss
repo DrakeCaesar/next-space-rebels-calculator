@@ -23,8 +23,55 @@
   --geeky-color: #0016ff;
 
   --unknown-color-tooltip: #ffffff;
-  --unknown-color-tag: #5f5f5f;
 }
+
+$rarity-colors: (
+  common: var(--common-color),
+  uncommon: var(--uncommon-color),
+  rare: var(--rare-color),
+  epic: var(--epic-color),
+  viral: var(--viral-color),
+);
+
+@mixin generate-rarity-classes($map) {
+  @each $key, $value in $map {
+    .#{$key} {
+      background-color: $value;
+    }
+    .tag-tooltip .#{$key} {
+      color: if($key == common, var(--common-color-tooltip), $value);
+      background-color: transparent;
+    }
+  }
+}
+
+@include generate-rarity-classes($rarity-colors);
+$colors: (
+  UNKNOWN: var(--unknown-color),
+  CUTE: var(--cute-color),
+  AWESOME: var(--awesome-color),
+  NOOB: var(--noob-color),
+  SMART: var(--smart-color),
+  WEIRD: var(--weird-color),
+  WILD: var(--wild-color),
+  COOL: var(--cool-color),
+  ASPIRING: var(--aspiring-color),
+  FUNNY: var(--funny-color),
+  GROSS: var(--gross-color),
+  NAUGHTY: var(--naughty-color),
+  CREEPY: var(--creepy-color),
+  GEEKY: var(--geeky-color),
+);
+
+@mixin generate-classes($map) {
+  @each $key, $value in $map {
+    .#{$key} {
+      color: $value;
+    }
+  }
+}
+
+@include generate-classes($colors);
 
 body {
   display: flex;
@@ -77,89 +124,6 @@ body {
 .tag:hover .tag-tooltip {
   visibility: visible !important;
   opacity: 1 !important;
-}
-
-/* Rarity colors */
-.common {
-  background-color: var(--common-color);
-}
-.uncommon {
-  background-color: var(--uncommon-color);
-}
-.rare {
-  background-color: var(--rare-color);
-}
-.epic {
-  background-color: var(--epic-color);
-}
-.viral {
-  background-color: var(--viral-color);
-}
-
-/* Rarity colors */
-.tag-tooltip .common {
-  color: var(--common-color-tooltip);
-  background-color: transparent;
-}
-.tag-tooltip .uncommon {
-  color: var(--uncommon-color);
-  background-color: transparent;
-}
-.tag-tooltip .rare {
-  color: var(--rare-color);
-  background-color: transparent;
-}
-.tag-tooltip .epic {
-  color: var(--epic-color);
-  background-color: transparent;
-}
-.tag-tooltip .viral {
-  color: var(--viral-color);
-  background-color: transparent;
-}
-
-/* Combo colors */
-.UNKNOWN {
-  color: var(--unknown-color);
-}
-.CUTE {
-  color: var(--cute-color);
-}
-.AWESOME {
-  color: var(--awesome-color);
-}
-.NOOB {
-  color: var(--noob-color);
-}
-.SMART {
-  color: var(--smart-color);
-}
-.WEIRD {
-  color: var(--weird-color);
-}
-.WILD {
-  color: var(--wild-color);
-}
-.COOL {
-  color: var(--cool-color);
-}
-.ASPIRING {
-  color: var(--aspiring-color);
-}
-.FUNNY {
-  color: var(--funny-color);
-}
-.GROSS {
-  color: var(--gross-color);
-}
-.NAUGHTY {
-  color: var(--naughty-color);
-}
-.CREEPY {
-  color: var(--creepy-color);
-}
-.GEEKY {
-  color: var(--geeky-color);
 }
 
 button {
