@@ -77,7 +77,7 @@ export function positionTooltip(e: MouseEvent, tag: HTMLElement) {
 }
 
 function toggleAlternateTagColors() {
-  const tags = document.querySelectorAll("#tags-container .tag");
+  const tags = document.querySelectorAll(".tag");
   tags.forEach((tag) => {
     tag.classList.toggle("alternate-colors");
   });
