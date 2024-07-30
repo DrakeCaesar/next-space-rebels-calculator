@@ -62,84 +62,99 @@ body {
   top: 0;
   height: 100%;
   width: 50%;
+  z-index: -1;
+}
+
+.tag {
+  z-index: 0;
 }
 
 .left {
   left: 0;
+  border-top-left-radius: 100px;
+  border-bottom-left-radius: 100px;
 }
 
 .right {
   right: 0;
+  border-top-right-radius: 100px;
+  border-bottom-right-radius: 100px;
 }
 
-.left.unknown,
-.right.unknown {
-  background-color: var(--unknown-color-tag);
+.tag.alternate-colors {
+  background-color: none;
 }
 
-.left.cute,
-.right.cute {
-  background-color: var(--cute-color);
-}
+.tag.alternate-colors {
+  .left.unknown,
+  .right.unknown {
+    background-color: var(--unknown-color-tag);
+  }
 
-.left.awesome,
-.right.awesome {
-  background-color: var(--awesome-color);
-}
+  .left.cute,
+  .right.cute {
+    background-color: var(--cute-color);
+  }
 
-.left.noob,
-.right.noob {
-  background-color: var(--noob-color);
-}
+  .left.awesome,
+  .right.awesome {
+    background-color: var(--awesome-color);
+  }
 
-.left.smart,
-.right.smart {
-  background-color: var(--smart-color);
-}
+  .left.noob,
+  .right.noob {
+    background-color: var(--noob-color);
+  }
 
-.left.weird,
-.right.weird {
-  background-color: var(--weird-color);
-}
+  .left.smart,
+  .right.smart {
+    background-color: var(--smart-color);
+  }
 
-.left.wild,
-.right.wild {
-  background-color: var(--wild-color);
-}
+  .left.weird,
+  .right.weird {
+    background-color: var(--weird-color);
+  }
 
-.left.cool,
-.right.cool {
-  background-color: var(--cool-color);
-}
+  .left.wild,
+  .right.wild {
+    background-color: var(--wild-color);
+  }
 
-.left.aspiring,
-.right.aspiring {
-  background-color: var(--aspiring-color);
-}
+  .left.cool,
+  .right.cool {
+    background-color: var(--cool-color);
+  }
 
-.left.funny,
-.right.funny {
-  background-color: var(--funny-color);
-}
+  .left.aspiring,
+  .right.aspiring {
+    background-color: var(--aspiring-color);
+  }
 
-.left.gross,
-.right.gross {
-  background-color: var(--gross-color);
-}
+  .left.funny,
+  .right.funny {
+    background-color: var(--funny-color);
+  }
 
-.left.naughty,
-.right.naughty {
-  background-color: var(--naughty-color);
-}
+  .left.gross,
+  .right.gross {
+    background-color: var(--gross-color);
+  }
 
-.left.creepy,
-.right.creepy {
-  background-color: var(--creepy-color);
-}
+  .left.naughty,
+  .right.naughty {
+    background-color: var(--naughty-color);
+  }
 
-.left.geeky,
-.right.geeky {
-  background-color: var(--geeky-color);
+  .left.creepy,
+  .right.creepy {
+    background-color: var(--creepy-color);
+  }
+
+  .left.geeky,
+  .right.geeky {
+    background-color: var(--geeky-color);
+  }
 }
 
 .tag-tooltip {
