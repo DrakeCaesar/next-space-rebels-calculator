@@ -1,4 +1,4 @@
-import { Tag, tags, UNKNOWN } from "./tags";
+import { Tag, tags, UNKNOWN } from "../tags";
 
 import fs from "fs";
 
