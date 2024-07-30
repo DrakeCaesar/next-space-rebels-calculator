@@ -296,3 +296,28 @@ button,
   border-radius: 10px;
   background-color: #aaa;
 }
+
+#tags-container {
+  background-image: url("./reference.png");
+  background-repeat: no-repeat; /* Prevent the image from repeating */
+  background-position: -9px -31px; /* Align the image to the top left of the element */
+  background-size: 800px auto; /* Scale the image to fit the width of 800px */
+  background-attachment: scroll; /* Make the background image scroll with the content */
+  overflow: auto; /* Ensure the container is scrollable if necessary */
+}
+
+.tag {
+  margin-top: 0px;
+  margin-left: 0px;
+  padding-bottom: 0px;
+  padding-right: 0px;
+
+  font-size: 15.8px;
+
+  padding-left: 8.7px;
+  padding-right: 8.7px;
+
+  margin-right: 5px;
+  margin-bottom: 4px;
+  opacity: 0.5;
+}

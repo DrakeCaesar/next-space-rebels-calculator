@@ -191,6 +191,12 @@ export const tags: Tag[] = [
     combos: [COOL],
   },
   {
+    name: "Football Pitch",
+    description: "For reaching an alitude of 91 meters",
+    rarity: "Common",
+    combos: [UNKNOWN],
+  },
+  {
     name: "Purist",
     description: "For using only one structure set",
     rarity: Uncommon,
@@ -2303,6 +2309,98 @@ export const tags: Tag[] = [
     name: "Painter",
     description: "For using a graffiti can and a pallet",
     rarity: Rare,
+    combos: [UNKNOWN],
+  },
+  {
+    name: "Hypersonic",
+    description: "For reaching a speed of 7270 km/h",
+    rarity: Viral,
+    combos: [ASPIRING],
+  },
+  {
+    name: "Baby Centipede 2",
+    description: "For using 12 babies that are all attached to each other",
+    rarity: Viral,
+    combos: [UNKNOWN],
+  },
+  {
+    name: "Network",
+    description: "For using 5 different connection parts",
+    rarity: Rare,
+    combos: [UNKNOWN],
+  },
+  {
+    name: "Death",
+    description: "For using 4 purple smokers",
+    rarity: Epic,
+    combos: [UNKNOWN],
+  },
+  {
+    name: "The Answer",
+    description: "For having a top altitude of 42 meters",
+    rarity: Epic,
+    combos: [UNKNOWN],
+  },
+  {
+    name: "Bottle Flip",
+    description:
+      "For making a looping and landing a rocket on its tail without exploding",
+    rarity: Viral,
+    combos: [UNKNOWN],
+  },
+  {
+    name: "Lumberjack",
+    description: "For using 24 different wood parts",
+    rarity: Epic,
+    combos: [UNKNOWN],
+  },
+  {
+    name: "War",
+    description: "For using a dynamite and a Tzar bomba",
+    rarity: Epic,
+    combos: [UNKNOWN],
+  },
+  {
+    name: "Grasshopper",
+    description:
+      "For reaching an altitude of 25 meters without an engine or explosive",
+    rarity: Viral,
+    combos: [UNKNOWN],
+  },
+  {
+    name: "Clean Land",
+    description: "For landing a rocket on its tail without exploding",
+    rarity: Epic,
+    combos: [UNKNOWN],
+  },
+  {
+    name: "Lucky",
+    description: "For having a top altitude of 7 meters",
+    rarity: Rare,
+    combos: [UNKNOWN],
+  },
+  {
+    name: "Booster Pack",
+    description: "For using 4 different boosters",
+    rarity: Rare,
+    combos: [UNKNOWN],
+  },
+  {
+    name: "Quarantine",
+    description: "For combining a figure part with 4 toilet rolls",
+    rarity: Rare,
+    combos: [UNKNOWN],
+  },
+  {
+    name: "Force",
+    description: "For using 4 different pumps",
+    rarity: Rare,
+    combos: [UNKNOWN],
+  },
+  {
+    name: "Donut",
+    description: "For creating a donut out of 4 of the same bend parts",
+    rarity: Epic,
     combos: [UNKNOWN],
   },
 ];
