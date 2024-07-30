@@ -8,7 +8,6 @@
 
   /* Combo colors */
   --unknown-color: #ffffff;
-  --unknown-color: #5f5f5f;
   --cute-color: #ff83e0;
   --awesome-color: #ff0000;
   --noob-color: #22e200;
@@ -24,6 +23,7 @@
   --geeky-color: #0016ff;
 
   --unknown-color-tooltip: #ffffff;
+  --unknown-color-tag: #5f5f5f;
 }
 
 body {
@@ -54,6 +54,92 @@ body {
   font-size: 14px;
   line-height: 36px;
   border-radius: 18px;
+}
+
+.left,
+.right {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 50%;
+}
+
+.left {
+  left: 0;
+}
+
+.right {
+  right: 0;
+}
+
+.left.unknown,
+.right.unknown {
+  background-color: var(--unknown-color-tag);
+}
+
+.left.cute,
+.right.cute {
+  background-color: var(--cute-color);
+}
+
+.left.awesome,
+.right.awesome {
+  background-color: var(--awesome-color);
+}
+
+.left.noob,
+.right.noob {
+  background-color: var(--noob-color);
+}
+
+.left.smart,
+.right.smart {
+  background-color: var(--smart-color);
+}
+
+.left.weird,
+.right.weird {
+  background-color: var(--weird-color);
+}
+
+.left.wild,
+.right.wild {
+  background-color: var(--wild-color);
+}
+
+.left.cool,
+.right.cool {
+  background-color: var(--cool-color);
+}
+
+.left.aspiring,
+.right.aspiring {
+  background-color: var(--aspiring-color);
+}
+
+.left.funny,
+.right.funny {
+  background-color: var(--funny-color);
+}
+
+.left.gross,
+.right.gross {
+  background-color: var(--gross-color);
+}
+
+.left.naughty,
+.right.naughty {
+  background-color: var(--naughty-color);
+}
+
+.left.creepy,
+.right.creepy {
+  background-color: var(--creepy-color);
+}
+
+.left.geeky,
+.right.geeky {
+  background-color: var(--geeky-color);
 }
 
 .tag-tooltip {

@@ -5,6 +5,7 @@ import {
   createComboButton,
   createModeSwitchButton,
   createTagElement,
+  createToggleColorsButton,
   filterTagsByText,
   loadSelectedTagsFromLocalStorage,
   sortTagsBy,
@@ -41,8 +42,8 @@ function initializePage() {
   sortedCombos.forEach((combo) => {
     createComboButton(combo);
   });
-
   createModeSwitchButton();
+  createToggleColorsButton();
 
   const searchBar = document.getElementById("search-bar") as HTMLInputElement;
 

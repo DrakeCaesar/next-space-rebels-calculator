@@ -76,6 +76,22 @@ export function positionTooltip(e: MouseEvent, tag: HTMLElement) {
   tooltip.style.top = `${topPosition}px`;
 }
 
+function toggleAlternateTagColors() {
+  const tags = document.querySelectorAll("#tags-container .tag");
+  tags.forEach((tag) => {
+    tag.classList.toggle("alternate-colors");
+  });
+}
+
+export function createToggleColorsButton() {
+  const button = document.createElement("button");
+  button.textContent = "Toggle Alternate Tag Colors";
+  button.addEventListener("click", toggleAlternateTagColors);
+  comboButtonsContainer?.appendChild(button);
+  console.log("test");
+}
+// Call this function after initializing combo buttons
+
 export function createModeSwitchButton() {
   const button = document.createElement("button");
   button.textContent = "Switch Mode";
@@ -88,8 +104,6 @@ export function createModeSwitchButton() {
   });
   comboButtonsContainer?.appendChild(button);
 }
-
-// Call this function after initializing combo buttons
 
 export function updateSelectedTagsDisplay() {
   selectedTagsElement!.innerHTML = "";
