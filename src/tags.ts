@@ -775,6 +775,12 @@ export const tags: Tag[] = [
     combos: [AWESOME],
   },
   {
+    name: "Arm",
+    description: "For using a arm part",
+    rarity: Common,
+    combos: [UNKNOWN],
+  },
+  {
     name: "Display",
     description: "For using 7 different mannequin parts",
     rarity: Rare,
@@ -1135,13 +1141,6 @@ export const tags: Tag[] = [
     combos: [UNKNOWN],
   },
   {
-    name: "Search",
-    description: "For using a keyboard and a Dandy Deer part",
-    rarity: Rare,
-    combos: [UNKNOWN],
-    blocked: true,
-  },
-  {
     name: "Crowd Control",
     description: "For having 5 different figure parts in the rocket",
     rarity: Epic,
@@ -1159,6 +1158,13 @@ export const tags: Tag[] = [
     description: "For using a robot",
     rarity: Uncommon,
     combos: [CUTE, COOL],
+  },
+  {
+    name: "Search",
+    description: "For using a keyboard and a Dandy Deer part",
+    rarity: Rare,
+    combos: [UNKNOWN],
+    blocked: true,
   },
   {
     name: "Collage",
