@@ -73,6 +73,33 @@ $colors: (
 
 @include generate-classes($colors);
 
+.tag.alternate-colors {
+  --unknown-color: #5f5f5f;
+}
+
+$tags: unknown, cute, awesome, noob, smart, weird, wild, cool, aspiring, funny,
+  gross, naughty, creepy, geeky;
+
+@each $tag1 in $tags {
+  @each $tag2 in $tags {
+    @if $tag1 != $tag2 {
+      .tag.alternate-colors.left-#{$tag1}.right-#{$tag2} {
+        background: linear-gradient(
+          to right,
+          var(--#{$tag1}-color) 50%,
+          var(--#{$tag2}-color) 50%
+        );
+        display: inline-block;
+      }
+    } @else {
+      .tag.alternate-colors.left-#{$tag1}.right-#{$tag2} {
+        background-color: var(--#{$tag1}-color);
+        display: inline-block;
+      }
+    }
+  }
+}
+
 body {
   display: flex;
   flex-direction: row;
@@ -310,31 +337,4 @@ button {
   background-color: #000000;
   font-weight: 600;
   color: white;
-}
-
-.tag.alternate-colors {
-  --unknown-color: #5f5f5f;
-}
-
-$tags: unknown, cute, awesome, noob, smart, weird, wild, cool, aspiring, funny,
-  gross, naughty, creepy, geeky;
-
-@each $tag1 in $tags {
-  @each $tag2 in $tags {
-    @if $tag1 != $tag2 {
-      .tag.alternate-colors.left-#{$tag1}.right-#{$tag2} {
-        background: linear-gradient(
-          to right,
-          var(--#{$tag1}-color) 50%,
-          var(--#{$tag2}-color) 50%
-        );
-        display: inline-block;
-      }
-    } @else {
-      .tag.alternate-colors.left-#{$tag1}.right-#{$tag2} {
-        background-color: var(--#{$tag1}-color);
-        display: inline-block;
-      }
-    }
-  }
 }
