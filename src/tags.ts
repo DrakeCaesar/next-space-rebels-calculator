@@ -2398,6 +2398,12 @@ export const tags: Tag[] = [
     combos: [UNKNOWN],
   },
   {
+    name: "Millipede",
+    description: "For using 10 limbs",
+    rarity: Viral,
+    combos: [UNKNOWN],
+  },
+  {
     name: "Force",
     description: "For using 4 different pumps",
     rarity: Rare,
@@ -2406,6 +2412,13 @@ export const tags: Tag[] = [
   {
     name: "Donut",
     description: "For creating a donut out of 4 of the same bend parts",
+    rarity: Epic,
+    combos: [UNKNOWN],
+  },
+  {
+    name: "Man Overboard",
+    description:
+      "For having a rocket in the air that consists of only a figure part",
     rarity: Epic,
     combos: [UNKNOWN],
   },
