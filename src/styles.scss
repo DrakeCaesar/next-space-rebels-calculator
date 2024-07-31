@@ -216,7 +216,7 @@ button,
 #left-pane {
   display: flex;
   flex-direction: column;
-  width: 70%;
+  width: 71%;
   flex-shrink: 1;
 }
 
@@ -242,7 +242,6 @@ button,
 }
 
 #selected-tags-container {
-  width: 30%;
   border: 1px solid #ccc;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
@@ -298,13 +297,12 @@ button,
 }
 
 #tags-container {
-  background-image: url("./reference.png");
+  // background-image: url("./reference.png");
   background-repeat: no-repeat; /* Prevent the image from repeating */
   background-position: -8px -31.2px; /* Align the image to the top left of the element */
   background-size: 800px auto; /* Scale the image to fit the width of 800px */
   background-attachment: scroll; /* Make the background image scroll with the content */
   overflow: auto; /* Ensure the container is scrollable if necessary */
-  margin-right: -5px;
 }
 
 .tag {
@@ -320,7 +318,7 @@ button,
 
   margin-right: 5.53px;
   margin-bottom: 7.27px;
-  opacity: 0.5;
+  // opacity: 0.8;
   height: 33px;
   line-height: 33px;
   font-weight: 600;
