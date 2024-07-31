@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "A basic TypeScript project",
   "main": "dist/index",
+  "type": "module",
   "scripts": {
     "lint": "eslint 'src/**/*.ts'",
     "dev": "vite",
