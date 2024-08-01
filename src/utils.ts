@@ -1,7 +1,7 @@
 import { UNKNOWN } from "./tags";
 
 export const tagsContainer = document.getElementById(
-  "tags-container",
+  "tags-list",
 ) as HTMLDivElement;
 export const comboButtonsContainer = document.getElementById(
   "combo-buttons-container",
@@ -25,7 +25,7 @@ export const sortedCombos = new Set<string>();
 let isRestrictiveMode = true;
 
 export function filterTags(activeCombos: Set<string>) {
-  document.querySelectorAll("#tags-container .tag").forEach((tag) => {
+  document.querySelectorAll("#tags-list .tag").forEach((tag) => {
     const tagCombos = Array.from(tag.querySelectorAll(".tag-tooltip span")).map(
       (span) => span.className,
     );
@@ -268,7 +268,7 @@ export function filterTagsByText(activeCombos: Set<string>) {
   const searchTerm = searchBar.value.toLowerCase();
 
   (
-    document.querySelectorAll("#tags-container .tag") as NodeListOf<HTMLElement>
+    document.querySelectorAll("#tags-list .tag") as NodeListOf<HTMLElement>
   ).forEach((tag) => {
     const tagCombos = Array.from(tag.querySelectorAll(".tag-tooltip span")).map(
       (span) => span.className,

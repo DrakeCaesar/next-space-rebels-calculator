@@ -55,7 +55,7 @@ function initializePage() {
       ) as NodeListOf<HTMLElement>;
       if (selectedTags.length < 5) {
         const tagSelector = document.querySelector(
-          "#tags-container > .tag:not(.hidden)",
+          "#tags-list > .tag:not(.hidden)",
         ) as HTMLElement;
         tagSelector.click();
         searchBar.value = "";

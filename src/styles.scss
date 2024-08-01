@@ -144,32 +144,48 @@ button,
 }
 
 #tags-container {
-  background-image: url("./tags.png");
+  // background-image: url("./tags.png");
+  background-color: white;
   background-repeat: no-repeat;
   outline: 1px solid red;
-  padding: 16px;
-  padding-top: 40px;
+  padding: 0px;
   width: 812px;
   display: flex;
   flex-wrap: wrap;
-  gap: 8.5px 5px;
   box-sizing: border-box;
   position: relative;
 }
 
 #tags-container::before {
   content: "Tags";
-  position: absolute;
+  position: sticky;
   top: 0;
   left: 0;
   width: 100%;
   height: 24px;
   background-color: #b7d6db;
+  color: black;
   display: flex;
   align-items: center;
   padding-left: 16px;
   box-sizing: border-box;
   font-weight: bold;
+  z-index: 1;
+  padding-left: 21px;
+  font-size: 18px;
+  font-weight: 600;
+  font-kerning: none;
+  // opacity: 0.5;
+}
+
+#tags-list {
+  padding: 16px;
+  width: 800px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8.5px 5px;
+  box-sizing: border-box;
+  position: relative;
 }
 
 .tag {
@@ -253,11 +269,11 @@ button,
 
 #combo-buttons-container,
 #sort-buttons-container,
-#tags-container,
+// #tags-container,
 #selected-tags-container {
   background-color: #1e1f24;
-  // padding: 10px;
-  // box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 #combo-buttons-container,
