@@ -144,35 +144,19 @@ button,
 }
 
 #tags-container {
-  // background-image: url("./reference.png");
-  background-repeat: no-repeat; /* Prevent the image from repeating */
-  background-position: -14.3px -46px; /* Align the image to the top left of the element */
-  background-size: 1084.5px auto; /* Scale the image to fit the width of 800px */
-  background-attachment: scroll; /* Make the background image scroll with the content */
-  overflow: auto; /* Ensure the container is scrollable if necessary */
-  margin-right: -14px;
+  background-image: url("./tags.png");
+  background-repeat: no-repeat;
+  border: 1px solid red;
+  padding: 16px;
+  padding-top: 40px;
+  width: 768px;
 }
 
 .tag {
   display: inline-block;
-  position: relative;
 
-  margin: 0pt 5pt 9pt 0pt;
-  padding: 0pt 10pt 0pt 8pt;
-  font-size: 16pt;
-  border-radius: 16pt;
-  height: 32pt;
-  line-height: 32pt;
-  font-weight: 600;
-  font-kerning: none;
-}
-
-.tag {
-  display: inline-block;
-  position: relative;
-
-  margin: 0pt 5px 9px 0pt;
-  padding: 0px 10px 0px 8px;
+  margin: 0px 5px 8.5px 0px;
+  padding: 0px 8.5px 0px 8.5px;
   font-size: 16px;
   border-radius: 16px;
   height: 32px;
@@ -252,8 +236,8 @@ button,
 #tags-container,
 #selected-tags-container {
   background-color: #1e1f24;
-  padding: 10px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  // padding: 10px;
+  // box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 #combo-buttons-container,
