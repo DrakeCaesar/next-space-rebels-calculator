@@ -119,6 +119,26 @@ const main = async () => {
       return true;
     });
 
+    // Modify rows based on the 4th value
+    finalFilteredRows.forEach((row) => {
+      if (row.cells.length >= 4) {
+        if (row.cells[3].value !== "") {
+          // Keep only the first 4 values
+          row.cells = row.cells.slice(0, 4);
+        } else {
+          // Modify the values as specified
+          row.cells[3].value = row.cells[2].value;
+          row.cells[3].type = row.cells[2].type;
+          row.cells[2].value = row.cells[1].value;
+          row.cells[2].type = row.cells[1].type;
+          row.cells[1].value = row.cells[0].value;
+          row.cells[1].type = row.cells[0].type;
+          // Keep only the new first 4 values
+          row.cells = row.cells.slice(0, 4);
+        }
+      }
+    });
+
     const filteredData: Table = { ...jsonData, rows: finalFilteredRows };
     writeJSON(filteredData, filteredJsonFilePath);
     console.log("Filtered data written to separate JSON file.");
@@ -127,6 +147,28 @@ const main = async () => {
     const countSpecificRows = jsonData.rows.filter(
       (row) => row.cells.length === 10 || row.cells.length === 1,
     );
+
+    // Modify rows based on the 4th value for count-specific rows
+    countSpecificRows.forEach((row) => {
+      if (row.cells.length >= 4) {
+        if (row.cells[3].value !== "") {
+          // Keep only the first 4 values
+          row.cells = row.cells.slice(0, 4);
+        } else {
+          // Modify the values as specified
+          row.cells[3].value = row.cells[2].value;
+          row.cells[3].type = row.cells[2].type;
+
+          row.cells[2].value = row.cells[1].value;
+          row.cells[2].type = row.cells[1].type;
+
+          row.cells[1].value = row.cells[0].value;
+          row.cells[1].type = row.cells[0].type;
+          // Keep only the new first 4 values
+          row.cells = row.cells.slice(0, 4);
+        }
+      }
+    });
 
     const countSpecificData: Table = { ...jsonData, rows: countSpecificRows };
     writeJSON(countSpecificData, countSpecificJsonFilePath);
