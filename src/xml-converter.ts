@@ -17,6 +17,7 @@ interface Table {
 
 const jsonFilePath = "tags.json";
 const filteredJsonFilePath = "filtered_tags.json";
+const countSpecificJsonFilePath = "count_specific_tags.json";
 
 const parseXML = async (filePath: string): Promise<any> => {
   const xmlContent = fs.readFileSync(filePath, "utf-8");
@@ -43,7 +44,6 @@ const convertToJSON = (xmlData: any): Table => {
       const styleName = cell["$"]?.["table:style-name"];
       if (
         styleName === "ce45" ||
-        styleName === "ce48" ||
         styleName === "ce49" ||
         styleName === "ce59"
       ) {
@@ -77,6 +77,16 @@ const main = async () => {
     writeJSON(jsonData, jsonFilePath);
     console.log("Conversion completed successfully.");
 
+    // Modify rows where the first cell is empty, keeping only the second cell
+    jsonData.rows.forEach((row) => {
+      if (row.cells.length > 0 && row.cells[0].value === "") {
+        row.cells =
+          row.cells.length > 1 && row.cells[1].value !== ""
+            ? [row.cells[1]]
+            : [];
+      }
+    });
+
     // Count items in cells
     let totalItems = 0;
     const countOccurrences = new Map<number, number>();
@@ -96,20 +106,30 @@ const main = async () => {
       console.log(`Count: ${count}, Occurrence: ${occurrence}`);
     });
 
-    // Filter rows that don't have a cell count of 10 or 3
+    // Filter rows that don't have a cell count of 10 or 1
     const filteredRows = jsonData.rows.filter(
-      (row) => row.cells.length !== 10 && row.cells.length !== 3,
+      (row) => row.cells.length !== 10 && row.cells.length !== 1,
     );
 
     // Further filter rows to omit those with 0 cells or where all values are empty strings
-    const finalFilteredRows = filteredRows.filter(
-      (row) =>
-        row.cells.length > 0 && row.cells.some((cell) => cell.value !== ""),
-    );
+    const finalFilteredRows = filteredRows.filter((row) => {
+      if (row.cells.length === 0) return false;
+      if (row.cells.every((cell) => cell.value === "")) return false;
+      return true;
+    });
 
     const filteredData: Table = { ...jsonData, rows: finalFilteredRows };
     writeJSON(filteredData, filteredJsonFilePath);
     console.log("Filtered data written to separate JSON file.");
+
+    // Filter rows that have a cell count of 10 or 1
+    const countSpecificRows = jsonData.rows.filter(
+      (row) => row.cells.length === 10 || row.cells.length === 1,
+    );
+
+    const countSpecificData: Table = { ...jsonData, rows: countSpecificRows };
+    writeJSON(countSpecificData, countSpecificJsonFilePath);
+    console.log("Count-specific data written to separate JSON file.");
   } catch (error) {
     console.error("Error during conversion:", error);
   }
