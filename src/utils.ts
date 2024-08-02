@@ -1,4 +1,4 @@
-import { UNKNOWN } from "./tags";
+import { UNKNOWN } from "./tags.ts";
 
 export const tagsContainer = document.getElementById(
   "tags-list",

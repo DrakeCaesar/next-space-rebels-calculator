@@ -192,7 +192,7 @@ export const tags: Tag[] = [
   },
   {
     name: "Football Pitch",
-    description: "For reaching an alitude of 91 meters",
+    description: "For reaching an altitude of 91 meters",
     rarity: "Common",
     combos: [UNKNOWN],
   },

@@ -1,5 +1,5 @@
 import "./styles.scss";
-import { tags, UNKNOWN } from "./tags";
+import { tags, UNKNOWN } from "./tags.ts";
 import {
   activeCombos,
   checkForDuplicateTags,
@@ -13,7 +13,7 @@ import {
   tagsContainer,
   uniqueCombos,
   updateSelectedTagsDisplay,
-} from "./utils";
+} from "./utils.ts";
 
 import toastr from "toastr"; // Import toastr for notifications
 
