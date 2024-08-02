@@ -44,6 +44,7 @@ const convertToJSON = (xmlData: any): Table => {
       const styleName = cell["$"]?.["table:style-name"];
       if (
         styleName === "ce45" ||
+        styleName === "ce48" ||
         styleName === "ce49" ||
         styleName === "ce59"
       ) {
