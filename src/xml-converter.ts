@@ -96,6 +96,16 @@ const convertToString = (input: InputObject): string => {
   return result;
 };
 
+const convertToStringSpecial = (input: InputObject): string => {
+  let result = "";
+  
+  input["text:span"].forEach((span) => {
+    result += span._;
+  });
+  
+  return result;
+};
+
 const main = async () => {
   const xmlData = await parseXML("Tags.xml");
   const jsonData = convertToJSON(xmlData);
@@ -150,10 +160,18 @@ const main = async () => {
     const row1 = finalFilteredRows[i];
     const row2 = finalFilteredRows[i + 1];
     if (row1 && row2) {
-      const description =
-        (row2.cells[0].value as InputObject)._ !== undefined
-          ? convertToString(row2.cells[0].value as InputObject)
-          : (row2.cells[0].value as string);
+      let description = "";
+      if ((row2.cells[0].value as InputObject)._ !== undefined) {
+        description = convertToString(row2.cells[0].value as InputObject);
+      } else if (
+        (row2.cells[0].value as InputObject)["text:span"] !== undefined
+      ) {
+        description = convertToStringSpecial(
+          row2.cells[0].value as InputObject,
+        );
+      } else {
+        description = row2.cells[0].value as string;
+      }
 
       const combos = (row1.cells[3].value as string)
         .split(", ")

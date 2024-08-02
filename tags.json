@@ -2720,22 +2720,7 @@
   },
   {
     "name": "Clown",
-    "description": {
-      "text:span": [
-        {
-          "_": "For beating ‘Finger Counting For Kids",
-          "$": {
-            "text:style-name": "T1"
-          }
-        },
-        {
-          "_": "’",
-          "$": {
-            "text:style-name": "T2"
-          }
-        }
-      ]
-    },
+    "description": "For beating ‘Finger Counting For Kids’",
     "combos": [
       "CUTE",
       "CREEPY",
