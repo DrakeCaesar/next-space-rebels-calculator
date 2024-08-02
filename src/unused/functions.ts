@@ -1,4 +1,4 @@
-import { ComboCategory, Tag, tags, UNKNOWN } from "./tags.ts";
+import { ComboCategory, Tag, tags, UNKNOWN } from "../tags.ts";
 
 // Function to count combo frequencies, excluding "UNKNOWN"
 function countComboFrequencies(tags: Tag[]): Map<ComboCategory, number> {

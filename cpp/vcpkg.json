@@ -1,9 +1,0 @@
-{
-  "name": "tag-combination-finder",
-  "version": "1.0.0",
-  "dependencies": [
-    {
-      "name": "nlohmann-json"
-    }
-  ]
-}

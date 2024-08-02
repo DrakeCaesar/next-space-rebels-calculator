@@ -2,6 +2,4 @@ node_modules/
 build/
 .cache/
 dist/
-filtered_tags.json
-tags.json
 Tags.xml

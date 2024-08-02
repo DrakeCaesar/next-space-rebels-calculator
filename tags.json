@@ -710,6 +710,25 @@
     {
       "cells": [
         {
+          "value": "BBQ",
+          "type": "string"
+        },
+        {
+          "value": "BBQ",
+          "type": "string"
+        },
+        {
+          "value": ""
+        },
+        {
+          "value": "GROSS",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "cells": [
+        {
           "value": "For using tongs",
           "type": "string"
         }
@@ -1560,6 +1579,25 @@
     {
       "cells": [
         {
+          "value": "TEDDYBEAR",
+          "type": "string"
+        },
+        {
+          "value": "Teddy Bear",
+          "type": "string"
+        },
+        {
+          "value": ""
+        },
+        {
+          "value": "CUTE, WILD",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "cells": [
+        {
           "value": "For using a teddy bear",
           "type": "string"
         }
@@ -1615,6 +1653,25 @@
       "cells": [
         {
           "value": "For using a teddy bear at the top of the rocket",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "cells": [
+        {
+          "value": "BABYDOLL",
+          "type": "string"
+        },
+        {
+          "value": "Baby",
+          "type": "string"
+        },
+        {
+          "value": ""
+        },
+        {
+          "value": "CREEPY, CUTE",
           "type": "string"
         }
       ]
@@ -2415,7 +2472,45 @@
     {
       "cells": [
         {
+          "value": "SET_ROCKETKIT",
+          "type": "string"
+        },
+        {
+          "value": "Rocket Kit",
+          "type": "string"
+        },
+        {
+          "value": ""
+        },
+        {
+          "value": "NOOB",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "cells": [
+        {
           "value": "For using the rocket kit set",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "cells": [
+        {
+          "value": "BEGINNER",
+          "type": "string"
+        },
+        {
+          "value": "Beginner",
+          "type": "string"
+        },
+        {
+          "value": ""
+        },
+        {
+          "value": "NOOB, CUTE",
           "type": "string"
         }
       ]
@@ -2431,7 +2526,47 @@
     {
       "cells": [
         {
+          "value": "FULLKIT",
+          "type": "string"
+        },
+        {
+          "value": "Completed Kit",
+          "type": "string"
+        },
+        {
+          "value": "KIT",
+          "type": "string"
+        },
+        {
+          "value": "NOOB",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "cells": [
+        {
           "value": "For using a completed rocket kit set",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "cells": [
+        {
+          "value": "DOUBLE_KIT",
+          "type": "string"
+        },
+        {
+          "value": "Double Kit",
+          "type": "string"
+        },
+        {
+          "value": "KIT",
+          "type": "string"
+        },
+        {
+          "value": "NOOB, NERDY",
           "type": "string"
         }
       ]
@@ -3473,7 +3608,47 @@
     {
       "cells": [
         {
+          "value": "BOOST",
+          "type": "string"
+        },
+        {
+          "value": "Boost",
+          "type": "string"
+        },
+        {
+          "value": "BOOST",
+          "type": "string"
+        },
+        {
+          "value": "NOOB",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "cells": [
+        {
           "value": "For using a booster",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "cells": [
+        {
+          "value": "EXTRA_BOOST",
+          "type": "string"
+        },
+        {
+          "value": "Extra Boost",
+          "type": "string"
+        },
+        {
+          "value": "BOOST",
+          "type": "string"
+        },
+        {
+          "value": "NOOB",
           "type": "string"
         }
       ]
@@ -6002,7 +6177,45 @@
     {
       "cells": [
         {
+          "value": "IMPROVIZER",
+          "type": "string"
+        },
+        {
+          "value": "Improviser",
+          "type": "string"
+        },
+        {
+          "value": ""
+        },
+        {
+          "value": "NOOB, WEIRD",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "cells": [
+        {
           "value": "For using the rocket kit set and a toilet roll",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "cells": [
+        {
+          "value": "GIRLY",
+          "type": "string"
+        },
+        {
+          "value": "Girly",
+          "type": "string"
+        },
+        {
+          "value": ""
+        },
+        {
+          "value": "CUTE",
           "type": "string"
         }
       ]
@@ -7884,7 +8097,45 @@
     {
       "cells": [
         {
+          "value": "PUMPED",
+          "type": "string"
+        },
+        {
+          "value": "Pumped",
+          "type": "string"
+        },
+        {
+          "value": ""
+        },
+        {
+          "value": "CLEVER",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "cells": [
+        {
           "value": "For increasing your fuel rate with a pump",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "cells": [
+        {
+          "value": "UNDER_PRESSURE",
+          "type": "string"
+        },
+        {
+          "value": "Under Pressure",
+          "type": "string"
+        },
+        {
+          "value": ""
+        },
+        {
+          "value": "CLEVER",
           "type": "string"
         }
       ]
@@ -9310,6 +9561,26 @@
     {
       "cells": [
         {
+          "value": "TIMED",
+          "type": "string"
+        },
+        {
+          "value": "Timed",
+          "type": "string"
+        },
+        {
+          "value": "TIME_SENSOR",
+          "type": "string"
+        },
+        {
+          "value": "CLEVER",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "cells": [
+        {
           "value": "For triggering a time sensor",
           "type": "string"
         }
@@ -9339,6 +9610,26 @@
       "cells": [
         {
           "value": "For triggering 3 different time sensors",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "cells": [
+        {
+          "value": "BUTTON",
+          "type": "string"
+        },
+        {
+          "value": "Button",
+          "type": "string"
+        },
+        {
+          "value": "BUTTON_SENSOR",
+          "type": "string"
+        },
+        {
+          "value": "CLEVER",
           "type": "string"
         }
       ]
@@ -9382,7 +9673,46 @@
     {
       "cells": [
         {
+          "value": "SPLIT",
+          "type": "string"
+        },
+        {
+          "value": "Split",
+          "type": "string"
+        },
+        {
+          "value": ""
+        },
+        {
+          "value": "CLEVER",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "cells": [
+        {
           "value": "For triggering a decoupler",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "cells": [
+        {
+          "value": "STEER",
+          "type": "string"
+        },
+        {
+          "value": "Steer",
+          "type": "string"
+        },
+        {
+          "value": "SWIVEL",
+          "type": "string"
+        },
+        {
+          "value": "CLEVER",
           "type": "string"
         }
       ]
@@ -9748,6 +10078,25 @@
       "cells": [
         {
           "value": "For exploding a Molotov cocktail against a building",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "cells": [
+        {
+          "value": "GOAL_ACHIEVED",
+          "type": "string"
+        },
+        {
+          "value": "Challenge",
+          "type": "string"
+        },
+        {
+          "value": ""
+        },
+        {
+          "value": "CLEVER",
           "type": "string"
         }
       ]
@@ -10392,6 +10741,25 @@
       "cells": [
         {
           "value": "For beating ‘Hover Cat’",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "cells": [
+        {
+          "value": "BOOOM",
+          "type": "string"
+        },
+        {
+          "value": "BOOOM",
+          "type": "string"
+        },
+        {
+          "value": ""
+        },
+        {
+          "value": "AWESOME",
           "type": "string"
         }
       ]

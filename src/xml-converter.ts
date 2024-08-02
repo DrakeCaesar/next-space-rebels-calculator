@@ -15,9 +15,7 @@ interface Table {
   rows: TableRow[];
 }
 
-const jsonFilePath = "tags.json";
-const filteredJsonFilePath = "filtered_tags.json";
-const countSpecificJsonFilePath = "count_specific_tags.json";
+const jsonPath = "tags.json";
 
 const parseXML = async (filePath: string): Promise<any> => {
   const xmlContent = fs.readFileSync(filePath, "utf-8");
@@ -72,110 +70,45 @@ const writeJSON = (data: Table, filePath: string) => {
 };
 
 const main = async () => {
-  try {
-    const xmlData = await parseXML("Tags.xml");
-    const jsonData = convertToJSON(xmlData);
-    writeJSON(jsonData, jsonFilePath);
-    console.log("Conversion completed successfully.");
+  const xmlData = await parseXML("Tags.xml");
+  const jsonData = convertToJSON(xmlData);
 
-    // Modify rows where the first cell is empty, keeping only the second cell
-    jsonData.rows.forEach((row) => {
-      if (row.cells.length > 0 && row.cells[0].value === "") {
-        row.cells =
-          row.cells.length > 1 && row.cells[1].value !== ""
-            ? [row.cells[1]]
-            : [];
+  // Modify rows where the first cell is empty, keeping only the second cell
+  jsonData.rows.forEach((row) => {
+    if (row.cells.length > 0 && row.cells[0].value === "") {
+      row.cells =
+        row.cells.length > 1 && row.cells[1].value !== "" ? [row.cells[1]] : [];
+    }
+  });
+
+  // Filter and modify rows based on the 4th value
+  const finalFilteredRows = jsonData.rows.filter((row) => {
+    if (row.cells.length === 0) return false;
+    if (row.cells.every((cell) => cell.value === "")) return false;
+
+    if (row.cells.length >= 4) {
+      if (row.cells[3].value !== "") {
+        // Keep only the first 4 values
+        row.cells = row.cells.slice(0, 4);
+      } else {
+        // Modify the values as specified
+        row.cells[3].value = row.cells[2].value;
+        row.cells[3].type = row.cells[2].type;
+        row.cells[2].value = row.cells[1].value;
+        row.cells[2].type = row.cells[1].type;
+        row.cells[1].value = row.cells[0].value;
+        row.cells[1].type = row.cells[0].type;
+        // Keep only the new first 4 values
+        row.cells = row.cells.slice(0, 4);
       }
-    });
+    }
 
-    // Count items in cells
-    let totalItems = 0;
-    const countOccurrences = new Map<number, number>();
+    return row.cells;
+  });
 
-    jsonData.rows.forEach((row) => {
-      const cellCount = row.cells.length;
-      totalItems += cellCount;
-      countOccurrences.set(
-        cellCount,
-        (countOccurrences.get(cellCount) || 0) + 1,
-      );
-    });
-
-    console.log(`Total items in cells: ${totalItems}`);
-    console.log(`Number of different counts: ${countOccurrences.size}`);
-    countOccurrences.forEach((occurrence, count) => {
-      console.log(`Count: ${count}, Occurrence: ${occurrence}`);
-    });
-
-    // Filter rows that don't have a cell count of 10 or 1
-    const filteredRows = jsonData.rows.filter(
-      (row) => row.cells.length !== 10 && row.cells.length !== 1,
-    );
-
-    // Further filter rows to omit those with 0 cells or where all values are empty strings
-    const finalFilteredRows = filteredRows.filter((row) => {
-      if (row.cells.length === 0) return false;
-      if (row.cells.every((cell) => cell.value === "")) return false;
-      return true;
-    });
-
-    // Modify rows based on the 4th value
-    finalFilteredRows.forEach((row) => {
-      if (row.cells.length >= 4) {
-        if (row.cells[3].value !== "") {
-          // Keep only the first 4 values
-          row.cells = row.cells.slice(0, 4);
-        } else {
-          // Modify the values as specified
-          row.cells[3].value = row.cells[2].value;
-          row.cells[3].type = row.cells[2].type;
-          row.cells[2].value = row.cells[1].value;
-          row.cells[2].type = row.cells[1].type;
-          row.cells[1].value = row.cells[0].value;
-          row.cells[1].type = row.cells[0].type;
-          // Keep only the new first 4 values
-          row.cells = row.cells.slice(0, 4);
-        }
-      }
-    });
-
-    const filteredData: Table = { ...jsonData, rows: finalFilteredRows };
-    writeJSON(filteredData, filteredJsonFilePath);
-    console.log("Filtered data written to separate JSON file.");
-
-    // Filter rows that have a cell count of 10 or 1
-    const countSpecificRows = jsonData.rows.filter(
-      (row) => row.cells.length === 10 || row.cells.length === 1,
-    );
-
-    // Modify rows based on the 4th value for count-specific rows
-    countSpecificRows.forEach((row) => {
-      if (row.cells.length >= 4) {
-        if (row.cells[3].value !== "") {
-          // Keep only the first 4 values
-          row.cells = row.cells.slice(0, 4);
-        } else {
-          // Modify the values as specified
-          row.cells[3].value = row.cells[2].value;
-          row.cells[3].type = row.cells[2].type;
-
-          row.cells[2].value = row.cells[1].value;
-          row.cells[2].type = row.cells[1].type;
-
-          row.cells[1].value = row.cells[0].value;
-          row.cells[1].type = row.cells[0].type;
-          // Keep only the new first 4 values
-          row.cells = row.cells.slice(0, 4);
-        }
-      }
-    });
-
-    const countSpecificData: Table = { ...jsonData, rows: countSpecificRows };
-    writeJSON(countSpecificData, countSpecificJsonFilePath);
-    console.log("Count-specific data written to separate JSON file.");
-  } catch (error) {
-    console.error("Error during conversion:", error);
-  }
+  const filteredData: Table = { ...jsonData, rows: finalFilteredRows };
+  writeJSON(filteredData, jsonPath);
+  console.log("Filtered data written to separate JSON file.");
 };
 
 main();
