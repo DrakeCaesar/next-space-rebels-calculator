@@ -108,6 +108,33 @@ const main = async () => {
 
   const filteredData: Table = { ...jsonData, rows: finalFilteredRows };
   writeJSON(filteredData, jsonPath);
+
+  interface Tag {
+    name: string;
+    description: string;
+    combos: string[];
+  }
+  const tags: Tag[] = [];
+  //for ech 2 rows, combine them into one row
+  for (let i = 0; i < filteredData.rows.length; i += 2) {
+    const row1 = filteredData.rows[i];
+    const row2 = filteredData.rows[i + 1];
+    if (row1 && row2) {
+      const newTag: Tag = {
+        name: row1.cells[1].value as string,
+        description: row2.cells[0].value as string,
+        combos: (row1.cells[3].value as string)
+          .split(", ")
+          .map((combo: string) => combo.trim()),
+      };
+
+      tags.push(newTag);
+    }
+  }
+
+  const jsonContent = JSON.stringify(tags, null, 2);
+  fs.writeFileSync("finalTags.json", jsonContent, "utf-8");
+
   console.log("Filtered data written to separate JSON file.");
 };
 
