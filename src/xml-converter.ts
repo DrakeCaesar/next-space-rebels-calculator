@@ -2,7 +2,7 @@ import * as fs from "fs";
 import * as xml2js from "xml2js";
 
 interface TableCell {
-  value: string | number;
+  value: unknown;
   type: string;
 }
 
@@ -13,6 +13,19 @@ interface TableRow {
 interface Table {
   name: string;
   rows: TableRow[];
+}
+
+interface TextSpan {
+  _: string;
+  $: {
+    "text:style-name": string;
+  };
+}
+
+interface InputObject {
+  _: string;
+  "text:span": TextSpan[];
+  type: string;
 }
 
 const jsonPath = "tags.json";
@@ -69,6 +82,20 @@ const writeJSON = (data: Table, filePath: string) => {
   fs.writeFileSync(filePath, jsonContent, "utf-8");
 };
 
+const convertToString = (input: InputObject): string => {
+  let result = "";
+
+  // Concatenate the text from "text:span"
+  input["text:span"].forEach((span) => {
+    result += span._;
+  });
+
+  // Append the main text
+  result += input._;
+
+  return result;
+};
+
 const main = async () => {
   const xmlData = await parseXML("Tags.xml");
   const jsonData = convertToJSON(xmlData);
@@ -106,8 +133,11 @@ const main = async () => {
     return row.cells;
   });
 
-  const filteredData: Table = { ...jsonData, rows: finalFilteredRows };
-  writeJSON(filteredData, jsonPath);
+  // fs.writeFileSync(
+  //   "tags-debug.json",
+  //   JSON.stringify(finalFilteredRows, null, 2),
+  //   "utf-8",
+  // );
 
   interface Tag {
     name: string;
@@ -116,24 +146,30 @@ const main = async () => {
   }
   const tags: Tag[] = [];
   //for ech 2 rows, combine them into one row
-  for (let i = 0; i < filteredData.rows.length; i += 2) {
-    const row1 = filteredData.rows[i];
-    const row2 = filteredData.rows[i + 1];
+  for (let i = 0; i < finalFilteredRows.length; i += 2) {
+    const row1 = finalFilteredRows[i];
+    const row2 = finalFilteredRows[i + 1];
     if (row1 && row2) {
+      const description =
+        (row2.cells[0].value as InputObject)._ !== undefined
+          ? convertToString(row2.cells[0].value as InputObject)
+          : (row2.cells[0].value as string);
+
+      const combos = (row1.cells[3].value as string)
+        .split(", ")
+        .map((combo: string) => combo.trim());
+
       const newTag: Tag = {
         name: row1.cells[1].value as string,
-        description: row2.cells[0].value as string,
-        combos: (row1.cells[3].value as string)
-          .split(", ")
-          .map((combo: string) => combo.trim()),
+        description,
+        combos,
       };
 
       tags.push(newTag);
     }
   }
 
-  const jsonContent = JSON.stringify(tags, null, 2);
-  fs.writeFileSync("finalTags.json", jsonContent, "utf-8");
+  fs.writeFileSync("tags.json", JSON.stringify(tags, null, 2), "utf-8");
 
   console.log("Filtered data written to separate JSON file.");
 };
