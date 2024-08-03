@@ -2,7 +2,7 @@
   "configurations": [
     {
       "type": "chrome",
-      "name": "http://localhost:5173",
+      "name": "Launch Chrome Debugger",
       "request": "launch",
       "url": "http://localhost:5173"
     }

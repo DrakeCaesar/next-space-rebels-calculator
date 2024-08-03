@@ -1,0 +1,25 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Start App",
+      "type": "shell",
+      "command": "npm run dev",
+      "group": "none",
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      },
+      "runOptions": {
+        "runOn": "folderOpen"
+      }
+    },
+    {
+      "label": "Start and Debug",
+      "dependsOn": "Start App",
+      "type": "shell",
+      "command": "echo Starting Debugger...",
+      "problemMatcher": []
+    }
+  ]
+}

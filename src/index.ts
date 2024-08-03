@@ -1,14 +1,16 @@
+import {
+  createComboButton,
+  createCountFilterButtons,
+  createModeSwitchButton,
+  createToggleColorsButton,
+} from "./createButtons.ts";
 import { updateSelectedTagsDisplay } from "./displayUtils.ts";
 import "./styles.scss";
 import { tags, tagsFromJson as tagsFromTheGame, UNKNOWN } from "./tags.ts";
 import {
   activeCombos,
   checkForDuplicateTags,
-  createComboButton,
-  createCountFilterButtons,
-  createModeSwitchButton,
   createTagElement,
-  createToggleColorsButton,
   filterTagsByText,
   loadSelectedTagsFromLocalStorage,
   sortTagsBy,
