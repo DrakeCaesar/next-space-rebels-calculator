@@ -2485,7 +2485,7 @@ export const tags: Tag[] = [
   },
 ];
 
-export const tagsFromJson: Tag[] = [
+export const tagsFromTheGame: Tag[] = [
   {
     name: "Symmetric",
     description: "For having a symmetric rocket",

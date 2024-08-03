@@ -189,6 +189,7 @@ export function createTagElement(tag: any, index: number) {
     "click",
     handleTagClick(tagElement, tag, selectedTags, updateSelectedTagsDisplay),
   );
+
   tagElement.addEventListener("mousemove", handleTagMouseMove(tagElement));
 }
 

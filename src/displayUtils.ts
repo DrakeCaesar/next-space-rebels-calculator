@@ -1,5 +1,10 @@
 import { UNKNOWN } from "./tags.ts";
-import { selectedTagsElement, selectedTags, positionTooltip, consoleElement } from "./utils.ts";
+import {
+  consoleElement,
+  positionTooltip,
+  selectedTags,
+  selectedTagsElement,
+} from "./utils.ts";
 
 export function updateSelectedTagsDisplay() {
   selectedTagsElement!.innerHTML = "";

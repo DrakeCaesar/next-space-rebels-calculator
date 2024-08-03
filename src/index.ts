@@ -6,7 +6,7 @@ import {
 } from "./createButtons.ts";
 import { updateSelectedTagsDisplay } from "./displayUtils.ts";
 import "./styles.scss";
-import { tags, tagsFromJson as tagsFromTheGame, UNKNOWN } from "./tags.ts";
+import { tags, tagsFromTheGame, UNKNOWN } from "./tags.ts";
 import {
   activeCombos,
   checkForDuplicateTags,
