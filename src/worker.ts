@@ -60,6 +60,17 @@ self.onmessage = async function (e: MessageEvent) {
   const { tags }: FindBestCombinationPayload = e.data;
   const tagsCopy = [...tags];
 
+  // Create comboCounts object
+  const comboCounts: ComboCounts = {};
+  tagsCopy.forEach((tag) => {
+    tag.combos.forEach((combo: string) => {
+      comboCounts[combo] = (comboCounts[combo] || 0) + 1;
+    });
+  });
+
+  // Print the combo counts
+  console.log("Combo counts:", JSON.stringify(comboCounts, null, 2));
+
   // Print the number of tags before pruning
   console.log(`Number of tags before pruning: ${tagsCopy.length}`);
 
@@ -92,15 +103,15 @@ self.onmessage = async function (e: MessageEvent) {
               prunedTags[l],
               prunedTags[m],
             ];
-            const comboCounts: ComboCounts = {};
+            const combinationCounts: ComboCounts = {};
 
             combination.forEach((tag) => {
               tag.combos.forEach((combo: string) => {
-                comboCounts[combo] = (comboCounts[combo] || 0) + 1;
+                combinationCounts[combo] = (combinationCounts[combo] || 0) + 1;
               });
             });
 
-            const score = calculateScore(comboCounts);
+            const score = calculateScore(combinationCounts);
 
             if (score > bestScore) {
               bestScore = score;
