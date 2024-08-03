@@ -322,24 +322,40 @@ export function createTagElement(tag: any, index: number) {
   const leftName = `left-${tag.combos[0]
     .toLowerCase()
     .replace("???", "unknown")}`;
-  const rightName = `${
+  const middleName = `${
     tag.combos.length > 1
-      ? `right-${tag.combos[1].toLowerCase().replace("???", "unknown")}`
-      : `right-${tag.combos[0].toLowerCase().replace("???", "unknown")}`
+      ? `middle-${tag.combos[1].toLowerCase().replace("???", "unknown")}`
+      : `middle-${tag.combos[0].toLowerCase().replace("???", "unknown")}`
+  }`;
+  const rightName = `${
+    tag.combos.length > 2
+      ? `right-${tag.combos[2].toLowerCase().replace("???", "unknown")}`
+      : middleName
   }`;
 
   tagElement.innerHTML += `
-    ${name}
-    <div class="tag-tooltip">
-      <strong>${name}</strong><br>
-      ${tag.description}<br>
-      <span class="${tag.rarity.toLowerCase()}">${tag.rarity}</span><br>
-      ${tag.combos
-        .map((combo: string) => `<span class="${combo}">${combo}</span>`)
-        .join(", ")}
-    </div>
-  `;
-  tagElement.classList.add(leftName, rightName);
+  ${name}
+  <div class="tag-tooltip">
+    <strong>${name}</strong><br>
+    ${tag.description}<br>
+    <span class="${tag.rarity.toLowerCase()}">${tag.rarity}</span><br>
+    ${tag.combos
+      .map((combo: string) => `<span class="${combo}">${combo}</span>`)
+      .join(", ")}
+  </div>
+`;
+
+  if (
+    leftName !== middleName &&
+    middleName !== rightName &&
+    leftName !== rightName
+  ) {
+    tagElement.classList.add(leftName, middleName, rightName);
+  } else if (leftName !== middleName) {
+    tagElement.classList.add(leftName, middleName);
+  } else {
+    tagElement.classList.add(leftName);
+  }
   tagsContainer?.appendChild(tagElement);
 
   tagElement.addEventListener("click", function () {

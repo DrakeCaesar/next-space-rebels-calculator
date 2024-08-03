@@ -83,23 +83,41 @@ $tags: unknown, cute, awesome, noob, smart, weird, wild, cool, aspiring, funny,
 
 @each $tag1 in $tags {
   @each $tag2 in $tags {
-    @if $tag1 != $tag2 {
-      .tag.alternate-colors.left-#{$tag1}.right-#{$tag2} {
-        background: linear-gradient(
-          to right,
-          var(--#{$tag1}-color) 50%,
-          var(--#{$tag2}-color) 50%
-        );
-        display: inline-block;
-      }
-    } @else {
-      .tag.alternate-colors.left-#{$tag1}.right-#{$tag2} {
-        background-color: var(--#{$tag1}-color);
-        display: inline-block;
+    @each $tag3 in $tags {
+      @if $tag1 != $tag2 and $tag2 != $tag3 and $tag1 != $tag3 {
+        .tag.alternate-colors.left-#{$tag1}.middle-#{$tag2}.right-#{$tag3} {
+          background: linear-gradient(
+            to right,
+            var(--#{$tag1}-color) 0%,
+            var(--#{$tag1}-color) 33.33%,
+            var(--#{$tag2}-color) 33.33%,
+            var(--#{$tag2}-color) 66.66%,
+            var(--#{$tag3}-color) 66.66%,
+            var(--#{$tag3}-color) 100%
+          );
+          display: inline-block;
+        }
+      } @else if $tag1 != $tag2 {
+        .tag.alternate-colors.left-#{$tag1}.middle-#{$tag2} {
+          background: linear-gradient(
+            to right,
+            var(--#{$tag1}-color) 0%,
+            var(--#{$tag1}-color) 50%,
+            var(--#{$tag2}-color) 50%,
+            var(--#{$tag2}-color) 100%
+          );
+          display: inline-block;
+        }
+      } @else {
+        .tag.alternate-colors.left-#{$tag1} {
+          background-color: var(--#{$tag1}-color);
+          display: inline-block;
+        }
       }
     }
   }
 }
+
 body {
   display: flex;
   flex-direction: row;
@@ -154,6 +172,7 @@ button,
   flex-wrap: wrap;
   box-sizing: border-box;
   position: relative;
+  align-content: flex-start;
 }
 
 #tags-container::before {
