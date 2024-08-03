@@ -45,10 +45,27 @@ tags.forEach((tag) => {
   if (tagFromJson) {
     tag.description = tagFromJson.description;
     tag.combos = tagFromJson.combos;
+    // check if tag.combos are a subset of tagFromJson.combos
+    const isSubset = tag.combos.every((combo) =>
+      tagFromJson.combos.includes(combo),
+    );
+
+    if (!isSubset) {
+      console.error(`Tag combos not a subset: ${tag.name}`);
+    }
   } else {
     console.error(`Tag not found: ${tag.name}`);
   }
 });
+
+// //add tags not present in tags, but present in tagsFromTheGame
+// tagsFromTheGame.forEach((tag) => {
+//   if (!tags.find((t) => t.name === tag.name || t.name === tag.altName)) {
+//     tag.rarity = "Common";
+//     tags.push(tag);
+//     console.log(`Tag added: ${tag.name}`);
+//   }
+// });
 
 tags.forEach((tag) => {
   tag.combos.forEach((combo) => uniqueCombos.add(combo));
