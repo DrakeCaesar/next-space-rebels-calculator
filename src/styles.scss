@@ -225,9 +225,8 @@ button,
   opacity: 1 !important;
 }
 .tag.selected {
-  border: 2px solid rgb(143, 94, 143);
-  animation: border-pulse 1s infinite;
-  margin: 3px;
+  outline: 2px solid rgb(143, 94, 143);
+  animation: outline-pulse 1s infinite;
 }
 
 // .tag.blocked::after {
@@ -263,13 +262,13 @@ button,
   display: inline-block !important;
 }
 
-@keyframes border-pulse {
+@keyframes outline-pulse {
   0%,
   100% {
-    border-color: magenta;
+    outline-color: magenta;
   }
   50% {
-    border-color: cyan;
+    outline-color: cyan;
   }
 }
 
