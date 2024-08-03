@@ -4,6 +4,7 @@ export interface ResultMessage {
   type: "result";
   bestCombination: Tag[];
   score: number;
+  allScores: Set<number>;
 }
 
 export async function findBestCombination(tags: Tag[]): Promise<ResultMessage> {

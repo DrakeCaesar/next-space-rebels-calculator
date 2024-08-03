@@ -56,6 +56,7 @@ interface ResultMessage {
   type: "result";
   bestCombination: Tag[];
   score: number;
+  allScores: Set<number>;
 }
 
 self.onmessage = async function (e: MessageEvent) {
@@ -91,7 +92,7 @@ self.onmessage = async function (e: MessageEvent) {
   });
 
   //throw away half the set for testing
-  prunedTags = prunedTags.slice(0, prunedTags.length / 4);
+  // prunedTags = prunedTags.slice(0, prunedTags.length / 4);
 
   // Print the pruned combo counts
   console.log(
@@ -101,6 +102,7 @@ self.onmessage = async function (e: MessageEvent) {
 
   let bestScore = 0;
   let bestCombination: Tag[] = [];
+  const allScores: Set<number> = new Set();
   const n = prunedTags.length;
 
   const totalCombinations = (n * (n - 1) * (n - 2) * (n - 3) * (n - 4)) / 120;
@@ -131,6 +133,7 @@ self.onmessage = async function (e: MessageEvent) {
             });
 
             const score = calculateScore(combinationCounts);
+            allScores.add(score);
 
             if (score > bestScore) {
               bestScore = score;
@@ -157,6 +160,7 @@ self.onmessage = async function (e: MessageEvent) {
     type: "result",
     bestCombination: bestCombination,
     score: bestScore,
+    allScores: allScores,
   };
   postMessage(resultMessage);
 };
