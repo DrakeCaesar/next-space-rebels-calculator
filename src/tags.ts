@@ -44,8 +44,9 @@ export type ComboCategory =
 
 export interface Tag {
   name: string;
+  altName?: string;
   description: string;
-  rarity: TagRarity;
+  rarity?: TagRarity;
   combos: ComboCategory[];
   ruledOut?: ComboCategory[];
   blocked?: boolean;
@@ -1561,8 +1562,8 @@ export const tags: Tag[] = [
     combos: [AWESOME],
   },
   {
-    name: "RimJob",
-    description: "unknown",
+    name: "Rim Job",
+    description: "For using a steel rim",
     rarity: Rare,
     combos: [UNKNOWN],
   },
@@ -1627,7 +1628,8 @@ export const tags: Tag[] = [
     combos: [UNKNOWN],
   },
   {
-    name: "Tripover",
+    name: "Tripower",
+    altName: "Triforce",
     description: "For using 3 triangles stack in a pyramid",
     rarity: Epic,
     combos: [GEEKY],
@@ -1908,6 +1910,7 @@ export const tags: Tag[] = [
   },
   {
     name: "Precious",
+    altName: "Lord of the Rings",
     description: "For combining a mannequin and a ring pyramid",
     rarity: Epic,
     combos: [GEEKY],
@@ -2102,12 +2105,14 @@ export const tags: Tag[] = [
   },
   {
     name: "Gerbal",
+    altName: "Kerbal",
     description: "For combining a baby and an NSR part",
     rarity: Uncommon,
     combos: [UNKNOWN],
   },
   {
     name: "Flammable",
+    altName: "Banksy",
     description: "For using a graffiti can and a Molotov cocktail",
     rarity: Rare,
     combos: [UNKNOWN],
@@ -2247,6 +2252,7 @@ export const tags: Tag[] = [
   },
   {
     name: "Voxel",
+    altName: "Minecraft",
     description: "For using only cube-shaped structure parts",
     rarity: Epic,
     combos: [UNKNOWN],
@@ -2421,5 +2427,2030 @@ export const tags: Tag[] = [
       "For having a rocket in the air that consists of only a figure part",
     rarity: Epic,
     combos: [UNKNOWN],
+  },
+];
+
+export const tagsFromJson: Tag[] = [
+  {
+    name: "Symmetric",
+    description: "For having a symmetric rocket",
+    combos: [COOL],
+  },
+  {
+    name: "Perfectly Symmetric",
+    description: "For having a perfectly symmetric rocket",
+    combos: [COOL],
+  },
+  {
+    name: "Unsymmetric",
+    description: "For having a unsymmetric rocket",
+    combos: [WEIRD],
+  },
+  {
+    name: "Extremely Unsymmetric",
+    description: "For having a completely unsymmetric rocket",
+    combos: [WEIRD],
+  },
+  {
+    name: "Thin",
+    description:
+      "For having the rocket width at least 5 times smaller than its height",
+    combos: [SMART],
+  },
+  {
+    name: "Flat",
+    description:
+      "For having the rocket width at least 5 times bigger than its height",
+    combos: [WEIRD],
+  },
+  {
+    name: "Square",
+    description: "For having the rocket width the same as the rocket height",
+    combos: [FUNNY],
+  },
+  {
+    name: "Big",
+    description: "For making a big rocket",
+    combos: [AWESOME],
+  },
+  {
+    name: "Giant",
+    description: "For making a giant rocket",
+    combos: [AWESOME],
+  },
+  {
+    name: "Skeleton",
+    description:
+      "For having a rocket with only 10% of its mass consisting of structure parts",
+    combos: [CREEPY],
+  },
+  {
+    name: "Lightweight",
+    description: "For having a rocket weighing less than 1 kilogram",
+    combos: [CUTE],
+  },
+  {
+    name: "Purist",
+    description: "For using only one structure set",
+    combos: [COOL],
+  },
+  {
+    name: "Collage",
+    description: "For using 5 different structure sets",
+    combos: [AWESOME, COOL],
+  },
+  {
+    name: "Minimal",
+    description: "For using only 1 structure part",
+    combos: [WEIRD],
+  },
+  {
+    name: "Complicated",
+    description: "For using at least 25 structure parts",
+    combos: [SMART],
+  },
+  {
+    name: "Monolith",
+    description:
+      "For having a rocket of at least 2 meters tall while using only 1 structure part",
+    combos: [WEIRD],
+  },
+  {
+    name: "Plank",
+    description: "For using a plank",
+    combos: [NOOB],
+  },
+  {
+    name: "Pallet",
+    description: "For using a pallet",
+    combos: [NOOB],
+  },
+  {
+    name: "Toilet Roll",
+    description: "For using a toilet roll",
+    combos: [NOOB, GROSS],
+  },
+  {
+    name: "Pandemic",
+    description: "For using 5 toilet rolls",
+    combos: [FUNNY, GROSS],
+  },
+  {
+    name: "Tin Can",
+    description: "For using a tin can",
+    combos: [GROSS],
+  },
+  {
+    name: "Football",
+    description: "For using a football",
+    combos: [GROSS, COOL],
+  },
+  {
+    name: "Soccer",
+    description: "For using 2 footballs",
+    combos: [NOOB, FUNNY],
+  },
+  {
+    name: "Funnel",
+    description: "For using a funnel",
+    combos: [GROSS],
+  },
+  {
+    name: "Keyboard",
+    description: "For using a keyboard",
+    combos: [GEEKY, GROSS],
+  },
+  {
+    name: "Sit",
+    description: "For using a stool",
+    combos: [GROSS],
+  },
+  {
+    name: "BBQ",
+    description: "For using tongs",
+    combos: [GROSS],
+  },
+  {
+    name: "Clean",
+    description: "For using a vacuum",
+    combos: [GROSS, FUNNY],
+  },
+  {
+    name: "Rim Job",
+    description: "For using a steel rim",
+    combos: [NAUGHTY, FUNNY],
+  },
+  {
+    name: "Muffled",
+    description: "For using a muffler",
+    combos: [WEIRD],
+  },
+  {
+    name: "Brake",
+    description: "For using a brake disk",
+    combos: [NOOB],
+  },
+  {
+    name: "High Level",
+    description: "For using a ladder",
+    combos: [FUNNY, ASPIRING],
+  },
+  {
+    name: "Saw",
+    description: "For using a table saw",
+    combos: [WEIRD, WILD],
+  },
+  {
+    name: "Slide",
+    description: "For using a slide end",
+    combos: [COOL],
+  },
+  {
+    name: "Wiper",
+    description: "For using a windshield wiper",
+    combos: [WEIRD],
+  },
+  {
+    name: "Umbrella",
+    description: "For using an umbrella",
+    combos: [COOL, CUTE],
+  },
+  {
+    name: "Poppins",
+    description: "For using a umbrella at the top rocket",
+    combos: [GEEKY, CUTE],
+  },
+  {
+    name: "StarTube",
+    description: "For using a StarTube cap",
+    combos: [COOL],
+  },
+  {
+    name: "Breakfast",
+    description: "For using a toaster",
+    combos: [GROSS],
+  },
+  {
+    name: "Loud",
+    description: "For using a megaphone",
+    combos: [AWESOME],
+  },
+  {
+    name: "Internet",
+    description: "For using a router",
+    combos: [GEEKY, SMART],
+  },
+  {
+    name: "Crazy",
+    description: "For using a lampshade",
+    combos: [WEIRD, FUNNY],
+  },
+  {
+    name: "Clamp",
+    description: "For using a clamp",
+    combos: [WEIRD],
+  },
+  {
+    name: "Fidget Spinner",
+    description: "For using a fidget spinner",
+    combos: [COOL],
+  },
+  {
+    name: "Graffiti",
+    description: "For using a graffiti can",
+    combos: [COOL, WILD],
+  },
+  {
+    name: "Music",
+    description: "For using a guitar",
+    combos: [COOL],
+  },
+  {
+    name: "Stop",
+    description: "For using a stop sign",
+    combos: [WEIRD],
+  },
+  {
+    name: "Lit",
+    description: "For using an industrial light",
+    combos: [COOL],
+  },
+  {
+    name: "Cock",
+    description: "For using a weathercock",
+    combos: [NAUGHTY, WILD],
+  },
+  {
+    name: "Top",
+    description: "For using a spinning top",
+    combos: [CUTE],
+  },
+  {
+    name: "Chopsticks",
+    description: "For using 2 toy sticks",
+    combos: [FUNNY],
+  },
+  {
+    name: "Mikado",
+    description: "For using 5 toy sticks",
+    combos: [CUTE],
+  },
+  {
+    name: "Rings",
+    description: "For using a ring pyramid",
+    combos: [CUTE],
+  },
+  {
+    name: "Train",
+    description: "For using a wooden train",
+    combos: [CUTE],
+  },
+  {
+    name: "Elephant",
+    description: "For using a stuffed elephant",
+    combos: [WILD, CUTE],
+  },
+  {
+    name: "Jumbo",
+    description: "For using 2 stuffed elephants",
+    combos: [WILD, CUTE],
+  },
+  {
+    name: "Horse",
+    description: "For using a rocking horse",
+    combos: [WILD, CUTE],
+  },
+  {
+    name: "Stable",
+    description: "For using 4 rocking horses",
+    combos: [WILD, CUTE],
+  },
+  {
+    name: "Teddy Bear",
+    description: "For using a teddy bear",
+    combos: [CUTE, WILD],
+  },
+  {
+    name: "Cuddly",
+    description: "For using 3 teddy bears",
+    combos: [CUTE],
+  },
+  {
+    name: "Teddy Nose",
+    description: "For using a teddy bear at the top of the rocket",
+    combos: [FUNNY, CUTE],
+  },
+  {
+    name: "Baby",
+    description: "For using a baby",
+    combos: [CREEPY, CUTE],
+  },
+  {
+    name: "Conjoined Twin",
+    description: "For using 2 babies that are attached to each other",
+    combos: [CREEPY],
+  },
+  {
+    name: "Baby Centipede",
+    description: "For using 3 babies that are all attached to each other",
+    combos: [CREEPY],
+  },
+  {
+    name: "Baby Centipede 2",
+    description: "For using 12 babies that are all attached to each other",
+    combos: [CREEPY],
+  },
+  {
+    name: "Bot",
+    description: "For using a robot",
+    combos: [CUTE, COOL],
+  },
+  {
+    name: "Astronaut",
+    description: "For using a space shuttle",
+    combos: [ASPIRING],
+  },
+  {
+    name: "Moon",
+    description: "For using a moon rocket",
+    combos: [GEEKY],
+  },
+  {
+    name: "Flamingo",
+    description: "For using a flamingo",
+    combos: [WILD],
+  },
+  {
+    name: "Frame",
+    description: "For using a bike frame",
+    combos: [WEIRD],
+  },
+  {
+    name: "Saddle",
+    description: "For using a bike saddle",
+    combos: [WEIRD],
+  },
+  {
+    name: "Bottle",
+    description: "For using a fuel bottle",
+    combos: [COOL],
+  },
+  {
+    name: "Motorcycle",
+    description: "For using a motorcycle tank",
+    combos: [COOL, AWESOME],
+  },
+  {
+    name: "Truck",
+    description: "For using a truck fuel tank",
+    combos: [WEIRD],
+  },
+  {
+    name: "Tzar",
+    description: "For using a Tzar bomba",
+    combos: [CREEPY, AWESOME],
+  },
+  {
+    name: "Junk",
+    description: "For using a junk engine",
+    combos: [WEIRD],
+  },
+  {
+    name: "Techno",
+    description: "For using a techno jet",
+    combos: [COOL, WEIRD],
+  },
+  {
+    name: "Ultimate",
+    description: "For using a ultimate engine",
+    combos: [AWESOME],
+  },
+  {
+    name: "Gate",
+    description: "For using a gate",
+    combos: [SMART],
+  },
+  {
+    name: "Leaf Blower",
+    description: "For using a leaf blower pump",
+    combos: [WEIRD],
+  },
+  {
+    name: "Cherry",
+    description: "For using a cherry bomb",
+    combos: [CUTE, NOOB],
+  },
+  {
+    name: "Illegal",
+    description: "For using an illegal firework",
+    combos: [NAUGHTY],
+  },
+  {
+    name: "Firecracker",
+    description: "For using a firecracker",
+    combos: [NAUGHTY, AWESOME],
+  },
+  {
+    name: "Chinese Roll",
+    description: "For using 6 firecrackers",
+    combos: [NAUGHTY, AWESOME],
+  },
+  {
+    name: "Molotov",
+    description: "For using a Molotov cocktail",
+    combos: [NAUGHTY, CREEPY],
+  },
+  {
+    name: "Dynamite",
+    description: "For using a dynamite",
+    combos: [NAUGHTY, AWESOME],
+  },
+  {
+    name: "Swivel",
+    description: "For using a swivel",
+    combos: [SMART],
+  },
+  {
+    name: "Decoupler",
+    description: "For using a decoupler",
+    combos: [SMART],
+  },
+  {
+    name: "Satellite",
+    description: "For using a satellite",
+    combos: [SMART, ASPIRING],
+  },
+  {
+    name: "Passion",
+    description: "For using a passion firework",
+    combos: [NAUGHTY],
+  },
+  {
+    name: "Death",
+    description: "For using 4 purple smokers",
+    combos: [CREEPY],
+  },
+  {
+    name: "Rocket Kit",
+    description: "For using the rocket kit set",
+    combos: [NOOB],
+  },
+  {
+    name: "Beginner",
+    description: "For only the rocket kit structure set",
+    combos: [NOOB, CUTE],
+  },
+  {
+    name: "Completed Kit",
+    description: "For using a completed rocket kit set",
+    combos: [NOOB],
+  },
+  {
+    name: "Double Kit",
+    description: "For using a completed rocket kit set twice",
+    combos: [NOOB, GEEKY],
+  },
+  {
+    name: "Collector",
+    description: "For using 14 different rocket kit parts",
+    combos: [NOOB, AWESOME],
+  },
+  {
+    name: "Trash",
+    description: "For using the trash set",
+    combos: [GROSS],
+  },
+  {
+    name: "Recycler",
+    description: "For using only the trash structure set",
+    combos: [GROSS, WILD],
+  },
+  {
+    name: "Trash Crafter",
+    description: "For using 3 different trash parts",
+    combos: [GROSS, COOL],
+  },
+  {
+    name: "Trash King",
+    description: "For using 8 different trash parts",
+    combos: [GROSS, AWESOME],
+  },
+  {
+    name: "Toys",
+    description: "For using the toy set",
+    combos: [CUTE],
+  },
+  {
+    name: "Playtime",
+    description: "For using only the toy structure set",
+    combos: [CUTE],
+  },
+  {
+    name: "Toy Freak",
+    description: "For using 13 different toy parts",
+    combos: [CUTE, AWESOME],
+  },
+  {
+    name: "PVC",
+    description: "For using the PVC set",
+    combos: [SMART],
+  },
+  {
+    name: "DIY",
+    description: "For using only the PVC structure set",
+    combos: [SMART],
+  },
+  {
+    name: "Sewer System",
+    description: "For using 10 PVC parts and no other structure sets",
+    combos: [WEIRD, SMART],
+  },
+  {
+    name: "Plumber",
+    description: "For using 19 different PVC parts",
+    combos: [SMART, AWESOME],
+  },
+  {
+    name: "Bike",
+    description: "For using the bike set",
+    combos: [WEIRD],
+  },
+  {
+    name: "Bicycle",
+    description: "For using only the bike structure set",
+    combos: [WEIRD, COOL],
+  },
+  {
+    name: "Cyclist",
+    description: "For using 4 different bike parts",
+    combos: [WEIRD],
+  },
+  {
+    name: "Full Bike",
+    description: "For making a complete bike",
+    combos: [WEIRD],
+  },
+  {
+    name: "Scrap",
+    description: "For using a scrap part",
+    combos: [WEIRD],
+  },
+  {
+    name: "Metal",
+    description: "For using only the scrap structure set",
+    combos: [WEIRD, COOL],
+  },
+  {
+    name: "Junkyard",
+    description: "For using 25 different scrap parts",
+    combos: [WEIRD, GROSS],
+  },
+  {
+    name: "Wood",
+    description: "For using the wood set",
+    combos: [WILD],
+  },
+  {
+    name: "Tree",
+    description: "For using only the wood structure set",
+    combos: [WILD],
+  },
+  {
+    name: "Lumberjack",
+    description: "For using 24 different wood parts",
+    combos: [WILD, AWESOME],
+  },
+  {
+    name: "Pool",
+    description: "For using a pool part",
+    combos: [COOL],
+  },
+  {
+    name: "Fiberglass",
+    description: "For using only the pool structure set",
+    combos: [COOL],
+  },
+  {
+    name: "Lifeguard",
+    description: "For using 20 different pool parts",
+    combos: [COOL, AWESOME],
+  },
+  {
+    name: "Retro",
+    description: "For using a retro part",
+    combos: [GEEKY],
+  },
+  {
+    name: "Thunder Bird",
+    description: "For using only the retro structure set",
+    combos: [GEEKY, WILD],
+  },
+  {
+    name: "Antique",
+    description: "For using 13 different retro parts",
+    combos: [GEEKY],
+  },
+  {
+    name: "Next Space Rebel",
+    description: "For using a NSR part",
+    combos: [ASPIRING],
+  },
+  {
+    name: "Modern",
+    description: "For using only the NSR structure set",
+    combos: [ASPIRING],
+  },
+  {
+    name: "Suborbital",
+    description: "For using 23 different NSR parts",
+    combos: [ASPIRING],
+  },
+  {
+    name: "Mannequin",
+    description: "For using a mannequin part",
+    combos: [WEIRD],
+  },
+  {
+    name: "Golem",
+    description: "For using only the mannequin structure set",
+    combos: [WEIRD, GEEKY],
+  },
+  {
+    name: "Display",
+    description: "For using 7 different mannequin parts",
+    combos: [WEIRD, CUTE],
+  },
+  {
+    name: "Dandy Deer",
+    description: "For using a Dandy Deer part",
+    combos: [WEIRD, WILD],
+  },
+  {
+    name: "Reindeer",
+    description: "For using only the Dandy Deer structure set",
+    combos: [WILD],
+  },
+  {
+    name: "Furry",
+    description: "For using 7 different Dandy Deer parts",
+    combos: [GEEKY, WILD],
+  },
+  {
+    name: "Diversity",
+    description: "For using 10 different other parts",
+    combos: [AWESOME],
+  },
+  {
+    name: "Boost",
+    description: "For using a booster",
+    combos: [NOOB],
+  },
+  {
+    name: "Extra Boost",
+    description: "For using 2 boosters",
+    combos: [NOOB],
+  },
+  {
+    name: "Power Boost",
+    description: "For using 3 boosters",
+    combos: [AWESOME],
+  },
+  {
+    name: "Mega Boost",
+    description: "For using 4 boosters",
+    combos: [AWESOME],
+  },
+  {
+    name: "Giga Boost",
+    description: "For using 5 boosters",
+    combos: [AWESOME],
+  },
+  {
+    name: "Booster Pack",
+    description: "For using 4 different boosters",
+    combos: [GEEKY],
+  },
+  {
+    name: "Fuel",
+    description: "For using a fuel tank",
+    combos: [SMART],
+  },
+  {
+    name: "Juice",
+    description: "For using 3 fuel tanks",
+    combos: [CUTE, GROSS],
+  },
+  {
+    name: "Bloated",
+    description: "For using 5 fuel tanks",
+    combos: [WEIRD, GROSS],
+  },
+  {
+    name: "Gas Station",
+    description: "For using 15 different fuel tanks",
+    combos: [SMART],
+  },
+  {
+    name: "Oxygen",
+    description: "For using an oxygen tank",
+    combos: [SMART],
+  },
+  {
+    name: "Scientist",
+    description: "For using 3 different oxygen tanks",
+    combos: [SMART],
+  },
+  {
+    name: "Engine",
+    description: "For using an engine",
+    combos: [SMART],
+  },
+  {
+    name: "Motor",
+    description: "For using 2 engines",
+    combos: [SMART, COOL],
+  },
+  {
+    name: "Powerhouse",
+    description: "For using 4 engines",
+    combos: [SMART, AWESOME],
+  },
+  {
+    name: "Engineer",
+    description: "For using 10 different engines",
+    combos: [SMART],
+  },
+  {
+    name: "Connection",
+    description: "For using a connection part",
+    combos: [SMART],
+  },
+  {
+    name: "Network",
+    description: "For using 5 different connection parts",
+    combos: [SMART],
+  },
+  {
+    name: "Pump",
+    description: "For using a pump",
+    combos: [SMART],
+  },
+  {
+    name: "Pump Tower",
+    description: "For using 4 pumps on top of each other",
+    combos: [NAUGHTY, GROSS],
+  },
+  {
+    name: "Force",
+    description: "For using 5 different pumps",
+    combos: [AWESOME],
+  },
+  {
+    name: "Fireworks",
+    description: "For using the fireworks set",
+    combos: [AWESOME],
+  },
+  {
+    name: "Pyromaniac",
+    description: "For using 3 firework parts",
+    combos: [AWESOME, CREEPY],
+  },
+  {
+    name: "Flower Power",
+    description: "For using 3 different firework flowers",
+    combos: [AWESOME, WILD],
+  },
+  {
+    name: "New Years Eve",
+    description: "For using 9 different firework parts",
+    combos: [AWESOME],
+  },
+  {
+    name: "Kinetic",
+    description: "For using a kinetic part",
+    combos: [SMART],
+  },
+  {
+    name: "Double Barrel",
+    description: "For using 2 upward straight parts at the same height",
+    combos: [SMART],
+  },
+  {
+    name: "Trident",
+    description:
+      "For using 3 upward straight parts at roughly the same height that are not attached to each other",
+    combos: [COOL],
+  },
+  {
+    name: "Cross",
+    description:
+      "For combining 2 rectangle shaped part to create a cross shape",
+    combos: [SMART],
+  },
+  {
+    name: "T-Bone",
+    description: "For combining 2 rectangle shaped part to create a T shape",
+    combos: [SMART],
+  },
+  {
+    name: "V-Shape",
+    description: "For combining 2 rectangle shaped part to create a V shape",
+    combos: [SMART],
+  },
+  {
+    name: "Triforce",
+    description: "For using 3 triangles stacked in a pyramid",
+    combos: [GEEKY],
+  },
+  {
+    name: "Three-Leaf Clover",
+    description: "For using 3 round parts in a three-leaf clover shape",
+    combos: [WILD, SMART],
+  },
+  {
+    name: "Four-Leaf Clover",
+    description: "For using 4 round parts in a three-leaf clover shape",
+    combos: [WILD, SMART],
+  },
+  {
+    name: "Nose",
+    description: "For using a nose part",
+    combos: [WEIRD],
+  },
+  {
+    name: "Nose Job",
+    description: "For using 2 different nose parts",
+    combos: [WEIRD, CREEPY],
+  },
+  {
+    name: "Broken Nose",
+    description: "For using a nose part that is not facing upwards",
+    combos: [FUNNY, WEIRD],
+  },
+  {
+    name: "Tail",
+    description: "For using a tail part",
+    combos: [WILD],
+  },
+  {
+    name: "Twin Tail",
+    description: "For using 2 tail parts",
+    combos: [WILD],
+  },
+  {
+    name: "Inverted Tail",
+    description: "For using a tail part rotated downward",
+    combos: [WEIRD, WILD],
+  },
+  {
+    name: "Tail Diversity",
+    description: "For using 2 different tail parts",
+    combos: [WILD, AWESOME],
+  },
+  {
+    name: "Nine Tails",
+    description: "For using 9 tail parts",
+    combos: [GEEKY, WILD],
+  },
+  {
+    name: "Arm",
+    description: "For using a arm part",
+    combos: [WEIRD],
+  },
+  {
+    name: "Leg",
+    description: "For using a leg part",
+    combos: [WEIRD],
+  },
+  {
+    name: "One-legged",
+    description: "For using only 1 leg part",
+    combos: [WEIRD],
+  },
+  {
+    name: "Insect",
+    description: "For using 6 limbs",
+    combos: [WILD, CREEPY],
+  },
+  {
+    name: "Spider",
+    description: "For using 8 limbs",
+    combos: [WILD, CREEPY],
+  },
+  {
+    name: "Millipede",
+    description: "For using 10 limbs",
+    combos: [CREEPY, WILD],
+  },
+  {
+    name: "Head",
+    description: "For using a head part",
+    combos: [WEIRD, CREEPY],
+  },
+  {
+    name: "Cerberus",
+    description: "For using 3 head parts",
+    combos: [GEEKY, WEIRD],
+  },
+  {
+    name: "Hydra",
+    description: "For using 9 head parts",
+    combos: [GEEKY, WEIRD],
+  },
+  {
+    name: "Torso",
+    description: "For using a torso part",
+    combos: [WEIRD],
+  },
+  {
+    name: "Buff",
+    description: "For using 3 torso parts",
+    combos: [WEIRD, COOL],
+  },
+  {
+    name: "Wheel",
+    description: "For using a wheel part",
+    combos: [WEIRD],
+  },
+  {
+    name: "Vehicle",
+    description: "For using a wheel at the bottom of the rocket",
+    combos: [SMART],
+  },
+  {
+    name: "Smoker",
+    description: "For using a smoker part",
+    combos: [GROSS],
+  },
+  {
+    name: "Spring",
+    description: "For using a spring part",
+    combos: [WILD],
+  },
+  {
+    name: "Barrel",
+    description: "For using a barrel part",
+    combos: [WEIRD],
+  },
+  {
+    name: "Wheelbarrow",
+    description: "For using a wheelbarrow part",
+    combos: [WEIRD],
+  },
+  {
+    name: "Jerrycan",
+    description: "For using a jerrycan part",
+    combos: [COOL],
+  },
+  {
+    name: "Algae",
+    description: "For using a algae part",
+    combos: [WILD],
+  },
+  {
+    name: "Balls",
+    description: "For using 2 balls that are attached to each other",
+    combos: [FUNNY, NAUGHTY],
+  },
+  {
+    name: "Juggler",
+    description: "For using 3 balls",
+    combos: [FUNNY],
+  },
+  {
+    name: "Pro Juggler",
+    description: "For using 5 balls",
+    combos: [ASPIRING],
+  },
+  {
+    name: "Rocket Kit XL",
+    description: "For using a rocket kit XL part",
+    combos: [NOOB, ASPIRING],
+  },
+  {
+    name: "Red",
+    description: "For using 2 red parts",
+    combos: [AWESOME],
+  },
+  {
+    name: "Orange",
+    description: "For using 2 orange parts",
+    combos: [AWESOME],
+  },
+  {
+    name: "Yellow",
+    description: "For using 2 yellow parts",
+    combos: [AWESOME],
+  },
+  {
+    name: "Green",
+    description: "For using 2 green parts",
+    combos: [AWESOME],
+  },
+  {
+    name: "Blue",
+    description: "For using 2 blue parts",
+    combos: [AWESOME],
+  },
+  {
+    name: "Purple",
+    description: "For using 2 purple parts",
+    combos: [AWESOME],
+  },
+  {
+    name: "Pink",
+    description: "For using 2 pink parts",
+    combos: [AWESOME],
+  },
+  {
+    name: "Car",
+    description: "For using 3 car parts",
+    combos: [SMART, COOL],
+  },
+  {
+    name: "Toy Blocks",
+    description: "For using 4 different toy block parts",
+    combos: [CUTE],
+  },
+  {
+    name: "Architect",
+    description: "For using every toy block",
+    combos: [CUTE, SMART],
+  },
+  {
+    name: "Industrial",
+    description: "For using an industrial part",
+    combos: [SMART],
+  },
+  {
+    name: "Angel",
+    description: "For using a halo shaped part on top of the rocket",
+    combos: [CUTE],
+  },
+  {
+    name: "Winged",
+    description: "For using 2 wing shaped parts",
+    combos: [WILD],
+  },
+  {
+    name: "Bird Wings",
+    description: "For combining 2 wing shaped parts with a figure",
+    combos: [WILD],
+  },
+  {
+    name: "Zoo",
+    description: "For using 3 different animal parts",
+    combos: [WILD],
+  },
+  {
+    name: "Crowd Control",
+    description: "For having 5 different figure parts in the rocket",
+    combos: [WEIRD],
+  },
+  {
+    name: "Donut",
+    description: "For creating a donut out of 4 of the same bend parts",
+    combos: [CUTE],
+  },
+  {
+    name: "Shark",
+    description: "For using 2 side fins",
+    combos: [WILD],
+  },
+  {
+    name: "Tropical Paradise",
+    description: "For using 5 different pool slide parts",
+    combos: [COOL],
+  },
+  {
+    name: "Addicted",
+    description: "For using 10 smokers",
+    combos: [GROSS],
+  },
+  {
+    name: "Blocky",
+    description: "For using 3 cube shaped parts",
+    combos: [GEEKY],
+  },
+  {
+    name: "Minecraft",
+    description: "For using only cube shaped structure parts",
+    combos: [GEEKY],
+  },
+  {
+    name: "Fashionable",
+    description: "For using only wrapped wood structure parts",
+    combos: [AWESOME],
+  },
+  {
+    name: "Tube",
+    description: "For using a tube part",
+    combos: [SMART, WEIRD],
+  },
+  {
+    name: "Ass",
+    description: "For using a toilet roll and a windshield wiper",
+    combos: [NAUGHTY, GROSS],
+  },
+  {
+    name: "Fart",
+    description: "For using a toilet roll and a green smoker",
+    combos: [GROSS],
+  },
+  {
+    name: "Quarantine",
+    description: "For combining a figure part with 4 toilet rolls",
+    combos: [FUNNY, CREEPY],
+  },
+  {
+    name: "Spin",
+    description: "For using a fidget spinner and a spinning top",
+    combos: [CUTE],
+  },
+  {
+    name: "Pipe Bomb",
+    description: "For using PVC and an explosive",
+    combos: [AWESOME],
+  },
+  {
+    name: "Improviser",
+    description: "For using the rocket kit set and a toilet roll",
+    combos: [NOOB, WEIRD],
+  },
+  {
+    name: "Girly",
+    description: "For using a teddy bear and a baby",
+    combos: [CUTE],
+  },
+  {
+    name: "Baby Boom",
+    description: "For combining a baby and an explosive",
+    combos: [FUNNY],
+  },
+  {
+    name: "Tiny House",
+    description: "For building a house with a toy block cube and roof",
+    combos: [CUTE],
+  },
+  {
+    name: "Bear Skewer",
+    description: "For combining a teddy bear and a toy stick",
+    combos: [FUNNY],
+  },
+  {
+    name: "Baby Satay",
+    description: "For combining a baby and a toy stick",
+    combos: [CREEPY, FUNNY],
+  },
+  {
+    name: "Circus",
+    description: "For combining a stuffed elephant and a ball part",
+    combos: [FUNNY, AWESOME],
+  },
+  {
+    name: "Sputnik",
+    description: "For combining a ball part and 2 stick parts",
+    combos: [GEEKY],
+  },
+  {
+    name: "Old Fashioned",
+    description: "For using a nose, body, tail and nothing else",
+    combos: [SMART],
+  },
+  {
+    name: "Penis",
+    description: "For making a long rocket with 2 round parts at the bottom",
+    combos: [NAUGHTY, GROSS],
+  },
+  {
+    name: "Hotdog",
+    description: "For sandwiching a booster between 2 other parts",
+    combos: [GROSS],
+  },
+  {
+    name: "Gnome",
+    description: "For combining a cone shaped part with a figure part",
+    combos: [FUNNY, CUTE],
+  },
+  {
+    name: "Modern Classic",
+    description: "For using a retro part and a NSR part",
+    combos: [SMART, GEEKY],
+  },
+  {
+    name: "Hunting Trophy",
+    description: "For combining a Dandy Deer part and a wood part",
+    combos: [CREEPY, WEIRD],
+  },
+  {
+    name: "Seared Steak",
+    description: "For using a Dandy Deer limp and an explosion",
+    combos: [FUNNY, WEIRD],
+  },
+  {
+    name: "Birds",
+    description: "For using a flamingo and a weathercock",
+    combos: [WILD],
+  },
+  {
+    name: "Lord of the Rings",
+    description: "For combining a mannequin and a ring pyramid",
+    combos: [GEEKY],
+  },
+  {
+    name: "Frankenstein",
+    description: "For using several body parts from different bodies",
+    combos: [CREEPY, WEIRD],
+  },
+  {
+    name: "Modular Body",
+    description: "For using a head, a torso, two arms and two legs",
+    combos: [GEEKY],
+  },
+  {
+    name: "Gardener",
+    description: "For using a wheelbarrow part and a flamingo",
+    combos: [WILD],
+  },
+  {
+    name: "Protest",
+    description: "For using a megaphone and a Molotov cocktail",
+    combos: [AWESOME, ASPIRING],
+  },
+  {
+    name: "Stink Bomb",
+    description: "For using a green smoker and a trash part",
+    combos: [GROSS],
+  },
+  {
+    name: "Rain",
+    description: "For using an umbrella and a windshield wiper",
+    combos: [COOL],
+  },
+  {
+    name: "Lightning",
+    description: "For using an industrial light and a weathercock",
+    combos: [AWESOME, COOL],
+  },
+  {
+    name: "Rock",
+    description: "For using a guitar and a rocking horse",
+    combos: [FUNNY, AWESOME],
+  },
+  {
+    name: "War",
+    description: "For using a dynamite and a Tzar bomba",
+    combos: [CREEPY],
+  },
+  {
+    name: "Painter",
+    description: "For using a graffiti can and a pallet",
+    combos: [GEEKY],
+  },
+  {
+    name: "Technical",
+    description: "For using a decoupler and a swivel",
+    combos: [SMART],
+  },
+  {
+    name: "Mechanical",
+    description: "For using a swivel and a robot",
+    combos: [SMART],
+  },
+  {
+    name: "Vintage",
+    description: "For using a toy part and a retro part",
+    combos: [GEEKY],
+  },
+  {
+    name: "Pride",
+    description: "For using all different colored smoker parts",
+    combos: [CUTE, AWESOME],
+  },
+  {
+    name: "Bloody",
+    description: "For using a red smoker and a figure part",
+    combos: [CREEPY],
+  },
+  {
+    name: "Scrap Pirate",
+    description: "For using a scrap part and a NSR part",
+    combos: [AWESOME, WEIRD],
+  },
+  {
+    name: "Banksy",
+    description: "For using a graffiti can and a Molotov cocktail",
+    combos: [GEEKY],
+  },
+  {
+    name: "Cocks",
+    description: "For using a weathercock and a Molotov cocktail",
+    combos: [WILD, NAUGHTY],
+  },
+  {
+    name: "Alive",
+    description: "For combining a limb and a swivel",
+    combos: [CREEPY, SMART],
+  },
+  {
+    name: "Dress-up",
+    description:
+      "For using a mannequin and combining it with 10 other parts from other sets",
+    combos: [CUTE],
+  },
+  {
+    name: "Aqua",
+    description: "For using a blue smoker and a green smoker",
+    combos: [CUTE, COOL],
+  },
+  {
+    name: "Space Program",
+    description: "For using a space shuttle and a moon rocket",
+    combos: [ASPIRING, GEEKY],
+  },
+  {
+    name: "Underwater",
+    description: "For using a fin part and a blue smoker",
+    combos: [COOL],
+  },
+  {
+    name: "Woodpecker",
+    description: "For using a bird and a wood part",
+    combos: [WILD],
+  },
+  {
+    name: "Kerbal",
+    description: "For combining a baby and a NSR part",
+    combos: [GEEKY, SMART],
+  },
+  {
+    name: "Dutch",
+    description: "For using a bike part and an orange smoker",
+    combos: [WEIRD],
+  },
+  {
+    name: "Diverse",
+    description: "For using a nose, body and tail, all from different sets",
+    combos: [CUTE, AWESOME],
+  },
+  {
+    name: "Minotaur",
+    description:
+      "For using a mannequin torso, arms and legs and a Dandy Deer head",
+    combos: [WILD, GEEKY],
+  },
+  {
+    name: "Horny",
+    description: "For using a Dandy Deer head and a passion firework",
+    combos: [NAUGHTY, WILD],
+  },
+  {
+    name: "Hip",
+    description: "For using a fidget spinner and a StarTube cap",
+    combos: [COOL],
+  },
+  {
+    name: "Power-up",
+    description: "For using a booster and an engine",
+    combos: [GEEKY],
+  },
+  {
+    name: "Inflatable",
+    description: "For using a toy part and a pool part",
+    combos: [FUNNY, CUTE],
+  },
+  {
+    name: "Discarded",
+    description: "For using a toy part and a trash part",
+    combos: [CUTE, GROSS],
+  },
+  {
+    name: "Repurpose",
+    description: "For using a trash part and a scrap part",
+    combos: [GROSS, COOL],
+  },
+  {
+    name: "Danger",
+    description: "For using a toy part and a scrap part",
+    combos: [CREEPY],
+  },
+  {
+    name: "Jolly",
+    description: "For using a toy part and a Dandy Deer part",
+    combos: [CUTE],
+  },
+  {
+    name: "Christmas",
+    description: "For using Dandy Deer and 10 different toy parts",
+    combos: [FUNNY, CUTE],
+  },
+  {
+    name: "Hate",
+    description: "For using a scrap part and a wood part",
+    combos: [CREEPY],
+  },
+  {
+    name: "Timber",
+    description: "For using a wood part and a mannequin part",
+    combos: [WILD],
+  },
+  {
+    name: "Search",
+    description: "For using a keyboard and a Dandy Deer part",
+    combos: [NAUGHTY, WEIRD],
+  },
+  {
+    name: "Experience",
+    description: "For using a rocket kit part and a NSR part",
+    combos: [ASPIRING],
+  },
+  {
+    name: "Professional",
+    description:
+      "For using an engine, a fuel tank, an oxygen tank, a pump and a connector",
+    combos: [ASPIRING],
+  },
+  {
+    name: "Advanced",
+    description: "For using a NSR part and a kinetic part",
+    combos: [SMART, ASPIRING],
+  },
+  {
+    name: "Body",
+    description: "For using a mannequin part and a Dandy Deer part",
+    combos: [CREEPY, WEIRD],
+  },
+  {
+    name: "Flush",
+    description: "For using a PVC part and a pool part",
+    combos: [COOL],
+  },
+  {
+    name: "Abbreviation",
+    description: "For using a PVC part and a NSR part",
+    combos: [WEIRD, SMART],
+  },
+  {
+    name: "Clogged",
+    description: "For using a trash part and a PVC part",
+    combos: [GROSS, FUNNY],
+  },
+  {
+    name: "Rot",
+    description: "For using a trash part and a wood part",
+    combos: [GROSS],
+  },
+  {
+    name: "Custom",
+    description: "For using a rocket kit part and a PVC part",
+    combos: [NOOB],
+  },
+  {
+    name: "Doll",
+    description: "For using a toy part and a mannequin part",
+    combos: [CUTE],
+  },
+  {
+    name: "Pipe",
+    description: "For having a pipe in your rocket",
+    combos: [SMART],
+  },
+  {
+    name: "Noodle",
+    description: "For having a pipe of at least 2 meter long",
+    combos: [SMART, FUNNY],
+  },
+  {
+    name: "Spaghetti",
+    description:
+      "For having at least than 3 pipes with a length of at least 2 meters",
+    combos: [WEIRD, FUNNY],
+  },
+  {
+    name: "I like to connect",
+    description: "For having at least than 10 pipes in your rocket",
+    combos: [WEIRD],
+  },
+  {
+    name: "Pumped",
+    description: "For increasing your fuel rate with a pump",
+    combos: [SMART],
+  },
+  {
+    name: "Under Pressure",
+    description: "For having a fuel rate of at least ???",
+    combos: [SMART],
+  },
+  {
+    name: "Football Pitch",
+    description: "For reaching an altitude of 91 meters",
+    combos: [NOOB],
+  },
+  {
+    name: "Furlong",
+    description: "For reaching an altitude of 201 meters",
+    combos: [NOOB, WEIRD],
+  },
+  {
+    name: "Kilometer",
+    description: "For reaching an altitude of 1 kilometers",
+    combos: [ASPIRING],
+  },
+  {
+    name: "Sheppey",
+    description: "For reaching an altitude of 1.4 kilometers",
+    combos: [WEIRD, FUNNY],
+  },
+  {
+    name: "Mile",
+    description: "For reaching an altitude of 1609 meters",
+    combos: [ASPIRING],
+  },
+  {
+    name: "League",
+    description: "For reaching an altitude of 4828 meters",
+    combos: [ASPIRING],
+  },
+  {
+    name: "Mt. Everest",
+    description: "For reaching an altitude of 8848 meters",
+    combos: [ASPIRING, COOL],
+  },
+  {
+    name: "Plane",
+    description: "For reaching an altitude of 10 kilometers",
+    combos: [ASPIRING],
+  },
+  {
+    name: "Jet Fighter",
+    description: "For reaching an altitude of 20 kilometers",
+    combos: [ASPIRING],
+  },
+  {
+    name: "Weather Balloon",
+    description: "For reaching an altitude of 40 kilometers",
+    combos: [ASPIRING, SMART],
+  },
+  {
+    name: "Aurora",
+    description: "For reaching an altitude of 80 kilometers",
+    combos: [ASPIRING, COOL],
+  },
+  {
+    name: "Kármán Line",
+    description: "For reaching an altitude of 100 kilometers",
+    combos: [ASPIRING, SMART],
+  },
+  {
+    name: "ISS",
+    description: "For reaching an altitude of 422 kilometers",
+    combos: [ASPIRING, SMART],
+  },
+  {
+    name: "Exosphere",
+    description: "For reaching an altitude of 690 kilometers",
+    combos: [ASPIRING, SMART, AWESOME],
+  },
+  {
+    name: "Lucky",
+    description: "For having a top altitude of 7 meters",
+    combos: [FUNNY],
+  },
+  {
+    name: "Bad Luck",
+    description: "For having a top altitude of 13 meters",
+    combos: [CREEPY],
+  },
+  {
+    name: "Adult",
+    description: "For having a top altitude of 18 meters",
+    combos: [NAUGHTY],
+  },
+  {
+    name: "Perv",
+    description: "For having a top altitude of 34 meters",
+    combos: [NAUGHTY],
+  },
+  {
+    name: "The Answer",
+    description: "For having a top altitude of 42 meters",
+    combos: [GEEKY],
+  },
+  {
+    name: "Alien",
+    description: "For having a top altitude of 51 meters",
+    combos: [GEEKY, CREEPY],
+  },
+  {
+    name: "Censored",
+    description: "For having a top altitude of 69 meters",
+    combos: [NAUGHTY],
+  },
+  {
+    name: "Byte",
+    description: "For having a top altitude of 256 meters",
+    combos: [GEEKY],
+  },
+  {
+    name: "Pie",
+    description: "For having a top altitude of 314 meters",
+    combos: [GEEKY],
+  },
+  {
+    name: "Weed",
+    description: "For having a top altitude of 420 meters",
+    combos: [NAUGHTY],
+  },
+  {
+    name: "Devil",
+    description: "For having a top altitude of 666 meters",
+    combos: [CREEPY],
+  },
+  {
+    name: "Panic",
+    description: "For having a top altitude of 911 meters",
+    combos: [AWESOME],
+  },
+  {
+    name: "Grasshopper",
+    description:
+      "For reaching an altitude of 25 meters without an engine or explosive",
+    combos: [AWESOME, WILD],
+  },
+  {
+    name: "Bolt",
+    description: "For reaching an altitude of 200 meter within 1 second",
+    combos: [AWESOME],
+  },
+  {
+    name: "Space Waste",
+    description:
+      "For using a trash part and reaching an altitude of 100 kilometers",
+    combos: [GROSS, ASPIRING],
+  },
+  {
+    name: "Stroll",
+    description: "For reaching a distance of 10 meter",
+    combos: [NOOB],
+  },
+  {
+    name: "Sprint",
+    description: "For reaching a distance of 100 meter",
+    combos: [NOOB],
+  },
+  {
+    name: "Walk",
+    description: "For reaching a distance of 1 kilometer",
+    combos: [ASPIRING],
+  },
+  {
+    name: "Travel",
+    description: "For reaching a distance of 10 kilometer",
+    combos: [ASPIRING],
+  },
+  {
+    name: "Marathon",
+    description: "For reaching a distance of 42.2 kilometers",
+    combos: [ASPIRING],
+  },
+  {
+    name: "Robot",
+    description:
+      "For reaching a distance of 5 meters without propulsion or explosives",
+    combos: [SMART],
+  },
+  {
+    name: "Droid",
+    description:
+      "For reaching a distance of 25 meters without propulsion or explosives",
+    combos: [SMART],
+  },
+  {
+    name: "Cheetah",
+    description: "For reaching a speed of 120 km/h",
+    combos: [WILD],
+  },
+  {
+    name: "Falcon",
+    description: "For reaching a speed of 390 km/h",
+    combos: [WILD],
+  },
+  {
+    name: "Tupolev",
+    description: "For reaching a speed of 870 km/h",
+    combos: [ASPIRING],
+  },
+  {
+    name: "Sound Barrier",
+    description: "For reaching a speed of 1235 km/h",
+    combos: [ASPIRING, SMART],
+  },
+  {
+    name: "Blackbird",
+    description: "For reaching a speed of 3530 km/h",
+    combos: [ASPIRING, WILD],
+  },
+  {
+    name: "Hypersonic",
+    description: "For reaching a speed of 7270 km/h",
+    combos: [ASPIRING],
+  },
+  {
+    name: "HTV-2",
+    description: "For reaching a speed of 21245 km/h",
+    combos: [ASPIRING],
+  },
+  {
+    name: "Snail",
+    description: "For not reaching a speed higher than 10 km/h",
+    combos: [WILD, NOOB],
+  },
+  {
+    name: "Looping",
+    description: "For making a looping",
+    combos: [AWESOME],
+  },
+  {
+    name: "Rollercoaster",
+    description: "For making 3 loopings",
+    combos: [AWESOME],
+  },
+  {
+    name: "Corkscrew",
+    description: "For making 10 loopings",
+    combos: [AWESOME],
+  },
+  {
+    name: "Timed",
+    description: "For triggering a time sensor",
+    combos: [SMART],
+  },
+  {
+    name: "Right on Time",
+    description: "For triggering 3 different time sensors",
+    combos: [SMART],
+  },
+  {
+    name: "Button",
+    description: "For triggering a button sensor",
+    combos: [SMART],
+  },
+  {
+    name: "Button Masher",
+    description: "For triggering 5 different button sensors",
+    combos: [SMART, GEEKY],
+  },
+  {
+    name: "Split",
+    description: "For triggering a decoupler",
+    combos: [SMART],
+  },
+  {
+    name: "Steer",
+    description: "For triggering a swivel",
+    combos: [SMART],
+  },
+  {
+    name: "In Control",
+    description: "For spending 5 seconds pressing buttons to control a swivel",
+    combos: [SMART],
+  },
+  {
+    name: "Explosion",
+    description: "For triggering an explosion",
+    combos: [AWESOME],
+  },
+  {
+    name: "Flash Mob",
+    description: "For triggering 3 explosions",
+    combos: [AWESOME],
+  },
+  {
+    name: "Fire",
+    description: "For exploding a Molotov cocktail",
+    combos: [NAUGHTY],
+  },
+  {
+    name: "Clean Land",
+    description: "For landing a rocket on its tail without exploding",
+    combos: [COOL],
+  },
+  {
+    name: "Bottle Flip",
+    description:
+      "For making a looping and landing a rocket on it’s tail without exploding",
+    combos: [AWESOME, COOL],
+  },
+  {
+    name: "Man Overboard",
+    description:
+      "For having a rocket in the air that consist of only a figure part",
+    combos: [FUNNY],
+  },
+  {
+    name: "Swarm",
+    description:
+      "For having 4 independent rockets in the air at the same time, all with running engines",
+    combos: [AWESOME],
+  },
+  {
+    name: "Oops",
+    description: "For hitting a building",
+    combos: [NOOB, FUNNY],
+  },
+  {
+    name: "Casualty",
+    description: "For hitting a building with a rocket with an engine",
+    combos: [NAUGHTY, CREEPY],
+  },
+  {
+    name: "Dumpster",
+    description: "For hitting a dumpster",
+    combos: [GROSS],
+  },
+  {
+    name: "Topple",
+    description: "For knocking something over with your rocket",
+    combos: [GROSS, COOL],
+  },
+  {
+    name: "Riot",
+    description: "For exploding a Molotov cocktail against a building",
+    combos: [CREEPY],
+  },
+  {
+    name: "Challenge",
+    description: "For completing a challenge",
+    combos: [SMART],
+  },
+  {
+    name: "Ridiculous",
+    description: "For beating ‘Ridiculous Rocket Challenge’",
+    combos: [AWESOME, ASPIRING, WEIRD],
+  },
+  {
+    name: "Toy Magic",
+    description: "For beating ‘Toy Block Tower’",
+    combos: [CUTE, WEIRD],
+  },
+  {
+    name: "Clown",
+    description: "For beating ‘Finger Counting For Kids’",
+    combos: [CUTE, CREEPY, WEIRD],
+  },
+  {
+    name: "Toilet",
+    description: "For beating ‘Toilet Toppler’",
+    combos: [FUNNY, WEIRD],
+  },
+  {
+    name: "Dumpster Dive",
+    description: "For beating ‘Ultimate Dumpster Dive’",
+    combos: [COOL],
+  },
+  {
+    name: "Business",
+    description: "For beating ‘With Love From BangCo’",
+    combos: [ASPIRING],
+  },
+  {
+    name: "Race",
+    description: "For beating ‘Wait, that’s illegal’",
+    combos: [NAUGHTY],
+  },
+  {
+    name: "Stunt",
+    description: "For beating ‘Stunt Rocket’",
+    combos: [AWESOME],
+  },
+  {
+    name: "Monster",
+    description: "For beating ‘Looping Monster’",
+    combos: [CREEPY, AWESOME],
+  },
+  {
+    name: "Connector",
+    description: "For beating ‘Do a Split’",
+    combos: [SMART],
+  },
+  {
+    name: "Robotical",
+    description: "For beating ‘Robotical’",
+    combos: [SMART, COOL],
+  },
+  {
+    name: "Cluster",
+    description: "For beating ‘I heard you like rockets in your rocket’",
+    combos: [SMART],
+  },
+  {
+    name: "Angel",
+    description: "For beating ‘Bike Angel’",
+    combos: [WEIRD, FUNNY],
+  },
+  {
+    name: "Planking",
+    description: "For beating ‘Planking’",
+    combos: [FUNNY],
+  },
+  {
+    name: "Grand",
+    description: "For beating ‘Grand Scrap’",
+    combos: [COOL, AWESOME],
+  },
+  {
+    name: "Eco",
+    description: "For beating ‘Algae Fuel Test’",
+    combos: [WILD, WEIRD],
+  },
+  {
+    name: "Scary",
+    description: "For beating ‘Furrankenstein’",
+    combos: [CREEPY],
+  },
+  {
+    name: "Cool",
+    description: "For beating ‘Too Cool For Pool’",
+    combos: [COOL],
+  },
+  {
+    name: "Oxidizer",
+    description: "For beating ‘Optimizing’",
+    combos: [SMART],
+  },
+  {
+    name: "Mozambique",
+    description: "For beating ‘The Perfect Pump’",
+    combos: [SMART, ASPIRING],
+  },
+  {
+    name: "Staged",
+    description: "For beating ‘Engine Swap’",
+    combos: [SMART],
+  },
+  {
+    name: "Striptease",
+    description: "For beating ‘Rocket Strip Tease’",
+    combos: [NAUGHTY],
+  },
+  {
+    name: "Hover Cat",
+    description: "For beating ‘Hover Cat’",
+    combos: [FUNNY],
+  },
+  {
+    name: "BOOOM",
+    description: "For beating ‘Next Level’",
+    combos: [AWESOME],
+  },
+  {
+    name: "Sizzle",
+    description: "For beating ‘Dynamite Launch’",
+    combos: [AWESOME],
+  },
+  {
+    name: "Child",
+    description: "For beating a challenge from SidPhillips",
+    combos: [CUTE],
+  },
+  {
+    name: "BangCo",
+    description: "For beating a challenge from BangCo",
+    combos: [ASPIRING],
+  },
+  {
+    name: "Fanboy",
+    description: "For beating a challenge from ChannelTips",
+    combos: [COOL, WEIRD],
+  },
+  {
+    name: "RocketGirl",
+    description: "For beating a challenge from RocketGirl",
+    combos: [COOL, AWESOME],
+  },
+  {
+    name: "RaySon",
+    description: "For beating a challenge from RaySon",
+    combos: [SMART],
+  },
+  {
+    name: "Shop",
+    description: "For beating a challenge from DIY Shop",
+    combos: [SMART],
+  },
+  {
+    name: "Science",
+    description: "For beating a challenge from dot_science",
+    combos: [SMART],
+  },
+  {
+    name: "Family",
+    description: "For beating a challenge from ScrapDad",
+    combos: [COOL, WEIRD],
+  },
+  {
+    name: "Progress",
+    description: "For beating a challenge from RoseWood",
+    combos: [WILD, WEIRD],
   },
 ];

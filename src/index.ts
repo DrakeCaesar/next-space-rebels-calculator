@@ -1,5 +1,5 @@
 import "./styles.scss";
-import { tags, UNKNOWN } from "./tags.ts";
+import { tags, tagsFromJson as tagsFromTheGame, UNKNOWN } from "./tags.ts";
 import {
   activeCombos,
   checkForDuplicateTags,
@@ -30,6 +30,25 @@ if (hasDuplicate) {
 if (!hasDuplicate) {
   console.log("No duplicate tag names found.");
 }
+
+tags.forEach((tag) => {
+  let tagFromJson = tagsFromTheGame.find(
+    (t) => t.name === tag.name || t.name === tag.altName,
+  );
+  if (tag.name === "Angel#1") {
+    tagFromJson = tagsFromTheGame.find((t) => t.name === "Angel");
+  }
+  if (tag.name === "Angel#2") {
+    tagFromJson = tagsFromTheGame.findLast((t) => t.name === "Angel");
+  }
+
+  if (tagFromJson) {
+    tag.description = tagFromJson.description;
+    tag.combos = tagFromJson.combos;
+  } else {
+    console.error(`Tag not found: ${tag.name}`);
+  }
+});
 
 tags.forEach((tag) => {
   tag.combos.forEach((combo) => uniqueCombos.add(combo));

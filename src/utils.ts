@@ -88,7 +88,6 @@ export function createToggleColorsButton() {
   button.textContent = "Toggle Alternate Tag Colors";
   button.addEventListener("click", toggleAlternateTagColors);
   comboButtonsContainer?.appendChild(button);
-  console.log("test");
 }
 // Call this function after initializing combo buttons
 
