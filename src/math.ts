@@ -18,7 +18,7 @@ function formatTime(seconds: number): string {
   return `${h}h ${m}m ${s}s`;
 }
 
-export function findBestCombination(tags: Tag[]): Tag[] {
+export async function findBestCombination(tags: Tag[]): Promise<Tag[]> {
   // Create a copy of the tags array
   const tagsCopy = [...tags];
 
@@ -55,6 +55,8 @@ export function findBestCombination(tags: Tag[]): Tag[] {
           2,
         )}%, Estimated time remaining: ${formatTime(estimatedRemaining)}`,
       );
+
+      await new Promise((resolve) => setTimeout(resolve, 1));
 
       for (let k = j + 1; k < n - 2; k++) {
         for (let l = k + 1; l < n - 1; l++) {
