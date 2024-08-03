@@ -6,10 +6,10 @@ export default defineConfig({
     outDir: "dist",
     sourcemap: true,
     rollupOptions: {
-      input: "src/index.ts",
+      input: "index.html",
       output: {
-        entryFileNames: "main.js",
-        assetFileNames: "styles.css", // for CSS output from Sass
+        entryFileNames: "index.js",
+        assetFileNames: "styles.css",
         format: "es",
       },
     },

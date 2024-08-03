@@ -3,10 +3,10 @@ import {
   createCountFilterButtons,
   createModeSwitchButton,
   createToggleColorsButton,
-} from "./createButtons.ts";
-import { updateSelectedTagsDisplay } from "./displayUtils.ts";
+} from "./createButtons.js";
+import { updateSelectedTagsDisplay } from "./displayUtils.js";
 import "./styles.scss";
-import { tags, tagsFromTheGame, UNKNOWN } from "./tags.ts";
+import { tags, tagsFromTheGame, UNKNOWN } from "./tags.js";
 import {
   activeCombos,
   checkForDuplicateTags,
@@ -16,7 +16,7 @@ import {
   sortTagsBy,
   tagsContainer,
   uniqueCombos,
-} from "./utils.ts";
+} from "./utils.js";
 
 import toastr from "toastr"; // Import toastr for notifications
 
