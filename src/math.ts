@@ -1,4 +1,4 @@
-import { Tag } from "../tags.ts";
+import { Tag } from "./tags.ts";
 
 function calculateScore(comboCounts: { [key: string]: number }): number {
   let score = 0;
@@ -88,10 +88,3 @@ export function findBestCombination(tags: Tag[]): Tag[] {
 
   return bestCombination;
 }
-
-// const jsonTags = JSON.stringify(tags, null, 2);
-// fs.writeFileSync("tags.json", jsonTags);
-
-// // Example usage:
-// const bestTags = findBestCombination(tags);
-// console.log("Best Combination:", bestTags);
