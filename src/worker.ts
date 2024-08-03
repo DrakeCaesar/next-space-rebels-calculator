@@ -5,12 +5,13 @@ interface ComboCounts {
 }
 
 function calculateScore(comboCounts: ComboCounts): number {
-  let score = 0;
+  let score = 1;
   for (const combo in comboCounts) {
     const count = comboCounts[combo];
-    if (count === 2) score += 1;
-    if (count === 3) score += 3;
-    if (count === 4) score += 15;
+    if (count === 2) score *= 2;
+    if (count === 3) score *= 5;
+    if (count === 4) score *= 15;
+    if (count === 5) score *= 30;
   }
   return score;
 }
@@ -54,6 +55,7 @@ interface ProgressMessage {
 interface ResultMessage {
   type: "result";
   bestCombination: Tag[];
+  score: number;
 }
 
 self.onmessage = async function (e: MessageEvent) {
@@ -75,10 +77,27 @@ self.onmessage = async function (e: MessageEvent) {
   console.log(`Number of tags before pruning: ${tagsCopy.length}`);
 
   // Prune tags that have only 1 combo
-  const prunedTags = tagsCopy.filter((tag) => tag.combos.length > 1);
+  let prunedTags = tagsCopy.filter((tag) => tag.combos.length > 1);
 
   // Print the number of tags after pruning
   console.log(`Number of tags after pruning: ${prunedTags.length}`);
+
+  // Create an object to store the count of pruned tags for each combo
+  const prunedComboCounts: ComboCounts = {};
+  prunedTags.forEach((tag) => {
+    tag.combos.forEach((combo: string) => {
+      prunedComboCounts[combo] = (prunedComboCounts[combo] || 0) + 1;
+    });
+  });
+
+  //throw away half the set for testing
+  prunedTags = prunedTags.slice(0, prunedTags.length / 4);
+
+  // Print the pruned combo counts
+  console.log(
+    "Pruned combo counts:",
+    JSON.stringify(prunedComboCounts, null, 2),
+  );
 
   let bestScore = 0;
   let bestCombination: Tag[] = [];
@@ -137,6 +156,7 @@ self.onmessage = async function (e: MessageEvent) {
   const resultMessage: ResultMessage = {
     type: "result",
     bestCombination: bestCombination,
+    score: bestScore,
   };
   postMessage(resultMessage);
 };

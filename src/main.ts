@@ -142,4 +142,10 @@ initializePage();
 
 const bestTags = await findBestCombination(tags);
 
-console.log(bestTags);
+/// only thenames of the tags are printed
+
+console.log(
+  bestTags.bestCombination.map((tag) => tag.name).join(", ") +
+    "\n" +
+    bestTags.score,
+);

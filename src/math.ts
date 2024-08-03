@@ -1,6 +1,12 @@
 import { Tag } from "./tags.ts";
 
-export async function findBestCombination(tags: Tag[]): Promise<Tag[]> {
+export interface ResultMessage {
+  type: "result";
+  bestCombination: Tag[];
+  score: number;
+}
+
+export async function findBestCombination(tags: Tag[]): Promise<ResultMessage> {
   return new Promise((resolve, reject) => {
     const worker = new Worker(new URL("./worker.ts", import.meta.url), {
       type: "module",
@@ -15,7 +21,7 @@ export async function findBestCombination(tags: Tag[]): Promise<Tag[]> {
           )}%, Estimated time remaining: ${message.estimatedRemaining}`,
         );
       } else if (message.type === "result") {
-        resolve(message.bestCombination);
+        resolve(message);
         worker.terminate();
       }
     };
