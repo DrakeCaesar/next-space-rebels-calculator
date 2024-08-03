@@ -319,43 +319,31 @@ export function createTagElement(tag: any, index: number) {
   tagElement.dataset.order = index.toFixed().toString();
   tagElement.classList.add(tag.blocked ? "blocked" : "unblocked");
 
-  const leftName = `left-${tag.combos[0]
-    .toLowerCase()
-    .replace("???", "unknown")}`;
-  const middleName = `${
-    tag.combos.length > 1
-      ? `middle-${tag.combos[1].toLowerCase().replace("???", "unknown")}`
-      : `middle-${tag.combos[0].toLowerCase().replace("???", "unknown")}`
-  }`;
-  const rightName = `${
-    tag.combos.length > 2
-      ? `right-${tag.combos[2].toLowerCase().replace("???", "unknown")}`
-      : middleName
-  }`;
+  const formatCombo = (combo: string) =>
+    combo.toLowerCase().replace("???", "unknown");
+
+  const leftName = `left-${formatCombo(tag.combos[0])}`;
+  const middleName =
+    tag.combos.length > 1 ? `middle-${formatCombo(tag.combos[1])}` : leftName;
+  const rightName =
+    tag.combos.length > 2 ? `right-${formatCombo(tag.combos[2])}` : middleName;
 
   tagElement.innerHTML += `
-  ${name}
-  <div class="tag-tooltip">
-    <strong>${name}</strong><br>
-    ${tag.description}<br>
-    <span class="${tag.rarity.toLowerCase()}">${tag.rarity}</span><br>
-    ${tag.combos
-      .map((combo: string) => `<span class="${combo}">${combo}</span>`)
-      .join(", ")}
-  </div>
-`;
+    ${name}
+    <div class="tag-tooltip">
+      <strong>${name}</strong><br>
+      ${tag.description}<br>
+      <span class="${tag.rarity.toLowerCase()}">${tag.rarity}</span><br>
+      ${tag.combos
+        .map(
+          (combo: string) =>
+            `<span class="${formatCombo(combo)}">${combo}</span>`,
+        )
+        .join(", ")}
+    </div>
+  `;
 
-  if (
-    leftName !== middleName &&
-    middleName !== rightName &&
-    leftName !== rightName
-  ) {
-    tagElement.classList.add(leftName, middleName, rightName);
-  } else if (leftName !== middleName) {
-    tagElement.classList.add(leftName, middleName);
-  } else {
-    tagElement.classList.add(leftName);
-  }
+  tagElement.classList.add(...[leftName, middleName, rightName]);
   tagsContainer?.appendChild(tagElement);
 
   tagElement.addEventListener("click", function () {
