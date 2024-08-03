@@ -47,20 +47,20 @@ $rarity-colors: (
 
 @include generate-rarity-classes($rarity-colors);
 $colors: (
-  UNKNOWN: var(--unknown-color),
-  CUTE: var(--cute-color),
-  AWESOME: var(--awesome-color),
-  NOOB: var(--noob-color),
-  SMART: var(--smart-color),
-  WEIRD: var(--weird-color),
-  WILD: var(--wild-color),
-  COOL: var(--cool-color),
-  ASPIRING: var(--aspiring-color),
-  FUNNY: var(--funny-color),
-  GROSS: var(--gross-color),
-  NAUGHTY: var(--naughty-color),
-  CREEPY: var(--creepy-color),
-  GEEKY: var(--geeky-color),
+  unknown: var(--unknown-color),
+  cute: var(--cute-color),
+  awesome: var(--awesome-color),
+  noob: var(--noob-color),
+  smart: var(--smart-color),
+  weird: var(--weird-color),
+  wild: var(--wild-color),
+  cool: var(--cool-color),
+  aspiring: var(--aspiring-color),
+  funny: var(--funny-color),
+  gross: var(--gross-color),
+  naughty: var(--naughty-color),
+  creepy: var(--creepy-color),
+  geeky: var(--geeky-color),
 );
 
 @mixin generate-classes($map) {

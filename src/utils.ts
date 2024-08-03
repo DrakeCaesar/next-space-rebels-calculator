@@ -290,7 +290,7 @@ export function filterTagsByText(activeCombos: Set<string>) {
 export function createComboButton(combo: string) {
   const button = document.createElement("button");
   button.textContent = combo;
-  button.classList.add("combo-button", combo);
+  button.classList.add("combo-button", combo.toLowerCase());
   button.dataset.combo = combo;
   comboButtonsContainer?.appendChild(button);
 
@@ -328,21 +328,47 @@ export function createTagElement(tag: any, index: number) {
   const rightName =
     tag.combos.length > 2 ? `right-${formatCombo(tag.combos[2])}` : middleName;
 
-  tagElement.innerHTML += `
-    ${name}
-    <div class="tag-tooltip">
-      <strong>${name}</strong><br>
-      ${tag.description}<br>
-      <span class="${tag.rarity.toLowerCase()}">${tag.rarity}</span><br>
-      ${tag.combos
+  const joinCombos = (combos: any[]) => {
+    if (combos.length === 2) {
+      return combos
         .map(
           (combo: string) =>
-            `<span class="${formatCombo(combo)}">${combo}</span>`,
+            `<span class="combo ${formatCombo(combo)}">${combo}</span>`,
         )
-        .join(", ")}
-    </div>
-  `;
+        .join(" and ");
+    } else if (combos.length === 3) {
+      return `${combos
+        .slice(0, 2)
+        .map(
+          (combo: string) =>
+            `<span class="combo ${formatCombo(combo)}">${combo}</span>`,
+        )
+        .join(", ")} and <span class="combo ${formatCombo(combos[2])}">${
+        combos[2]
+      }</span>`;
+    } else {
+      return combos
+        .map(
+          (combo: string) =>
+            `<span class="combo ${formatCombo(combo)}">${combo}</span>`,
+        )
+        .join(", ");
+    }
+  };
 
+  tagElement.innerHTML += `
+      ${name}
+      <div class="tag-tooltip">
+        <strong>${name}</strong><br>
+        ${tag.description}<br>
+        <span class="rarity ${tag.rarity.toLowerCase()}">${
+    tag.rarity
+  }</span><br>
+        ${joinCombos(tag.combos)}
+      </div>
+    `;
+
+  const classNames = new Set();
   tagElement.classList.add(...[leftName, middleName, rightName]);
   tagsContainer?.appendChild(tagElement);
 
