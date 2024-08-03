@@ -4,6 +4,7 @@ import {
   activeCombos,
   checkForDuplicateTags,
   createComboButton,
+  createCountFilterButtons,
   createModeSwitchButton,
   createTagElement,
   createToggleColorsButton,
@@ -53,7 +54,7 @@ tags.forEach((tag) => {
     //     Actual:   ${tag.description}`);
     // }
 
-    tag.description = tagFromJson.description;
+    // tag.description = tagFromJson.description;
     tag.combos = tagFromJson.combos;
     // check if tag.combos are a subset of tagFromJson.combos
     const isSubset = tag.combos.every((combo) =>
@@ -91,6 +92,7 @@ function initializePage() {
   });
   createModeSwitchButton();
   createToggleColorsButton();
+  createCountFilterButtons();
 
   const searchBar = document.getElementById("search-bar") as HTMLInputElement;
 

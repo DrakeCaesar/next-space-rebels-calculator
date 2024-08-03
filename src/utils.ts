@@ -56,6 +56,20 @@ export function filterTags(activeCombos: Set<string>) {
   });
 }
 
+export function filterTagsByComboCount(count: number) {
+  document.querySelectorAll("#tags-list .tag").forEach((tag) => {
+    const tagCombos = Array.from(tag.querySelectorAll(".tag-tooltip span")).map(
+      (span) => span.className,
+    );
+
+    if (tagCombos.length - 1 === count) {
+      tag.classList.remove("hidden");
+    } else {
+      tag.classList.add("hidden");
+    }
+  });
+}
+
 export function positionTooltip(e: MouseEvent, tag: HTMLElement) {
   const tooltip = tag.querySelector(".tag-tooltip") as HTMLElement;
 
@@ -102,6 +116,17 @@ export function createModeSwitchButton() {
     filterTags(activeCombos);
   });
   comboButtonsContainer?.appendChild(button);
+}
+
+export function createCountFilterButtons() {
+  for (let i = 2; i <= 3; i++) {
+    const button = document.createElement("button");
+    button.textContent = `Filter by ${i} Combos`;
+    button.addEventListener("click", () => {
+      filterTagsByComboCount(i);
+    });
+    comboButtonsContainer?.appendChild(button);
+  }
 }
 
 export function updateSelectedTagsDisplay() {
@@ -291,7 +316,7 @@ export function createComboButton(combo: string) {
   const button = document.createElement("button");
   button.textContent = combo;
   button.classList.add("combo-button", combo.toLowerCase());
-  button.dataset.combo = combo;
+  button.dataset.combo = combo.toLowerCase();
   comboButtonsContainer?.appendChild(button);
 
   button.addEventListener("click", function (this: HTMLElement) {
