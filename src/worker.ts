@@ -22,6 +22,25 @@ function formatTime(seconds: number): string {
   return `${h}h ${m}m ${s}s`;
 }
 
+function checkAndPostProgress(
+  currentCombination: number,
+  totalCombinations: number,
+  startTime: number,
+): number {
+  const percentage = (currentCombination / totalCombinations) * 100;
+  const elapsed = (Date.now() - startTime) / 1000; // elapsed time in seconds
+  const estimatedTotal = (elapsed / currentCombination) * totalCombinations;
+  const estimatedRemaining = estimatedTotal - elapsed;
+
+  const progressMessage: ProgressMessage = {
+    type: "progress",
+    percentage: percentage,
+    estimatedRemaining: formatTime(estimatedRemaining),
+  };
+  postMessage(progressMessage);
+  return 0; // Reset counter after posting progress message
+}
+
 interface FindBestCombinationPayload {
   tags: Tag[];
 }
@@ -59,25 +78,10 @@ self.onmessage = async function (e: MessageEvent) {
 
   // Start timing
   const startTime = Date.now();
+  let messageTime = startTime;
 
   for (let i = 0; i < n - 4; i++) {
     for (let j = i + 1; j < n - 3; j++) {
-      // Calculate progress and estimated remaining time
-      currentCombination += ((n - j - 1) * (n - j - 2) * (n - j - 3)) / 6; // Number of combinations for current `j`
-      const percentage = (currentCombination / totalCombinations) * 100;
-      const elapsed = (Date.now() - startTime) / 1000; // elapsed time in seconds
-      const estimatedTotal = (elapsed / currentCombination) * totalCombinations;
-      const estimatedRemaining = estimatedTotal - elapsed;
-
-      const progressMessage: ProgressMessage = {
-        type: "progress",
-        percentage: percentage,
-        estimatedRemaining: formatTime(estimatedRemaining),
-      };
-      postMessage(progressMessage);
-
-      await new Promise((resolve) => setTimeout(resolve, 1));
-
       for (let k = j + 1; k < n - 2; k++) {
         for (let l = k + 1; l < n - 1; l++) {
           for (let m = l + 1; m < n; m++) {
@@ -101,6 +105,17 @@ self.onmessage = async function (e: MessageEvent) {
             if (score > bestScore) {
               bestScore = score;
               bestCombination = combination;
+            }
+
+            currentCombination++;
+            const currentTime = Date.now();
+            if (currentTime - messageTime > 1000) {
+              messageTime = currentTime;
+              checkAndPostProgress(
+                currentCombination,
+                totalCombinations,
+                startTime,
+              );
             }
           }
         }
