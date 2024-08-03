@@ -1,3 +1,5 @@
+import { formatCombo, joinCombos } from "./comboUtils.ts";
+import { handleTagClick, handleTagMouseMove } from "./eventHandlers.ts";
 import { UNKNOWN } from "./tags.ts";
 
 export const tagsContainer = document.getElementById(
@@ -344,42 +346,11 @@ export function createTagElement(tag: any, index: number) {
   tagElement.dataset.order = index.toFixed().toString();
   tagElement.classList.add(tag.blocked ? "blocked" : "unblocked");
 
-  const formatCombo = (combo: string) =>
-    combo.toLowerCase().replace("???", "unknown");
-
   const leftName = `left-${formatCombo(tag.combos[0])}`;
   const middleName =
     tag.combos.length > 1 ? `middle-${formatCombo(tag.combos[1])}` : leftName;
   const rightName =
     tag.combos.length > 2 ? `right-${formatCombo(tag.combos[2])}` : middleName;
-
-  const joinCombos = (combos: any[]) => {
-    if (combos.length === 2) {
-      return combos
-        .map(
-          (combo: string) =>
-            `<span class="${formatCombo(combo)}">${combo}</span>`,
-        )
-        .join(" and ");
-    } else if (combos.length === 3) {
-      return `${combos
-        .slice(0, 2)
-        .map(
-          (combo: string) =>
-            `<span class="${formatCombo(combo)}">${combo}</span>`,
-        )
-        .join(", ")} and <span class="combo ${formatCombo(combos[2])}">${
-        combos[2]
-      }</span>`;
-    } else {
-      return combos
-        .map(
-          (combo: string) =>
-            `<span class="${formatCombo(combo)}">${combo}</span>`,
-        )
-        .join(", ");
-    }
-  };
 
   tagElement.innerHTML += `
       ${name}
@@ -397,20 +368,11 @@ export function createTagElement(tag: any, index: number) {
   tagElement.classList.add(...[leftName, middleName, rightName]);
   tagsContainer?.appendChild(tagElement);
 
-  tagElement.addEventListener("click", function () {
-    if (selectedTags.has(tag.name)) {
-      selectedTags.delete(tag.name);
-      tagElement.classList.remove("selected");
-    } else if (selectedTags.size < 5) {
-      selectedTags.add(tag.name);
-      tagElement.classList.add("selected");
-    }
-    updateSelectedTagsDisplay();
-  });
-
-  tagElement.addEventListener("mousemove", function (e: MouseEvent) {
-    positionTooltip(e, tagElement);
-  });
+  tagElement.addEventListener(
+    "click",
+    handleTagClick(tagElement, tag, selectedTags, updateSelectedTagsDisplay),
+  );
+  tagElement.addEventListener("mousemove", handleTagMouseMove(tagElement));
 }
 
 export function checkForDuplicateTags(tags: any[]): boolean {
