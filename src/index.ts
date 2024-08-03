@@ -5,6 +5,7 @@ import {
   createToggleColorsButton,
 } from "./createButtons.ts";
 import { updateSelectedTagsDisplay } from "./displayUtils.ts";
+import { findBestCombination } from "./math.ts";
 import "./styles.scss";
 import { tags, tagsFromTheGame, UNKNOWN } from "./tags.ts";
 import {
@@ -138,3 +139,7 @@ function initializePage() {
 }
 
 initializePage();
+
+const bestTags = await findBestCombination(tags);
+
+console.log(bestTags);

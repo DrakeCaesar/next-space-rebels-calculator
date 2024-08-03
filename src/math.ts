@@ -1,11 +1,8 @@
-import { Tag, tags, UNKNOWN } from "../tags.ts";
-
-import fs from "fs";
+import { Tag } from "../tags.ts";
 
 function calculateScore(comboCounts: { [key: string]: number }): number {
   let score = 0;
   for (const combo in comboCounts) {
-    if (combo === UNKNOWN) continue;
     const count = comboCounts[combo];
     if (count === 2) score += 1;
     if (count === 3) score += 3;
@@ -21,12 +18,22 @@ function formatTime(seconds: number): string {
   return `${h}h ${m}m ${s}s`;
 }
 
-function findBestCombination(tags: Tag[]): Tag[] {
+export function findBestCombination(tags: Tag[]): Tag[] {
+  // Create a copy of the tags array
+  const tagsCopy = [...tags];
+
+  // Print the number of tags before pruning
+  console.log(`Number of tags before pruning: ${tagsCopy.length}`);
+
+  // Prune tags that have only 1 combo
+  const prunedTags = tagsCopy.filter((tag) => tag.combos.length > 1);
+
+  // Print the number of tags after pruning
+  console.log(`Number of tags after pruning: ${prunedTags.length}`);
+
   let bestScore = 0;
   let bestCombination: Tag[] = [];
-  const n = tags.length;
-
-  console.log(n);
+  const n = prunedTags.length;
 
   const totalCombinations = (n * (n - 1) * (n - 2) * (n - 3) * (n - 4)) / 120;
   let currentCombination = 0;
@@ -52,14 +59,18 @@ function findBestCombination(tags: Tag[]): Tag[] {
       for (let k = j + 1; k < n - 2; k++) {
         for (let l = k + 1; l < n - 1; l++) {
           for (let m = l + 1; m < n; m++) {
-            const combination = [tags[i], tags[j], tags[k], tags[l], tags[m]];
+            const combination = [
+              prunedTags[i],
+              prunedTags[j],
+              prunedTags[k],
+              prunedTags[l],
+              prunedTags[m],
+            ];
             const comboCounts: { [key: string]: number } = {};
 
             combination.forEach((tag) => {
-              tag.combos.forEach((combo) => {
-                if (combo !== UNKNOWN) {
-                  comboCounts[combo] = (comboCounts[combo] || 0) + 1;
-                }
+              tag.combos.forEach((combo: string) => {
+                comboCounts[combo] = (comboCounts[combo] || 0) + 1;
               });
             });
 
@@ -78,9 +89,9 @@ function findBestCombination(tags: Tag[]): Tag[] {
   return bestCombination;
 }
 
-const jsonTags = JSON.stringify(tags, null, 2);
-fs.writeFileSync("tags.json", jsonTags);
+// const jsonTags = JSON.stringify(tags, null, 2);
+// fs.writeFileSync("tags.json", jsonTags);
 
-// Example usage:
-const bestTags = findBestCombination(tags);
-console.log("Best Combination:", bestTags);
+// // Example usage:
+// const bestTags = findBestCombination(tags);
+// console.log("Best Combination:", bestTags);
