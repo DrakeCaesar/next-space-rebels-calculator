@@ -2428,6 +2428,61 @@ export const tags: Tag[] = [
     rarity: Epic,
     combos: [UNKNOWN],
   },
+  {
+    name: "Pump Tower",
+    description: "For using 4 pumps on top of each other",
+    rarity: Epic,
+    combos: [UNKNOWN],
+  },
+  {
+    name: "Exosphere",
+    description: "For reaching an altitude of 690 kilometers",
+    rarity: Viral,
+    combos: [UNKNOWN],
+  },
+  {
+    name: "Mikado",
+    description: "For using 5 toy sticks",
+    rarity: Rare,
+    combos: [UNKNOWN],
+  },
+  {
+    name: "Bear Skewer",
+    description: "For combining a teddy bear and a toy stick",
+    rarity: Rare,
+    combos: [UNKNOWN],
+  },
+  {
+    name: "Hydra",
+    description: "For using 9 head parts",
+    rarity: Epic,
+    combos: [UNKNOWN],
+  },
+  {
+    name: "Buff",
+    description: "For using 3 torso parts",
+    rarity: Rare,
+    combos: [UNKNOWN],
+  },
+  {
+    name: "Aurora",
+    description: "For reaching an altitude of 80 kilometers",
+    rarity: Epic,
+    combos: [UNKNOWN],
+  },
+  {
+    name: "Tzar",
+    description: "For using a Tzar bomba",
+    rarity: Epic,
+    combos: [UNKNOWN],
+  },
+  {
+    name: "Space Waste",
+    description:
+      "For using a trash part and reaching an altitude of 100 kilometers",
+    rarity: Viral,
+    combos: [UNKNOWN],
+  },
 ];
 
 export const tagsFromJson: Tag[] = [
