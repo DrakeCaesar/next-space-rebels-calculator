@@ -1,3 +1,4 @@
+import { updateSelectedTagsDisplay } from "./displayUtils.ts";
 import "./styles.scss";
 import { tags, tagsFromJson as tagsFromTheGame, UNKNOWN } from "./tags.ts";
 import {
@@ -13,7 +14,6 @@ import {
   sortTagsBy,
   tagsContainer,
   uniqueCombos,
-  updateSelectedTagsDisplay,
 } from "./utils.ts";
 
 import toastr from "toastr"; // Import toastr for notifications
