@@ -333,7 +333,7 @@ export function createTagElement(tag: any, index: number) {
       return combos
         .map(
           (combo: string) =>
-            `<span class="combo ${formatCombo(combo)}">${combo}</span>`,
+            `<span class="${formatCombo(combo)}">${combo}</span>`,
         )
         .join(" and ");
     } else if (combos.length === 3) {
@@ -341,7 +341,7 @@ export function createTagElement(tag: any, index: number) {
         .slice(0, 2)
         .map(
           (combo: string) =>
-            `<span class="combo ${formatCombo(combo)}">${combo}</span>`,
+            `<span class="${formatCombo(combo)}">${combo}</span>`,
         )
         .join(", ")} and <span class="combo ${formatCombo(combos[2])}">${
         combos[2]
@@ -350,7 +350,7 @@ export function createTagElement(tag: any, index: number) {
       return combos
         .map(
           (combo: string) =>
-            `<span class="combo ${formatCombo(combo)}">${combo}</span>`,
+            `<span class="${formatCombo(combo)}">${combo}</span>`,
         )
         .join(", ");
     }
