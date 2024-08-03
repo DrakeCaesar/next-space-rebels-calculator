@@ -595,7 +595,7 @@ export const tags: Tag[] = [
   },
   {
     name: "Kilometer",
-    description: "For reaching an altitude of 1 kilometer",
+    description: "For reaching an altitude of 1 kilometers",
     rarity: Common,
     combos: [UNKNOWN],
   },
@@ -680,7 +680,7 @@ export const tags: Tag[] = [
   },
   {
     name: "Bike",
-    description: "For using a bike set",
+    description: "For using the bike set",
     rarity: Common,
     combos: [WEIRD],
   },
@@ -692,7 +692,7 @@ export const tags: Tag[] = [
   },
   {
     name: "Angel#1",
-    description: "For using a halo shaped part on the top of the rocket",
+    description: "For using a halo shaped part on top of the rocket",
     rarity: Rare,
     combos: [CUTE],
   },
@@ -753,7 +753,7 @@ export const tags: Tag[] = [
   },
   {
     name: "Steer",
-    description: "For triggering swivel",
+    description: "For triggering a swivel",
     rarity: Uncommon,
     combos: [SMART],
   },
@@ -820,7 +820,7 @@ export const tags: Tag[] = [
   },
   {
     name: "Dandy Deer",
-    description: "For using a deer part",
+    description: "For using a Dandy Deer part",
     rarity: Common,
     combos: [WEIRD, WILD],
   },
@@ -874,13 +874,13 @@ export const tags: Tag[] = [
   },
   {
     name: "Flower Power",
-    description: "For using 3 different firework parts",
+    description: "For using 3 different firework flowers",
     rarity: Rare,
     combos: [AWESOME, WILD],
   },
   {
     name: "Pyromaniac",
-    description: "For using 3 different firework parts",
+    description: "For using 3 firework parts",
     rarity: Uncommon,
     combos: [AWESOME, CREEPY],
   },
@@ -911,7 +911,7 @@ export const tags: Tag[] = [
   },
   {
     name: "Juice",
-    description: "For using 3 fuel parts",
+    description: "For using 3 fuel tanks",
     rarity: Uncommon,
     combos: [UNKNOWN],
   },
@@ -941,7 +941,7 @@ export const tags: Tag[] = [
   },
   {
     name: "Diverse",
-    description: "For using a nose, body and tai, all from different sets",
+    description: "For using a nose, body and tail, all from different sets",
     rarity: Rare,
     combos: [AWESOME, UNKNOWN],
   },
@@ -965,7 +965,7 @@ export const tags: Tag[] = [
   },
   {
     name: "Double Kit",
-    description: "For using a complete rocket kit set twice",
+    description: "For using a completed rocket kit set twice",
     rarity: Rare,
     combos: [UNKNOWN],
   },
@@ -1008,7 +1008,7 @@ export const tags: Tag[] = [
   {
     name: "Flat",
     description:
-      "For having a rocket width at least 5 times bigger than its height",
+      "For having the rocket width at least 5 times bigger than its height",
     rarity: Rare,
     combos: [UNKNOWN],
   },
@@ -1630,7 +1630,7 @@ export const tags: Tag[] = [
   {
     name: "Tripower",
     altName: "Triforce",
-    description: "For using 3 triangles stack in a pyramid",
+    description: "For using 3 triangles stacked in a pyramid",
     rarity: Epic,
     combos: [GEEKY],
   },
@@ -1734,7 +1734,7 @@ export const tags: Tag[] = [
   },
   {
     name: "Algae",
-    description: "For an algae part",
+    description: "For using an algae part",
     rarity: Common,
     combos: [UNKNOWN],
   },
@@ -1838,7 +1838,7 @@ export const tags: Tag[] = [
   },
   {
     name: "Metal",
-    description: "For using only the scrap structure",
+    description: "For using only the scrap structure set",
     rarity: Rare,
     combos: [COOL, UNKNOWN],
   },
@@ -1978,7 +1978,7 @@ export const tags: Tag[] = [
   {
     name: "Professional",
     description:
-      "For using an engine, a fuel tank, an oxygen tank, a pump, and a connector",
+      "For using an engine, a fuel tank, an oxygen tank, a pump and a connector",
     rarity: Rare,
     combos: [ASPIRING],
   },
@@ -2174,7 +2174,7 @@ export const tags: Tag[] = [
   },
   {
     name: "Purple",
-    description: "For Using 2 purple parts",
+    description: "For using 2 purple parts",
     rarity: "Uncommon",
     combos: [UNKNOWN],
   },
@@ -2253,7 +2253,7 @@ export const tags: Tag[] = [
   {
     name: "Voxel",
     altName: "Minecraft",
-    description: "For using only cube-shaped structure parts",
+    description: "For using only cube shaped structure parts",
     rarity: Epic,
     combos: [UNKNOWN],
   },
@@ -3459,7 +3459,7 @@ export const tagsFromJson: Tag[] = [
   },
   {
     name: "Algae",
-    description: "For using a algae part",
+    description: "For using an algae part",
     combos: [WILD],
   },
   {

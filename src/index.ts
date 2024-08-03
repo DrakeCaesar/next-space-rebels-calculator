@@ -43,6 +43,16 @@ tags.forEach((tag) => {
   }
 
   if (tagFromJson) {
+    // if (
+    //   tag.description !==
+    //   tagFromJson.description.replaceAll("‘", "'").replaceAll("’", "'")
+    // ) {
+    //   console.error(`
+    //     Tag description mismatch: ${tag.name}\n
+    //     Expected: ${tagFromJson.description}\n
+    //     Actual:   ${tag.description}`);
+    // }
+
     tag.description = tagFromJson.description;
     tag.combos = tagFromJson.combos;
     // check if tag.combos are a subset of tagFromJson.combos
