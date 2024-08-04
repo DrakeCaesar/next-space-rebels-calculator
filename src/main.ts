@@ -143,10 +143,8 @@ initializePage();
 
 const bestTags: ResultMessage = await findBestCombination(tags);
 
-/// only thenames of the tags are printed
-
 console.log(
   bestTags.bestCombination.map((tag: { name: any }) => tag.name).join(", "),
   bestTags.score,
-  Array.from(bestTags.allScores).sort((a: number, b: number) => a - b),
+  Array.from(bestTags.allScores.entries()).sort((a, b) => a[0] - b[0]),
 );
