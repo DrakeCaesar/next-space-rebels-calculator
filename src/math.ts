@@ -1,3 +1,6 @@
+import { Tag } from "./tags";
+import { ResultMessage } from "./worker";
+
 function formatTime(seconds: number): string {
   const h = Math.floor(seconds / 3600);
   const m = Math.floor((seconds % 3600) / 60);
