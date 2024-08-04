@@ -1,5 +1,9 @@
-import { Tag } from "./tags";
-import { ResultMessage } from "./worker";
+function formatTime(seconds: number): string {
+  const h = Math.floor(seconds / 3600);
+  const m = Math.floor((seconds % 3600) / 60);
+  const s = Math.floor(seconds % 60);
+  return `${h}h ${m}m ${s}s`;
+}
 
 export async function findBestCombination(tags: Tag[]): Promise<ResultMessage> {
   return new Promise((resolve, reject) => {
@@ -10,25 +14,21 @@ export async function findBestCombination(tags: Tag[]): Promise<ResultMessage> {
     worker.onmessage = (e: MessageEvent) => {
       const message = e.data;
       if (message.type === "progress") {
-        const elapsedTime = ((Date.now() - startTime) / 1000).toFixed(2);
+        const elapsedTime = (Date.now() - startTime) / 1000;
         const estimatedRemaining = parseFloat(
           message.estimatedRemaining.replace(/[^\d.]/g, ""),
         );
-        const totalEstimate = (
-          parseFloat(elapsedTime) + estimatedRemaining
-        ).toFixed(2);
+        const totalEstimate = elapsedTime + estimatedRemaining;
         const finishTime = new Date(
           startTime + totalEstimate * 1000,
         ).toLocaleTimeString();
 
         console.log(
-          `P: ${message.percentage
-            .toFixed(2)
-            .padEnd(6)} | ET: ${elapsedTime.padEnd(
-            8,
-          )} | ER: ${message.estimatedRemaining.padEnd(
+          `P: ${message.percentage.toFixed(2).padEnd(6)} | ET: ${formatTime(
+            elapsedTime,
+          ).padEnd(12)} | ER: ${formatTime(estimatedRemaining).padEnd(
             12,
-          )} | TE: ${totalEstimate.padEnd(8)} | FT: ${finishTime}`,
+          )} | TE: ${formatTime(totalEstimate).padEnd(12)} | FT: ${finishTime}`,
         );
       } else if (message.type === "result") {
         resolve(message);
