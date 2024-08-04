@@ -91,18 +91,7 @@ self.onmessage = async function (e: MessageEvent) {
     });
   });
 
-  //throw away half the set for testing
-  // prunedTags = prunedTags.slice(0, prunedTags.length / 4);
-  // throw away all but Baby Display Head Body Clown
-
-  // prunedTags = prunedTags.filter(
-  //   (tag) =>
-  //     tag.name === "Baby" ||
-  //     tag.name === "Display" ||
-  //     tag.name === "Head" ||
-  //     tag.name === "Body" ||
-  //     tag.name === "Clown",
-  // );
+  prunedTags = prunedTags.slice(0, prunedTags.length / 4);
 
   // Print the pruned combo counts
   console.log(
