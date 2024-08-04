@@ -19,7 +19,7 @@ export function joinCombos(combos: any[]): string {
         (combo: string) =>
           `<span class="${formatCombo(combo)}">${combo}</span>`,
       )
-      .join(", ")} and <span class="combo ${formatCombo(combos[2])}">${
+      .join(", ")} and <span class="${formatCombo(combos[2])}">${
       combos[2]
     }</span>`;
   } else {
