@@ -52,7 +52,7 @@ interface ProgressMessage {
   estimatedRemaining: string;
 }
 
-interface ResultMessage {
+export interface ResultMessage {
   type: "result";
   bestCombination: Tag[];
   score: number;

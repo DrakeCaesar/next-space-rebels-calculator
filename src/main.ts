@@ -20,6 +20,7 @@ import {
 } from "./utils.js";
 
 import toastr from "toastr"; // Import toastr for notifications
+import { ResultMessage } from "./worker.js";
 
 const hasDuplicate = checkForDuplicateTags(tags);
 
@@ -140,12 +141,12 @@ function initializePage() {
 
 initializePage();
 
-const bestTags = await findBestCombination(tags);
+const bestTags: ResultMessage = await findBestCombination(tags);
 
 /// only thenames of the tags are printed
 
 console.log(
-  bestTags.bestCombination.map((tag) => tag.name).join(", "),
+  bestTags.bestCombination.map((tag: { name: any }) => tag.name).join(", "),
   bestTags.score,
-  Array.from(bestTags.allScores).sort((a, b) => a - b),
+  Array.from(bestTags.allScores).sort((a: number, b: number) => a - b),
 );
