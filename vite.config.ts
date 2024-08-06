@@ -1,7 +1,17 @@
 import { defineConfig } from "vite";
+import { viteStaticCopy } from "vite-plugin-static-copy";
 
 export default defineConfig({
-  plugins: [],
+  plugins: [
+    viteStaticCopy({
+      targets: [
+        {
+          src: "output.wasm", // Adjust the path to your actual wasm file location
+          dest: "", // Destination directory within the output directory
+        },
+      ],
+    }),
+  ],
   build: {
     outDir: "dist",
     sourcemap: true,

@@ -12,8 +12,7 @@ const possibleScores = [
   125, 150, 160, 200, 225, 240, 250, 300, 375, 450, 600, 625, 750, 900, 1125,
 ];
 
-export async function findBestCombination(tags: Tag[]): Promise<ResultMessage> {
-  return new Promise((resolve, reject) => {
+export async function findBestCombination(tags: Tag[]): Promise<ResultMessage> {return new Promise((resolve, reject) => {
     const worker = new Worker(new URL("./worker.ts", import.meta.url), {
       type: "module",
     });
