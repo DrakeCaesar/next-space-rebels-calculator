@@ -58,36 +58,41 @@ vector<Tag> findBestCombination(const vector<Tag> &tags) {
 
   auto start = chrono::steady_clock::now();
 #pragma omp parallel for schedule(dynamic) collapse(5)                         \
-    shared(bestScore, bestCombination) // Parallelize outer loops
+    reduction(max : bestScore)
   for (size_t i = 0; i < n - 4; i++) {
     for (size_t j = i + 1; j < n - 3; j++) {
       for (size_t k = j + 1; k < n - 2; k++) {
         for (size_t l = k + 1; l < n - 1; l++) {
           for (size_t m = l + 1; m < n; m++) {
             unordered_map<string, int> comboCounts;
-            vector<Tag> combination = {tags[i], tags[j], tags[k], tags[l],
-                                       tags[m]};
-
-            for (const auto &tag : combination) {
-              for (const auto &combo : tag.combos) {
-                comboCounts[combo]++;
-              }
-            }
+            // Using indices instead of copying the combination
+            for (const auto &combo : tags[i].combos)
+              comboCounts[combo]++;
+            for (const auto &combo : tags[j].combos)
+              comboCounts[combo]++;
+            for (const auto &combo : tags[k].combos)
+              comboCounts[combo]++;
+            for (const auto &combo : tags[l].combos)
+              comboCounts[combo]++;
+            for (const auto &combo : tags[m].combos)
+              comboCounts[combo]++;
 
             int score = calculateScore(comboCounts);
 
-#pragma omp                                                                    \
-    critical // Ensure that updates to shared variables are done atomically
+#pragma omp critical
             if (score > bestScore) {
               bestScore = score;
-              bestCombination = combination;
+              bestCombination = {tags[i], tags[j], tags[k], tags[l], tags[m]};
+              cout << "New best score: " << bestScore << endl;
+              cout << "New best combination: " << tags[i].name << ", "
+                   << tags[j].name << ", " << tags[k].name << ", "
+                   << tags[l].name << ", " << tags[m].name << endl;
             }
 
-#pragma omp atomic // Atomic increment of progress counter
+#pragma omp atomic
             currentCombination++;
-
-            if (currentCombination % 1000000 ==
-                0) { // Reduce frequency of updates
+            int step = totalCombinations / 100;
+            if (currentCombination % step == 0) {
               auto now = chrono::steady_clock::now();
               auto elapsed =
                   chrono::duration_cast<chrono::seconds>(now - start).count();
@@ -98,7 +103,7 @@ vector<Tag> findBestCombination(const vector<Tag> &tags) {
               double estimatedRemaining = estimatedTotal - elapsed;
 
               if (currentCombination > 0 && estimatedRemaining > 0) {
-                cout << "Progress: " << percentage << "%, ETA: " 
+                cout << "Progress: " << percentage << "%, ETA: "
                      << formatTime(static_cast<int>(estimatedRemaining)) << " "
                      << currentCombination << "/" << totalCombinations << endl;
               }
