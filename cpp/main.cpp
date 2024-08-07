@@ -26,17 +26,17 @@ void from_json(const json &j, Tag &t) {
 }
 
 int calculateScore(const unordered_map<string, int> &comboCounts) {
-  int score = 0;
+  int score = 1;
   for (const auto &entry : comboCounts) {
-    if (entry.first == "UNKNOWN")
-      continue;
     int count = entry.second;
     if (count == 2)
-      score += 1;
+      score *= 2;
     if (count == 3)
-      score += 3;
+      score *= 5;
     if (count == 4)
-      score += 15;
+      score *= 15;
+    if (count == 5)
+      score *= 30;
   }
   return score;
 }
@@ -70,9 +70,7 @@ vector<Tag> findBestCombination(const vector<Tag> &tags) {
 
             for (const auto &tag : combination) {
               for (const auto &combo : tag.combos) {
-                if (combo != "UNKNOWN") {
-                  comboCounts[combo]++;
-                }
+                comboCounts[combo]++;
               }
             }
 
