@@ -5,6 +5,7 @@ dist/
 Tags.xml
 
 .cmake/
-
 cpp/cmake-build-debug/
 cpp/cmake-build-release/
+
+cpp/.vs/

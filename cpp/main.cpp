@@ -56,29 +56,15 @@ void from_json(const json &j, Tag &t) {
 }
 
 static int calculateScore(const int comboCounts[]) {
-  int score = 1;
-  for (int i = 0; i < COMBO_COUNT; i++) {
-    int count = comboCounts[i];
-    switch (count) {
-    case 2:
-      score *= 2;
-      break;
-    case 3:
-      score *= 5;
-      break;
-    case 4:
-      score *= 15;
-      break;
-    case 5:
-      score *= 30;
-      break;
-    default:
-      break;
-    }
-  }
-  return score;
-}
+    static const int multipliers[] = { 1, 1, 2, 5, 15, 30 }; // Lookup table
+    int score = 1;
 
+    for (int i = 0; i < COMBO_COUNT; i++) {
+        score *= multipliers[comboCounts[i]];
+    }
+
+    return score;
+}
 string formatTime(int totalSeconds) {
   int h = totalSeconds / 3600;
   int m = (totalSeconds % 3600) / 60;
@@ -130,24 +116,24 @@ vector<Tag> findBestCombination(const vector<Tag> &tags) {
             }
 
 #pragma omp atomic
-            currentCombination++;
-            int step = totalCombinations / 10;
-            if (currentCombination % step == 0) {
-              auto now = chrono::steady_clock::now();
-              auto elapsed =
-                  chrono::duration_cast<chrono::seconds>(now - start).count();
-              double percentage =
-                  (double)currentCombination / totalCombinations * 100;
-              double estimatedTotal =
-                  (double)elapsed / currentCombination * totalCombinations;
-              double estimatedRemaining = estimatedTotal - elapsed;
+            //currentCombination++;
+            //int step = totalCombinations / 10;
+            //if (currentCombination % step == 0) {
+            //  auto now = chrono::steady_clock::now();
+            //  auto elapsed =
+            //      chrono::duration_cast<chrono::seconds>(now - start).count();
+            //  double percentage =
+            //      (double)currentCombination / totalCombinations * 100;
+            //  double estimatedTotal =
+            //      (double)elapsed / currentCombination * totalCombinations;
+            //  double estimatedRemaining = estimatedTotal - elapsed;
 
-              if (currentCombination > 0 && estimatedRemaining > 0) {
-                cout << "Progress: " << percentage << "%, ETA: "
-                     << formatTime(static_cast<int>(estimatedRemaining)) << " "
-                     << currentCombination << "/" << totalCombinations << endl;
-              }
-            }
+            //  if (currentCombination > 0 && estimatedRemaining > 0) {
+            //    cout << "Progress: " << percentage << "%, ETA: "
+            //         << formatTime(static_cast<int>(estimatedRemaining)) << " "
+            //         << currentCombination << "/" << totalCombinations << endl;
+            //  }
+            //}
           }
         }
       }
