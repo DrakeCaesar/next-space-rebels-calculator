@@ -251,9 +251,28 @@ button,
   display: none;
 }
 
+#selected-tags-container {
+  background-color: white;
+  background-repeat: no-repeat;
+  outline: 1px solid red;
+  padding: 0px;
+  width: 812px;
+  display: flex;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+  position: relative;
+  align-content: flex-start;
+}
+
 #selected-tags {
-  height: 150px;
   display: inline-block;
+  padding: 16px;
+  width: 800px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8.5px 5px;
+  box-sizing: border-box;
+  position: relative;
 }
 
 #selected-tags .tag {

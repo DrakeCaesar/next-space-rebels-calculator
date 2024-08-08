@@ -7,13 +7,14 @@ import {
 } from "./createButtons.js";
 import { updateSelectedTagsDisplay } from "./displayUtils.js";
 import "./styles.scss";
-import { tags, tagsFromTheGame, UNKNOWN } from "./tags.js";
+import { Tag, tags, tagsFromTheGame, UNKNOWN } from "./tags.js";
 import {
   activeCombos,
   checkForDuplicateTags,
   createTagElement,
   filterTagsByText,
   loadSelectedTagsFromLocalStorage,
+  selectedTags,
   sortTagsBy,
   tagsContainer,
   uniqueCombos,
@@ -74,10 +75,16 @@ tags.forEach((tag) => {
 
 let prunedTags = tags.filter((tag) => tag.combos.length > 1);
 const json = JSON.stringify(prunedTags, null, 2);
-sendJsonToBackend(json);
-
-tags.forEach((tag) => {
-  tag.combos.forEach((combo) => uniqueCombos.add(combo));
+const combos = sendJsonToBackend(json);
+combos.then((data) => {
+  if (!data) {
+    return;
+  }
+  selectedTags.clear();
+  for (const combo of data) {
+    selectedTags.add(combo.name);
+  }
+  updateSelectedTagsDisplay();
 });
 
 const sortedCombos = Array.from(uniqueCombos).sort();
@@ -127,15 +134,13 @@ function initializePage() {
     filterTagsByText(activeCombos);
   });
 
-  document.addEventListener("DOMContentLoaded", () => {
-    loadSelectedTagsFromLocalStorage();
-    updateSelectedTagsDisplay();
-  });
+  loadSelectedTagsFromLocalStorage();
+  updateSelectedTagsDisplay();
 }
 
 window.addEventListener("load", initializePage);
 
-async function sendJsonToBackend(jsonData: string) {
+async function sendJsonToBackend(jsonData: string): Promise<Tag[] | null> {
   try {
     const response = await axios.post(
       "http://localhost:3000/process",
@@ -146,7 +151,7 @@ async function sendJsonToBackend(jsonData: string) {
         },
       },
     );
-    return response.data;
+    return response.data as Tag[];
   } catch (error) {
     console.error("Error sending data to backend:", error);
     return null;
