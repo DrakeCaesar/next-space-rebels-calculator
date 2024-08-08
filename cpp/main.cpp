@@ -35,7 +35,7 @@ struct Tag {
 };
 
 // Define how to parse a Tag from JSON
-void from_json(const json &j, Tag &t) {
+static void from_json(const json &j, Tag &t) {
   j.at("name").get_to(t.name);
   j.at("description").get_to(t.description);
   j.at("rarity").get_to(t.rarity);
@@ -65,14 +65,14 @@ static int calculateScore(const int comboCounts[]) {
 
     return score;
 }
-string formatTime(int totalSeconds) {
+static string formatTime(int totalSeconds) {
   int h = totalSeconds / 3600;
   int m = (totalSeconds % 3600) / 60;
   int s = totalSeconds % 60;
   return to_string(h) + "h " + to_string(m) + "m " + to_string(s) + "s";
 }
 
-vector<Tag> findBestCombination(const vector<Tag> &tags) {
+static vector<Tag> findBestCombination(const vector<Tag> &tags) {
   omp_set_num_threads(16);
   vector<Tag> bestCombination;
   int bestScore = 0;
@@ -114,26 +114,6 @@ vector<Tag> findBestCombination(const vector<Tag> &tags) {
                      << tags[l].name << ", " << tags[m].name << endl;
               }
             }
-
-#pragma omp atomic
-            //currentCombination++;
-            //int step = totalCombinations / 10;
-            //if (currentCombination % step == 0) {
-            //  auto now = chrono::steady_clock::now();
-            //  auto elapsed =
-            //      chrono::duration_cast<chrono::seconds>(now - start).count();
-            //  double percentage =
-            //      (double)currentCombination / totalCombinations * 100;
-            //  double estimatedTotal =
-            //      (double)elapsed / currentCombination * totalCombinations;
-            //  double estimatedRemaining = estimatedTotal - elapsed;
-
-            //  if (currentCombination > 0 && estimatedRemaining > 0) {
-            //    cout << "Progress: " << percentage << "%, ETA: "
-            //         << formatTime(static_cast<int>(estimatedRemaining)) << " "
-            //         << currentCombination << "/" << totalCombinations << endl;
-            //  }
-            //}
           }
         }
       }
