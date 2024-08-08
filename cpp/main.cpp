@@ -10,11 +10,28 @@
 using json = nlohmann::json;
 using namespace std;
 
+enum Combo {
+  CUTE,
+  AWESOME,
+  NOOB,
+  SMART,
+  WEIRD,
+  WILD,
+  COOL,
+  FUNNY,
+  GROSS,
+  NAUGHTY,
+  CREEPY,
+  ASPIRING,
+  GEEKY,
+  COMBO_COUNT // This will be 13, representing the number of combos
+};
+
 struct Tag {
   string name;
   string description;
   string rarity;
-  vector<string> combos;
+  vector<int> combos; // Use vector of indices instead of strings
 };
 
 // Define how to parse a Tag from JSON
@@ -22,13 +39,25 @@ void from_json(const json &j, Tag &t) {
   j.at("name").get_to(t.name);
   j.at("description").get_to(t.description);
   j.at("rarity").get_to(t.rarity);
-  j.at("combos").get_to(t.combos);
+
+  vector<string> comboStrings;
+  j.at("combos").get_to(comboStrings);
+
+  unordered_map<string, int> comboMap = {
+      {"CUTE", CUTE},       {"AWESOME", AWESOME}, {"NOOB", NOOB},
+      {"SMART", SMART},     {"WEIRD", WEIRD},     {"WILD", WILD},
+      {"COOL", COOL},       {"FUNNY", FUNNY},     {"GROSS", GROSS},
+      {"NAUGHTY", NAUGHTY}, {"CREEPY", CREEPY},   {"ASPIRING", ASPIRING},
+      {"GEEKY", GEEKY}};
+
+  for (const auto &combo : comboStrings) {
+    t.combos.push_back(comboMap[combo]);
+  }
 }
 
-int calculateScore(const unordered_map<string, int> &comboCounts) {
+int calculateScore(const vector<int> &comboCounts) {
   int score = 1;
-  for (const auto &entry : comboCounts) {
-    int count = entry.second;
+  for (int count : comboCounts) {
     if (count == 2)
       score *= 2;
     if (count == 3)
@@ -64,7 +93,7 @@ vector<Tag> findBestCombination(const vector<Tag> &tags) {
       for (size_t k = j + 1; k < n - 2; k++) {
         for (size_t l = k + 1; l < n - 1; l++) {
           for (size_t m = l + 1; m < n; m++) {
-            unordered_map<string, int> comboCounts;
+            vector<int> comboCounts(COMBO_COUNT, 0);
             // Using indices instead of copying the combination
             for (const auto &combo : tags[i].combos)
               comboCounts[combo]++;
@@ -117,7 +146,7 @@ vector<Tag> findBestCombination(const vector<Tag> &tags) {
 }
 
 int main() {
-  ifstream file("../../tags.json");
+  ifstream file("../../../../tags.json");
   if (!file) {
     cerr << "Could not open the file!" << endl;
     return 1;
