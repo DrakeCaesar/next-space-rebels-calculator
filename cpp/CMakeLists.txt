@@ -16,7 +16,7 @@ endif()
 find_package(nlohmann_json CONFIG REQUIRED)
 
 # Add the executable
-add_executable(TagCombinationFinder main.cpp)
+add_executable(TagCombinationFinder main.cpp "data_preprocessing.h" "data_preprocessing.cpp")
 
 # Link the nlohmann_json target
 target_link_libraries(TagCombinationFinder PRIVATE nlohmann_json::nlohmann_json)
