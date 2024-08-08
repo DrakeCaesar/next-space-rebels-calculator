@@ -65,22 +65,13 @@ static int calculateScore(const int comboCounts[]) {
 
     return score;
 }
-static string formatTime(int totalSeconds) {
-  int h = totalSeconds / 3600;
-  int m = (totalSeconds % 3600) / 60;
-  int s = totalSeconds % 60;
-  return to_string(h) + "h " + to_string(m) + "m " + to_string(s) + "s";
-}
 
-static vector<Tag> findBestCombination(const vector<Tag> &tags) {
+static Tag* findBestCombination(const vector<Tag> &tags) {
   omp_set_num_threads(16);
-  vector<Tag> bestCombination;
+  static Tag bestCombination[5];
   int bestScore = 0;
   size_t n = tags.size();
-  size_t totalCombinations = (n * (n - 1) * (n - 2) * (n - 3) * (n - 4)) / 120;
-  size_t currentCombination = 0;
 
-  auto start = chrono::steady_clock::now();
 #pragma omp parallel for schedule(dynamic) collapse(5) reduction(max : bestScore)
   for (size_t i = 0; i < n - 4; i++) {
     for (size_t j = i + 1; j < n - 3; j++) {
@@ -107,7 +98,11 @@ static vector<Tag> findBestCombination(const vector<Tag> &tags) {
             {
               if (score > bestScore) {
                 bestScore = score;
-                bestCombination = {tags[i], tags[j], tags[k], tags[l], tags[m]};
+				bestCombination[0] = tags[i];
+				bestCombination[1] = tags[j];
+				bestCombination[2] = tags[k];
+				bestCombination[3] = tags[l];
+				bestCombination[4] = tags[m];
                 cout << "New best score: " << bestScore << endl;
                 cout << "New best combination: " << tags[i].name << ", "
                      << tags[j].name << ", " << tags[k].name << ", "
@@ -133,11 +128,11 @@ int main() {
   file >> j;
   vector<Tag> tags = j.get<vector<Tag>>();
 
-  vector<Tag> bestTags = findBestCombination(tags);
+  Tag * bestTags = findBestCombination(tags);
 
   cout << "Best Combination:" << endl;
-  for (const auto &tag : bestTags) {
-    cout << tag.name << " (" << tag.description << ")" << endl;
+  for (int i = 0; i < 5; i++) {
+    cout << bestTags[i].name << " (" << bestTags[i].description << ")" << endl;
   }
 
   return 0;
