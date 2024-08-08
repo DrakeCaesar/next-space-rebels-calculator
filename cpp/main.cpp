@@ -43,7 +43,7 @@ void from_json(const json &j, Tag &t) {
   vector<string> comboStrings;
   j.at("combos").get_to(comboStrings);
 
-  unordered_map<string, int> comboMap = {
+  static const unordered_map<string, int> comboMap = {
       {"CUTE", CUTE},       {"AWESOME", AWESOME}, {"NOOB", NOOB},
       {"SMART", SMART},     {"WEIRD", WEIRD},     {"WILD", WILD},
       {"COOL", COOL},       {"FUNNY", FUNNY},     {"GROSS", GROSS},
@@ -51,21 +51,30 @@ void from_json(const json &j, Tag &t) {
       {"GEEKY", GEEKY}};
 
   for (const auto &combo : comboStrings) {
-    t.combos.push_back(comboMap[combo]);
+    t.combos.push_back(comboMap.at(combo));
   }
 }
 
-int calculateScore(const vector<int> &comboCounts) {
+static int calculateScore(const int comboCounts[]) {
   int score = 1;
-  for (int count : comboCounts) {
-    if (count == 2)
+  for (int i = 0; i < COMBO_COUNT; i++) {
+    int count = comboCounts[i];
+    switch (count) {
+    case 2:
       score *= 2;
-    if (count == 3)
+      break;
+    case 3:
       score *= 5;
-    if (count == 4)
+      break;
+    case 4:
       score *= 15;
-    if (count == 5)
+      break;
+    case 5:
       score *= 30;
+      break;
+    default:
+      break;
+    }
   }
   return score;
 }
@@ -86,14 +95,14 @@ vector<Tag> findBestCombination(const vector<Tag> &tags) {
   size_t currentCombination = 0;
 
   auto start = chrono::steady_clock::now();
-#pragma omp parallel for schedule(dynamic) collapse(5)                         \
-    reduction(max : bestScore)
+#pragma omp parallel for schedule(dynamic) collapse(5) reduction(max : bestScore)
   for (size_t i = 0; i < n - 4; i++) {
     for (size_t j = i + 1; j < n - 3; j++) {
       for (size_t k = j + 1; k < n - 2; k++) {
         for (size_t l = k + 1; l < n - 1; l++) {
           for (size_t m = l + 1; m < n; m++) {
-            vector<int> comboCounts(COMBO_COUNT, 0);
+            int comboCounts[COMBO_COUNT] = {0};
+
             // Using indices instead of copying the combination
             for (const auto &combo : tags[i].combos)
               comboCounts[combo]++;
@@ -109,18 +118,20 @@ vector<Tag> findBestCombination(const vector<Tag> &tags) {
             int score = calculateScore(comboCounts);
 
 #pragma omp critical
-            if (score > bestScore) {
-              bestScore = score;
-              bestCombination = {tags[i], tags[j], tags[k], tags[l], tags[m]};
-              cout << "New best score: " << bestScore << endl;
-              cout << "New best combination: " << tags[i].name << ", "
-                   << tags[j].name << ", " << tags[k].name << ", "
-                   << tags[l].name << ", " << tags[m].name << endl;
+            {
+              if (score > bestScore) {
+                bestScore = score;
+                bestCombination = {tags[i], tags[j], tags[k], tags[l], tags[m]};
+                cout << "New best score: " << bestScore << endl;
+                cout << "New best combination: " << tags[i].name << ", "
+                     << tags[j].name << ", " << tags[k].name << ", "
+                     << tags[l].name << ", " << tags[m].name << endl;
+              }
             }
 
 #pragma omp atomic
             currentCombination++;
-            int step = totalCombinations / 100;
+            int step = totalCombinations / 10;
             if (currentCombination % step == 0) {
               auto now = chrono::steady_clock::now();
               auto elapsed =
