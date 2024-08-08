@@ -1,7 +1,8 @@
 #include "data_preprocessing.h"
 #include <fstream>
 #include <iostream>
-#include <omp.h> // OpenMP for parallel processing
+#include <mutex>
+#include <thread>
 #include <vector>
 
 using namespace std;
@@ -19,36 +20,38 @@ static int calculateScore(const int comboCounts[]) {
 
 static void findBestCombination(const vector<Tag> &tags,
                                 Tag bestCombination[5]) {
-  omp_set_num_threads(16);
-  int bestScore = 0;
+  const int numThreads = 20;
+  vector<thread> threads(numThreads);
+  vector<int> bestScores(numThreads, 0);
+  vector<vector<Tag>> bestCombinations(numThreads, vector<Tag>(5));
   size_t n = tags.size();
 
-#pragma omp parallel
-  {
+  mutex mtx;
+
+  auto worker = [&](int threadId) {
     int localBestScore = 0;
     Tag localBestCombination[5];
+    int localComboCounts[COMBO_COUNT];
 
-#pragma omp for schedule(dynamic) collapse(5)
-    for (size_t i = 0; i < n - 4; i++) {
+    for (size_t i = threadId; i < n - 4; i += numThreads) {
       for (size_t j = i + 1; j < n - 3; j++) {
         for (size_t k = j + 1; k < n - 2; k++) {
           for (size_t l = k + 1; l < n - 1; l++) {
             for (size_t m = l + 1; m < n; m++) {
-              int comboCounts[COMBO_COUNT] = {0};
+              fill(begin(localComboCounts), end(localComboCounts), 0);
 
-              // Using indices instead of copying the combination
               for (const auto &combo : tags[i].combos)
-                comboCounts[combo]++;
+                localComboCounts[combo]++;
               for (const auto &combo : tags[j].combos)
-                comboCounts[combo]++;
+                localComboCounts[combo]++;
               for (const auto &combo : tags[k].combos)
-                comboCounts[combo]++;
+                localComboCounts[combo]++;
               for (const auto &combo : tags[l].combos)
-                comboCounts[combo]++;
+                localComboCounts[combo]++;
               for (const auto &combo : tags[m].combos)
-                comboCounts[combo]++;
+                localComboCounts[combo]++;
 
-              int score = calculateScore(comboCounts);
+              int score = calculateScore(localComboCounts);
 
               if (score > localBestScore) {
                 localBestScore = score;
@@ -64,21 +67,35 @@ static void findBestCombination(const vector<Tag> &tags,
       }
     }
 
-#pragma omp critical
-    {
-      if (localBestScore > bestScore) {
-        bestScore = localBestScore;
-        for (int i = 0; i < 5; i++) {
-          bestCombination[i] = localBestCombination[i];
-        }
-        cout << "New best score: " << bestScore << endl;
-        cout << "New best combination: " << bestCombination[0].name << ", "
-             << bestCombination[1].name << ", " << bestCombination[2].name
-             << ", " << bestCombination[3].name << ", "
-             << bestCombination[4].name << endl;
-      }
+    lock_guard<mutex> guard(mtx);
+    if (localBestScore > bestScores[threadId]) {
+      bestScores[threadId] = localBestScore;
+      bestCombinations[threadId] =
+          vector<Tag>(localBestCombination, localBestCombination + 5);
+    }
+  };
+
+  for (int i = 0; i < numThreads; i++) {
+    threads[i] = thread(worker, i);
+  }
+
+  for (auto &t : threads) {
+    t.join();
+  }
+
+  int bestScore = 0;
+  for (int i = 0; i < numThreads; i++) {
+    if (bestScores[i] > bestScore) {
+      bestScore = bestScores[i];
+      copy(bestCombinations[i].begin(), bestCombinations[i].end(),
+           bestCombination);
     }
   }
+
+  cout << "Final best score: " << bestScore << endl;
+  cout << "Best combination: " << bestCombination[0].name << ", "
+       << bestCombination[1].name << ", " << bestCombination[2].name << ", "
+       << bestCombination[3].name << ", " << bestCombination[4].name << endl;
 }
 
 int main() {
