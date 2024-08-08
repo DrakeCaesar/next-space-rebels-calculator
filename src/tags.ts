@@ -2179,7 +2179,8 @@ export const tags: Tag[] = [
     combos: [UNKNOWN],
   },
   {
-    name: "Kármán Line",
+    //Kármán Line originally
+    name: "Karman Line",
     description: "For reaching an altitude of 100 kilometers",
     rarity: Viral,
     combos: [SMART, UNKNOWN],
@@ -4052,7 +4053,7 @@ export const tagsFromTheGame: Tag[] = [
     combos: [ASPIRING, COOL],
   },
   {
-    name: "Kármán Line",
+    name: "Karman Line",
     description: "For reaching an altitude of 100 kilometers",
     combos: [ASPIRING, SMART],
   },

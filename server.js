@@ -14,8 +14,8 @@ app.post("/process", (req, res) => {
     [inputJson],
     (error, stdout, stderr) => {
       if (error) {
-        //console.error(`Error: ${error.message}`);
-        //return res.status(500).send("Internal Server Error error");
+        console.error(`Error: ${error.message}`);
+        return res.status(500).send(error.message);
       }
       if (stderr) {
         console.error(`Stderr: ${stderr}`);

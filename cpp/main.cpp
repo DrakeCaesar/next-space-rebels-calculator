@@ -12,7 +12,6 @@ static void findBestCombination(const vector<Tag> &tags,
                                 Tag bestCombination[5])
 {
   const int numThreads = thread::hardware_concurrency();
-  std::cout << "Number of threads: " << numThreads << endl;
   vector<thread> threads(numThreads);
   vector<int> bestScores(numThreads, 0);
   vector<vector<Tag>> bestCombinations(numThreads, vector<Tag>(5));
@@ -112,9 +111,6 @@ std::string processJson(const std::string &input)
   vector<Tag> tags = j.get<vector<Tag>>();
   Tag bestTags[5];
 
-  cout << "Number of tags: " << tags.size() << endl;
-  return "";
-
   findBestCombination(tags, bestTags);
 
   json output = json::array();
@@ -162,10 +158,6 @@ int main(int argc, char *argv[])
   auto start = chrono::high_resolution_clock::now();
 
   std::string output = processJson(input);
-
-  cout << "Starting..." << endl;
-  cout << "Input: " << input << endl;
-  return 0;
 
   // Stop measuring time
   auto end = chrono::high_resolution_clock::now();
