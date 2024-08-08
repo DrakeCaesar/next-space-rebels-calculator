@@ -8,7 +8,8 @@
 using json = nlohmann::json;
 using namespace std;
 
-enum Combo {
+enum Combo
+{
   CUTE,
   AWESOME,
   NOOB,
@@ -25,7 +26,8 @@ enum Combo {
   COMBO_COUNT // This will be 13, representing the number of combos
 };
 
-struct Tag {
+struct Tag
+{
   string name;
   string description;
   string rarity;
@@ -33,11 +35,7 @@ struct Tag {
 };
 
 static const unordered_map<string, int> comboMap = {
-      {"CUTE", CUTE},       {"AWESOME", AWESOME}, {"NOOB", NOOB},
-      {"SMART", SMART},     {"WEIRD", WEIRD},     {"WILD", WILD},
-      {"COOL", COOL},       {"FUNNY", FUNNY},     {"GROSS", GROSS},
-      {"NAUGHTY", NAUGHTY}, {"CREEPY", CREEPY},   {"ASPIRING", ASPIRING},
-      {"GEEKY", GEEKY} };
+    {"CUTE", CUTE}, {"AWESOME", AWESOME}, {"NOOB", NOOB}, {"SMART", SMART}, {"WEIRD", WEIRD}, {"WILD", WILD}, {"COOL", COOL}, {"FUNNY", FUNNY}, {"GROSS", GROSS}, {"NAUGHTY", NAUGHTY}, {"CREEPY", CREEPY}, {"ASPIRING", ASPIRING}, {"GEEKY", GEEKY}};
 
 // Define how to parse a Tag from JSON
 void from_json(const json &j, Tag &t);

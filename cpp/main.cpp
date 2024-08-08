@@ -9,7 +9,8 @@
 using namespace std;
 
 static void findBestCombination(const vector<Tag> &tags,
-                                Tag bestCombination[5]) {
+                                Tag bestCombination[5])
+{
   const int numThreads = thread::hardware_concurrency();
   std::cout << "Number of threads: " << numThreads << endl;
   vector<thread> threads(numThreads);
@@ -19,17 +20,23 @@ static void findBestCombination(const vector<Tag> &tags,
 
   mutex mtx;
 
-  auto worker = [&](int threadId) {
+  auto worker = [&](int threadId)
+  {
     int localBestScore = 0;
     Tag localBestCombination[5];
     int localComboCounts[COMBO_COUNT];
     static const int multipliers[] = {1, 1, 2, 5, 15, 30}; // Lookup table
 
-    for (size_t i = threadId; i < n - 4; i += numThreads) {
-      for (size_t j = i + 1; j < n - 3; j++) {
-        for (size_t k = j + 1; k < n - 2; k++) {
-          for (size_t l = k + 1; l < n - 1; l++) {
-            for (size_t m = l + 1; m < n; m++) {
+    for (size_t i = threadId; i < n - 4; i += numThreads)
+    {
+      for (size_t j = i + 1; j < n - 3; j++)
+      {
+        for (size_t k = j + 1; k < n - 2; k++)
+        {
+          for (size_t l = k + 1; l < n - 1; l++)
+          {
+            for (size_t m = l + 1; m < n; m++)
+            {
               fill(begin(localComboCounts), end(localComboCounts), 0);
 
               for (const auto &combo : tags[i].combos)
@@ -47,7 +54,8 @@ static void findBestCombination(const vector<Tag> &tags,
               for (int i = 0; i < COMBO_COUNT; i++)
                 score *= multipliers[localComboCounts[i]];
 
-              if (score > localBestScore) {
+              if (score > localBestScore)
+              {
                 localBestScore = score;
                 localBestCombination[0] = tags[i];
                 localBestCombination[1] = tags[j];
@@ -62,24 +70,29 @@ static void findBestCombination(const vector<Tag> &tags,
     }
 
     lock_guard<mutex> guard(mtx);
-    if (localBestScore > bestScores[threadId]) {
+    if (localBestScore > bestScores[threadId])
+    {
       bestScores[threadId] = localBestScore;
       bestCombinations[threadId] =
           vector<Tag>(localBestCombination, localBestCombination + 5);
     }
   };
 
-  for (int i = 0; i < numThreads; i++) {
+  for (int i = 0; i < numThreads; i++)
+  {
     threads[i] = thread(worker, i);
   }
 
-  for (auto &t : threads) {
+  for (auto &t : threads)
+  {
     t.join();
   }
 
   int bestScore = 0;
-  for (int i = 0; i < numThreads; i++) {
-    if (bestScores[i] > bestScore) {
+  for (int i = 0; i < numThreads; i++)
+  {
+    if (bestScores[i] > bestScore)
+    {
       bestScore = bestScores[i];
       copy(bestCombinations[i].begin(), bestCombinations[i].end(),
            bestCombination);
@@ -93,7 +106,8 @@ static void findBestCombination(const vector<Tag> &tags,
   //           << bestCombination[4].name << endl;
 }
 
-std::string processJson(const std::string &input) {
+std::string processJson(const std::string &input)
+{
   json j = json::parse(input);
   vector<Tag> tags = j.get<vector<Tag>>();
   Tag bestTags[5];
@@ -104,11 +118,15 @@ std::string processJson(const std::string &input) {
   findBestCombination(tags, bestTags);
 
   json output = json::array();
-  for (int i = 0; i < 5; i++) {
+  for (int i = 0; i < 5; i++)
+  {
     vector<string> comboStrings;
-    for (const auto &combo : bestTags[i].combos) {
-      for (const auto &pair : comboMap) {
-        if (pair.second == combo) {
+    for (const auto &combo : bestTags[i].combos)
+    {
+      for (const auto &pair : comboMap)
+      {
+        if (pair.second == combo)
+        {
           comboStrings.push_back(pair.first);
           break;
         }
@@ -123,17 +141,21 @@ std::string processJson(const std::string &input) {
   return output.dump();
 }
 
-int main(int argc, char *argv[]) {
+int main(int argc, char *argv[])
+{
   string input;
 
-  if (argc != 2) {
+  if (argc != 2)
+  {
     // cerr << "Usage: " << argv[0] << " <json_input>" << endl;
     // read local file isntead of command line argument
     std::ifstream file("../../tags.test.json");
     std::stringstream buffer;
     buffer << file.rdbuf();
     input = buffer.str();
-  } else {
+  }
+  else
+  {
     input = argv[1];
   }
 
