@@ -35,6 +35,9 @@
   },
   "dependencies": {
     "@assemblyscript/loader": "^0.27.29",
+    "axios": "^1.7.3",
+    "cors": "^2.8.5",
+    "express": "^4.19.2",
     "toastr": "^2.1.4",
     "ts-node": "^10.9.2",
     "tslib": "^2.6.3",

@@ -86,17 +86,20 @@ static void findBestCombination(const vector<Tag> &tags,
     }
   }
 
-  std::cout << "Final best score: " << bestScore << endl;
-  std::cout << "Best combination: " << bestCombination[0].name << ", "
-            << bestCombination[1].name << ", " << bestCombination[2].name
-            << ", " << bestCombination[3].name << ", "
-            << bestCombination[4].name << endl;
+  // std::cout << "Final best score: " << bestScore << endl;
+  // std::cout << "Best combination: " << bestCombination[0].name << ", "
+  //           << bestCombination[1].name << ", " << bestCombination[2].name
+  //           << ", " << bestCombination[3].name << ", "
+  //           << bestCombination[4].name << endl;
 }
 
 std::string processJson(const std::string &input) {
   json j = json::parse(input);
   vector<Tag> tags = j.get<vector<Tag>>();
   Tag bestTags[5];
+
+  cout << "Number of tags: " << tags.size() << endl;
+  return "";
 
   findBestCombination(tags, bestTags);
 
@@ -120,37 +123,33 @@ std::string processJson(const std::string &input) {
   return output.dump();
 }
 
-int main() {
-  ifstream file("../../../../tags.json");
-  if (!file) {
-    file.open("../../../tags.json");
-    if (!file) {
-      file.open("../../tags.json");
-      if (!file) {
-        file.open("../tags.json");
-        if (!file) {
-          cerr << "Could not open any of the files!" << endl;
-          return 1;
-        }
-      }
-    }
+int main(int argc, char *argv[]) {
+  string input;
+
+  if (argc != 2) {
+    // cerr << "Usage: " << argv[0] << " <json_input>" << endl;
+    // read local file isntead of command line argument
+    std::ifstream file("../../tags.test.json");
+    std::stringstream buffer;
+    buffer << file.rdbuf();
+    input = buffer.str();
+  } else {
+    input = argv[1];
   }
 
-  stringstream buffer;
-  buffer << file.rdbuf();
-  std::string jsonString = buffer.str();
-
-  // Start measuring time
   auto start = chrono::high_resolution_clock::now();
 
-  std::string processedJson = processJson(jsonString);
+  std::string output = processJson(input);
+
+  cout << "Starting..." << endl;
+  cout << "Input: " << input << endl;
+  return 0;
 
   // Stop measuring time
   auto end = chrono::high_resolution_clock::now();
   chrono::duration<double> duration = end - start;
 
-  std::cout << endl << "Processed JSON: " << processedJson << endl;
-  cout << "Execution time: " << duration.count() << " seconds" << endl;
+  std::cout << output;
 
   return 0;
 }

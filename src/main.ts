@@ -1,12 +1,23 @@
+import axios from "axios";
 import {
   createComboButton,
   createCountFilterButtons,
   createModeSwitchButton,
   createToggleColorsButton,
 } from "./createButtons.js";
+import { updateSelectedTagsDisplay } from "./displayUtils.js";
 import "./styles.scss";
 import { tags, tagsFromTheGame, UNKNOWN } from "./tags.js";
-import { checkForDuplicateTags, uniqueCombos } from "./utils.js";
+import {
+  activeCombos,
+  checkForDuplicateTags,
+  createTagElement,
+  filterTagsByText,
+  loadSelectedTagsFromLocalStorage,
+  sortTagsBy,
+  tagsContainer,
+  uniqueCombos,
+} from "./utils.js";
 
 import toastr from "toastr"; // Import toastr for notifications
 
@@ -61,12 +72,9 @@ tags.forEach((tag) => {
   }
 });
 
-// Filter tags and create JSON content
 let prunedTags = tags.filter((tag) => tag.combos.length > 1);
 const json = JSON.stringify(prunedTags, null, 2);
-console.log("tags.json saved");
-
-downloadJSONFile("tags.json", json);
+sendJsonToBackend(json);
 
 tags.forEach((tag) => {
   tag.combos.forEach((combo) => uniqueCombos.add(combo));
@@ -97,21 +105,50 @@ function initializePage() {
         ) as HTMLElement;
         tagSelector.click();
         searchBar.value = "";
+        filterTagsByText(activeCombos);
       }
     }
   });
-}
+  searchBar.placeholder = `Search ${tags.length} tags...`;
 
-function downloadJSONFile(filename: string, content: string) {
-  const blob = new Blob([content], { type: "application/json" });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement("a");
-  a.href = url;
-  a.download = filename;
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
-  URL.revokeObjectURL(url);
+  tags.forEach((tag, index) => {
+    createTagElement(tag, index);
+  });
+
+  document.getElementById("sort-by-order")?.addEventListener("click", () => {
+    sortTagsBy("order", tagsContainer);
+  });
+
+  document.getElementById("sort-by-rarity")?.addEventListener("click", () => {
+    sortTagsBy("rarity", tagsContainer);
+  });
+
+  searchBar.addEventListener("input", function () {
+    filterTagsByText(activeCombos);
+  });
+
+  document.addEventListener("DOMContentLoaded", () => {
+    loadSelectedTagsFromLocalStorage();
+    updateSelectedTagsDisplay();
+  });
 }
 
 window.addEventListener("load", initializePage);
+
+async function sendJsonToBackend(jsonData: string) {
+  try {
+    const response = await axios.post(
+      "http://localhost:3000/process",
+      jsonData,
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      },
+    );
+    return response.data;
+  } catch (error) {
+    console.error("Error sending data to backend:", error);
+    return null;
+  }
+}
