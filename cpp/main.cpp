@@ -93,11 +93,14 @@ static void findBestCombination(const vector<Tag> &tags,
 }
 
 int main() {
-  ifstream file("../../../../tags.json");
-  if (!file) {
-    cerr << "Could not open the file!" << endl;
-    return 1;
-  }
+    ifstream file("../../../../tags.json");
+    if (!file) {
+        file.open("../../tags.json");
+        if (!file) {
+            cerr << "Could not open either of the files!" << endl;
+            return 1;
+        }
+    }
 
   json j;
   file >> j;
