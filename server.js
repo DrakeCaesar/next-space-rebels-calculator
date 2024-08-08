@@ -15,13 +15,13 @@ app.post("/process", (req, res) => {
     (error, stdout, stderr) => {
       if (error) {
         console.error(`Error: ${error.message}`);
-        return res.status(500).send(error.message);
+        return res.status(500).json({ error: "Internal Server Error" });
       }
       if (stderr) {
         console.error(`Stderr: ${stderr}`);
-        return res.status(500).send("Internal Server Error stderr");
+        return res.status(500).json({ error: "Internal Server Error" });
       }
-      res.send(stdout);
+      res.json(JSON.parse(stdout));
     },
   );
 });
