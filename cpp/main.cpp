@@ -7,20 +7,10 @@
 
 using namespace std;
 
-static int calculateScore(const int comboCounts[]) {
-  static const int multipliers[] = {1, 1, 2, 5, 15, 30}; // Lookup table
-  int score = 1;
-
-  for (int i = 0; i < COMBO_COUNT; i++) {
-    score *= multipliers[comboCounts[i]];
-  }
-
-  return score;
-}
-
 static void findBestCombination(const vector<Tag> &tags,
                                 Tag bestCombination[5]) {
-  const int numThreads = 20;
+  const int numThreads = thread::hardware_concurrency();
+  std::cout << "Number of threads: " << numThreads << endl;
   vector<thread> threads(numThreads);
   vector<int> bestScores(numThreads, 0);
   vector<vector<Tag>> bestCombinations(numThreads, vector<Tag>(5));
@@ -32,6 +22,7 @@ static void findBestCombination(const vector<Tag> &tags,
     int localBestScore = 0;
     Tag localBestCombination[5];
     int localComboCounts[COMBO_COUNT];
+    static const int multipliers[] = {1, 1, 2, 5, 15, 30}; // Lookup table
 
     for (size_t i = threadId; i < n - 4; i += numThreads) {
       for (size_t j = i + 1; j < n - 3; j++) {
@@ -51,7 +42,9 @@ static void findBestCombination(const vector<Tag> &tags,
               for (const auto &combo : tags[m].combos)
                 localComboCounts[combo]++;
 
-              int score = calculateScore(localComboCounts);
+              int score = 1;
+              for (int i = 0; i < COMBO_COUNT; i++)
+                score *= multipliers[localComboCounts[i]];
 
               if (score > localBestScore) {
                 localBestScore = score;
@@ -92,10 +85,11 @@ static void findBestCombination(const vector<Tag> &tags,
     }
   }
 
-  cout << "Final best score: " << bestScore << endl;
-  cout << "Best combination: " << bestCombination[0].name << ", "
-       << bestCombination[1].name << ", " << bestCombination[2].name << ", "
-       << bestCombination[3].name << ", " << bestCombination[4].name << endl;
+  std::cout << "Final best score: " << bestScore << endl;
+  std::cout << "Best combination: " << bestCombination[0].name << ", "
+            << bestCombination[1].name << ", " << bestCombination[2].name
+            << ", " << bestCombination[3].name << ", "
+            << bestCombination[4].name << endl;
 }
 
 int main() {
@@ -110,12 +104,24 @@ int main() {
   vector<Tag> tags = j.get<vector<Tag>>();
 
   Tag bestTags[5];
+
+  // Start measuring time
+  auto start = chrono::high_resolution_clock::now();
+
   findBestCombination(tags, bestTags);
 
-  cout << "Best Combination:" << endl;
-  for (int i = 0; i < 5; i++) {
-    cout << bestTags[i].name << " (" << bestTags[i].description << ")" << endl;
-  }
+  // Stop measuring time
+  auto end = chrono::high_resolution_clock::now();
+  chrono::duration<double> duration = end - start;
+
+  // cout << "Best Combination:" << endl;
+  // for (int i = 0; i < 5; i++) {
+  //     cout << bestTags[i].name << " (" << bestTags[i].description << ")" <<
+  //     endl;
+  // }
+
+  // Print the execution time
+  std::cout << "Execution time: " << duration.count() << " seconds" << endl;
 
   return 0;
 }

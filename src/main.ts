@@ -4,23 +4,11 @@ import {
   createModeSwitchButton,
   createToggleColorsButton,
 } from "./createButtons.js";
-import { updateSelectedTagsDisplay } from "./displayUtils.js";
-import { findBestCombination } from "./math.js";
 import "./styles.scss";
 import { tags, tagsFromTheGame, UNKNOWN } from "./tags.js";
-import {
-  activeCombos,
-  checkForDuplicateTags,
-  createTagElement,
-  filterTagsByText,
-  loadSelectedTagsFromLocalStorage,
-  sortTagsBy,
-  tagsContainer,
-  uniqueCombos,
-} from "./utils.js";
+import { checkForDuplicateTags, uniqueCombos } from "./utils.js";
 
 import toastr from "toastr"; // Import toastr for notifications
-import { ResultMessage } from "./worker.js";
 
 const hasDuplicate = checkForDuplicateTags(tags);
 
@@ -73,14 +61,12 @@ tags.forEach((tag) => {
   }
 });
 
-// //add tags not present in tags, but present in tagsFromTheGame
-// tagsFromTheGame.forEach((tag) => {
-//   if (!tags.find((t) => t.name === tag.name || t.name === tag.altName)) {
-//     tag.rarity = "Common";
-//     tags.push(tag);
-//     console.log(`Tag added: ${tag.name}`);
-//   }
-// });
+// Filter tags and create JSON content
+let prunedTags = tags.filter((tag) => tag.combos.length > 1);
+const json = JSON.stringify(prunedTags, null, 2);
+console.log("tags.json saved");
+
+downloadJSONFile("tags.json", json);
 
 tags.forEach((tag) => {
   tag.combos.forEach((combo) => uniqueCombos.add(combo));
@@ -111,40 +97,21 @@ function initializePage() {
         ) as HTMLElement;
         tagSelector.click();
         searchBar.value = "";
-        filterTagsByText(activeCombos);
       }
     }
   });
-  searchBar.placeholder = `Search ${tags.length} tags...`;
-
-  tags.forEach((tag, index) => {
-    createTagElement(tag, index);
-  });
-
-  document.getElementById("sort-by-order")?.addEventListener("click", () => {
-    sortTagsBy("order", tagsContainer);
-  });
-
-  document.getElementById("sort-by-rarity")?.addEventListener("click", () => {
-    sortTagsBy("rarity", tagsContainer);
-  });
-
-  searchBar.addEventListener("input", function () {
-    filterTagsByText(activeCombos);
-  });
-
-  document.addEventListener("DOMContentLoaded", () => {
-    loadSelectedTagsFromLocalStorage();
-    updateSelectedTagsDisplay();
-  });
 }
 
-initializePage();
+function downloadJSONFile(filename: string, content: string) {
+  const blob = new Blob([content], { type: "application/json" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = filename;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
 
-const bestTags: ResultMessage = await findBestCombination(tags);
-
-console.log(
-  bestTags.bestCombination.map((tag: { name: any }) => tag.name).join(", "),
-  bestTags.score,
-  Array.from(bestTags.allScores.entries()).sort((a, b) => a[0] - b[0]),
-);
+window.addEventListener("load", initializePage);
