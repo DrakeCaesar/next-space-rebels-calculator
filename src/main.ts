@@ -141,6 +141,7 @@ function initializePage() {
 window.addEventListener("load", initializePage);
 
 async function sendJsonToBackend(jsonData: string): Promise<Tag[] | null> {
+  console.time("sendJsonToBackend");
   try {
     const response = await axios.post(
       "http://localhost:3000/process",
@@ -155,5 +156,7 @@ async function sendJsonToBackend(jsonData: string): Promise<Tag[] | null> {
   } catch (error) {
     console.error("Error sending data to backend:", error);
     return null;
+  } finally {
+    console.timeEnd("sendJsonToBackend");
   }
 }
