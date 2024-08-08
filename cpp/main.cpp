@@ -2,6 +2,7 @@
 #include <fstream>
 #include <iostream>
 #include <mutex>
+#include <sstream>
 #include <thread>
 #include <vector>
 
@@ -92,6 +93,33 @@ static void findBestCombination(const vector<Tag> &tags,
             << bestCombination[4].name << endl;
 }
 
+std::string processJson(const std::string &input) {
+  json j = json::parse(input);
+  vector<Tag> tags = j.get<vector<Tag>>();
+  Tag bestTags[5];
+
+  findBestCombination(tags, bestTags);
+
+  json output = json::array();
+  for (int i = 0; i < 5; i++) {
+    vector<string> comboStrings;
+    for (const auto &combo : bestTags[i].combos) {
+      for (const auto &pair : comboMap) {
+        if (pair.second == combo) {
+          comboStrings.push_back(pair.first);
+          break;
+        }
+      }
+    }
+
+    output.push_back(json{{"name", bestTags[i].name},
+                          {"description", bestTags[i].description},
+                          {"combos", comboStrings}});
+  }
+
+  return output.dump();
+}
+
 int main() {
   ifstream file("../../../../tags.json");
   if (!file) {
@@ -101,36 +129,28 @@ int main() {
       if (!file) {
         file.open("../tags.json");
         if (!file) {
-          cerr << "Could not any of the files!" << endl;
+          cerr << "Could not open any of the files!" << endl;
           return 1;
         }
       }
     }
   }
 
-  json j;
-  file >> j;
-  vector<Tag> tags = j.get<vector<Tag>>();
-
-  Tag bestTags[5];
+  stringstream buffer;
+  buffer << file.rdbuf();
+  std::string jsonString = buffer.str();
 
   // Start measuring time
   auto start = chrono::high_resolution_clock::now();
 
-  findBestCombination(tags, bestTags);
+  std::string processedJson = processJson(jsonString);
 
   // Stop measuring time
   auto end = chrono::high_resolution_clock::now();
   chrono::duration<double> duration = end - start;
 
-  // cout << "Best Combination:" << endl;
-  // for (int i = 0; i < 5; i++) {
-  //     cout << bestTags[i].name << " (" << bestTags[i].description << ")" <<
-  //     endl;
-  // }
-
-  // Print the execution time
-  std::cout << "Execution time: " << duration.count() << " seconds" << endl;
+  std::cout << endl << "Processed JSON: " << processedJson << endl;
+  cout << "Execution time: " << duration.count() << " seconds" << endl;
 
   return 0;
 }
