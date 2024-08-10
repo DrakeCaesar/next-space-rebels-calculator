@@ -50,8 +50,8 @@ static void findBestCombination(const vector<Tag> &tags,
                 localComboCounts[combo]++;
 
               int score = 1;
-              for (int i = 0; i < COMBO_COUNT; i++)
-                score *= multipliers[localComboCounts[i]];
+              for (int o = 0; o < COMBO_COUNT; o++)
+                score *= multipliers[localComboCounts[o]];
 
               if (score > localBestScore)
               {
