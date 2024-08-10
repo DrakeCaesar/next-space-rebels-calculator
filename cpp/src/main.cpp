@@ -36,7 +36,7 @@ static void findBestCombination(const vector<Tag> &tags,
           {
             for (size_t m = l + 1; m < n; m++)
             {
-              fill(begin(localComboCounts), end(localComboCounts), 0);
+              std::memset(localComboCounts, 0, sizeof(localComboCounts));
 
               for (const auto &combo : tags[i].combos)
                 localComboCounts[combo]++;
@@ -103,6 +103,7 @@ std::string processJson(const std::string &input)
 {
   json j = json::parse(input);
   vector<Tag> tags = j.get<vector<Tag>>();
+  tags.reserve(150);
   Tag bestTags[5];
 
   findBestCombination(tags, bestTags);
@@ -128,7 +129,7 @@ std::string processJson(const std::string &input)
                           {"combos", comboStrings}});
   }
 
-  return output.dump();
+  return output.dump(1);
 }
 
 int main(int argc, char *argv[])
@@ -139,7 +140,7 @@ int main(int argc, char *argv[])
   {
     // cerr << "Usage: " << argv[0] << " <json_input>" << endl;
     // read local file isntead of command line argument
-    std::ifstream file("../../tags.test.json");
+    std::ifstream file("../../../../tags.test.json");
     std::stringstream buffer;
     buffer << file.rdbuf();
     input = buffer.str();
@@ -147,6 +148,12 @@ int main(int argc, char *argv[])
   else
   {
     input = argv[1];
+  }
+
+  if (input == "")
+  {
+    std::cerr << "Error: No input provided" << std::endl;
+    return 1;
   }
 
   auto start = chrono::high_resolution_clock::now();
