@@ -50,9 +50,9 @@ export function filterTags(activeCombos: Set<string>) {
     }
 
     if (activeCombos.size === 0 || matches) {
-      tag.classList.remove("hidden");
+      tag.classList.remove("hiddenComboActive");
     } else {
-      tag.classList.add("hidden");
+      tag.classList.add("hiddenComboActive");
     }
   });
 }
@@ -64,9 +64,9 @@ export function filterTagsByComboCount(count: number) {
     );
 
     if (tagCombos.length - 1 === count) {
-      tag.classList.remove("hidden");
+      tag.classList.remove("hiddenComboCount");
     } else {
-      tag.classList.add("hidden");
+      tag.classList.add("hiddenComboCount");
     }
   });
 }
@@ -146,9 +146,9 @@ export function filterTagsByText(activeCombos: Set<string>) {
     const matchesSearch = tag.dataset.name?.toLowerCase().includes(searchTerm);
 
     if ((activeCombos.size === 0 || matchesCombo) && matchesSearch) {
-      tag.classList.remove("hidden");
+      tag.classList.remove("hiddenComboText");
     } else {
-      tag.classList.add("hidden");
+      tag.classList.add("hiddenComboText");
     }
   });
 }
@@ -162,6 +162,7 @@ export function createTagElement(tag: any, index: number) {
   tagElement.dataset.name = name;
   tagElement.dataset.order = index.toFixed().toString();
   tagElement.classList.add(tag.blocked ? "blocked" : "unblocked");
+  tagElement.dataset.tag = JSON.stringify(tag);
 
   const leftName = `left-${formatCombo(tag.combos[0])}`;
   const middleName =

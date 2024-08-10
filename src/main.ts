@@ -3,6 +3,7 @@ import {
   createComboButton,
   createCountFilterButtons,
   createModeSwitchButton,
+  createSortButton,
   createToggleColorsButton,
 } from "./createButtons.js";
 import { updateSelectedTagsDisplay } from "./displayUtils.js";
@@ -98,6 +99,7 @@ function initializePage() {
   createModeSwitchButton();
   createToggleColorsButton();
   createCountFilterButtons();
+  createSortButton();
 
   const searchBar = document.getElementById("search-bar") as HTMLInputElement;
 
@@ -136,6 +138,16 @@ function initializePage() {
 
   loadSelectedTagsFromLocalStorage();
   updateSelectedTagsDisplay();
+
+  const sortButtonElement = document.querySelector(
+    ".sort-button",
+  ) as HTMLElement;
+  sortButtonElement.click();
+
+  const toggleclassListButtonElement = document.querySelector(
+    ".toggle-colors-button",
+  ) as HTMLElement;
+  toggleclassListButtonElement.click();
 }
 
 window.addEventListener("load", initializePage);

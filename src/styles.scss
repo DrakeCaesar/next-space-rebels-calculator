@@ -379,3 +379,10 @@ button,
   border-radius: 10px;
   background-color: #aaa;
 }
+
+.hiddenComboCount,
+.hiddenComboText,
+.hiddenComboActive {
+  visibility: hidden;
+  position: absolute;
+}
