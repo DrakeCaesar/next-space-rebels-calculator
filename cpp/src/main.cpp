@@ -103,7 +103,6 @@ std::string processJson(const std::string &input)
 {
   json j = json::parse(input);
   vector<Tag> tags = j.get<vector<Tag>>();
-  tags.reserve(150);
   Tag bestTags[5];
 
   findBestCombination(tags, bestTags);
