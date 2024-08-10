@@ -24,7 +24,6 @@ static void findBestCombination(const vector<Tag> &tags,
     int localBestScore = 0;
     Tag localBestCombination[5];
     int localComboCounts[COMBO_COUNT];
-    static const int multipliers[] = {1, 1, 2, 5, 15, 30}; // Lookup table
 
     for (size_t i = threadId; i < n - 4; i += numThreads)
     {
@@ -50,6 +49,7 @@ static void findBestCombination(const vector<Tag> &tags,
                 localComboCounts[combo]++;
 
               int score = 1;
+              static const int multipliers[] = {1, 1, 2, 5, 15, 30}; // Lookup table
               for (int o = 0; o < COMBO_COUNT; o++)
                 score *= multipliers[localComboCounts[o]];
 
