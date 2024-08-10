@@ -175,6 +175,11 @@ button,
   align-content: flex-start;
 }
 
+#tags-container {
+  width: 100%;
+  scrollbar-width: none;
+}
+
 #tags-container::before {
   content: "Tags";
   position: sticky;
@@ -205,6 +210,16 @@ button,
   gap: 8.5px 5px;
   box-sizing: border-box;
   position: relative;
+}
+
+#tags-list {
+  width: fit-content;
+  justify-content: space-between;
+}
+
+#tags-list::after {
+  content: "";
+  flex: auto;
 }
 
 .tag {
