@@ -97,12 +97,6 @@ static void findBestCombination(const vector<Tag> &tags,
            bestCombination);
     }
   }
-
-  // std::cout << "Final best score: " << bestScore << endl;
-  // std::cout << "Best combination: " << bestCombination[0].name << ", "
-  //           << bestCombination[1].name << ", " << bestCombination[2].name
-  //           << ", " << bestCombination[3].name << ", "
-  //           << bestCombination[4].name << endl;
 }
 
 std::string processJson(const std::string &input)
