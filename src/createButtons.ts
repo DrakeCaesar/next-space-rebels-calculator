@@ -69,7 +69,7 @@ export function createSortButton() {
   button.classList.add("sort-button");
 
   button.addEventListener("click", () => {
-    const comboList = [
+    let comboList = [
       "ASPIRING",
       "AWESOME",
       "COOL",
@@ -84,6 +84,26 @@ export function createSortButton() {
       "WEIRD",
       "WILD",
     ];
+
+    //NOOB 2 FUNNY 7 WEIRD 7 CREEPY 3 CUTE 5 WILD 4 GEEKY 4 SMART 9 ASPIRING 5 AWESOME 7 COOL 4 GROSS 3 NAUGHTY
+
+    const sortedComboList = [
+      "NOOB",
+      "FUNNY",
+      "WEIRD",
+      "CREEPY",
+      "CUTE",
+      "WILD",
+      "GEEKY",
+      "SMART",
+      "ASPIRING",
+      "AWESOME",
+      "COOL",
+      "GROSS",
+      "NAUGHTY",
+    ];
+
+    comboList = sortedComboList;
 
     // loop through the comboList and log number of tags with each combo
     comboList.forEach((combo) => {

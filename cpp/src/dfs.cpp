@@ -16,7 +16,7 @@ using namespace std;
 
 void findBestChain(vector<Pair> &pairs, vector<string> &combos)
 {
-    const int numThreads = thread::hardware_concurrency();
+    const int numThreads = thread::hardware_concurrency() / 2;
     unordered_map<string, vector<pair<string, int>>> graph;
     mutex mtx;
     vector<Pair> bestChain;
