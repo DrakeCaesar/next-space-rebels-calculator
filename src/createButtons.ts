@@ -1,5 +1,5 @@
 import { updateSelectedTagsDisplay } from "./displayUtils.ts";
-import { Tag } from "./tags.ts";
+import { ComboCategory, Tag } from "./tags.ts";
 import {
   activeCombos,
   comboButtonsContainer,
@@ -84,6 +84,90 @@ export function createSortButton() {
       "WEIRD",
       "WILD",
     ];
+
+    // loop through the comboList and log number of tags with each combo
+    comboList.forEach((combo) => {
+      const tagsWithCombo = Array.from(tagsContainer.children).filter((tag) =>
+        (tag as HTMLElement).dataset.tag?.includes(combo),
+      );
+      console.log(combo, tagsWithCombo.length);
+    });
+
+    const pairCombosLengths = [];
+
+    for (let i = 0; i < comboList.length; i++) {
+      for (let j = i + 1; j < comboList.length; j++) {
+        const combo1 = comboList[i] as ComboCategory;
+        const combo2 = comboList[j] as ComboCategory;
+        const tagsWithBothCombos = Array.from(tagsContainer.children).filter(
+          (tag) => {
+            const tagData = JSON.parse(
+              (tag as HTMLElement).dataset.tag as string,
+            ) as Tag;
+            return (
+              tagData.combos.includes(combo1) && tagData.combos.includes(combo2)
+            );
+          },
+        );
+
+        if (tagsWithBothCombos.length > 0) {
+          pairCombosLengths.push({
+            combo1,
+            combo2,
+            length: tagsWithBothCombos.length,
+          });
+        }
+      }
+    }
+
+    // Sort by length in descending order
+    pairCombosLengths.sort((a, b) => b.length - a.length);
+
+    // Print the sorted pair combos
+    pairCombosLengths.forEach(({ combo1, combo2, length }) => {
+      console.log(combo1, combo2, length);
+    });
+
+    const trioCombosLengths = [];
+
+    for (let i = 0; i < comboList.length; i++) {
+      for (let j = i + 1; j < comboList.length; j++) {
+        for (let k = j + 1; k < comboList.length; k++) {
+          const combo1 = comboList[i] as ComboCategory;
+          const combo2 = comboList[j] as ComboCategory;
+          const combo3 = comboList[k] as ComboCategory;
+          const tagsWithAllCombos = Array.from(tagsContainer.children).filter(
+            (tag) => {
+              const tagData = JSON.parse(
+                (tag as HTMLElement).dataset.tag as string,
+              ) as Tag;
+              return (
+                tagData.combos.includes(combo1) &&
+                tagData.combos.includes(combo2) &&
+                tagData.combos.includes(combo3)
+              );
+            },
+          );
+
+          if (tagsWithAllCombos.length > 0) {
+            trioCombosLengths.push({
+              combo1,
+              combo2,
+              combo3,
+              length: tagsWithAllCombos.length,
+            });
+          }
+        }
+      }
+    }
+
+    // Sort by length in descending order
+    trioCombosLengths.sort((a, b) => b.length - a.length);
+
+    // Print the sorted trio combos
+    trioCombosLengths.forEach(({ combo1, combo2, combo3, length }) => {
+      console.log(combo1, combo2, combo3, length);
+    });
 
     const priorityOrder = comboList.flatMap((combo, index, array) => [
       // current only

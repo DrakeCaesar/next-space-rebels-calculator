@@ -11,6 +11,6 @@ endif()
 
 find_package(nlohmann_json CONFIG REQUIRED)
 
-add_executable(TagCombinationFinder src/main.cpp src/data_preprocessing.cpp)
+add_executable(TagCombinationFinder src/main.cpp src/data_preprocessing.cpp src/dfs.cpp)
 target_include_directories(TagCombinationFinder PRIVATE include)
 target_link_libraries(TagCombinationFinder PRIVATE nlohmann_json::nlohmann_json)

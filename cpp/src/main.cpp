@@ -5,6 +5,7 @@
 #include <sstream>
 #include <thread>
 #include <vector>
+#include "dfs.h"
 
 using namespace std;
 
@@ -149,6 +150,8 @@ int main(int argc, char *argv[])
     std::stringstream buffer;
     buffer << file.rdbuf();
     input = buffer.str();
+
+    printBestChain();
   }
   else
   {
