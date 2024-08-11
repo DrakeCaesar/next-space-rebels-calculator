@@ -155,6 +155,7 @@ export function filterTagsByText(activeCombos: Set<string>) {
 
 export function createTagElement(tag: any, index: number) {
   const name = tag.name.split("#")[0];
+  tag.combos.sort((a: string, b: string) => a.localeCompare(b));
 
   const tagElement = document.createElement("div");
   tagElement.className = `tag ${tag.rarity.toLowerCase()}`;

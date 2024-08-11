@@ -86,14 +86,32 @@ export function createSortButton() {
     ];
 
     const priorityOrder = comboList.flatMap((combo, index, array) => [
-      (combos: string[]) => combos.length === 1 && combos.includes(combo), // Only current combo
+      // current only
+      (combos: string[]) => combos.length == 1 && combos[0] == combo,
+
+      // next combo is any but second
       (combos: string[]) =>
-        combos.includes(combo) &&
-        (index + 1 < array.length ? !combos.includes(array[index + 1]) : true), // Current combo but not next
+        combos[0] == combo && index + 1 < array.length
+          ? combos[1] != array[index + 1]
+          : false,
+
+      // next combo is second and have 3 combos
       (combos: string[]) =>
-        index + 1 < array.length
-          ? combos.includes(array[index + 1]) && !combos.includes(combo)
-          : false, // Next combo but not current
+        combos.length == 3 && combos[0] == combo && index + 1 < array.length
+          ? combos[1] == array[index + 1]
+          : false,
+
+      // next combo is second and have 2 combos
+      (combos: string[]) =>
+        combos.length == 2 && combos[0] == combo && index + 1 < array.length
+          ? combos[1] == array[index + 1]
+          : false,
+
+      // next combo is third
+      (combos: string[]) =>
+        combos[0] == combo && index + 2 < array.length
+          ? combos[2] == array[index + 1]
+          : false,
     ]);
 
     let tags = Array.from(tagsContainer.children).sort((a, b) => {
