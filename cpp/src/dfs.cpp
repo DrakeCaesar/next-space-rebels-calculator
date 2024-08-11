@@ -3,9 +3,24 @@
 using namespace std;
 
 // Function to find all chains and print the best one
+#include <iostream>
+#include <vector>
+#include <unordered_map>
+#include <unordered_set>
+#include <thread>
+#include <mutex>
+#include <functional>
+#include <string>
+
+using namespace std;
+
 void findBestChain(vector<Pair> &pairs, vector<string> &combos)
 {
+    const int numThreads = thread::hardware_concurrency();
     unordered_map<string, vector<pair<string, int>>> graph;
+    mutex mtx;
+    vector<Pair> bestChain;
+    int maxSum = 0;
 
     // Build the graph from the pairs
     for (const auto &p : pairs)
@@ -14,20 +29,19 @@ void findBestChain(vector<Pair> &pairs, vector<string> &combos)
         graph[p.combo2].push_back({p.combo1, p.count});
     }
 
-    vector<Pair> bestChain;
-    int maxSum = 0;
-
     // Helper function for DFS
     function<void(string, vector<Pair> &, int, unordered_set<string> &)> dfs = [&](string combo, vector<Pair> &currentChain, int currentSum, unordered_set<string> &visited)
     {
         if (currentChain.size() == combos.size() - 1)
         { // We've used all combos
+            lock_guard<mutex> lock(mtx);
             if (currentSum > maxSum)
             {
                 maxSum = currentSum;
                 bestChain = currentChain;
+
                 // Print the current best chain
-                cout << "Best: " << maxSum << ": ";
+                cout << "      " << maxSum << ": ";
                 cout << bestChain[0].combo1 << " ";
                 for (const auto &p : bestChain)
                 {
@@ -53,20 +67,46 @@ void findBestChain(vector<Pair> &pairs, vector<string> &combos)
         visited.erase(combo);
     };
 
-    // Try starting the DFS from each combo
-    for (const auto &combo : combos)
+    // Function to run DFS in a thread
+    auto threadFunc = [&](string startCombo)
     {
         vector<Pair> currentChain;
         unordered_set<string> visited;
-        dfs(combo, currentChain, 0, visited);
+        dfs(startCombo, currentChain, 0, visited);
+    };
+
+    vector<thread> threads;
+    for (size_t i = 0; i < combos.size(); ++i)
+    {
+        if (threads.size() >= numThreads)
+        { // Wait for some threads to finish if we've hit the limit
+            for (auto &t : threads)
+            {
+                if (t.joinable())
+                {
+                    t.join();
+                }
+            }
+            threads.clear(); // Clear the thread vector after joining
+        }
+        threads.push_back(thread(threadFunc, combos[i]));
+    }
+
+    // Join any remaining threads
+    for (auto &t : threads)
+    {
+        if (t.joinable())
+        {
+            t.join();
+        }
     }
 
     // Print the final best chain
-    cout << "Final best chain with sum " << maxSum << ": ";
+    cout << "Best: " << maxSum << ": ";
     cout << bestChain[0].combo1 << " ";
     for (const auto &p : bestChain)
     {
-        cout << p.count << p.combo2 << " ";
+        cout << p.count << " " << p.combo2 << " ";
     }
     cout << endl;
 }
