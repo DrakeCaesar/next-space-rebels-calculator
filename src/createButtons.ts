@@ -91,41 +91,6 @@ export function createSortButton() {
         aTextThird!.localeCompare(bTextThird!)
       );
     });
-
-    let lastSolidTagIndex = 0;
-    let nextSolidTagIndex = 0;
-
-    tags = tags.sort((a, b) => {
-      nextSolidTagIndex
-      
-      
-      const aTag = (a as HTMLElement).dataset.tag;
-      const bTag = (b as HTMLElement).dataset.tag;
-
-      const parsedATag: Tag = JSON.parse(aTag ?? "");
-      const parsedBTag: Tag = JSON.parse(bTag ?? "");
-
-      const aTextThird = parsedATag.combos[2] ?? "";
-      const bTextThird = parsedBTag.combos[2] ?? "";
-
-      const aTextSecond = parsedATag.combos[1] ?? "";
-      const bTextSecond = parsedBTag.combos[1] ?? "";
-
-      const aTextFirst = parsedATag.combos[0] ?? "";
-      const bTextFirst = parsedBTag.combos[0] ?? "";
-      let solid = parsedATag.combos.length === 1;
-
-      if (solid) {
-        lastSolidTagIndex = nextSolidTagIndex;
-        nextSolidTagIndex++;
-      }
-
-      return (
-        aTextFirst!.localeCompare(bTextFirst!) ||
-        aTextSecond!.localeCompare(bTextSecond!) ||
-        aTextThird!.localeCompare(bTextThird!)
-      );
-    });
     tagsContainer.innerHTML = "";
     tags.forEach((tag) => tagsContainer.appendChild(tag));
   });
