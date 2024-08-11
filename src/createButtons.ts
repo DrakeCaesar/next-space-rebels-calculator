@@ -69,82 +69,32 @@ export function createSortButton() {
   button.classList.add("sort-button");
 
   button.addEventListener("click", () => {
-    const priorityOrder = [
-      (combos: string[]) => combos.length === 1 && combos.includes("ASPIRING"), // Aspiring only
-      (combos: string[]) =>
-        combos.includes("ASPIRING") && !combos.includes("AWESOME"), // Aspiring but not Awesome
-      (combos: string[]) =>
-        combos.includes("AWESOME") && !combos.includes("ASPIRING"), // Awesome but not Aspiring
-
-      (combos: string[]) => combos.length === 1 && combos.includes("AWESOME"), // Awesome only
-      (combos: string[]) =>
-        combos.includes("AWESOME") && !combos.includes("COOL"), // Awesome but not Cool
-      (combos: string[]) =>
-        combos.includes("COOL") && !combos.includes("AWESOME"), // Cool but not Awesome
-
-      (combos: string[]) => combos.length === 1 && combos.includes("COOL"), // Cool only
-      (combos: string[]) =>
-        combos.includes("COOL") && !combos.includes("CREEPY"), // Cool but not Creepy
-      (combos: string[]) =>
-        combos.includes("CREEPY") && !combos.includes("COOL"), // Creepy but not Cool
-
-      (combos: string[]) => combos.length === 1 && combos.includes("CREEPY"), // Creepy only
-      (combos: string[]) =>
-        combos.includes("CREEPY") && !combos.includes("CUTE"), // Creepy but not Cute
-      (combos: string[]) =>
-        combos.includes("CUTE") && !combos.includes("CREEPY"), // Cute but not Creepy
-
-      (combos: string[]) => combos.length === 1 && combos.includes("CUTE"), // Cute only
-      (combos: string[]) =>
-        combos.includes("CUTE") && !combos.includes("FUNNY"), // Cute but not Funny
-      (combos: string[]) =>
-        combos.includes("FUNNY") && !combos.includes("CUTE"), // Funny but not Cute
-
-      // Continue this pattern for the rest of the list...
-      (combos: string[]) => combos.length === 1 && combos.includes("FUNNY"),
-      (combos: string[]) =>
-        combos.includes("FUNNY") && !combos.includes("GEEKY"),
-      (combos: string[]) =>
-        combos.includes("GEEKY") && !combos.includes("FUNNY"),
-
-      (combos: string[]) => combos.length === 1 && combos.includes("GEEKY"),
-      (combos: string[]) =>
-        combos.includes("GEEKY") && !combos.includes("GROSS"),
-      (combos: string[]) =>
-        combos.includes("GROSS") && !combos.includes("GEEKY"),
-
-      (combos: string[]) => combos.length === 1 && combos.includes("GROSS"),
-      (combos: string[]) =>
-        combos.includes("GROSS") && !combos.includes("NAUGHTY"),
-      (combos: string[]) =>
-        combos.includes("NAUGHTY") && !combos.includes("GROSS"),
-
-      (combos: string[]) => combos.length === 1 && combos.includes("NAUGHTY"),
-      (combos: string[]) =>
-        combos.includes("NAUGHTY") && !combos.includes("NOOB"),
-      (combos: string[]) =>
-        combos.includes("NOOB") && !combos.includes("NAUGHTY"),
-
-      (combos: string[]) => combos.length === 1 && combos.includes("NOOB"),
-      (combos: string[]) =>
-        combos.includes("NOOB") && !combos.includes("SMART"),
-      (combos: string[]) =>
-        combos.includes("SMART") && !combos.includes("NOOB"),
-
-      (combos: string[]) => combos.length === 1 && combos.includes("SMART"),
-      (combos: string[]) =>
-        combos.includes("SMART") && !combos.includes("WEIRD"),
-      (combos: string[]) =>
-        combos.includes("WEIRD") && !combos.includes("SMART"),
-
-      (combos: string[]) => combos.length === 1 && combos.includes("WEIRD"),
-      (combos: string[]) =>
-        combos.includes("WEIRD") && !combos.includes("WILD"),
-      (combos: string[]) =>
-        combos.includes("WILD") && !combos.includes("WEIRD"),
-
-      (combos: string[]) => combos.length === 1 && combos.includes("WILD"), // Wild only
+    const comboList = [
+      "ASPIRING",
+      "AWESOME",
+      "COOL",
+      "CREEPY",
+      "CUTE",
+      "FUNNY",
+      "GEEKY",
+      "GROSS",
+      "NAUGHTY",
+      "NOOB",
+      "SMART",
+      "WEIRD",
+      "WILD",
     ];
+
+    const priorityOrder = comboList.flatMap((combo, index, array) => [
+      (combos: string[]) => combos.length === 1 && combos.includes(combo), // Only current combo
+      (combos: string[]) =>
+        combos.includes(combo) &&
+        (index + 1 < array.length ? !combos.includes(array[index + 1]) : true), // Current combo but not next
+      (combos: string[]) =>
+        index + 1 < array.length
+          ? combos.includes(array[index + 1]) && !combos.includes(combo)
+          : false, // Next combo but not current
+    ]);
 
     let tags = Array.from(tagsContainer.children).sort((a, b) => {
       const aTag = (a as HTMLElement).dataset.tag;
