@@ -137,13 +137,15 @@ int main(int argc, char *argv[])
 
   if (argc != 2)
   {
-    // cerr << "Usage: " << argv[0] << " <json_input>" << endl;
-    // read local file isntead of command line argument
-    std::ifstream file("../../tags.test.json");
-	if (!file.is_open())
-	{
-		file.open("../../../../tags.test.json");
-	}
+    string path = "tags.test.json";
+    std::ifstream file(path);
+    for (int i = 0; i < 5; ++i)
+    {
+      file.open(path);
+      if (file.is_open())
+        break;
+      path = "../" + path;
+    }
     std::stringstream buffer;
     buffer << file.rdbuf();
     input = buffer.str();
