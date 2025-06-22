@@ -1,0 +1,152 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: ["master"]
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Setup PNPM
+        uses: pnpm/action-setup@v3
+        with:
+          version: latest
+
+      - name: Install dependencies
+        run: pnpm install
+
+      - name: Setup Emscripten
+        uses: mymindstorm/setup-emsdk@v14
+        with:
+          version: "3.1.55"
+          actions-cache-folder: "emsdk-cache"
+
+      - name: Set environment variables
+        run: |
+          echo "EMSDK=$EMSDK" >> $GITHUB_ENV
+          echo "$EMSDK/upstream/emscripten" >> $GITHUB_PATH
+          echo "CI=true" >> $GITHUB_ENV
+          emcc --version
+
+      - name: Setup vcpkg
+        uses: lukka/run-vcpkg@v11
+        with:
+          # Use specific vcpkg Git commit that matches our baseline
+          vcpkgGitCommitId: "856505bb767458c99d8e3c3ed441f59a058d3687"
+          # Let vcpkg search for manifest files
+          vcpkgJsonGlob: "**/vcpkg.json"
+          # Don't run vcpkg install here, we'll do it manually
+          runVcpkgInstall: false
+
+      - name: Create wasm32-emscripten triplet
+        run: |
+          mkdir -p $VCPKG_ROOT/triplets/community
+          cat > $VCPKG_ROOT/triplets/community/wasm32-emscripten.cmake << 'EOF'
+          set(VCPKG_TARGET_ARCHITECTURE wasm32)
+          set(VCPKG_CRT_LINKAGE dynamic)
+          set(VCPKG_LIBRARY_LINKAGE static)
+          set(VCPKG_CMAKE_SYSTEM_NAME Emscripten)
+
+          if(NOT DEFINED ENV{EMSDK})
+            message(FATAL_ERROR "EMSDK environment variable not defined. Please install Emscripten SDK.")
+          endif()
+
+          set(VCPKG_CHAINLOAD_TOOLCHAIN_FILE "$ENV{EMSDK}/upstream/emscripten/cmake/Modules/Platform/Emscripten.cmake")
+
+          # Set Emscripten-specific flags
+          set(VCPKG_C_FLAGS "-sUSE_PTHREADS=0")
+          set(VCPKG_CXX_FLAGS "-sUSE_PTHREADS=0")
+          EOF
+
+      - name: Install vcpkg packages in manifest mode
+        run: |
+          echo "Installing vcpkg dependencies in manifest mode for wasm32-emscripten..."
+          cat vcpkg.json
+
+          # Set the environment variables for vcpkg in manifest mode
+          export VCPKG_DEFAULT_TRIPLET=wasm32-emscripten
+          export VCPKG_DEFAULT_HOST_TRIPLET=x64-linux
+
+          # Run vcpkg install without package arguments (manifest mode)
+          $VCPKG_ROOT/vcpkg install --triplet=wasm32-emscripten
+
+          # Create symbolic links from the packages directory to installed directory
+          # This is needed because vcpkg sometimes uses different directory structures
+          mkdir -p $VCPKG_ROOT/installed
+          if [ ! -d "$VCPKG_ROOT/installed/wasm32-emscripten" ] && [ -d "$VCPKG_ROOT/packages" ]; then
+            ln -s $VCPKG_ROOT/packages/nlohmann-json_wasm32-emscripten $VCPKG_ROOT/installed/wasm32-emscripten
+            echo "Created symbolic link for installed packages"
+          fi
+
+          # List installed packages for debugging
+          echo "Installed packages in packages directory:"
+          find $VCPKG_ROOT/packages -name "include" -type d | grep -i json
+
+          echo "Installed packages in installed directory:"
+          find $VCPKG_ROOT/installed -type d -maxdepth 2 || echo "No installed directory found"
+
+      - name: Build WebAssembly
+        run: |
+          echo "Building WebAssembly components..."
+          chmod +x ./build.sh
+
+          if [ -f "env_check.sh" ]; then
+            chmod +x ./env_check.sh
+            # Skip sourcing local Emscripten env in CI
+            sed -i 's|source $EMSDK_PATH/emsdk_env.sh|echo "Using GitHub Actions Emscripten setup"|g' env_check.sh || echo "No need to patch env_check.sh"
+          fi
+
+          # Find nlohmann-json include directory
+          JSON_INCLUDE=$(find $VCPKG_ROOT/packages -path "*/include/nlohmann/json.hpp" -printf "%h/..\n" | head -n1)
+
+          if [ -z "$JSON_INCLUDE" ]; then
+            echo "WARNING: Couldn't find nlohmann/json.hpp in vcpkg packages"
+            # Look for it in alternative locations
+            JSON_INCLUDE=$(find $VCPKG_ROOT -path "*/include/nlohmann/json.hpp" -printf "%h/..\n" | head -n1)
+          fi
+
+          # Add vcpkg include paths to build script
+          if [ -n "$JSON_INCLUDE" ]; then
+            echo "Found JSON include directory at: $JSON_INCLUDE"
+            export EMCC_CFLAGS="-I$JSON_INCLUDE"
+            echo "EMCC_CFLAGS is set to: $EMCC_CFLAGS"
+          else
+            echo "WARNING: Could not find nlohmann/json.hpp"
+          fi
+
+          # Run the build script
+          ./build.sh
+
+      - name: List WebAssembly output files
+        run: |
+          echo "Generated WebAssembly files:"
+          ls -la cpp/build/
+
+      - name: Build Web Application
+        run: pnpm build
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v4
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: "./dist"
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

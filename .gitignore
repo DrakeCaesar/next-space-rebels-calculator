@@ -3,6 +3,10 @@ build/
 .cache/
 dist/
 Tags.xml
+cpp/build/tags.wasm.wasm
+cpp/build/tags.wasm.js
+public/tags.wasm
+out/
 
 .cmake/
 cpp/cmake-build-debug/

@@ -7,10 +7,14 @@
   "scripts": {
     "lint": "eslint 'src/**/*.ts'",
     "dev": "vite",
-    "build": "vite build",
+    "build:wasm": "node build.js",
+    "build": "npm run build:wasm && vite build",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist",
     "serve": "vite preview",
     "test": "node tests",
-    "start": "npx serve ."
+    "start": "npx serve .",
+    "server": "node server.js"
   },
   "keywords": [],
   "author": "",
@@ -30,6 +34,7 @@
     "axios": "^1.7.3",
     "cors": "^2.8.5",
     "express": "^4.19.2",
+    "gh-pages": "^6.3.0",
     "toastr": "^2.1.4",
     "ts-node": "^10.9.2",
     "tslib": "^2.6.3",

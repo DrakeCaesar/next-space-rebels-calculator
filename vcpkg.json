@@ -1,0 +1,6 @@
+{
+  "name": "next-space-rebels-calculator",
+  "version": "1.0.0",
+  "dependencies": ["nlohmann-json"],
+  "builtin-baseline": "856505bb767458c99d8e3c3ed441f59a058d3687"
+}
