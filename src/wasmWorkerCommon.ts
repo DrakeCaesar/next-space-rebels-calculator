@@ -96,26 +96,10 @@ export function sendCompletionMessages(
 }
 
 export function extractCombinationArray(result: any): string[] {
-  // Handle different possible formats for the combination result
-  if (Array.isArray(result.combination)) {
-    return result.combination;
+  // Convert Emscripten vector to JavaScript array
+  const array: string[] = [];
+  for (let i = 0; i < result.combination.size(); i++) {
+    array.push(result.combination.get(i));
   }
-
-  // If it's a string, try to parse as JSON
-  if (typeof result.combination === "string") {
-    try {
-      const parsed = JSON.parse(result.combination);
-      if (Array.isArray(parsed)) {
-        return parsed;
-      }
-    } catch (e) {
-      // If parsing fails, split by comma or other delimiter
-      return result.combination
-        .split(",")
-        .map((s: string) => s.trim())
-        .filter((s: string) => s.length > 0);
-    }
-  }
-
-  return [];
+  return array;
 }
