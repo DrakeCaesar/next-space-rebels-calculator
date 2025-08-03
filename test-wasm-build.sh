@@ -9,16 +9,6 @@ if [ ! -f "build.js" ]; then
     exit 1
 fi
 
-if [ ! -f "build.sh" ]; then
-    echo "❌ build.sh not found"
-    exit 1
-fi
-
-if [ ! -f "env_check.sh" ]; then
-    echo "❌ env_check.sh not found"
-    exit 1
-fi
-
 if [ ! -f "vcpkg.json" ]; then
     echo "❌ vcpkg.json not found"
     exit 1
@@ -28,9 +18,9 @@ echo "✅ All build files found"
 
 # Check if C++ source files exist
 CPP_FILES=(
-    "cpp/src/data_preprocessing.cpp"
-    "cpp/src/dfs.cpp" 
-    "cpp/src/main.cpp"
+    "src/cpp/data_preprocessing.cpp"
+    "src/cpp/dfs.cpp"
+    "src/cpp/main.cpp"
 )
 
 for file in "${CPP_FILES[@]}"; do

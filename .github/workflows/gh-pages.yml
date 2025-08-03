@@ -102,13 +102,6 @@ jobs:
       - name: Build WebAssembly
         run: |
           echo "Building WebAssembly components..."
-          chmod +x ./build.sh
-
-          if [ -f "env_check.sh" ]; then
-            chmod +x ./env_check.sh
-            # Skip sourcing local Emscripten env in CI
-            sed -i 's|source $EMSDK_PATH/emsdk_env.sh|echo "Using GitHub Actions Emscripten setup"|g' env_check.sh || echo "No need to patch env_check.sh"
-          fi
 
           # Find nlohmann-json include directory
           JSON_INCLUDE=$(find $VCPKG_ROOT/packages -path "*/include/nlohmann/json.hpp" -printf "%h/..\n" | head -n1)
@@ -122,14 +115,14 @@ jobs:
           # Add vcpkg include paths to build script
           if [ -n "$JSON_INCLUDE" ]; then
             echo "Found JSON include directory at: $JSON_INCLUDE"
-            export EMCC_CFLAGS="-I$JSON_INCLUDE"
-            echo "EMCC_CFLAGS is set to: $EMCC_CFLAGS"
+            export VCPKG_ROOT=$VCPKG_ROOT
+            echo "VCPKG_ROOT is set to: $VCPKG_ROOT"
           else
             echo "WARNING: Could not find nlohmann/json.hpp"
           fi
 
-          # Run the build script
-          ./build.sh
+          # Run the build script using Node.js
+          node build.js
 
       - name: List WebAssembly output files
         run: |
