@@ -1,4 +1,3 @@
-import { findBestCombination } from "./math";
 import {
   createComboButton,
   createCountFilterButtons,
@@ -7,7 +6,8 @@ import {
   createToggleColorsButton,
 } from "./createButtons.js";
 import { updateSelectedTagsDisplay } from "./displayUtils.js";
-import "./styles.scss";
+import { findBestCombination } from "./math";
+import "./style.scss";
 import { Tag, tags, tagsFromTheGame, UNKNOWN } from "./tags.js";
 import {
   activeCombos,
@@ -39,7 +39,7 @@ if (!hasDuplicate) {
 
 tags.forEach((tag) => {
   let tagFromJson = tagsFromTheGame.find(
-    (t) => t.name === tag.name || t.name === tag.altName,
+    (t) => t.name === tag.name || t.name === tag.altName
   );
   if (tag.name === "Angel#1") {
     tagFromJson = tagsFromTheGame.find((t) => t.name === "Angel");
@@ -63,7 +63,7 @@ tags.forEach((tag) => {
     tag.combos = tagFromJson.combos;
     // check if tag.combos are a subset of tagFromJson.combos
     const isSubset = tag.combos.every((combo) =>
-      tagFromJson.combos.includes(combo),
+      tagFromJson.combos.includes(combo)
     );
 
     if (!isSubset) {
@@ -106,11 +106,11 @@ function initializePage() {
   searchBar.addEventListener("keydown", (event) => {
     if (event.key === "Enter") {
       const selectedTags = document.querySelectorAll(
-        "#selected-tags > .tag",
+        "#selected-tags > .tag"
       ) as NodeListOf<HTMLElement>;
       if (selectedTags.length < 5) {
         const tagSelector = document.querySelector(
-          "#tags-list > .tag:not(.hidden)",
+          "#tags-list > .tag:not(.hidden)"
         ) as HTMLElement;
         tagSelector.click();
         searchBar.value = "";
@@ -140,12 +140,12 @@ function initializePage() {
   updateSelectedTagsDisplay();
 
   const sortButtonElement = document.querySelector(
-    ".sort-button",
+    ".sort-button"
   ) as HTMLElement;
   sortButtonElement.click();
 
   const toggleclassListButtonElement = document.querySelector(
-    ".toggle-colors-button",
+    ".toggle-colors-button"
   ) as HTMLElement;
   toggleclassListButtonElement.click();
 }
