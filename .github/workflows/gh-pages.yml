@@ -134,7 +134,7 @@ jobs:
       - name: List WebAssembly output files
         run: |
           echo "Generated WebAssembly files:"
-          ls -la cpp/build/
+          ls -la src/cpp/
 
       - name: Build Web Application
         run: pnpm build
