@@ -1,8 +1,8 @@
 {
   "name": "next-space-rebels-calculator",
   "version": "1.0.0",
-  "description": "A basic TypeScript project",
-  "main": "dist/index",
+  "description": "Calculator for finding optimal tag combinations",
+  "main": "index.js",
   "type": "module",
   "scripts": {
     "lint": "eslint 'src/**/*.ts'",
@@ -12,7 +12,7 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist",
     "serve": "vite preview",
-    "test": "node tests",
+    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "npx serve .",
     "server": "node server.js"
   },
@@ -20,25 +20,23 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@types/node": "^22.1.0",
-    "@types/toastr": "^2.1.43",
-    "@types/xml2js": "^0.4.14",
-    "@typescript-eslint/eslint-plugin": "^8.0.0",
-    "@typescript-eslint/parser": "^8.0.0",
-    "eslint": "^9.8.0",
-    "sass": "^1.77.8",
-    "typescript": "^5.5.4",
-    "vite": "^5.3.5"
+    "@types/node": "^24.1.0",
+    "@typescript-eslint/eslint-plugin": "^8.38.0",
+    "@typescript-eslint/parser": "^8.38.0",
+    "eslint": "^9.32.0",
+    "madge": "^8.0.0",
+    "sass": "^1.89.2",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.2",
+    "vite": "^7.0.6",
+    "vite-plugin-inspect": "^11.3.2"
   },
   "dependencies": {
-    "axios": "^1.7.3",
-    "cors": "^2.8.5",
-    "express": "^4.19.2",
+    "express": "^5.1.0",
     "gh-pages": "^6.3.0",
     "toastr": "^2.1.4",
-    "ts-node": "^10.9.2",
-    "tslib": "^2.6.3",
-    "xml2js": "^0.6.2"
+    "tslib": "^2.8.1",
+    "ws": "^8.18.3"
   },
   "exports": {
     ".": {

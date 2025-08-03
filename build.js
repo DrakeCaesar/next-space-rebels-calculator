@@ -8,9 +8,9 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 // Ensure directories exist
-const cppBuildDir = path.join(__dirname, "cpp", "build");
-if (!fs.existsSync(cppBuildDir)) {
-  fs.mkdirSync(cppBuildDir, { recursive: true });
+const cppDir = path.join(__dirname, "src", "cpp");
+if (!fs.existsSync(cppDir)) {
+  fs.mkdirSync(cppDir, { recursive: true });
 }
 
 // Check if we should do a debug build
@@ -18,11 +18,9 @@ const isDebug = process.argv.includes("--debug");
 console.log(`Building in ${isDebug ? "debug" : "optimized release"} mode...`);
 
 // List of source files to compile
-const sourceFiles = [
-  "data_preprocessing.cpp",
-  "dfs.cpp",
-  "main.cpp",
-].map((file) => path.join(__dirname, "cpp", "src", file).replace(/\\/g, "/"));
+const sourceFiles = ["data_preprocessing.cpp", "dfs.cpp", "main.cpp"].map(
+  (file) => path.join(cppDir, file).replace(/\\/g, "/")
+);
 
 // Check if all source files exist
 let missingFiles = sourceFiles.filter((file) => !fs.existsSync(file));
@@ -32,8 +30,8 @@ if (missingFiles.length > 0) {
 }
 
 // Output paths
-const wasmOutputPath = path.join(cppBuildDir, "tags.wasm.js").replace(/\\/g, "/");
-const wasmBinaryPath = path.join(cppBuildDir, "tags.wasm.wasm").replace(/\\/g, "/");
+const wasmOutputPath = path.join(cppDir, "tags.wasm.js").replace(/\\/g, "/");
+const wasmBinaryPath = path.join(cppDir, "tags.wasm.wasm").replace(/\\/g, "/");
 
 // Define common Emscripten arguments
 const commonArgs = [
@@ -116,7 +114,10 @@ try {
       if (!fs.existsSync(path.join(distDir, "assets"))) {
         fs.mkdirSync(path.join(distDir, "assets"), { recursive: true });
       }
-      fs.copyFileSync(wasmBinaryPath, path.join(distDir, "assets", "tags.wasm"));
+      fs.copyFileSync(
+        wasmBinaryPath,
+        path.join(distDir, "assets", "tags.wasm")
+      );
       fs.copyFileSync(wasmBinaryPath, path.join(distDir, "tags.wasm"));
       console.log("Copied WASM file to dist directory for production");
     }

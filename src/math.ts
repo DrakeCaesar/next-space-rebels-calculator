@@ -1,5 +1,20 @@
 import { Tag } from "./tags";
-import { ResultMessage } from "./worker";
+
+// Worker result interface
+interface WorkerResultMessage {
+  type: string;
+  data: {
+    combination: string[];
+    score: number;
+    details: string;
+    elapsed: number;
+  };
+}
+
+// Legacy result format for compatibility
+interface ResultMessage {
+  bestCombination: Tag[];
+}
 
 function formatTime(seconds: number): string {
   const h = Math.floor(seconds / 3600);
@@ -12,7 +27,8 @@ const possibleScores = [
   125, 150, 160, 200, 225, 240, 250, 300, 375, 450, 600, 625, 750, 900, 1125,
 ];
 
-export async function findBestCombination(tags: Tag[]): Promise<ResultMessage> {return new Promise((resolve, reject) => {
+export async function findBestCombination(tags: Tag[]): Promise<ResultMessage> {
+  return new Promise((resolve, reject) => {
     const worker = new Worker(new URL("./worker.ts", import.meta.url), {
       type: "module",
     });
@@ -21,23 +37,26 @@ export async function findBestCombination(tags: Tag[]): Promise<ResultMessage> {
       const message = e.data;
       if (message.type === "progress") {
         const elapsedTime = (Date.now() - startTime) / 1000;
-        const estimatedRemaining = parseFloat(
-          message.estimatedRemaining.replace(/[^\d.]/g, ""),
-        );
-        const totalEstimate = elapsedTime + estimatedRemaining;
-        const finishTime = new Date(
-          startTime + totalEstimate * 1000,
-        ).toLocaleTimeString();
-
-        console.log(
-          `P: ${message.percentage.toFixed(2).padEnd(6)} | ET: ${formatTime(
-            elapsedTime,
-          ).padEnd(12)} | ER: ${formatTime(estimatedRemaining).padEnd(
-            12,
-          )} | TE: ${formatTime(totalEstimate).padEnd(12)} | FT: ${finishTime}`,
-        );
-      } else if (message.type === "result") {
-        resolve(message);
+        console.log(`Progress: ${JSON.stringify(message.data)}`);
+      } else if (message.type === "bestMixFound") {
+        console.log(`Best combination found: ${JSON.stringify(message.data)}`);
+      } else if (
+        message.type === "combinationFound" ||
+        message.type === "result"
+      ) {
+        // Convert worker result to expected format
+        const workerResult = message as WorkerResultMessage;
+        const legacyResult: ResultMessage = {
+          bestCombination: workerResult.data.combination
+            .map((tagName) => tags.find((tag) => tag.name === tagName))
+            .filter(Boolean) as Tag[],
+        };
+        resolve(legacyResult);
+        worker.terminate();
+      } else if (message.type === "complete") {
+        console.log(`Calculation complete in ${message.data.elapsed}ms`);
+      } else if (message.type === "error") {
+        reject(new Error(message.data.message));
         worker.terminate();
       }
     };
@@ -48,6 +67,14 @@ export async function findBestCombination(tags: Tag[]): Promise<ResultMessage> {
     };
 
     const startTime = Date.now();
-    worker.postMessage({ tags });
+    worker.postMessage({
+      type: "findBestCombination",
+      data: {
+        target: {}, // Define what target should be for tag combinations
+        tags: tags,
+        rules: {}, // Define any rules if needed
+        maxDepth: 10, // Or whatever depth is appropriate
+      },
+    });
   });
 }

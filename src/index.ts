@@ -1,4 +1,4 @@
-import axios from "axios";
+import { findBestCombination } from "./math";
 import {
   createComboButton,
   createCountFilterButtons,
@@ -76,8 +76,8 @@ tags.forEach((tag) => {
 
 let prunedTags = tags.filter((tag) => tag.combos.length > 1);
 const json = JSON.stringify(prunedTags, null, 2);
-const combos = sendJsonToBackend(json);
-combos.then((data) => {
+
+sendJsonToBackend(json).then((data) => {
   if (!data) {
     return;
   }
@@ -155,18 +155,13 @@ window.addEventListener("load", initializePage);
 async function sendJsonToBackend(jsonData: string): Promise<Tag[] | null> {
   console.time("sendJsonToBackend");
   try {
-    const response = await axios.post(
-      "http://localhost:3000/process",
-      jsonData,
-      {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      },
-    );
-    return response.data as Tag[];
+    // Parse JSON string to array of Tag
+    const tags: Tag[] = JSON.parse(jsonData);
+    const result = await findBestCombination(tags);
+    // Assume result.bestCombination is the array of combos
+    return result.bestCombination || null;
   } catch (error) {
-    console.error("Error sending data to backend:", error);
+    console.error("Error sending data to worker/wasm:", error);
     return null;
   } finally {
     console.timeEnd("sendJsonToBackend");

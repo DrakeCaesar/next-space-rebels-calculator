@@ -1,26 +1,37 @@
+import path from "path";
+import { fileURLToPath } from "url";
 import { defineConfig } from "vite";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 export default defineConfig({
   // Add base URL for GitHub Pages deployment
   base: "/next-space-rebels-calculator/",
-  
+
   build: {
-    outDir: "dist",
-    sourcemap: true,
     target: "esnext",
+    sourcemap: true,
     // Set WASM as external assets
     assetsInlineLimit: 0,
     rollupOptions: {
-      input: "index.html",
       output: {
-        entryFileNames: "index.js",
-        assetFileNames: "styles.css",
-        format: "es",
+        manualChunks: {
+          wasm: ["./src/cpp/tags.wasm.js"],
+        },
       },
     },
   },
+  worker: {
+    format: "es", // Use ES modules format for workers instead of 'iife'
+  },
+  resolve: {
+    alias: {
+      "@": path.resolve(__dirname, "./src"),
+    },
+  },
+  // Don't try to optimize WASM modules
   optimizeDeps: {
-    include: ["toastr"],
+    exclude: ["./src/cpp/tags.wasm.js"],
   },
   // Handle WebAssembly files correctly
   assetsInclude: ["**/*.wasm"],
