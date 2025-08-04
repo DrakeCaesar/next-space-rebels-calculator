@@ -15,6 +15,9 @@ using namespace emscripten;
 
 using namespace std;
 
+// Scoring multipliers for combo counts
+static constexpr int SCORE_MULTIPLIERS[] = {1, 1, 2, 5, 15, 30};
+
 // Structure to return results to JavaScript
 struct JsTagCombinationResult
 {
@@ -31,7 +34,6 @@ static void findBestCombination(const vector<Tag> &tags, Tag bestCombination[5])
   // Iterative combination generator with incremental updates
   size_t indices[5] = {0, 1, 2, 3, 4};
   int comboCounts[COMBO_COUNT];
-  static const int multipliers[] = {1, 1, 2, 5, 15, 30};
 
   // Initialize combo counts for first combination
   std::memset(comboCounts, 0, sizeof(comboCounts));
@@ -44,7 +46,7 @@ static void findBestCombination(const vector<Tag> &tags, Tag bestCombination[5])
   // Calculate initial score
   int score = 1;
   for (int o = 0; o < COMBO_COUNT; o++)
-    score *= multipliers[comboCounts[o]];
+    score *= SCORE_MULTIPLIERS[comboCounts[o]];
 
   if (score > bestScore)
   {
@@ -90,7 +92,7 @@ static void findBestCombination(const vector<Tag> &tags, Tag bestCombination[5])
     // Calculate score for new combination
     score = 1;
     for (int o = 0; o < COMBO_COUNT; o++)
-      score *= multipliers[comboCounts[o]];
+      score *= SCORE_MULTIPLIERS[comboCounts[o]];
 
     if (score > bestScore)
     {
@@ -140,9 +142,8 @@ JsTagCombinationResult findBestTagCombination(
     }
   }
 
-  static const int multipliers[] = {1, 1, 2, 5, 15, 30};
   for (int o = 0; o < COMBO_COUNT; o++)
-    totalScore *= multipliers[comboCounts[o]];
+    totalScore *= SCORE_MULTIPLIERS[comboCounts[o]];
 
   result.score = totalScore;
   result.details = "Best combination of 5 tags found";
