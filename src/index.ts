@@ -153,15 +153,38 @@ function initializePage() {
 window.addEventListener("load", initializePage);
 
 async function sendJsonToBackend(jsonData: string): Promise<Tag[] | null> {
+  // Boolean switch to choose between web assembly and native JS server
+  const USE_WEB_ASSEMBLY = false; // Set to false to use native JS server
   console.time("sendJsonToBackend");
   try {
-    // Parse JSON string to array of Tag
-    const tags: Tag[] = JSON.parse(jsonData);
-    const result = await findBestCombination(tags);
-    // Assume result.bestCombination is the array of combos
-    return result.bestCombination || null;
+    if (USE_WEB_ASSEMBLY) {
+      // Use web assembly worker approach
+      const tags: Tag[] = JSON.parse(jsonData);
+      const result = await findBestCombination(tags);
+      return result.bestCombination || null;
+    } else {
+      // Use native JS server approach
+      const response = await fetch("http://localhost:3000/process", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: jsonData,
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const result = await response.json();
+      return result || null;
+    }
   } catch (error) {
-    console.error("Error sending data to worker/wasm:", error);
+    if (USE_WEB_ASSEMBLY) {
+      console.error("Error sending data to worker/wasm:", error);
+    } else {
+      console.error("Error sending data to server:", error);
+    }
     return null;
   } finally {
     console.timeEnd("sendJsonToBackend");

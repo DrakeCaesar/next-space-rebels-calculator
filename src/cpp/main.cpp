@@ -2,6 +2,7 @@
 #include <vector>
 #include <string>
 #include <cstring>
+#include <iostream>
 #include "dfs.h"
 
 // Include Emscripten headers only when building for WebAssembly
@@ -134,5 +135,46 @@ EMSCRIPTEN_BINDINGS(tags_module)
   register_vector<std::string>("VectorString");
 
   emscripten::function("findBestTagCombination", &findBestTagCombination);
+}
+#else
+// Native build main function
+int main(int argc, char *argv[])
+{
+  if (argc != 2)
+  {
+    std::cerr << "Usage: " << argv[0] << " <json_input>" << std::endl;
+    return 1;
+  }
+
+  try
+  {
+    // Parse the input JSON
+    json j = json::parse(argv[1]);
+    vector<Tag> tags = j.get<vector<Tag>>();
+
+    // Find best combination
+    Tag bestTags[5];
+    findBestCombination(tags, bestTags);
+
+    // Create result JSON
+    json result = json::array();
+    for (int i = 0; i < 5; i++)
+    {
+      json tagObj;
+      tagObj["name"] = bestTags[i].name;
+      tagObj["description"] = bestTags[i].description;
+      tagObj["combos"] = bestTags[i].combos;
+      result.push_back(tagObj);
+    }
+
+    // Output result to stdout
+    std::cout << result.dump() << std::endl;
+    return 0;
+  }
+  catch (const std::exception &e)
+  {
+    std::cerr << "Error: " << e.what() << std::endl;
+    return 1;
+  }
 }
 #endif

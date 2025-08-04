@@ -108,9 +108,9 @@ export function createSortButton() {
     // loop through the comboList and log number of tags with each combo
     comboList.forEach((combo) => {
       const tagsWithCombo = Array.from(tagsContainer.children).filter((tag) =>
-        (tag as HTMLElement).dataset.tag?.includes(combo),
+        (tag as HTMLElement).dataset.tag?.includes(combo)
       );
-      console.log(combo, tagsWithCombo.length);
+      // console.log(combo, tagsWithCombo.length);
     });
 
     const pairCombosLengths = [];
@@ -122,12 +122,12 @@ export function createSortButton() {
         const tagsWithBothCombos = Array.from(tagsContainer.children).filter(
           (tag) => {
             const tagData = JSON.parse(
-              (tag as HTMLElement).dataset.tag as string,
+              (tag as HTMLElement).dataset.tag as string
             ) as Tag;
             return (
               tagData.combos.includes(combo1) && tagData.combos.includes(combo2)
             );
-          },
+          }
         );
 
         if (tagsWithBothCombos.length > 0) {
@@ -145,7 +145,7 @@ export function createSortButton() {
 
     // Print the sorted pair combos
     pairCombosLengths.forEach(({ combo1, combo2, length }) => {
-      console.log(combo1, combo2, length);
+      // console.log(combo1, combo2, length);
     });
 
     const trioCombosLengths = [];
@@ -159,14 +159,14 @@ export function createSortButton() {
           const tagsWithAllCombos = Array.from(tagsContainer.children).filter(
             (tag) => {
               const tagData = JSON.parse(
-                (tag as HTMLElement).dataset.tag as string,
+                (tag as HTMLElement).dataset.tag as string
               ) as Tag;
               return (
                 tagData.combos.includes(combo1) &&
                 tagData.combos.includes(combo2) &&
                 tagData.combos.includes(combo3)
               );
-            },
+            }
           );
 
           if (tagsWithAllCombos.length > 0) {
@@ -186,7 +186,7 @@ export function createSortButton() {
 
     // Print the sorted trio combos
     trioCombosLengths.forEach(({ combo1, combo2, combo3, length }) => {
-      console.log(combo1, combo2, combo3, length);
+      // console.log(combo1, combo2, combo3, length);
     });
 
     const priorityOrder = comboList.flatMap((combo, index, array) => [

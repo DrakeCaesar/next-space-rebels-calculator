@@ -32,20 +32,15 @@ if(EMSCRIPTEN)
   message(STATUS "Building for WebAssembly")
 
   set(SOURCES
-    src/cpp/bfs.cpp
+    src/cpp/main.cpp
     src/cpp/dfs.cpp
-    src/cpp/effects.cpp
-    src/cpp/pricing.cpp
-    src/cpp/reporter.cpp
-    src/cpp/bfs_algorithm.cpp
-    src/cpp/dfs_algorithm.cpp
-    src/cpp/json_parser.cpp
+    src/cpp/data_preprocessing.cpp
   )
 
-  add_executable(bfs_wasm ${SOURCES})
+  add_executable(tags_wasm ${SOURCES})
 
   # Link with nlohmann_json
-  target_link_libraries(bfs_wasm PRIVATE nlohmann_json::nlohmann_json)
+  target_link_libraries(tags_wasm PRIVATE nlohmann_json::nlohmann_json)
 
   # Emscripten specific settings
   set(EMSCRIPTEN_LINK_FLAGS
@@ -53,43 +48,38 @@ if(EMSCRIPTEN)
          -s ALLOW_MEMORY_GROWTH=1 \
          -s EXPORTED_RUNTIME_METHODS=['ccall','cwrap'] \
          -s EXPORT_ES6=1 \
-         -s EXPORT_NAME=createBfsModule \
+         -s EXPORT_NAME=createTagsModule \
          -s USE_ES6_IMPORT_META=0 \
          -s ENVIRONMENT=web \
          -O3 \
          --bind")
 
-  set_target_properties(bfs_wasm PROPERTIES
+  set_target_properties(tags_wasm PROPERTIES
     LINK_FLAGS "${EMSCRIPTEN_LINK_FLAGS}"
-    OUTPUT_NAME "bfs.wasm"
+    OUTPUT_NAME "tags.wasm"
     SUFFIX ".js")
 else()
   # Native build
-  message(STATUS "Building native executable with runtime performance optimizations")
+  message(STATUS "Building native executable")
 
   set(SOURCES
-    src/cpp/standalone.cpp
-    src/cpp/effects.cpp
-    src/cpp/pricing.cpp
-    src/cpp/reporter.cpp
-    src/cpp/bfs_algorithm.cpp
-    src/cpp/dfs_algorithm.cpp
+    src/cpp/main.cpp
     src/cpp/dfs.cpp
-    src/cpp/json_parser.cpp
+    src/cpp/data_preprocessing.cpp
   )
 
-  add_executable(bfs_calculator ${SOURCES})
+  add_executable(TagCombinationFinder ${SOURCES})
 
   # Link with nlohmann_json
-  target_link_libraries(bfs_calculator PRIVATE nlohmann_json::nlohmann_json)
+  target_link_libraries(TagCombinationFinder PRIVATE nlohmann_json::nlohmann_json)
 
   # Find and link with threading library
   find_package(Threads REQUIRED)
-  target_link_libraries(bfs_calculator PRIVATE Threads::Threads)
+  target_link_libraries(TagCombinationFinder PRIVATE Threads::Threads)
 
   # Set runtime performance optimization flags
   if(MSVC)
-    target_compile_options(bfs_calculator PRIVATE
+    target_compile_options(TagCombinationFinder PRIVATE
       $<$<CONFIG:Release>:/O2>
       $<$<CONFIG:Release>:/Ob3>
       $<$<CONFIG:Release>:/Oi>
@@ -108,7 +98,7 @@ else()
       $<$<CONFIG:Release>:/EHs- /EHc->
     )
 
-    target_link_options(bfs_calculator PRIVATE
+    target_link_options(TagCombinationFinder PRIVATE
       $<$<CONFIG:Release>:/LTCG>
       $<$<CONFIG:Release>:/INCREMENTAL:NO>
       $<$<CONFIG:Release>:/OPT:REF>
@@ -118,13 +108,13 @@ else()
     )
 
     if(CMAKE_SIZEOF_VOID_P EQUAL 8)
-      target_compile_options(bfs_calculator PRIVATE
+      target_compile_options(TagCombinationFinder PRIVATE
         $<$<CONFIG:Release>:/favor:blend>
       )
     endif()
 
   else()
-    target_compile_options(bfs_calculator PRIVATE
+    target_compile_options(TagCombinationFinder PRIVATE
       $<$<NOT:$<CONFIG:Debug>>:-O3>
       $<$<NOT:$<CONFIG:Debug>>:-march=native>
       $<$<NOT:$<CONFIG:Debug>>:-mtune=native>
@@ -144,7 +134,7 @@ else()
       $<$<NOT:$<CONFIG:Debug>>:-funsafe-math-optimizations>
     )
 
-    target_link_options(bfs_calculator PRIVATE
+    target_link_options(TagCombinationFinder PRIVATE
       $<$<NOT:$<CONFIG:Debug>>:-flto>
       $<$<NOT:$<CONFIG:Debug>>:-Wl,--gc-sections>
       $<$<NOT:$<CONFIG:Debug>>:-Wl,-O3>

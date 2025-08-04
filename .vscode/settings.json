@@ -183,7 +183,7 @@
       ]
     }
   },
-  "cmake.sourceDirectory": "${workspaceFolder}/cpp",
+  "cmake.sourceDirectory": "${workspaceFolder}/src/cpp",
   "files.associations": {
     ".fantomasignore": "ignore",
     "*.gek": "papyrus",
