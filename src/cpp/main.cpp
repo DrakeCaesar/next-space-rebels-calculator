@@ -28,48 +28,75 @@ static void findBestCombination(const vector<Tag> &tags, Tag bestCombination[5])
   size_t n = tags.size();
   int bestScore = 0;
 
-  // Simple single-threaded version for WASM (threads can be problematic in WASM)
-  for (size_t i = 0; i < n - 4; i++)
+  // Iterative combination generator with incremental updates
+  size_t indices[5] = {0, 1, 2, 3, 4};
+  int comboCounts[COMBO_COUNT];
+  static const int multipliers[] = {1, 1, 2, 5, 15, 30};
+
+  // Initialize combo counts for first combination
+  std::memset(comboCounts, 0, sizeof(comboCounts));
+  for (int i = 0; i < 5; i++)
   {
-    for (size_t j = i + 1; j < n - 3; j++)
+    for (const auto &combo : tags[indices[i]].combos)
+      comboCounts[combo]++;
+  }
+
+  // Calculate initial score
+  int score = 1;
+  for (int o = 0; o < COMBO_COUNT; o++)
+    score *= multipliers[comboCounts[o]];
+
+  if (score > bestScore)
+  {
+    bestScore = score;
+    for (int i = 0; i < 5; i++)
+      bestCombination[i] = tags[indices[i]];
+  }
+
+  // Generate remaining combinations with incremental updates
+  while (true)
+  {
+    // Find rightmost index that can be incremented
+    int pos = 4;
+    while (pos >= 0 && indices[pos] == n - 5 + pos)
     {
-      for (size_t k = j + 1; k < n - 2; k++)
-      {
-        for (size_t l = k + 1; l < n - 1; l++)
-        {
-          for (size_t m = l + 1; m < n; m++)
-          {
-            int comboCounts[COMBO_COUNT];
-            std::memset(comboCounts, 0, sizeof(comboCounts));
+      pos--;
+    }
 
-            for (const auto &combo : tags[i].combos)
-              comboCounts[combo]++;
-            for (const auto &combo : tags[j].combos)
-              comboCounts[combo]++;
-            for (const auto &combo : tags[k].combos)
-              comboCounts[combo]++;
-            for (const auto &combo : tags[l].combos)
-              comboCounts[combo]++;
-            for (const auto &combo : tags[m].combos)
-              comboCounts[combo]++;
+    if (pos < 0)
+      break; // No more combinations
 
-            int score = 1;
-            static const int multipliers[] = {1, 1, 2, 5, 15, 30}; // Lookup table
-            for (int o = 0; o < COMBO_COUNT; o++)
-              score *= multipliers[comboCounts[o]];
+    // Remove combos from tags that will change
+    for (int i = pos; i < 5; i++)
+    {
+      for (const auto &combo : tags[indices[i]].combos)
+        comboCounts[combo]--;
+    }
 
-            if (score > bestScore)
-            {
-              bestScore = score;
-              bestCombination[0] = tags[i];
-              bestCombination[1] = tags[j];
-              bestCombination[2] = tags[k];
-              bestCombination[3] = tags[l];
-              bestCombination[4] = tags[m];
-            }
-          }
-        }
-      }
+    // Update indices
+    indices[pos]++;
+    for (int i = pos + 1; i < 5; i++)
+    {
+      indices[i] = indices[i - 1] + 1;
+    }
+
+    // Add combos from new tags
+    for (int i = pos; i < 5; i++)
+    {
+      for (const auto &combo : tags[indices[i]].combos)
+        comboCounts[combo]++;
+    }
+
+    // Calculate score for new combination
+    score = 1;
+    for (int o = 0; o < COMBO_COUNT; o++)
+      score *= multipliers[comboCounts[o]];
+
+    if (score > bestScore)
+    {
+      bestScore = score;
+      for (int i = 0; i < 5; i++)
+        bestCombination[i] = tags[indices[i]];
     }
   }
 }
@@ -146,35 +173,27 @@ int main(int argc, char *argv[])
     return 1;
   }
 
-  try
+  // Parse the input JSON
+  json j = json::parse(argv[1]);
+  vector<Tag> tags = j.get<vector<Tag>>();
+
+  // Find best combination
+  Tag bestTags[5];
+  findBestCombination(tags, bestTags);
+
+  // Create result JSON
+  json result = json::array();
+  for (int i = 0; i < 5; i++)
   {
-    // Parse the input JSON
-    json j = json::parse(argv[1]);
-    vector<Tag> tags = j.get<vector<Tag>>();
-
-    // Find best combination
-    Tag bestTags[5];
-    findBestCombination(tags, bestTags);
-
-    // Create result JSON
-    json result = json::array();
-    for (int i = 0; i < 5; i++)
-    {
-      json tagObj;
-      tagObj["name"] = bestTags[i].name;
-      tagObj["description"] = bestTags[i].description;
-      tagObj["combos"] = bestTags[i].combos;
-      result.push_back(tagObj);
-    }
-
-    // Output result to stdout
-    std::cout << result.dump() << std::endl;
-    return 0;
+    json tagObj;
+    tagObj["name"] = bestTags[i].name;
+    tagObj["description"] = bestTags[i].description;
+    tagObj["combos"] = bestTags[i].combos;
+    result.push_back(tagObj);
   }
-  catch (const std::exception &e)
-  {
-    std::cerr << "Error: " << e.what() << std::endl;
-    return 1;
-  }
+
+  // Output result to stdout
+  std::cout << result.dump() << std::endl;
+  return 0;
 }
 #endif
