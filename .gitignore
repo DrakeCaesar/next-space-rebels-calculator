@@ -15,3 +15,5 @@ cpp/cmake-build-release/
 cpp/.vs/
 vite.config.ts.timestamp-1723402240326-26b6ce80df0d9.mjs
 vcpkg_installed/
+*.wasm.js
+*.wasm.wasm
